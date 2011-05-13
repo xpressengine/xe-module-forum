@@ -1,0 +1,121 @@
+<!--@if($oDocument->getCommentCount())-->
+	
+	{@ $_comment_list = $oDocument->getComments() }
+	<!--@foreach($_comment_list as $key => $comment)-->
+		<tr class="separator">
+			<td class="center lightGray">
+				<a href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a>
+			</td>
+			<td class="left lightGray">
+				<p class="subject"><span>Post subject:</span> Re: {$oDocument->getTitle()}</p>
+				<p class="postDate"><span>Post date:</span> </p>
+			</td>
+		</tr>
+		<tr class="separator">
+			<td class="top memberInfo">
+				<p class="avatar">
+					<!--@if($comment->getProfileImage())-->
+						<img src="{$comment->getProfileImage()}" alt="profile" class="commentProfileImage" />
+					<!--@else-->
+					<img src="images/common/avatar.jpg">
+					<!--@end-->
+				</p>
+				<p class="additionalInfo"><span>registered: </span>{$comment->getRegdate('m/d/Y')}</p>
+				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
+				<p class="additionalInfo"><span>ip: </span>{$comment->getIpaddress()}</p>
+				<!--@end-->
+			</td>
+			<td class="top">
+				<!--@if(!$comment->isAccessible())-->
+					<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage">
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="page" value="{$page}" />
+					<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
+					<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
+						<p>&quot;{$lang->msg_is_secret}&quot;</p>
+						<dl>
+							<dt><label for="cpw">{$lang->password}</label> :</dt>
+							<dd><input type="password" id="cpw" name="password" class="inputText" /><span class="button red"><input type="submit" value="{$lang->cmd_input}" /></span></dd>
+						</dl>
+					</form>
+				<!--@else-->
+
+					{html_entity_decode($comment->getContentText())}
+				<!--@end-->
+			</td>
+		</tr>
+		<!--@if($is_logged)-->
+				
+		<tr class="separator">
+			<td>
+				<p class="attachment"><span>Actions:</span></p>
+			</td>
+			<td class="right">
+				<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
+				<a href="{getUrl('act','dispForumDeleteComment','comment_srl',$comment->comment_srl)}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
+				<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl)}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</span></span></a> 
+				<!--@end-->
+				<!--  <a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl)}" class="button green"><span>{$lang->cmd_reply}</span></a> -->
+				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				
+				<!--@if($comment->get('voted_count')!=0 || $comment->get('blamed_count') != 0)-->
+				<div class="voted">
+					({$lang->voted_count}:
+					<strong>{$comment->get('voted_count')?$comment->get('voted_count'):0}</strong> / <strong>{$comment->get('blamed_count')?$comment->get('blamed_count'):0}</strong>)
+				</div>
+				<!--@end-->
+			</td>
+		</tr>
+		
+		<!--@end-->
+		<!--@if($comment->hasUploadedFiles())-->
+		<tr class="separator">
+			<td>
+				<p class="attachment"><span>{$lang->uploaded_file}:</span></p>
+			</td>
+			<td>
+				{@ $_uploaded_files = $comment->getUploadedFiles() }
+				<ul class="filesList">
+					<!--@foreach($_uploaded_files as $key => $file)-->
+					<li>
+						<a href="{getUrl('')}{$file->download_url}">
+							{$file->source_filename}
+							<span class="bubble">[File Size:{FileHandler::filesize($file->file_size)}/Download{number_format($file->download_count)}]</span>
+						</a>
+					</li>
+					<!--@end-->
+				</ul>
+			</td>
+		</tr>
+		<!--@end-->
+		<tr class="separator threadSeparator">
+			<td class="mediumGray">
+			</td>
+			<td class="mediumGray">
+			</td>
+		</tr>
+	<!--@end-->
+	</tbody>
+	</table>
+
+    <!--@if($oDocument->comment_page_navigation)-->
+		<div class="pagination a1">
+			<a href="{getUrl('cpage',1)}#comment" class="prevEnd">{$lang->first_page}</a> 
+			<!--@while($page_no = $oDocument->comment_page_navigation->getNextPage())-->
+				<!--@if($cpage == $page_no)-->
+					<strong>{$page_no}</strong> 
+				<!--@else-->
+					<a href="{getUrl('cpage',$page_no)}#comment">{$page_no}</a>
+				<!--@end-->
+			<!--@end-->
+			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="nextEnd">{$lang->last_page}</a>
+		</div>
+		<!--@if($grant->write_comment && $oDocument->allowComment()) -->
+			<a href="#reply" title="{$lang->comment}"><strong>'{$oDocument->getCommentcount()}'</strong> posts</a>
+		<!--@end-->
+    <!--@end-->
+
+<!--@else-->
+</tbody>
+</table>
+<!--@end-->

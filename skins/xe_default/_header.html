@@ -1,0 +1,106 @@
+<!--@if(!$module_info->colorset)-->
+    {@$module_info->colorset = "white"}
+<!--@end-->
+	
+<!--%import("css/forum.css")-->
+<!--%import("css/pagination.css")-->
+
+<!--@if($module_info->colorset == "black")-->
+	<!--%import("css/black.css")-->
+<!--@else-->
+	<!--%import("css/white.css")-->
+<!--@end-->
+
+<!--@if(!$module_info->duration_new = (int)$module_info->duration_new)-->{@ $module_info->duration_new = 12 }<!--@end-->
+<!--@if(!$module_info->content_cut_size = (int)$module_info->content_cut_size)-->{@ $module_info->content_cut_size= 240 }<!--@end-->
+
+<!--@if(!$module_info->thumbnail_type)-->{@ $module_info->thumbnail_type = 'crop'; }<!--@end-->
+<!--@if(!$module_info->thumbnail_width)-->{@ $module_info->thumbnail_width = 100; }<!--@end-->
+<!--@if(!$module_info->thumbnail_height)-->{@ $module_info->thumbnail_height = 100; }<!--@end-->
+
+<!--@if($order_type == "desc")-->
+    {@ $order_icon = "buttonDescending.gif" }
+    {@ $order_type = "asc"; }
+<!--@else-->
+    {@ $order_icon = "buttonAscending.gif" }
+    {@ $order_type = "desc"; }
+<!--@end-->
+
+
+<div class="forum">
+    <div class="forumHeader">
+    <!--@if(!$category && !$oDocument->variables['title'])-->
+		<!--@if($module_info->title)-->
+		<div class="forumTitle">
+			<h1 class="forumTitleText">{$module_info->title}</h1>
+			<!--@Context::setBrowserTitle($module_info->title);--><!--@end-->
+		</div>
+		<!--@end-->
+	<!--@else-->
+	<!--@if($oDocument->variables['title'])-->
+		<div class="forumTitle">
+			<h1 class="forumTitleText">{$oDocument->getTitle()}</h1>
+			<!--@Context::setBrowserTitle($oDocument->getTitle().' - '.$module_info->title);--><!--@end-->
+		</div>
+	<!--@else-->
+		<div class="forumTitle">
+			<h1 class="forumTitleText">{$category_list[$category]->title}</h1>
+			<!--@Context::setBrowserTitle($category_list[$category]->title.' - '.$module_info->title);--><!--@end-->
+		</div>
+	<!--@end-->
+	<!--@end-->
+		{$module_info->header_text}
+		<!--@if($module_info->comment)-->
+		<p class="forumDescription">{$module_info->comment}</p>
+		<!--@end-->
+		<div class="breadcrumbs">
+		<!--@if($category || $oDocument->variables['title'])-->
+		<!--@if($module_info->title)-->
+    	<a href="{getUrl('document_srl','','category','','act','')}">{$module_info->title}</a>
+    	<!--@else-->
+    	<a href="{getUrl('document_srl','','category','','act','')}">{$lang->main}</a>
+    	<!--@end-->
+    	<!--@end-->
+    	<!--@if($breadcrumbs)-->
+    	<!--@foreach($breadcrumbs as $val)-->
+    	{$lang->separator}
+    	<a href="{getUrl('document_srl','','category',$val->category_srl,'act','dispForumContent')}">{$val->title}</a>
+    	<!--@end-->
+    	<!--@end-->
+    	<!--@if($oDocument->variables['title'])-->
+    	{$lang->separator} 
+    	<a href="{getUrl('document_srl',$oDocument->variables['document_srl'])}">{$oDocument->getTitle()}</a>
+    	<!--@end-->
+    	</div>
+    	
+    	
+    </div>
+
+<!--@if($module_info->display_login_info != 'N' || $module_info->display_setup_button != 'N')-->
+    <div class="forumInformation">
+		<div class="infoRight">
+			<ul>
+			<!--@if($is_logged)-->
+				<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
+				<li class="setup"><a href="{getUrl('act','dispForumAdminForumInfo')}">{$lang->cmd_setup}</a></li>
+				<!--@end-->
+				<!--@if($module_info->display_login_info != 'N')-->
+				<li class="myInfo"><a href="{getUrl('act','dispMemberInfo')}">{$lang->cmd_view_member_info}</a></li>
+				<li class="loginAndLogout"><a href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+				<!--@end-->
+				<!--@elseif(!$is_logged && $module_info->display_login_info != 'N')-->
+					<li class="join"><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+					<li class="loginAndLogout"><a href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+				<!--@end-->
+				<!--@if($rss_url)-->
+					<li class="rss icon"><a href="{$rss_url}" title="RSS"><span>RSS</span></a></li>
+				<!--@end-->
+				<li class="tag_info icon"><a href="{getUrl('act','dispForumTagList')}" title="Tag List"><span>Tag List</span></a></li>
+				
+				
+				<li class="contributors icon"><a href="{getUrl('','module','module','act','dispModuleSkinInfo','selected_module',$module_info->module, 'skin', $module_info->skin)}" onclick="popopen(this.href,'skinInfo'); return false;" title="Contributors"><span>Contributors</span></a></li>
+			</ul>
+		</div>
+    </div>
+<!--@end-->
+</div>

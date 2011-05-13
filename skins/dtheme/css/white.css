@@ -1,0 +1,140 @@
+@charset "utf-8"; 
+/* NHN (developers@xpressengine.com) */
+
+/* XE White Theme */
+
+/* forum Reset */
+
+.forum .inputText,
+.forum textarea{ border-color:#ccc;}
+.forum .inputText,
+.forum textarea,
+.forum select{ background:#fff; color:#333;}
+.forum a{color:#000;}
+
+/* forum Header */
+.forumHeader .forumTitleText a{ color:#000;}
+.forumHeader .forumTitleText em{ color:#666;}
+.forumHeader .forumDescription{ background:#f8f8f8; }
+
+/* forum Information */
+.forumInformation li{background-image:url(../images/white/lineVr11.gif);}
+.forumInformation em,
+.forumInformation strong{ color:#ff6600;}
+.forumInformation .infoLeft{ background-image:url(../images/common/iconArticle.gif);}
+.forumInformation .infoRight li.icon{ background:none;}
+.forumInformation .infoRight li.icon a{ background-image:url(../images/common/icons.gif);}
+
+/* forum List Form */
+.forumListForm em,
+.forumListForm strong{color:#ff6600;}
+
+/* forum List */
+.forumList{ border-color:#ddd;}
+.forumList .jumpTo button{ background-color:transparent; background-image:url(../images/common/buttonBg2byte.gif);}
+.forumList tr.notice{ background:#f8f8f8;}
+.forumList tr.bg1{ background:#fff;}
+.forumList tr.bg2{ background:#fbfbfb;}
+.forumList th{ border-color:#fff; color:#333; background-color:#F797AC; }
+.forumList th a{ color:#1978AD;}
+.forumList td{ border-color:#eee; color:#666;}
+.forumList td .category{ color:#000; background-image:url(../images/white/lineVr11.gif);}
+.forumList td.title .replyNum{ color:#ccc;}
+.forumList td.title .replyNum sup{ color:#999;}
+.forumList td.title a.forum:link,
+.forumList td a.replyAnchor:link{ color:#06C;}
+.forumList td .by{ color:#ccc;}
+.forumList p.category_description {font-size:10px; }
+.forumList td a.forum {text-decoration: none; font-weight: bold;}
+.forumList td p.forum {text-decoration: none; font-weight: bold;color:#666;}
+
+.forumList tr.bgforum1{ background:#61BFEF; }
+.forumList tr.bgforum{ background:#fbfbfb;}
+
+.forumList td a.forum:hover {text-decoration: underline; font-weight: bold;}
+
+
+.forumList td.summary .thumb{ border-color:#ddd; background:#fff;}
+
+.thumbHeader{ border-color:#ddd; color:#333; background-color:#fff; background-image:url(../images/white/bgThDefault.gif);}
+.thumbHeader a{ color:#1978AD;}
+.thumbHeader .jumpTo button{ background-image:url(../images/common/buttonBg2byte.gif);}
+
+.thumbList{ border-color:#ddd;}
+.thumbList li .thumb{ background:#fff; border-color:#ddd;}
+.thumbList li .thumb a .text{ color:#ccc;}
+.thumbList li .thumb a .category{ background:#000; opacity:.6; filter:alpha(opacity=60); color:#fff;}
+
+/* forum Navigation */
+
+/* Search Form */
+
+/* forum Read */
+.forumReadHeader{ border-color:#ddd;}
+
+.forumReadBody{ border-color:#ddd;}
+.forumReadBody .memberSignature{ border-color:#ddd;}
+
+.forumReadFooter{ color:#666;}
+.forumReadFooter a{ color:#666;}
+.forumReadFooter dt{ background:#fff;}
+
+.forumRead .forumNavigation{ border-color:#ddd;}
+
+.feedbackList{ color:#666;}
+.feedbackList .feedbackHeader{ color:#000;}
+.feedbackList .feedbackHeader strong{ color:#ff6600;}
+
+.feedbackList .item{ border-color:#ddd;}
+.feedbackList .reply .indent{ border-left-color:#eee;}
+
+/* Time */
+.time *{ color:#666;}
+.time dt{ background:#fff;}
+
+/* Attached File */
+.attachedFile *{ color:#666;}
+.attachedFile dd a{ color:#666;}
+.attachedFile dd a .bubble{ background:#f8f8f8; border-color:#ddd;}
+
+.replyForm{ color:#666; background:#f4f4f4;}
+.replyForm .title{ color:#000;}
+
+/* forum Write */
+.forumWrite .forumNavigation,
+.forumEditor .forumNavigation{ border-color:#ddd;}
+
+/* UserName & Password */
+.forum .userNameAndPw,
+.forum .editorOption{ border-color:#ddd; background:#f4f4f4;}
+
+/* Comment */
+.forum .forumEditor{ border-color:#ddd; background:#f8f8f8;}
+.forum .commentEditor .commentHeader{border-color:#ddd; color:#000;}
+
+/* Secret Message */
+
+/* Extra Var Table */
+.extraVarsList{ border-color:#ddd;}
+.extraVarsList caption{ color:#999;}
+.extraVarsList em{ color:#ff6600;}
+.extraVarsList th,
+.extraVarsList td{ border-color:#ddd;}
+.extraVarsList th{ background:#f4f4f4;}
+.extraVarsList td{ background:#fff;}
+.extraVarsList td .inputNum{ border-color:#ccc;}
+
+/* Tag Cloud */
+.tagCloud{ border-color:#ddd;}
+.tagCloud .tagHeader{border-color:#ddd; color:#333; background-color:#fff; background-image:url(../images/white/bgThDefault.gif);}
+.tagCloud .tagHeader strong{ color:#ff6600;}
+.tagCloud li.rank1 a{ background:#12d763; color:#fff;}
+.tagCloud li.rank2 a{ color:#666;}
+.tagCloud li.rank3 a{ color:#00b4b5;}
+.tagCloud li.rank4 a{ color:#666;}
+.tagCloud li.rank5 a{ color:#666;}
+
+/* Layer */
+#popup_menu_area{background:#fff; border-color:#eee;}
+#popup_menu_area ul{ border-color:#ddd;}
+#popup_menu_area li a{ color:#000;}

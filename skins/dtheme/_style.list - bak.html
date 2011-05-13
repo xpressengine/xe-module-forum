@@ -1,0 +1,249 @@
+<form action="./" method="get" class="forumListForm">
+	<!-- 
+	<div class="categoryTitle">{$lang->category}: <strong>{$category_list[$category]->title}</strong></div>
+	 -->
+	<div id="topic">
+		<div id="buttonsLeft">
+			<!--@if($grant->manager)-->
+				<a href="{getUrl('','module','document','act','dispDocumentManageDocument')}" onclick="popopen(this.href,'manageDocument'); return false;" class="button blue strong"><span>{$lang->cmd_manage_document}</span></a>
+			<!--@end-->
+			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="button black strong"><span>{$lang->new_thread}</span></a>
+		</div>
+		<p id="topicDetails">
+			<span id="topicDetailsLabel">Category statistics:</span>
+			<strong>{number_format($total_count)}</strong> {$lang->article_count} {$lang->of_which} <strong>{$total_count-count($notice_list)}</strong> {$lang->document_count} & <strong>{count($notice_list)}</strong> {$lang->notice_count}
+		</p>
+		<div class="cleared"></div>
+	</div>
+	
+	<table cellspacing="0" border="0" class="forumCategoryList">
+		<thead>
+			{@ $no_line_class = " no_line" }
+			<tr class="rootCateg">
+				<!--@if($grant->manager)-->
+					<td>
+						<div class="left first">
+							<input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" />
+						</div>
+					</td>
+				<!--@end-->
+				<td class="large">
+					<div class="left <!--@if($grant->manager)-->middle<!--@else-->first<!--@end-->">
+						topics
+					</div>
+				</td>
+				<td class="small">
+					<div class="center middle">
+						created date
+					</div>
+				</td>
+				<td class="small">
+					<div class="center middle">
+						views
+					</div>
+				</td>
+				<td class="small">
+					<div class="center last">
+						<a class="openClose"></a>
+					</div>
+				</td>
+			</tr>
+		</thead>
+	</table>
+
+	<table cellspacing="0" border="0" class="forumCategoryList contentForum forumContent">
+	<tbody>
+	<!--@if(count($notice_list)) -->
+
+	<!--@if(!$total_count)-->
+		<tr>
+			<td colspan="<!--@if($grant->manager)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">
+				{$lang->no_documents}
+			</td>
+		</tr>
+	<!--@else-->
+
+		<!--@ $i=0;--><!--@end-->
+
+		<!--@foreach($notice_list as $no => $document)-->
+			<!--@ $i++;--><!--@end-->
+			<tr class="bg{($i+1)%2+1} separator notice">
+				<!--@if($grant->manager)-->
+					<td class="check">
+						<input type="checkbox" name="cart" value="{$document->document_srl}" onclick="doAddDocumentCart(this)"  <!--@if($document->isCarted())-->checked="checked"<!--@end--> />
+					</td>
+				<!--@end-->
+
+				<!--@foreach($list_config as $key => $val)-->
+
+					<!--@if($val->idx == -1)-->
+
+						<!--@if($val->type == 'no')-->
+							<!--td class="notice"><!--@if($document_srl == $document->document_srl)-->&raquo;<!--@else-->{$i}&nbsp;<!--@end--></td-->
+						<!--@elseif($val->type == 'title')-->
+							<td class="large left">
+								<h3 class="gF thread">
+									<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">
+										{$document->getTitle($module_info->subject_cut_size)}
+									</a>
+								</h3>
+								<!--@if($document->getTrackbackCount())-->
+									<a href="{getUrl('document_srl', $document->document_srl)}#trackback">
+										<span class="replyNum" title="Trackbacks">
+											<strong class="trackback">[{$document->getTrackbackCount()}]</strong>
+										</span>
+									</a>
+								<!--@end-->
+								<!--@elseif($val->type == 'nick_name')-->
+									<p class="threadAuthor">
+										{$document->printExtraImages(60*60*$module_info->duration_new)}
+										<span>Started by:</span>
+										<a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">
+											{$document->getNickName()}
+										</a>
+									</p>
+							</td>
+						<!--@elseif($val->type == 'regdate')-->
+							<td class="small center numbers gF">
+								{$document->getRegdate('Y-m-d')}
+							</td>
+						<!--@elseif($val->type == 'last_update')-->
+							<td class="small center numbers gF">
+								{zdate($document->get('last_update'),'Y-m-d H:i')}
+							</td>
+						<!--@elseif($val->type == 'last_post')-->
+							<td class="small center numbers gF">
+								{$document->get('last_post')}
+							</td>
+						<!--@elseif($val->type == 'comment_count')-->
+							<td class="small center numbers gF">
+								<a href="{getUrl('document_srl', $document->document_srl)}#comment">
+									<span class="replyNum" title="Replies"><strong>[{$document->getCommentCount()}]</strong></span>
+								</a>
+							</td>
+						<!--@elseif($val->type == 'comment_count')-->
+							<td class="small center numbers gF">
+								{$document->getCommentCount()}
+							</td>
+						<!--@elseif($val->type == 'user_id')-->
+							<td class="small center">
+								{$document->getUserID()}</a>
+							</td>
+						<!--@elseif($val->type == 'user_name')-->
+							<td class="small center numbers gF">
+								{$document->getUserName()}</a>
+							</td>
+						<!--@elseif($val->type == 'readed_count')-->
+							<td class="small center numbers gF">
+								{$document->get('readed_count')}
+							</td>
+						<!--@elseif($val->type == 'voted_count')-->
+							<td class="small center numbers gF">
+								{$document->get('voted_count')!=0?$document->get('voted_count'):'&nbsp;'}
+							</td>
+						<!--@end-->
+
+					<!--@else-->
+							<td>{$document->getExtraValueHTML($val->idx)}&nbsp;</td>
+					<!--@end-->
+				<!--@end-->
+				<td></td>
+			</tr>
+		<!--@end-->
+	<!--@end-->
+	<!--@end-->
+
+	<!--@if(!$total_count)-->
+		<tr>
+			<td colspan="<!--@if($grant->manager)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">
+				{$lang->no_documents}
+			</td>
+		</tr>
+	<!--@else-->
+	
+		<!--@foreach($document_list as $no => $document)-->
+			<tr class="bg{($no+1)%2+1} separator">
+				<!--@if($grant->manager)-->
+					<td class="checkbox">
+						<input type="checkbox" name="cart" value="{$document->document_srl}" onclick="doAddDocumentCart(this)" <!--@if($document->isCarted())-->checked="checked"<!--@end--> />
+					</td>
+				<!--@end-->
+				
+				<!--@foreach($list_config as $key => $val)-->
+
+					<!--@if($val->idx == -1)-->
+
+						<!--@if($val->type == 'no')-->
+							<!--td class="num">
+								<!--@if($document_srl == $document->document_srl)-->&raquo;<!--@else-->{$no}<!--@end-->
+							</td-->
+						<!--@elseif($val->type == 'title')-->
+							<td class="large left">
+								<h3 class="gF thread">
+									<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">
+										{$document->getTitle($module_info->subject_cut_size)}
+									</a>
+								</h3>
+								<!--@if($document->getTrackbackCount())-->
+									<a href="{getUrl('document_srl', $document->document_srl)}#trackback"><span class="replyNum" title="Trackbacks"><strong class="trackback">[{$document->getTrackbackCount()}]</strong></span></a>
+								<!--@end-->
+								<!--@elseif($val->type == 'nick_name')-->
+									<p class="threadAuthor">
+										{$document->printExtraImages(60*60*$module_info->duration_new)}
+										<span>Started by:</span>
+										<a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">
+											{$document->getNickName()}
+										</a>
+									</p>
+							</td>
+						<!--@elseif($val->type == 'user_id')-->
+							<td class="small center">
+								{$document->getUserID()}</a>
+							</td>
+						<!--@elseif($val->type == 'user_name')-->
+							<td class="small center">
+								{$document->getUserName()}</a>
+							</td>
+						<!--@elseif($val->type == 'regdate')-->
+							<td class="small center numbers gF lightGray">
+								{$document->getRegdate('Y-m-d')}
+							</td>
+						<!--@elseif($val->type == 'last_update')-->
+							<td class="small center numbers gF lightGray">
+								{zdate($document->get('last_update'),'Y-m-d H:i')}
+							</td>
+						<!--@elseif($val->type == 'last_post')-->
+							<td class="small center numbers gF lightGray">
+								{$document->get('last_post')}
+							</td>
+						<!--@elseif($val->type == 'comment_count')-->
+							<td class="small center numbers gF">
+								<a href="{getUrl('document_srl', $document->document_srl)}#comment">
+									<span class="replyNum" title="Replies"><strong>[{$document->getCommentCount()}]</strong></span>
+								</a>
+							</td>
+						<!--@elseif($val->type == 'readed_count')-->
+							<td class="small center numbers gF">
+								{$document->get('readed_count')}
+							</td>
+						<!--@elseif($val->type == 'voted_count')-->
+							<td class="small center numbers gF">
+								{$document->get('voted_count')!=0?$document->get('voted_count'):'&nbsp;'}
+							</td>
+						<!--@end-->
+
+					<!--@else-->
+							<td>
+								{$document->getExtraValueHTML($val->idx)}&nbsp;
+							</td>
+					<!--@end-->
+				<!--@end-->
+				<td></td>
+			</tr>
+		<!--@end-->
+	<!--@end-->
+	</tbody>
+	</table>
+</form>
+
+

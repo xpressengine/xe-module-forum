@@ -1,0 +1,76 @@
+<div id="extras">
+	<!--@if($grant->view)-->
+	<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
+		
+		<!--@if($vid)-->
+			<input type="hidden" name="vid" value="{$vid}" name="searchIn"/>
+		<!--@end-->
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="category" value="{$category}" />
+		
+		<h4 class="gF">Search the forums:</h4>
+		<div class="specialBox">
+		<table border="0" cellspacing="0" class="forumCategoryList">
+			<tbody>
+				<tr class="separator">
+					<td class="small">
+						<label for="searchIn">Search in:</label>
+					</td>
+					<td class="large">
+						<select name="search_target" class="select">
+							<!--@foreach($search_option as $key => $val)-->
+								<option value="{$key}" <!--@if($search_target==$key)-->selected="selected"<!--@end-->>{$val}</option>
+							<!--@end-->
+						</select>
+					</td>
+				</tr>
+				<tr class="separator">
+					<td>
+						<label for="search_keyword">Keywords:</label>
+					</td>
+					<td>
+						<input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" class="inputText" accesskey="S" title="{$lang->cmd_search}" />
+					</td>
+				</tr>
+				<!--@if($last_division)-->
+				<tr class="separator">
+					<td>
+					</td>
+					<td>
+						<a href="{getUrl('page',1,'document_srl','','division',$last_division,'last_division','')}" class="button"><span>{$lang->cmd_search_next}</span></a>
+					</td>
+				</tr>
+				<!--@end-->
+				<tr class="separator">
+					<td>
+						<label for="current_category_only">Search only current category:</label>
+					</td>
+					<td>
+						<input type="checkbox" checked='checked' name="current_category_only" value="Y" id="current_category_only">
+					</td>
+				</tr>
+				<tr class="separator last">
+					<td>
+					</td>
+					<td>
+						<a href="#" class="forumButton blue find" onclick="xGetElementById('fo_search').submit();return false;" ><span class="outer"><span class="inner">{$lang->cmd_search}</span></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		
+	</form>
+	<!--@end-->
+
+	<!--@if($module_info->display_login_info != 'N' || $module_info->display_setup_button != 'N')-->
+		<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
+			<h4 class="gF">Actions:</h4>
+			<p class="forumInformation">
+				<a class="button red strong" href="{getUrl('act','dispForumAdminForumInfo')}">
+					<span>{$lang->cmd_setup}</span>
+				</a>
+			</p>
+		<!--@end-->
+	<!--@end-->
+</div>
