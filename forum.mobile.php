@@ -11,8 +11,7 @@ class forumMobile extends forumView {
             $this->except_notice = $this->module_info->except_notice == 'N' ? false : true;
 
             /**
-             * ìƒ�ë‹´ ê¸°ëŠ¥ ì²´í�¬. í˜„ìž¬ ê²Œì‹œíŒ�ì�˜ ê´€ë¦¬ìž�ì�´ë©´ ìƒ�ë‹´ê¸°ëŠ¥ì�„ offì‹œí‚´
-             * í˜„ìž¬ ì‚¬ìš©ìž�ê°€ ë¹„ë¡œê·¸ì�¸ ì‚¬ìš©ìž�ë�¼ë©´ ê¸€ì“°ê¸°/ëŒ“ê¸€ì“°ê¸°/ëª©ë¡�ë³´ê¸°/ê¸€ë³´ê¸° ê¶Œí•œì�„ ì œê±°í•¨
+             
              **/
             if($this->module_info->consultation == 'Y' && !$this->grant->manager) {
                 $this->consultation = true; 

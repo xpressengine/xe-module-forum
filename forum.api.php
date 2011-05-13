@@ -1,19 +1,15 @@
 <?php
     /**
      * @class  forumAPI
-     * @author NHN (developers@xpressengine.com)
-     * @brief  forum ëª¨ë“ˆì�˜ View Actionì—� ëŒ€í•œ API ì²˜ë¦¬
+     
      **/
 
     class forumAPI extends forum {
 
-/* dispForumContent ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤..
-        function dispForumContent(&$oModule) {
-        }
-*/
+
 
         /**
-         * @brief ê³µì§€ì‚¬í•­ ëª©ë¡�
+
          **/
         function dispForumNoticeList(&$oModule) {
              $oModule->add('notice_list',$this->arrangeContentList(Context::get('notice_list')));
@@ -21,7 +17,7 @@
 
 
         /**
-         * @brief ì»¨í…�ì¸  ëª©ë¡�
+
          **/
         function dispForumContentList(&$oModule) {
             $document_list = $this->arrangeContentList(Context::get('document_list'));
@@ -31,14 +27,14 @@
 
 
         /**
-         * @brief ì¹´í…Œê³ ë¦¬(ë¶„ë¥˜) ëª©ë¡�
+
          **/
         function dispForumCatogoryList(&$oModule) {
             $oModule->add('category_list',Context::get('category_list'));
         }
 
         /**
-         * @brief ê²Œì‹œë¬¼ ë³´ê¸°
+
          **/
         function dispForumContentView(&$oModule) {
             $oDocument = Context::get('oDocument');
@@ -49,7 +45,7 @@
 
 
         /**
-         * @brief ì»¨í…�ì¸ ì�˜ íŒŒì�¼ ëª©ë¡�
+
          **/
         function dispForumContentFileList(&$oModule) {
             $oModule->add('file_list',$this->arrangeFile(Context::get('file_list')));
@@ -57,14 +53,14 @@
 
 
         /**
-         * @brief íƒœê·¸ ëª©ë¡�
+
          **/
         function dispForumTagList(&$oModule) {
             $oModule->add('tag_list',Context::get('tag_list'));
         }
 
         /**
-         * @brief ì»¨í…�ì¸ ì�˜ ì½”ë©˜íŠ¸ ëª©ë¡�
+
          **/
         function dispForumContentCommentList(&$oModule) {
             $oModule->add('comment_list',$this->arrangeComment(Context::get('comment_list')));
