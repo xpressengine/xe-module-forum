@@ -46,10 +46,7 @@
 		<!--@end-->
 	<!--@end-->
 		<!--@if($module_info->comment && !$oDocument->variables['title'] && !$category)-->
-		<p class="forumDescription">{nl2br($module_info->comment)}</p>
-		<!--@end-->
-		<!--@if($module_info->header_text)-->
-		{nl2br($module_info->header_text)}
+		<div id="forumDescription" class="gF">{nl2br($module_info->comment)}</div>
 		<!--@end-->
 		<p id="forumBreadcrumbs">
 			<!--@if($act=="dispForumContent" || $act=="dispForumWrite")-->
@@ -74,4 +71,9 @@
 				&raquo;&nbsp;<a href="{getUrl('document_srl',$oDocument->variables['document_srl'])}">{$oDocument->getTitle()}</a>
 			<!--@end-->
     	</p>
+	<!--@if($module_info->header_text)-->
+	<div id="customHeader">
+		{nl2br($module_info->header_text)}
+	</div>
+	<!--@end-->
 </div>

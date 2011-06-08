@@ -93,7 +93,7 @@
 	font-size: 36px;
 	font-weight: normal;
 	font-style: italic;
-	margin: 30px 0 30px 10px;
+	margin: 30px 0 10px 0;
 }
 
 #forumSubTitle {
@@ -277,7 +277,8 @@
 
 #forumBreadcrumbs {
 	font-size: 13px;
-	margin: 0 0 5px 10px !important;
+	margin: 0 0 5px 0 !important;
+	padding-top: 5px;
 }
 
 .openClose {
@@ -318,7 +319,8 @@
 }
 
 #topic {
-	padding: 30px 15px 0 15px;
+	padding: 0 15px;
+	margin: 10px 0 0 0;
 }
 
 #topicDetailsLabel {
@@ -327,6 +329,7 @@
 
 #topicDetails {
 	float: right;
+	padding-top: 5px;
 }
 
 #buttonsLeft {
@@ -523,4 +526,27 @@
 #forumPagination {
 	margin: 15px 0 !important;
 	text-align: center;
+}
+
+#customHeader,#forumFooter {
+	margin: 15px 0 0 0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background: #ededed;
+	line-height: 18px;
+}
+
+#forumDescription {
+	padding: 0 0 15px 0;
+	font-size: 17px;
+	color: #29617e;
+	font-style: italic;
+}
+
+.quoteTitle {
+	font-style: italic;
+	margin: 0 0 5px 0 !important;
 }

@@ -1,5 +1,7 @@
-<!--#include("_header.html")-->
 <div id="forum">
+
+<!--#include("_header.html")-->
+
 <form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="fr_quote">
 	<input type="hidden" name="mid" value="{$mid}" />
 	<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
@@ -33,6 +35,14 @@
 				<label>{$lang->subject}</label>
 			</td>
 			<td colspan="2">
+				<p class="quoteTitle">Quote</p>
+				<div class="quote">
+					<p class="quoteTitle">Quote</p>
+					<div class="quote">
+						asd asd as asdkaskld askldh asldhasl
+					</div>
+					alskjdhasjkld laskhd lasdh askldhasklhr lauisldkasjld jklj
+				</div>
 				{$oComment->getEditor()}
 			</td>
 		</tr>
