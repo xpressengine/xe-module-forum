@@ -26,25 +26,9 @@
 				<!--@end-->
 			</td>
 			<td class="top">
-				<!--@if(!$comment->isAccessible())-->
-					<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage">
-					<input type="hidden" name="mid" value="{$mid}" />
-					<input type="hidden" name="page" value="{$page}" />
-					<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
-					<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
-						<p>&quot;{$lang->msg_is_secret}&quot;</p>
-						<dl>
-							<dt><label for="cpw">{$lang->password}</label> :</dt>
-							<dd><input type="password" id="cpw" name="password" class="inputText" /><span class="button red"><input type="submit" value="{$lang->cmd_input}" /></span></dd>
-						</dl>
-					</form>
-				<!--@else-->
-
-					{html_entity_decode($comment->getContentText())}
-				<!--@end-->
+				{html_entity_decode($comment->getContentText())}
 			</td>
 		</tr>
-		<!--@if($is_logged)-->
 				
 		<tr class="separator">
 			<td>
@@ -67,7 +51,6 @@
 			</td>
 		</tr>
 		
-		<!--@end-->
 		<!--@if($comment->hasUploadedFiles())-->
 		<tr class="separator">
 			<td>
@@ -110,7 +93,7 @@
 			<!--@end-->
 			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="nextEnd">{$lang->last_page}</a>
 		</div>
-		<!--@if($grant->write_comment && $oDocument->allowComment()) -->
+		<!--@if($grant->post && $oDocument->allowComment()) -->
 			<a href="#reply" title="{$lang->comment}"><strong>'{$oDocument->getCommentcount()}'</strong> posts</a>
 		<!--@end-->
     <!--@end-->

@@ -1,7 +1,8 @@
 <?php
     /**
      * @class  forumAPI
-     
+     * @author dan (dan.dragan@arnia.ro)
+     * @brief  forum Api class
      **/
 
     class forumAPI extends forum {
@@ -9,7 +10,7 @@
 
 
         /**
-
+         * @brief disp forum notice list
          **/
         function dispForumNoticeList(&$oModule) {
              $oModule->add('notice_list',$this->arrangeContentList(Context::get('notice_list')));
@@ -17,7 +18,7 @@
 
 
         /**
-
+         * @brief forum content list
          **/
         function dispForumContentList(&$oModule) {
             $document_list = $this->arrangeContentList(Context::get('document_list'));
@@ -27,14 +28,14 @@
 
 
         /**
-
+         * @brief disp forum category list
          **/
         function dispForumCatogoryList(&$oModule) {
             $oModule->add('category_list',Context::get('category_list'));
         }
 
         /**
-
+         * @brief disp forum content view
          **/
         function dispForumContentView(&$oModule) {
             $oDocument = Context::get('oDocument');
@@ -45,7 +46,7 @@
 
 
         /**
-
+         * @brief display forum content file list
          **/
         function dispForumContentFileList(&$oModule) {
             $oModule->add('file_list',$this->arrangeFile(Context::get('file_list')));
@@ -53,14 +54,14 @@
 
 
         /**
-
+         * @brief display forum tag list
          **/
         function dispForumTagList(&$oModule) {
             $oModule->add('tag_list',Context::get('tag_list'));
         }
 
         /**
-
+         * @brief display forum content comment list
          **/
         function dispForumContentCommentList(&$oModule) {
             $oModule->add('comment_list',$this->arrangeComment(Context::get('comment_list')));
@@ -78,7 +79,7 @@
         function arrangeContent($content) {
             $output = null;
             if($content){
-                $output= $content->gets('document_srl','category_srl','is_secret','nick_name','user_id','user_name','title','content','tags','voted_count','blamed_count','comment_count','regdate','last_update','extra_vars');
+                $output= $content->gets('document_srl','category_srl','nick_name','user_id','user_name','title','content','tags','voted_count','blamed_count','comment_count','regdate','last_update','extra_vars');
             }
             return $output;
         }
@@ -88,7 +89,7 @@
             if(count($comment_list) > 0 ) {
                 foreach($comment_list as $key => $val){
                     $item = null;
-                    $item = $val->gets('comment_srl','parent_srl','depth','is_secret','content','voted_count','blamed_count','user_id','user_name','nick_name','email_address','homepage','regdate','last_update');
+                    $item = $val->gets('comment_srl','parent_srl','depth','content','voted_count','blamed_count','user_id','user_name','nick_name','email_address','homepage','regdate','last_update');
                     $output[] = $item;
                 }
             }

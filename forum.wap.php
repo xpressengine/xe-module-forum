@@ -1,7 +1,8 @@
 <?php
     /**
      * @class  forumWAP
-     
+     * @author dan (dan.dragan@arnia.ro)
+     * @brief  forum module WAP class
      **/
 
     class forumWAP extends forum {
@@ -10,24 +11,21 @@
          * @brief wap procedure method
          **/
         function procWAP(&$oMobile) {
-            // 
-            if(!$this->grant->list || $this->module_info->consultation == 'Y') return $oMobile->setContent(Context::getLang('msg_not_permitted'));
+            // check permissions
+            if($this->module_info->consultation == 'Y') return $oMobile->setContent(Context::getLang('msg_not_permitted'));
 
-            // 
+            // instancing document model
             $oDocumentModel = &getModel('document');
 
-            // 
+            // get the selected document_srl
             $document_srl = Context::get('document_srl');
             if($document_srl) {
                 $oDocument = $oDocumentModel->getDocument($document_srl);
-                if($oDocument->isExists()) {
-                    // 
-                    if(!$this->grant->view) return $oMobile->setContent(Context::getLang('msg_not_permitted'));
-
-                    // 
+                if($oDocument->isExists()) {                   
+					// set browser title with the document title
                     Context::setBrowserTitle($oDocument->getTitleText());
 
-                    // 
+                    // if action display forum content comment list
                     if($this->act=='dispForumContentCommentList') {
 
                         $oCommentModel = &getModel('comment');
@@ -43,27 +41,27 @@
                             }
                         }
 
-                        // 
+                        // set content
                         $oMobile->setContent( $content );
 
-                        // 
+                        // back to the list specified in the parrent page
                         $oMobile->setUpperUrl( getUrl('act',''), Context::getLang('cmd_go_upper') );
 
-                    //
+                    // view comments and documents
                     } else {
 
-                        //
+                        // strip tags form content
                         $content = strip_tags(str_replace('<p>','<br>&nbsp;&nbsp;&nbsp;',$oDocument->getContent(false,false,false)),'<br><b><i><u><em><small><strong><big>');
 
 
-                        //
+                        // for information on top show links
                         $content = Context::getLang('replies').' : <a href="'.getUrl('act','dispForumContentCommentList').'">'.$oDocument->getCommentCount().'</a><br>'."\r\n".$content;
                         $content = '<b>'.$oDocument->getNickName().'</b> ('.$oDocument->getRegdate("Y-m-d").")<br>\r\n".$content;
                         
-                        //
+                        //set content
                         $oMobile->setContent( $content );
 
-                        //
+                        // back to the list specified in the parrent page
                         $oMobile->setUpperUrl( getUrl('document_srl',''), Context::getLang('cmd_list') );
 
                     }
@@ -72,7 +70,7 @@
                 }
             }
 
-            //
+            // set arguments
             $args->module_srl = $this->module_srl; 
             $args->page = Context::get('page');; 
             $args->list_count = 9;
@@ -101,7 +99,7 @@
             $page = (int)Context::get('page');
             if(!$page) $page = 1;
 
-            //
+            // specify next/prevUrl
             if($page>1) $oMobile->setPrevUrl(getUrl('mid',$_GET['mid'],'page',$page-1), sprintf('%s (%d/%d)', Context::getLang('cmd_prev'), $page-1, $totalPage));
 
             if($page<$totalPage) $oMobile->setNextUrl(getUrl('mid',$_GET['mid'],'page',$page+1), sprintf('%s (%d/%d)', Context::getLang('cmd_next'), $page+1, $totalPage));

@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
     <grants>
-        <grant name="list" default="guest">
-            <title xml:lang="en">list</title>
-        </grant>
-        <grant name="view" default="guest">
-            <title xml:lang="en">view</title>
-        </grant>
-        <grant name="write_document" default="guest">
-            <title xml:lang="en">write document</title>
-        </grant>
-        <grant name="write_comment" default="guest">
-            <title xml:lang="en">write comment</title>
+        <grant name="post" default="guest">
+            <title xml:lang="en">Post</title>
         </grant>
         <grant name="moderator" default="manager">
             <title xml:lang="en">Moderator</title>
@@ -48,6 +39,8 @@
         <action name="dispForumDeleteComment" type="view" />
         <action name="dispForumDeleteTrackback" type="view" />
         <action name="dispForumMessage" type="view" />
+        
+        <action name="unsubscribeThread" type="view" />
 
         <action name="procForumInsertDocument" type="controller" />
         <action name="procForumDeleteDocument" type="controller" />
@@ -69,6 +62,7 @@
         <action name="dispForumAdminSkinInfo" type="view" standalone="true" />
         <action name="dispForumAdminGrantInfo" type="view" standalone="true" />
         <action name="dispForumAdminListSetup" type="view" standalone="true" />
+        <action name="dispForumAdminDashboard" type="view" standalone="true" />
         <action name="dispForumAdminCategoryInfo" type="view" />
         <action name="procForumAdminInsertForum" type="controller" standalone="true" />
         <action name="procForumAdminDeleteForum" type="controller" standalone="true" />

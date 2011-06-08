@@ -1,18 +1,16 @@
 /**
  * @file   modules/forum/js/forum.js
- * @author NHN (developers@xpressengine.com)
- * @brief  forum ëª¨ë“ˆì�˜ javascript
+ * @author Arnia (xe_dev@arnia.ro)
+ * @brief  forum module javascript functions
  **/
 
-/* ê¸€ì“°ê¸° ìž‘ì„±í›„ */
+/* callback function for insert filter */
 function completeDocumentInserted(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
     var mid = ret_obj['mid'];
     var document_srl = ret_obj['document_srl'];
     var category_srl = ret_obj['category_srl'];
-
-    //alert(message);
 
     var url;
     if(!document_srl)
@@ -27,7 +25,7 @@ function completeDocumentInserted(ret_obj) {
     location.href = url;
 }
 
-/* ê¸€ ì‚­ì œ */
+/* callback function for delete_document filter */
 function completeDeleteDocument(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -36,13 +34,10 @@ function completeDeleteDocument(ret_obj) {
 
     var url = current_url.setQuery('mid',mid).setQuery('act','').setQuery('document_srl','');
     if(page) url = url.setQuery('page',page);
-
-    //alert(message);
-
     location.href = url;
 }
 
-/* ê²€ìƒ‰ ì‹¤í–‰ */
+/* callback function for search filter */
 function completeSearch(ret_obj, response_tags, params, fo_obj) {
     fo_obj.submit();
 }
@@ -54,7 +49,6 @@ function completeVote(ret_obj) {
     location.href = location.href;
 }
 
-// í˜„ìž¬ íŽ˜ì�´ì§€ reload
 function completeReload(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -62,7 +56,7 @@ function completeReload(ret_obj) {
     location.href = location.href;
 }
 
-/* ëŒ“ê¸€ ê¸€ì“°ê¸° ìž‘ì„±í›„ */
+/* callback function for insert_comment filter */
 function completeInsertComment(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -73,12 +67,10 @@ function completeInsertComment(ret_obj) {
     var url = current_url.setQuery('mid',mid).setQuery('document_srl',document_srl).setQuery('act','');
     if(comment_srl) url = url.setQuery('rnd',comment_srl)+"#comment_"+comment_srl;
 
-    //alert(message);
-
     location.href = url;
 }
 
-/* ëŒ“ê¸€ ì‚­ì œ */
+/* callback function for delete_comment filter */
 function completeDeleteComment(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -89,12 +81,10 @@ function completeDeleteComment(ret_obj) {
     var url = current_url.setQuery('mid',mid).setQuery('document_srl',document_srl).setQuery('act','');
     if(page) url = url.setQuery('page',page);
 
-    //alert(message);
-
     location.href = url;
 }
 
-/* íŠ¸ëž™ë°± ì‚­ì œ */
+/* callback function for delete_trackback filter */
 function completeDeleteTrackback(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -105,18 +95,16 @@ function completeDeleteTrackback(ret_obj) {
     var url = current_url.setQuery('mid',mid).setQuery('document_srl',document_srl).setQuery('act','');
     if(page) url = url.setQuery('page',page);
 
-    //alert(message);
-
     location.href = url;
 }
 
-/* ì¹´í…Œê³ ë¦¬ ì�´ë�™ */
+/* change category */
 function doChangeCategory() {
     var category_srl = jQuery('#forum_category option:selected').val();
     location.href = decodeURI(current_url).setQuery('category',category_srl).setQuery('act', 'dispForumContent');
 }
 
-/* ìŠ¤í�¬ëž© */
+/* Scrap */
 function doScrap(document_srl) {
     var params = new Array();
     params["document_srl"] = document_srl;

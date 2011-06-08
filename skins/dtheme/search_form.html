@@ -1,5 +1,6 @@
 <div id="extras">
-	<!--@if($grant->view)-->
+	
+	<!--@if($is_logged)-->
 	<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
 		
 		<!--@if($vid)-->
@@ -61,15 +62,19 @@
 		</div>
 		
 	</form>
+	<!--@else-->
+	<div id="searchMessage" class="gF">
+		<p>{$lang->search_message1} <a href="{getUrl('act','dispMemberLoginForm')}"><span>{$lang->login}</a></span> {$lang->first}.</p>
+		<p>{$lang->search_message2} <a href="{getUrl('act','dispMemberSignUpForm')}"><span>{$lang->here}</span></a>.</p>
+	</div>
+	
 	<!--@end-->
 
 	<!--@if($module_info->display_login_info != 'N' || $module_info->display_setup_button != 'N')-->
 		<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
-			<h4 class="gF">Actions:</h4>
+			<h4 class="gF">Administrator panel:</h4>
 			<p class="forumInformation">
-				<a class="button red strong" href="{getUrl('act','dispForumAdminForumInfo')}">
-					<span>{$lang->cmd_setup}</span>
-				</a>
+				<a href="{getUrl('act','dispForumAdminForumInfo')}" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_setup}</span></span></a>
 			</p>
 		<!--@end-->
 	<!--@end-->

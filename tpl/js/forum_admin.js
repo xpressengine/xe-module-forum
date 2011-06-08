@@ -1,11 +1,11 @@
 /**
  * @file   modules/forum/js/forum_admin.js
- * @author NHN (developers@xpressengine.com)
- * @brief  forum ëª¨ë“ˆì�˜ ê´€ë¦¬ìž�ìš© javascript
+ * @author Arnia (xe_dev@arnia.ro)
+ * @brief  forum module admin javascript functions
  **/
 
 
-/* ëª¨ë“ˆ ìƒ�ì„± í›„ */
+/* function for callback on insert_forum filter */
 function completeInsertForum(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -27,7 +27,7 @@ function completeInsertForum(ret_obj) {
     location.href = url;
 }
 
-/* ëª¨ë“ˆ ì‚­ì œ í›„ */
+/* function for callback on delete_forum filter */
 function completeDeleteForum(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -39,7 +39,7 @@ function completeDeleteForum(ret_obj) {
     location.href = url;
 }
 
-/* ì¹´í…Œê³ ë¦¬ ê´€ë ¨ ìž‘ì—…ë“¤ */
+/* javascript function used to update category */
 function doUpdateCategory(category_srl, mode, message) {
     if(typeof(message)!='undefined'&&!confirm(message)) return;
 
@@ -50,7 +50,7 @@ function doUpdateCategory(category_srl, mode, message) {
     procFilter(fo_obj, update_category);
 }
 
-/* ì¹´í…Œê³ ë¦¬ ì •ë³´ ìˆ˜ì • í›„ */
+/* function for callback on update_category filter  */
 function completeUpdateCategory(ret_obj) {
     var error = ret_obj['error'];
     var message = ret_obj['message'];
@@ -63,7 +63,7 @@ function completeUpdateCategory(ret_obj) {
     location.href = url;
 }
 
-/* ì�¼ê´„ ì„¤ì • */
+/* Cart Setup */
 function doCartSetup(url) {
     var module_srl = new Array();
     jQuery('#fo_list input[name=cart]:checked').each(function() {
@@ -76,7 +76,7 @@ function doCartSetup(url) {
     popopen(url,'modulesSetup');
 }
 
-/* ëª©ë¡� ì„¤ì • */
+/* List Item setup */
 function doInsertItem() {
     var target_obj = xGetElementById('targetItem');
     var display_obj = xGetElementById('displayItem');

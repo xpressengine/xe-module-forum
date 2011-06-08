@@ -30,21 +30,10 @@
 				<!--@end-->
 			</td>
 			<td class="large center lightGray">
-				<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
-					<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage">
-						<input type="hidden" name="mid" value="{$mid}" />
-						<input type="hidden" name="page" value="{$page}" />
-						<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
-						<p>&quot;{$lang->msg_is_secret}&quot;</p>
-						<dl>
-							<dt><label for="cpw">{$lang->password}</label> :</dt>
-							<dd><input type="password" name="password" id="cpw" class="inputText" /><span class="button red"><input type="submit" value="{$lang->cmd_input}" /></span></dd>
-						</dl>
-					</form>
-				<!--@else-->
+				
 					<p class="subject"><span>{$lang->post_subject}:</span> {$oDocument->getTitle()}</p>
 					<p class="postDate"><span>{$lang->post_date}:</span> {$oDocument->getRegdate('Y.m.d')}</p>
-				<!--@end-->
+				
 
 				<!--@if($module_info->display_sign != 'N' && ($oDocument->getProfileImage() || $oDocument->getSignature()))-->
 					<div class="memberSignature">
@@ -99,11 +88,14 @@
 		<!--@if($oDocument->isEditable())-->
 		<tr class="separator">
 			<td>
-				<p class="attachment"><span>Actions:</span></p>
+				<p class="attachment"><span>{$lang->actions}:</span></p>
 			</td>
 			<td class="right">
-				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
 				<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
+				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
+				<!--@if($oDocument->allowComment())-->
+				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<!--@end-->
 			</td>
 		</tr>
 		<!--@end-->
@@ -127,7 +119,7 @@
 	<!--@if($oDocument->allowComment())-->
 		<!--#include("./comment.html")-->
 
-	<!--@if($oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted()) )-->
+	<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
 		<table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList">
 			<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
 			<tr>
@@ -138,7 +130,7 @@
 		</table>
 	<!--@end-->
 	
-		<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
+		<!--@if($grant->post && $oDocument->isEnableComment() )-->
 			<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="forumEditor" >
 				<input type="hidden" name="mid" value="{$mid}" />
 				<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
@@ -183,19 +175,11 @@
 								<label for="notify_message">{$lang->notify}</label>
 							</td>
 							<td colspan="2">
-								<input type="checkbox" name="notify_message" value="Y" id="notify_message" />
+								<input type="checkbox" name="notify_message" value="Y" <!--@if($isNotified)-->checked="checked"<!--@end--> id="notify_message" class="inputCheck" />
 							</td>
 						</tr>
 						<!--@end-->
-						<tr class="separator">
-							<td class="gF">
-								<label for="is_secret">{$lang->secret}</label>
-							</td>
-							<td colspan="2">
-								<input type="checkbox" name="is_secret" value="Y" id="is_secret" />
-							</td>
-						</tr>
-						 <!--@if(!$is_logged)-->
+						<!--@if(!$is_logged)-->
 						<tr class="separator">
 							<td class="gF">
 								<label for="userName">{$lang->writer}</label> :
@@ -233,7 +217,7 @@
 							<td>
 							</td>
 							<td colspan="2">
-								<a href="#" class="forumButton blue commentAdd" onclick="xGetElementById('forumEditor').submit();return false;"><span class="outer"><span class="inner">{$lang->cmd_comment_registration}<!--input type="submit" value="{$lang->cmd_comment_registration}" accesskey="s" style="background: none; border:0;"/--></span></span>
+								<a href="#" class="forumButton blue commentAdd" onclick="jQuery('#forumEditor').submit();return false;" ><span class="outer"><span class="inner">{$lang->cmd_comment_registration}</span></span></a>
 							</td>
 						</tr>
 						</tbody>

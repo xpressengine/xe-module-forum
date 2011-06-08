@@ -17,11 +17,11 @@
 
 
 
-<!-- ì •ë³´ -->
+<!-- Information -->
 <div class="summary">
     <strong>Total</strong> <em>{number_format($total_count)}</em>, Page <strong>{number_format($page)}</strong>/{number_format($total_page)}
 </div>
-<!-- ëª©ë¡� -->
+<!-- List -->
 <form action="./" method="get" onsubmit="return doChangeCategory(this);" id="fo_list">
 <table cellspacing="0" class="rowTable">
 <thead>
@@ -47,7 +47,7 @@
         </th>
         <th scope="col" class="half_wide"><div>{$lang->mid}</div></th>
         <th scope="col"><div>{$lang->regdate}</div></th>
-        <th scope="col" colspan="4"><div>&nbsp;</div></th>
+        <th scope="col" colspan="5"><div>&nbsp;</div></th>
     </tr>
 </thead>
 <tbody>
@@ -70,6 +70,7 @@
         <td>{htmlspecialchars($val->mid)}</td>
         <td>{zdate($val->regdate,"Y-m-d")}</td>
         <td><a href="{getSiteUrl($val->domain,'','mid',$val->mid)}" onclick="window.open(this.href); return false;" class="buttonView"><span></span></a></td>
+        <td><a href="{getUrl('act','dispForumAdminDashboard','module_srl',$val->module_srl)}" class="buttonSet buttonDashboard"><span></span></a></td>
         <td><a href="{getUrl('act','dispForumAdminForumInfo','module_srl',$val->module_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></td>
         <td><a href="{getUrl('','module','module','act','dispModuleAdminCopyModule','module_srl',$val->module_srl)}" onclick="popopen(this.href);return false;" class="buttonSet buttonCopy"><span>{$lang->cmd_copy}</span></a></td>
         <td><a href="{getUrl('act','dispForumAdminDeleteForum','module_srl', $val->module_srl)}" class="buttonSet buttonDelete"><span>{$lang->cmd_delete}</span></a></td>
@@ -89,7 +90,7 @@
     
 </div>
 
-<!-- íŽ˜ì�´ì§€ ë„¤ë¹„ê²Œì�´ì…˜ -->
+<!-- Pagination -->
 <div class="pagination a1">
     <a href="{getUrl('page','','module_srl','')}" class="prevEnd">{$lang->first_page}</a> 
     <!--@while($page_no = $page_navigation->getNextPage())-->

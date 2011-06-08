@@ -16,6 +16,11 @@
 	margin: 0;
 }
 
+#forum h2 {
+	font-weight: normal;
+	font-size: 22px;
+}
+
 #forumBreadcrumbs a {
 	color: #006ea6;
 }
@@ -88,7 +93,7 @@
 	font-size: 36px;
 	font-weight: normal;
 	font-style: italic;
-	margin: 5px 0 5px 15px;
+	margin: 30px 0 30px 10px;
 }
 
 #forumSubTitle {
@@ -232,15 +237,15 @@
 	width: 20%;
 }
 
-.forumCategoryList .left {
+#forum  .left {
 	text-align: left;
 }
 
-.forumCategoryList .center {
+#forum .center {
 	text-align: center;
 }
 
-.forumCategoryList .right {
+#forum  .right {
 	text-align: right;
 }
 
@@ -272,7 +277,7 @@
 
 #forumBreadcrumbs {
 	font-size: 13px;
-	margin: 0 0 0 15px;
+	margin: 0 0 5px 10px !important;
 }
 
 .openClose {
@@ -351,21 +356,33 @@
 	margin: 10px 0 !important;
 }
 
-.forumSearchForm input.inputText, .forumWriteHeader input.inputText {
+.forumSearchForm input.inputText, .forumWriteHeader input.inputText, .longForm input.inputText, #fr_quote input.inputText {
 	width: 300px;
 }
 
-.forumSearchForm select, .forumWriteHeader select {
+.forumSearchForm select, .forumWriteHeader select , .longForm select {
 	width: 312px;
 }
 
-#forumInfo {
-	background: #fff6c3;
+#searchMessage {
+	background: #fff6c3 url('../images/common/search_message_icon.png') 10px center no-repeat;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border: 5px solid #f7edb5;
-	padding: 10px;
+	padding: 5px 10px 5px 80px;
+}
+
+#searchMessage p {
+	line-height: 20px;
+	font-size: 18px;
+	color: #864d0a;
+	font-style: italic;
+	margin: 10px !important;
+}
+
+#searchMessage p a {
+	text-decoration: underline;
 }
 
 #forum .subject {
@@ -432,7 +449,7 @@
 
 #forum a.forumButton span.outer {
 	text-transform: uppercase;
-	padding: 6px 2px 8px 7px;
+	padding: 6px 2px 8px 4px;
 	font-weight: bold;
 	line-height: 24px;
 	font-size: 11px;
@@ -443,28 +460,33 @@
 }
 
 #forum a.comment span.inner {
-	background: url('../images/common/comment_icon.png') 0 12px no-repeat;
-	padding-left: 20px;
+	background: url('../images/common/comment_icon.png') 3px 12px no-repeat;
+	padding-left: 26px;
 }
 
 #forum a.commentEdit span.inner {
-	background: url('../images/common/comment_edit_icon.png') 0 9px no-repeat;
-	padding-left: 20px;
+	background: url('../images/common/comment_edit_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
 }
 
 #forum a.commentDelete span.inner {
-	background: url('../images/common/comment_delete_icon.png') 0 9px no-repeat;
-	padding-left: 20px;
+	background: url('../images/common/comment_delete_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
 }
 
 #forum a.commentAdd span.inner {
-	background: url('../images/common/comment_add_icon.png') 0 9px no-repeat;
-	padding-left: 20px;
+	background: url('../images/common/comment_add_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.commentManage span.inner {
+	background: url('../images/common/settings_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
 }
 
 #forum a.find span.inner {
-	background: url('../images/common/find_icon.png') 0 9px no-repeat;
-	padding-left: 20px;
+	background: url('../images/common/find_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
 }
 
 #forum a.forumButton.blue span.outer {
@@ -487,4 +509,18 @@
 	border: 1px solid #4c9ec6;
 	text-shadow: #d8ecf5 1px 1px 0;
 	color: #000;
+}
+
+#forum .quote {
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	margin: 0 0 10px 0;
+}
+
+#forumPagination {
+	margin: 15px 0 !important;
+	text-align: center;
 }

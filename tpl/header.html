@@ -23,6 +23,7 @@
         
 
         <!--@if($module_srl)-->
+         <li <!--@if($act=='dispForumAdminDashboard')-->class="on"<!--@end-->><a href="{getUrl('act','dispForumAdminDashboard','module_srl',$module_srl)}">{$lang->dashboard}</a></li>
         <li <!--@if($act=='dispForumAdminForumInfo'||$act=='dispForumAdminInsertForum')-->class="on"<!--@end-->><a href="{getUrl('act','dispForumAdminForumInfo','module_srl',$module_srl)}"><!--@if($module_srl)-->{$lang->cmd_view_info}<!--@else-->{$lang->cmd_create_forum}<!--@end--></a></li>
         <li <!--@if($act=='dispForumAdminCategoryInfo')-->class="on"<!--@end-->><a href="{getUrl('act','dispForumAdminCategoryInfo','module_srl',$module_srl)}">{$lang->manage_category}</a></li>
         <li <!--@if($act=='dispForumAdminExtraVars')-->class="on"<!--@end-->><a href="{getUrl('act','dispForumAdminExtraVars','module_srl',$module_srl)}">{$lang->extra_vars}</a></li>

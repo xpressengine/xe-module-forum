@@ -11,11 +11,12 @@ class forumMobile extends forumView {
             $this->except_notice = $this->module_info->except_notice == 'N' ? false : true;
 
             /**
-             
+             * Check consultation option 
+             * check if the current user is an administrator
              **/
             if($this->module_info->consultation == 'Y' && !$this->grant->manager) {
                 $this->consultation = true; 
-                if(!Context::get('is_logged')) $this->grant->list = $this->grant->write_document = $this->grant->write_comment = $this->grant->view = false;
+                if(!Context::get('is_logged')) $this->grant->post = false;
             } else {
                 $this->consultation = false;
             }

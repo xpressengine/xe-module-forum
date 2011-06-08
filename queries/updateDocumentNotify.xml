@@ -1,0 +1,14 @@
+<query id="updateDocumentNotify" action="update">
+	<tables>
+		<table name="documents" />
+	</tables>
+	<columns>
+        <column name="notify_message" var="notify_message" default="N" />
+	</columns>
+	<conditions>
+	<group>
+		<condition operation="equal" column="user_name" var="user_name" pipe="and"/>
+		<condition operation="equal" column="document_srl" var="document_srl" pipe="and"/>
+	</group>
+	</conditions>
+</query>

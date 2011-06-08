@@ -1,28 +1,29 @@
 <?php
     /**
      * @class  forumModel
-     
+     * @author dan (dan.dragan@arnia.ro)
+     * @brief  forum modul Model class
      **/
 
     class forumModel extends module {
         /**
-     
+         * @brief Initialization
          **/
         function init() {
         }
 
         /**
-     
+         * @brief get list configuration
          **/
         function getListConfig($module_srl) {
             $oModuleModel = &getModel('module');
             $oDocumentModel = &getModel('document');
 
-            // 
+            // get module partial configuration
             $list_config = $oModuleModel->getModulePartConfig('forum', $module_srl);
-            if(!$list_config || !count($list_config)) $list_config = array( 'no', 'title', 'nick_name','regdate','readed_count');
+            if(!$list_config || !count($list_config)) $list_config = array( 'no', 'title', 'nick_name','regdate','readed_count','comment_count');
 
-            // 
+            // get module extra keys
             $inserted_extra_vars = $oDocumentModel->getExtraKeys($module_srl);
 
             foreach($list_config as $key) {
@@ -33,16 +34,16 @@
         }
 
         /** 
-         
+         * @brief get degault list configuration
          **/
         function getDefaultListConfig($module_srl) {
-            // 
+            // setting up module virtual vars
             $virtual_vars = array( 'no', 'title', 'regdate', 'last_update', 'last_post', 'nick_name', 'user_id', 'user_name', 'readed_count', 'voted_count','thumbnail','summary','comment_count');
             foreach($virtual_vars as $key) {
                 $extra_vars[$key] = new ExtraItem($module_srl, -1, Context::getLang($key), $key, 'N', 'N', 'N', null);
             }
 
-            // 
+            // instancing document model
             $oDocumentModel = &getModel('document');
             $inserted_extra_vars = $oDocumentModel->getExtraKeys($module_srl);
 
@@ -51,5 +52,24 @@
             return $extra_vars;
 
         }
+         /** 
+         * @brief verify if a user is set for email notifications on a document
+         **/
+        function isNotified($obj) {
+        	$output= executeQueryArray('forum.getNotifyMessage', $obj);
+        	$oDocumentModel=&getModel('document');
+        	$document_srl=Context::get('document_srl');
+        	$oDocument=$oDocumentModel->getDocument($document_srl);
+        	$notification=0;
+        	if($oDocument->variables['notify_message']=='Y') $notification=1;
+        	
+        	foreach ($output->data as $notified){
+        		if($notified->notify_message=='Y') $notification=1;
+        	}
+        	return $notification;
+        }
+
+
+
     }
 ?>
