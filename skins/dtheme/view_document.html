@@ -85,20 +85,22 @@
 			</td>
 		</tr>
 		<!--@end-->
-		<!--@if($oDocument->isEditable())-->
+		
 		<tr class="separator">
 			<td>
 				<p class="attachment"><span>{$lang->actions}:</span></p>
 			</td>
 			<td class="right">
+			<!--@if($oDocument->isEditable())-->
 				<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
 				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
-				<!--@if($oDocument->allowComment())-->
+			<!--@end-->	
+			<!--@if($oDocument->allowComment())-->
 				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
-				<!--@end-->
+			<!--@end-->
 			</td>
 		</tr>
-		<!--@end-->
+		
 		<tr class="separator threadSeparator">
 			<td class="mediumGray">
 			</td>

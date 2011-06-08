@@ -126,7 +126,11 @@
     $lang->new_thread = 'New Thread';
     $lang->of_which='of wich';
     $lang->back='Back';
-	
+	//Search form
+	$lang->search_forums='Search the forums';
+	$lang->search_in='Search in';
+	$lang->keywords='Keywords';
+	$lang->search_current='Search only current category';
 	//Delete form text
 	$lang->confirm_delete = 'Are you sure you want to delete ';
 	$lang->and_posts= 'and all its posts';

@@ -1,15 +1,16 @@
 <form action="./" method="get" class="forumListForm">
 	<div id="topic">
 		<div id="buttonsLeft">
+			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 			<!--@if($grant->manager || $grant->moderator)-->
 				<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_manage_document}</span></span></a>
 			<!--@end-->
-			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			
 		</div>
 		<!--@if(!Context::get('search_keyword')) -->
 		<p id="topicDetails">
 			<span id="topicDetailsLabel">{$lang->category_statistics}:</span>
-			<strong>{number_format($total_count)}</strong> {$lang->article_count} {$lang->of_which} <strong>{$total_count-count($notice_list)}</strong> {$lang->document_count} & <strong>{count($notice_list)}</strong> {$lang->notice_count}
+			<strong>{number_format($total_count)}</strong> {$lang->document_count} &<strong> {$category_list[$category]->comment_count}</strong> {$lang->comments}
 		</p>
 		<!--@end-->
 		<div class="cleared"></div>
@@ -17,7 +18,8 @@
 	<!--@if(!$oDocument->isExists())-->
 	<!--#include("category_table_children.html")-->
 	<!--@end-->
-	<!--@if($category_list[$category]->depth)-->
+	
+	<!--@if($category_list[$category]->depth || Context::get('search_keyword'))-->
 	<table cellspacing="0" border="0" class="forumCategoryList">
 		<thead>
 			<tr class="rootCateg">
@@ -204,7 +206,7 @@
 		<!--@end-->
 	<!--@end-->
 	<!--@end-->
-
+	
 	<!--@if(!$total_count || !count($document_list))-->
 		<tr>
 			<td colspan="<!--@if($grant->manager || $grant->moderator)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">
@@ -212,7 +214,7 @@
 			</td>
 		</tr>
 	<!--@else-->
-	
+		
 		<!--@foreach($document_list as $no => $document)-->
 			<tr class="bg{($no+1)%2+1} separator">
 				<!--@if($grant->manager || $grant->moderator)-->

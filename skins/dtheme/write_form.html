@@ -60,6 +60,7 @@
 			</td>
 		</tr>
 		<!--@if($is_logged)-->
+		<!--@if($grant->manager || $grant->moderator)-->
 		<tr class="separator">
 			<td class="gF">
 				<label for="is_notice">{$lang->notice}</label>
@@ -77,7 +78,7 @@
 				<input type="checkbox" name="allow_comment" value="Y" <!--@if($oDocument->allowComment())-->checked="checked"<!--@end--> id="allow_comment" />
 			</td>
 		</tr>
-		
+		<!--@end-->
 		<tr class="separator">
 			<td class="gF">
 				<label for="notify_message">{$lang->notify}</label>

@@ -326,18 +326,13 @@
              * check if the document exists
              **/
             if($oDocument->isExists()) {
-                if(!$oDocument->isGranted()) {
-                    $oDocument = $oDocumentModel->getDocument(0);
-                    Context::set('document_srl','',true);
-                    $this->alertMessage('msg_not_permitted');
-                } else {
+                
                     // add browser title with the current document title
                     Context::addBrowserTitle($oDocument->getTitleText());
 
                     // update readed count
                     if( $oDocument->isGranted()) $oDocument->updateReadedCount();
 
-                }
             }
 
             // set oDocument
