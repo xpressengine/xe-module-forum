@@ -1,0 +1,236 @@
+<div class="forumRead">
+	<table cellspacing="0" border="0" class="forumCategoryList">
+	<thead>
+		<tr class="rootCateg">
+			<td class="small">
+				<div class="center first">
+					{$lang->author}
+				</div>
+			</td>
+			<td class="large">
+				<div class="center last">
+					{$lang->message}
+				</div>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="separator">
+			<td class="small center lightGray">
+				<!--@if($module_info->display_author!='N')-->
+					<!--@if(!$oDocument->getMemberSrl())-->
+						<!--@if($oDocument->isExistsHomepage())-->
+							<a href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;">{$oDocument->getNickName()}</a>
+						<!--@else-->
+							{$oDocument->getNickName()}
+						<!--@end-->
+					<!--@else-->
+						<a href="#popup_menu_area" class="member_{$oDocument->get('member_srl')}" onclick="return false">{$oDocument->getNickName()}</a>
+					<!--@end-->
+				<!--@end-->
+			</td>
+			<td class="large center lightGray">
+				
+					<p class="subject"><span>{$lang->post_subject}:</span> {$oDocument->getTitle()}</p>
+					<p class="postDate"><span>{$lang->post_date}:</span> {$oDocument->getRegdate('Y.m.d')}</p>
+				
+
+				<!--@if($module_info->display_sign != 'N' && ($oDocument->getProfileImage() || $oDocument->getSignature()))-->
+					<div class="memberSignature">
+					<!--@if($oDocument->getSignature())-->
+						<div class="signature">{$oDocument->getSignature()}</div>
+					<!--@end-->
+					</div>
+				<!--@end-->
+			</td>
+		</tr>
+		<tr class="separator">
+			<td class="top memberInfo">
+				<!--@if($oDocument->getProfileImage())-->
+						<p class="avatar"><img src="{$oDocument->getProfileImage()}"></p>
+				<!--@else-->
+						<p class="avatar"><img src="images/common/avatar.jpg"></p>
+				<!--@end-->
+				
+				<p class="additionalInfo"><span>{$lang->registered}: </span>{$oDocument->getRegdate('m/d/Y')}</p>
+				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
+				<p class="additionalInfo"><span>{$lang->ip}: </span>{$oDocument->getIpaddress()}</p>
+				<!--@end-->
+				<p class="additionalInfo"><span>{$lang->views}: </span>{$oDocument->get('readed_count')}</p>
+				<!--@if($oDocument->get('voted_count')!=0 || $oDocument->get('blamed_count')!=0)-->
+				<p class="additionalInfo"><span>{$lang->voted_count}: </span>{$oDocument->get('voted_count')} / {$oDocument->get('blamed_count')}</p>
+				<!--@end-->			
+			</td>
+			<td class="top">
+				{html_entity_decode($oDocument->getContentText())}
+			</td>
+		</tr>
+		<!--@if($oDocument->hasUploadedFiles())-->
+		<tr class="separator">
+			<td>
+				<p class="attachment"><span>{$lang->uploaded_file}:</span></p>
+			</td>
+			<td>
+				{@ $uploaded_list = $oDocument->getUploadedFiles() }
+				<ul class="filesList">
+					<!--@foreach($uploaded_list as $key => $file)-->
+					<li>
+						<a href="{getUrl('')}{$file->download_url}">
+							{$file->source_filename}
+							<span class="bubble">[{$lang->file_size}:{FileHandler::filesize($file->file_size)}/{$lang->download}:{number_format($file->download_count)}]</span>
+						</a>
+					</li>
+					<!--@end-->
+				</ul>
+			</td>
+		</tr>
+		<!--@end-->
+		<!--@if($oDocument->isEditable())-->
+		<tr class="separator">
+			<td>
+				<p class="attachment"><span>{$lang->actions}:</span></p>
+			</td>
+			<td class="right">
+				<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
+				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
+				<!--@if($oDocument->allowComment())-->
+				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<!--@end-->
+			</td>
+		</tr>
+		<!--@end-->
+		<tr class="separator threadSeparator">
+			<td class="mediumGray">
+			</td>
+			<td class="mediumGray">
+			</td>
+		</tr>
+
+
+
+		<!--@if($module_info->use_category == "Y" && $oDocument->get('category_srl'))-->
+		<!--dl>
+			<dt>{$lang->category} :</dt>
+			<dd title="{$lang->category}"><a href="{getUrl('category',$oDocument->get('category_srl'), 'document_srl', '')}">{$category_list[$oDocument->get('category_srl')]->title}</a></dd>
+		</dl-->
+		<!--@end-->
+	
+	
+	<!--@if($oDocument->allowComment())-->
+		<!--#include("./comment.html")-->
+
+	<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
+		<table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList">
+			<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+			<tr>
+				<th>{$val->name} :</th>
+				<td>{$val->getValueHTML()}</td>
+			</tr>
+			<!--@end-->
+		</table>
+	<!--@end-->
+	
+		<!--@if($grant->post && $oDocument->isEnableComment() )-->
+			<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="forumEditor" >
+				<input type="hidden" name="mid" value="{$mid}" />
+				<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+				<input type="hidden" name="comment_srl" value="" />
+				<input type="hidden" name="content" value="" />
+				
+				<div class="forumWrite commentEditor">
+
+				<!--@if($is_logged)-->
+					<table border="0" cellspacing="0" class="forumCategoryList">
+						<thead>
+							<tr class="rootCateg">
+								<td class="small">
+									<div class="first">
+										&nbsp;
+									</div>
+								</td>
+								<td class="large">
+									<div class="middle center">
+										{$lang->reply}
+									</div>
+								</td>
+								<td class="small">
+									<div class="last">
+										&nbsp;
+									</div>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+						<tr class="separator">
+							<td class="top small gF">
+								<label>{$lang->subject}</label>
+							</td>
+							<td colspan="2">
+								{$oDocument->getCommentEditor()}
+							</td>
+						</tr>
+						<!--@if($is_logged)-->
+						<tr class="separator">
+							<td class="gF">
+								<label for="notify_message">{$lang->notify}</label>
+							</td>
+							<td colspan="2">
+								<input type="checkbox" name="notify_message" value="Y" <!--@if($isNotified)-->checked="checked"<!--@end--> id="notify_message" class="inputCheck" />
+							</td>
+						</tr>
+						<!--@end-->
+						<!--@if(!$is_logged)-->
+						<tr class="separator">
+							<td class="gF">
+								<label for="userName">{$lang->writer}</label> :
+							</td>
+							<td colspan="2">
+								<input type="text" name="nick_name" value="" class="inputText" id="userName"/>
+							</td>
+						</tr>
+						<tr class="separator">
+							<td class="gF">
+								<label for="userPw">{$lang->password}</label> :
+							</td>
+							<td colspan="2">
+								<input type="password" name="password" value="" id="userPw" class="inputText" />
+							</td>
+						</tr>
+						<tr class="separator">
+							<td class="gF">
+								<label for="emailAddress">{$lang->email_address}</label> :
+							</td>
+							<td colspan="2">
+								<input type="text" name="email_address" value="" id="emailAddress" class="inputText"/>
+							</td>
+						</tr>
+						<tr class="separator">
+							<td class="gF">
+								<label for="homePage">{$lang->homepage}</label> :
+							</td>
+							<td colspan="2">
+								<input type="text" name="homepage" value="" id="homePage" class="inputText"/>
+							</td>
+						</tr>
+						<!--@end-->
+						<tr class="separator">
+							<td>
+							</td>
+							<td colspan="2">
+								<a href="#" class="forumButton blue commentAdd" onclick="jQuery('#forumEditor').submit();return false;" ><span class="outer"><span class="inner">{$lang->cmd_comment_registration}</span></span></a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<!--@end-->
+				
+				</div>
+			</form>
+		<!--@end-->
+	<!--@else-->
+		</tbody>
+		</table>
+	<!--@end-->
+
+</div>
+

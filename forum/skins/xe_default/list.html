@@ -1,0 +1,70 @@
+<!--#include("_header.html")-->
+
+<!--@if(!$oDocument->isExists())-->
+<!--#include("category_table_children.html")-->
+<!--@end-->
+
+<!--@if($oDocument->isExists())-->
+<div class="viewDocument">
+    <!--#include("./view_document.html")-->
+</div>
+<!--@end-->
+
+<!--@if(!($oDocument->isExists() ) && $category_list[$category]->depth || !$category_list[$category]->child_exists)-->
+    <!--#include("./_style.list.html")-->
+
+
+<div class="forumNavigation">
+
+    <div class="buttonsLeft">
+        <!--@if($grant->manager)-->
+            <a href="{getUrl('','module','document','act','dispDocumentManageDocument')}" onclick="popopen(this.href,'manageDocument'); return false;" class="button"><span>{$lang->cmd_manage_document}</span></a>
+        <!--@end-->
+        <a href="{getUrl('','mid',$mid,'page',$page,'document_srl','','listStyle',$listStyle)}" class="button"><span>{$lang->main_categories}</span></a>
+        <a href="{getUrl('act','dispForumWrite','document_srl','')}" class="button green strong"><span>{$lang->new_thread}</span></a>
+    </div>
+
+    
+
+<!--@if($page_navigation->page_count > 1)-->
+    <div class="pagination a1">
+        <a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}" class="prevEnd">{$lang->first_page}</a> 
+        <!--@while($page_no = $page_navigation->getNextPage())-->
+            <!--@if($page == $page_no)-->
+                <strong>{$page_no}</strong> 
+            <!--@else-->
+                <a href="{getUrl('page',$page_no,'document_srl','','division',$division,'last_division',$last_division)}">{$page_no}</a>
+            <!--@end-->
+        <!--@end-->
+        <a href="{getUrl('page',$page_navigation->last_page,'document_srl','','division',$division,'last_division',$last_division)}" class="nextEnd">{$lang->last_page}</a>
+    </div>
+<!--@end-->
+
+</div>
+<!--@end-->
+
+<!--@if($grant->view && $category_list[$category]->depth)-->
+<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
+    <fieldset>
+        <legend>forum Search</legend>
+        <!--@if($vid)-->
+        <input type="hidden" name="vid" value="{$vid}" />
+        <!--@end-->
+        <input type="hidden" name="mid" value="{$mid}" />
+        <input type="hidden" name="category" value="{$category}" />
+
+        <select name="search_target">
+            <!--@foreach($search_option as $key => $val)-->
+            <option value="{$key}" <!--@if($search_target==$key)-->selected="selected"<!--@end-->>{$val}</option>
+            <!--@end-->
+        </select>
+        <input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" class="inputText" accesskey="S" title="{$lang->cmd_search}" />
+        <!--@if($last_division)-->
+            <a href="{getUrl('page',1,'document_srl','','division',$last_division,'last_division','')}" class="button"><span>{$lang->cmd_search_next}</span></a>
+        <!--@end-->
+        <span class="button"><button type="submit" onclick="xGetElementById('fo_search').submit();return false;">{$lang->cmd_search}</button></span>
+    </fieldset>
+</form>
+<!--@end-->
+
+<!--#include("_footer.html")-->

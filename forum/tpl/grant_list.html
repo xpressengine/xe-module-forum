@@ -1,0 +1,54 @@
+<!--#include("./header.html")-->
+<!--%import("filter/insert_member_info.xml")-->
+<!--%import("js/forum_admin.js")-->
+
+<form action="./" method="post" onsubmit="return procFilter(this, insert_member_info)" enctype="multipart/form-data">
+<input type="hidden" name="page" value="{$page}" />
+<input type="hidden" name="mid" value="{$module_info->mid}" />
+<input type="hidden" name="act" value="{Context::get('act')}" />
+<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+<input type="hidden" name="list_count" value="{$module_info->list_count}" />
+<input type="hidden" name="search_list_count" value="{$module_info->search_list_count}" />
+<input type="hidden" name="page_count" value="{$module_info->page_count}" />
+
+
+<input type="hidden" name="title" value="{$module_info->title}" />
+<input type="hidden" name="comment" value="{$module_info->comment}" />
+
+
+<input type="hidden" name="admin_mail" value="{$module_info->admin_mail}" />
+<input type="hidden" name="header_text" value="{$module_info->header_text}" />
+<input type="hidden" name="footer_text" value="{$module_info->footer_text}" />	
+	
+    <h4 class="xeAdmin triggerModuleMemberInfo"><a href="#">{$lang->module_member_info}</a></h4>
+    <table cellspacing="0" class="rowTable containerModuleMemberInfo">
+    <tr>
+        <th scope="row"><div>{$lang->use_anonymous}</div></th>
+        <td>
+            <input type="checkbox" name="use_anonymous" value="Y" <!--@if($module_info->use_anonymous=='Y')-->checked="checked"<!--@end--> />
+            <p>{$lang->about_use_anonymous}</p>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row"><div>{$lang->consultation}</div></th>
+        <td>
+            <input type="checkbox" name="consultation" value="Y" <!--@if($module_info->consultation=='Y')-->checked="checked"<!--@end--> />
+            <p>{nl2br($lang->about_consultation)}</p>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2" class="button">
+            <span class="button black strong"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+            <span class="button"><input type="button" value="{$lang->cmd_back}" onclick="history.back(); return false;" /></span>
+        </th>
+	</tr>
+    </table>
+    <script>
+	jQuery("h4.triggerModuleMemberInfo").click(function () {
+	jQuery("table.containerModuleMemberInfo").fadeToggle("100");
+	});    
+	</script>
+    
+</form>
+
+{$grant_content}

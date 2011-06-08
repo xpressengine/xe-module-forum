@@ -1,0 +1,49 @@
+<!--#include("_header.html")-->
+
+<form action="./" method="get" class="forumListForm">
+    <fieldset>
+        <legend>List of Categories</legend>
+        <table cellspacing="0" border="1" summary="List of Articles" class="forumList">
+		<thead>
+			{@ $no_line_class = " no_line" }
+			<tr>
+				<th></th>
+				<th scope="col" class="title">
+					
+					<!--@if($module_info->use_category == "Y")-->
+                    <span class="jumpTo">
+						<select name="category" id="forum_category">
+							<option value="">{$lang->category}</option>
+							<!--@foreach($category_list as $val)-->
+							<option value="{$val->category_srl}"<!--@if($category==$val->category_srl)-->selected="selected"<!--@end-->>{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} <!--@if($val->document_count)-->({$val->document_count})<!--@end--></option>
+							<!--@end-->
+						</select>
+                        <button type="button" name="go_button" id="go_button" onclick="doChangeCategory(); return false;" class="button">Go</button>
+					</span>
+					<!--@end-->
+					{$lang->topic}
+				</th>
+				<th scope="col">{$lang->document_count}</th>
+			</tr>
+		</thead>
+	
+		<tbody>
+			<!--@$i=0;--><!--@end-->
+			<!--@foreach($category_list as $val)-->
+			<!--@$i++;--><!--@end-->
+			<tr class="bg{($i+1)%2+1}">
+				<td>{$i}</td>
+				<td class="title">
+					<a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}" class="forum">{$val->title}</a>
+				</td>
+				<td>
+					{$val->document_count}
+				</td>
+			</tr>
+			<!--@end-->
+
+		</tbody>
+		</table>
+	</fieldset>
+</form>
+
