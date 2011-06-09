@@ -428,11 +428,68 @@
             $notices_output = $oDocumentModel->getNoticeList($args);
             
             $this->except_notice='Y';
-            if($args->search_keyword) {
+            if($args->search_target=='Subject + Content'){
             	if($args->current_category_only != 'Y') $args->category_srl=0;
+            	//$args->search_target='title_content';
+            	//$output = $oDocumentModel->getDocumentList($args);
+            	//args->search_target='comment';
+            	//$output = $oDocumentModel->getDocumentList($args);
+            	
+            	$group_args->module_srl=$args->module_srl;
+            	$group_args->order_type=$args->order_type;
+            	$group_args->list_count=$args->list_count;
+            	$group_args->page_count=$args->page_count;
+            	$group_args->s_comment=$args->search_keyword;
+            	$group_args->sort_index='documents.list_order';
+            	$group_args->page=Context::get('page');
+            	$output= executeQuery('forum.getDocumentListAllContent', $group_args);
+            	foreach($output->data as $key => $val) {
+						if($val->document_srl) $target_srls[] = $val->document_srl;
+					}
+
+					$page_navigation = $output->page_navigation;
+					$keys = array_keys($output->data);
+					$virtual_number = $keys[0];
+
+					$target_args->document_srls = implode(',',$target_srls);
+					$target_args->list_order = $args->sort_index;
+					$target_args->order_type = $args->order_type;
+					$target_args->list_count = $args->list_count;
+					$target_args->page = 1;
+					$output = executeQueryArray('document.getDocuments', $target_args);
+					$output->page_navigation = $page_navigation;
+					$output->total_count = $page_navigation->total_count;
+					$output->total_page = $page_navigation->total_page;
+					$output->page = $page_navigation->cur_page;
+				$data = $output->data;
+				unset($output->data);
+				
+	            foreach($data as $key => $attribute) {
+					if($except_notice && $attribute->is_notice == 'Y') continue;
+					$document_srl = $attribute->document_srl;
+					if(!$GLOBALS['XE_DOCUMENT_LIST'][$document_srl]) {
+						$oDocument = null;
+						$oDocument = new documentItem();
+						$oDocument->setAttribute($attribute, false);
+						if($is_admin) $oDocument->setGrant();
+						$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
+					}
+	
+					$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
+					$virtual_number --;
+	
+				}
+            	
+            } else {
+		            if($args->search_keyword) {
+		            	if($args->current_category_only != 'Y') $args->category_srl=0;
+		            	$output = $oDocumentModel->getDocumentList($args);
+		            } else {
+		            	$output = $oDocumentModel->getDocumentList($args, $this->except_notice);
+		            }
             }
-            $output = $oDocumentModel->getDocumentList($args, $this->except_notice);
-        	if($args->search_keyword) {
+            
+            if($args->search_keyword) {
             	$total_count=count($notices_output->data)+$output->total_count;
             }else {$total_count=$output->total_count;}
             //set the variables
@@ -631,7 +688,10 @@
             $parent_srl = Context::get('comment_srl');
             $document_srl= Context::get('document_srl');
             
-
+			$this->dispBreadcrumbs();
+			$oDocumentModel=&getModel('Document');
+			$oDocument=$oDocumentModel->getDocument($document_srl);
+			Context::set('oDocument',$oDocument);
             // verify and error message
             if(!$parent_srl && !document_srl) return new Object(-1, 'msg_invalid_request');
 
@@ -665,9 +725,10 @@
                      		}
             
             // add content to comment
-            $oComment->add('content',$content);
+            //$oComment->add('content',$content);
 
             // set variables
+            Context::set('quote_content',htmlspecialchars($content));
             Context::set('oSourceComment',$oSourceComment);
             Context::set('oComment',$oComment);
             Context::set('module_srl',$this->module_info->module_srl);

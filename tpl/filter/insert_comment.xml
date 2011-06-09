@@ -18,6 +18,7 @@
     <param name="homepage" target="homepage" />
     <param name="content" target="content" />
     <param name="notify_message" target="notify_message" />
+    <param name="quote_content" target="quote_content" />
   </parameter>
   <response callback_func="completeInsertComment">
     <tag name="error" />

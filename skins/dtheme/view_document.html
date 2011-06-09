@@ -15,6 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
+		<!--@if(Context::get('cpage')==1 || Context::get('cpage')==NULL)-->
 		<tr class="separator">
 			<td class="small center lightGray">
 				<!--@if($module_info->display_author!='N')-->
@@ -107,7 +108,7 @@
 			<td class="mediumGray">
 			</td>
 		</tr>
-
+		<!--@end-->
 
 
 		<!--@if($module_info->use_category == "Y" && $oDocument->get('category_srl'))-->

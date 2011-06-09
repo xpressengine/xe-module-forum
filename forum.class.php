@@ -7,7 +7,7 @@
 
     class forum extends ModuleObject {
 
-        var $search_option = array('title','content','comment','nick_name'); ///< search options
+        var $search_option = array('title','Subject + Content','nick_name'); ///< search options
 
         var $order_target = array('list_order', 'update_order', 'regdate', 'voted_count', 'readed_count', 'comment_count', 'title'); // sort options
 

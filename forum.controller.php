@@ -131,11 +131,12 @@
             // check grants and registration
             if(!$this->grant->post) return new Object(-1, 'msg_not_permitted');
             $logged_info = Context::get('logged_info');
-
+			$args=Context::getRequestVars();
+			$args->quote_content=html_entity_decode($args->quote_content);
             // comments data extraction
             $obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','notify_message');
             $obj->module_srl = $this->module_srl;
-
+			$obj->content=$args->quote_content.$obj->content;
             // instancing document model
             $oDocumentModel = &getModel('document');
             $oDocument = $oDocumentModel->getDocument($obj->document_srl);
