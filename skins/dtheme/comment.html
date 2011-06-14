@@ -7,8 +7,8 @@
 				<a href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a>
 			</td>
 			<td class="left lightGray">
-				<p class="subject"><span>Post subject:</span> Re: {$oDocument->getTitle()}</p>
-				<p class="postDate"><span>Post date:</span> </p>
+				<p class="subject"><span>{$lang->post_subject}:</span> Re: {$oDocument->getTitle()}</p>
+				<p class="postDate"><span>{$lang->post_date}:</span> {$comment->getRegdate('Y.d.m')}</p>
 			</td>
 		</tr>
 		<tr class="separator">
@@ -20,9 +20,9 @@
 					<img src="images/common/avatar.jpg">
 					<!--@end-->
 				</p>
-				<p class="additionalInfo"><span>registered: </span>{$comment->getRegdate('m/d/Y')}</p>
+				<p class="additionalInfo"><span>{$lang->registered}: </span>{$comment->getRegdate('m/d/Y')}</p>
 				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
-				<p class="additionalInfo"><span>ip: </span>{$comment->getIpaddress()}</p>
+				<p class="additionalInfo"><span>{$lang->ip}: </span>{$comment->getIpaddress()}</p>
 				<!--@end-->
 			</td>
 			<td class="top">
@@ -32,7 +32,7 @@
 				
 		<tr class="separator">
 			<td>
-				<p class="attachment"><span>Actions:</span></p>
+				<p class="attachment"><span>{$lang->actions}:</span></p>
 			</td>
 			<td class="right">
 				<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
@@ -93,9 +93,6 @@
 			<!--@end-->
 			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="nextEnd">{$lang->last_page}</a>
 		</div>
-		<!--@if($grant->post && $oDocument->allowComment()) -->
-			<a href="#reply" title="{$lang->comment}"><strong>'{$oDocument->getCommentcount()}'</strong> posts</a>
-		<!--@end-->
     <!--@end-->
 
 <!--@else-->

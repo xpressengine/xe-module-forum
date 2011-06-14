@@ -165,8 +165,10 @@
                 	$key->comment_count=0;
                 	$args->category_srl=$key->category_srl;
                 	$args->module_srl=$this->module_srl;
-                	$args->list_count=$oDocumentModel->getCategoryDocumentCount($this->module_srl,$key->category_srl);
-                	$output = $oDocumentModel->getDocumentList($args, $this->except_notice);
+                	
+                	$output = $oDocumentModel->getDocumentList($args);
+                	$args->list_count=$output->total_count;
+                	$output=$oDocumentModel->getDocumentList($args);
                 	if($output->data) {
                 		foreach ($output->data as $document){
                 			$comment_count=$document->getCommentCount();
@@ -217,8 +219,10 @@
 	                	$key->comment_count=0;
 	                	$args->category_srl=$key->category_srl;
 	                	$args->module_srl=$this->module_srl;
-	                	$args->list_count=$oDocumentModel->getCategoryDocumentCount($this->module_srl,$key->category_srl);
-	                	$output = $oDocumentModel->getDocumentList($args, $this->except_notice);
+	                	
+	                	$output = $oDocumentModel->getDocumentList($args);
+                		$args->list_count=$output->total_count;
+	                	$output = $oDocumentModel->getDocumentList($args);
 	                	if($output->data) {
 	                		foreach ($output->data as $document){
 	                			$comment_count=$document->getCommentCount();
@@ -429,12 +433,7 @@
             
             $this->except_notice='Y';
             if($args->search_target=='Subject + Content'){
-            	if($args->current_category_only != 'Y') $args->category_srl=0;
-            	//$args->search_target='title_content';
-            	//$output = $oDocumentModel->getDocumentList($args);
-            	//args->search_target='comment';
-            	//$output = $oDocumentModel->getDocumentList($args);
-            	
+            	if($args->current_category_only != 'Y') $args->category_srl=0;            	
             	$group_args->module_srl=$args->module_srl;
             	$group_args->order_type=$args->order_type;
             	$group_args->list_count=$args->list_count;
@@ -682,16 +681,20 @@
          **/
         function dispForumReplyComment() {
         	//check grants
+
             if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
             // get parent_srl and document_srl
             $parent_srl = Context::get('comment_srl');
             $document_srl= Context::get('document_srl');
             
-			$this->dispBreadcrumbs();
-			$oDocumentModel=&getModel('Document');
+		$this->dispBreadcrumbs();
+		$oDocumentModel=&getModel('Document');
+		if(Context::get('document_srl')){
 			$oDocument=$oDocumentModel->getDocument($document_srl);
 			Context::set('oDocument',$oDocument);
+		}
+		
             // verify and error message
             if(!$parent_srl && !document_srl) return new Object(-1, 'msg_invalid_request');
 
@@ -759,6 +762,11 @@
             // get comment
             $oCommentModel = &getModel('comment');
             $oComment = $oCommentModel->getComment($comment_srl, $this->grant->manager);
+            $pos=strrpos($oComment->content,"</div>")+6;
+            $quote=substr($oComment->content, 0, $pos- strlen($oComment->content) );
+            $oComment->add('content', substr($oComment->content, $pos));
+            
+           
 
             // check comment
             if(!$oComment->isExists()) return $this->dispForumMessage('msg_invalid_request');
@@ -769,6 +777,7 @@
             // set variables
             Context::set('oSourceComment', $oCommentModel->getComment());
             Context::set('oComment', $oComment);
+             Context::set('quote_content',htmlspecialchars($quote));
 
             /** 
              * add js filter
