@@ -238,7 +238,11 @@
 									</a>
 								</h3>
 								<!--@if($document->getTrackbackCount())-->
-									<a href="{getUrl('document_srl', $document->document_srl)}#trackback"><span class="replyNum" title="Trackbacks"><strong class="trackback">[{$document->getTrackbackCount()}]</strong></span></a>
+									<a href="{getUrl('document_srl', $document->document_srl)}#trackback">
+										<span class="replyNum" title="Trackbacks">
+											<strong class="trackback">[{$document->getTrackbackCount()}]</strong>
+										</span>
+									</a>
 								<!--@end-->
 								<!--@elseif($val->type == 'nick_name')-->
 									<p class="threadAuthor">
