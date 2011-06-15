@@ -10,7 +10,7 @@
 		<!--@if(!Context::get('search_keyword')) -->
 		<p id="topicDetails">
 			<span id="topicDetailsLabel">{$lang->category_statistics}:</span>
-			<strong>{number_format($total_count)}</strong> {$lang->document_count} &<strong> {$category_list[$category]->comment_count}</strong> {$lang->comments}
+			<strong>{number_format($total_count)}</strong> {$lang->document_count} &amp;<strong> {$category_list[$category]->comment_count}</strong> {$lang->comments}
 		</p>
 		<!--@end-->
 		<div class="cleared"></div>
@@ -270,7 +270,7 @@
 								{$document->get('last_post')}
 							</td>
 						<!--@elseif($val->type == 'comment_count')-->
-							<td class="center numbers gF">
+							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								<a href="{getUrl('document_srl', $document->document_srl)}#comment">
 									<span class="replyNum" title="Replies"><strong>[{$document->getCommentCount()}]</strong></span>
 								</a>
