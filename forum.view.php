@@ -680,16 +680,16 @@
          * @brief display forum reply comment
          **/
         function dispForumReplyComment() {
-        	//check grants
+        //check grants
 
-            if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
+        if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
-            // get parent_srl and document_srl
-            $parent_srl = Context::get('comment_srl');
-            $document_srl= Context::get('document_srl');
+        // get parent_srl and document_srl
+        $parent_srl = Context::get('comment_srl');
+        $document_srl= Context::get('document_srl');
             
 		$this->dispBreadcrumbs();
-		$oDocumentModel=&getModel('Document');
+		$oDocumentModel=&getModel('document');
 		if(Context::get('document_srl')){
 			$oDocument=$oDocumentModel->getDocument($document_srl);
 			Context::set('oDocument',$oDocument);
@@ -762,7 +762,11 @@
             // get comment
             $oCommentModel = &getModel('comment');
             $oComment = $oCommentModel->getComment($comment_srl, $this->grant->manager);
-            $pos=strrpos($oComment->content,"</div>")+6;
+            $pos=strrpos($oComment->content,"</div>");
+            if($pos!=FALSE)
+            	$pos=$pos+6;
+            else
+            	$pos=0;
             $quote=substr($oComment->content, 0, $pos- strlen($oComment->content) );
             $oComment->add('content', substr($oComment->content, $pos));
             

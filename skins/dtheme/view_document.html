@@ -1,4 +1,10 @@
 <div class="forumRead">
+	<div id="topic">
+		<div id="buttonsLeft">
+			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+		</div>
+		<div class="cleared"></div>
+	</div>
 	<table cellspacing="0" border="0" class="forumCategoryList">
 	<thead>
 		<tr class="rootCateg">
@@ -89,7 +95,7 @@
 		
 		<tr class="separator">
 			<td>
-				<p class="attachment"><span>{$lang->actions}:</span></p>
+				<p class="attachment"><span></span></p>
 			</td>
 			<td class="right">
 			<!--@if($oDocument->isEditable())-->

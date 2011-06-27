@@ -1,6 +1,7 @@
 <form action="./" method="get" class="forumListForm">
 	<!--@$sw = 0;--><!--@end-->
 	<!--@foreach($category_list as $val)-->
+	{var_dump($val->child_count)}
 	<!--@if( $val->depth == 0 )-->
 		<!--@if( $sw != 0 )-->
 			</tbody>
@@ -18,11 +19,13 @@
 				<td class="small">
 					<div class="center middle">
 						{$lang->document_count}
+						<!--@if(!$val->child_count)-->:{$val->document_count}<!--@end-->
 					</div>
 				</td>
 				<td class="small">
 					<div class="center middle">
 						{$lang->comments}
+						<!--@if(!$val->child_count)-->:{$val->comment_count}<!--@end-->
 					</div>
 				</td>
 				<td class="small">
