@@ -18,6 +18,7 @@
         <param name="search_list_count" target="search_list_count" />
         <param name="except_notice" target="except_notice" />
         <param name="use_anonymous" target="use_anonymous" />
+        <param name="allow_anonymous_search" target="allow_anonymous_search" />
         <param name="consultation" target="consultation" />
         <param name="admin_mail" target="admin_mail" />
         <param name="comment" target="comment" />

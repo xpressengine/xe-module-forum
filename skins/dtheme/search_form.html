@@ -1,6 +1,6 @@
 <div id="extras">
 	
-	<!--@if($is_logged)-->
+	<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
 	<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
 		
 		<!--@if($vid)-->

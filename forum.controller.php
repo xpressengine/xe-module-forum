@@ -21,9 +21,10 @@
 			if($this->module_info->module != "forum") return new Object(-1, "msg_invalid_request");
             if(!$this->grant->post) return new Object(-1, 'msg_not_permitted');
             $logged_info = Context::get('logged_info');
-
+			
             // setting required variables
             $obj = Context::getRequestVars();
+            if(Context::get('is_logged') && $logged_info->is_admin!='Y') $obj->allow_comment='Y';
             $obj->content=strip_tags($obj->content);
             $obj->module_srl = $this->module_srl;
             if($obj->is_notice!='Y'||!$this->grant->manager) $obj->is_notice = 'N';

@@ -10,6 +10,7 @@
     $lang->read_more = 'Read more';
     $lang->except_notice = 'Exclude Sticky';
     $lang->use_anonymous = 'Use Anonymous';
+    $lang->allow_anonymous_search='Allow Anonymous Search';
     $lang->notice='Sticky';
     $lang->notify='Email Notification';
 
@@ -86,6 +87,7 @@
     $lang->about_forum_category = 'You can make forum categories.<br />When forum category is broken, try rebuilding the cache file manually.';
     $lang->about_except_notice = 'Sticky articles will not be displayed on normal list.';
     $lang->about_use_anonymous = 'Make this forum into an anonymous forum by hiding the author\'s information.<br /><strong>Please turn off history at additional setup. If not, editing document might show the author\'s info.</strong>';
+    $lang->about_allow_anonymous_search='Allow users that are not logged in to search the forums';
     $lang->about_forum = 'This module is for creating and managing forums.';
     $lang->about_consultation = 'Non-administrator members would see their own articles.\nNon-members would not be able to write articles when using consultation.';
     $lang->about_admin_mail = 'A mail will be sent when an article or comment is submitted.<br />Multiple mails can be sent with commas(,).';
