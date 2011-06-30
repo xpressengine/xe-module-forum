@@ -28,7 +28,7 @@
 	color: #006ea6;
 }
 
-#forum h3, #forum h4, #forum h5 {
+#forum h3, #forum h4, #forum h5, #forum h6 {
 	font-weight: normal;
 	margin: 0;
 } 
@@ -39,10 +39,9 @@
 
 #forum h4{
 	font-size: 18px;
-	margin: 10px 10px 10px 0;
 }
 
-#forum h5{
+#forum h5, #forum h6 {
 	font-size: 14px;
 }
 

@@ -9,7 +9,7 @@
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="category" value="{$category}" />
 		
-		<h4 class="gF">{$lang->search_forums}:</h4>
+		<h4 class="gF" style="margin: 10px 0 10px 10px;">{$lang->search_forums}:</h4>
 		<div class="specialBox">
 		<table border="0" cellspacing="0" class="forumCategoryList">
 			<tbody>
@@ -72,7 +72,7 @@
 
 	<!--@if($module_info->display_login_info != 'N' || $module_info->display_setup_button != 'N')-->
 		<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
-			<h4 class="gF">Administrator panel:</h4>
+			<h4 class="gF" style="margin: 10px 0 10px 10px;">Administrator panel:</h4>
 			<p class="forumInformation">
 				<a href="{getUrl('act','dispForumAdminForumInfo')}" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_setup}</span></span></a>
 			</p>

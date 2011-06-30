@@ -169,3 +169,15 @@
 	text-shadow: #d8ecf5 1px 1px 0;
 	color: #000;
 }
+
+.subcateg1 {
+	border-left: 20px solid #eaf8ff;
+}
+
+.subcateg2 {
+	border-left: 40px solid #eaf8ff;
+}
+
+.subcateg3 {
+	border-left: 60px solid #eaf8ff;
+}

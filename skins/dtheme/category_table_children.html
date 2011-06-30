@@ -36,9 +36,9 @@
 		<tbody class="showHide">
 	<!--@else-->
 		<tr class="separator">
-			<td class="large left" <!--@if($val->depth > 1)-->style="padding-left:{(($val->depth - $startDepth) * 20)}px;"<!--@end -->>
+			<td class="large left <!--@if($val->depth > ( $startDepth + 1 ))-->subcateg{$val->depth - $startDepth - 1}<!--@end -->">
 				<!--@if($val->depth)-->
-					<h{(2 + $val->depth)} class="gF"><a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a></h{(2 + $val->depth)}>
+					<h{(2 + $val->depth - $startDepth)} class="gF"><a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a></h{(2 + $val->depth)}>
 				<!--@end -->
 				<!--@if((!$val->depth) && (!$val->child_exists))-->
 				<a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a>

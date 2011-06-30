@@ -31,7 +31,7 @@
 	<!--@$sw = 0;--><!--@end-->
 	<!--@foreach($category_list as $val)-->
 		<tr class="separator">
-			<td class="large left" <!--@if($val->depth > 0)-->style="padding-left:{($val->depth * 30)}px;"<!--@end -->>
+			<td class="large left <!--@if($val->depth > 0)-->subcateg{$val->depth}<!--@end -->">
 				<h{(3 + $val->depth)} class="gF"><a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a></h{(3 + $val->depth)}>
 				<p class="catDescription">{$val->description}</p>
 			</td>
