@@ -14,6 +14,18 @@
 
     <license>GPL</license>
 
+    <colorset>
+        <color name="black" src="screenshot/">
+            <title xml:lang="en">Black</title>
+        </color>
+        <color name="red" src="screenshot/">
+            <title xml:lang="en">Red</title>
+        </color>
+        <color name="green" src="screenshot/">
+            <title xml:lang="en">Green</title>
+        </color>
+    </colorset>
+
     <extra_vars>
         
         <var name="display_login_info" type="select">

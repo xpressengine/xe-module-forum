@@ -1,13 +1,13 @@
 @charset "utf-8"; 
 /* NHN (developers@xpressengine.com) */
 
-/* ----- WHITE COLORSET CSS ----- */
+/* ----- RED COLORSET CSS ----- */
 #forumDescription {
-	color: #666;
+	color: #940000;
 }
 
 .forumCategoryList a {
-	color: #004f8b;
+	color: #000000;
 }
 .contentForum tr:hover>td {
 	background: #f6f6f6;
@@ -18,18 +18,18 @@
 }
 
 .forumCategoryList .rootCateg .first {
-	background: #2a2a2a 0 0 repeat-x;
+	background: #2a2a2a url('') 0 0 repeat-x;
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(202,202,202)),
-		color-stop(1, rgb(222,222,222))
+		color-stop(0, rgb(143,0,0)),
+		color-stop(1, rgb(178,0,0))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(202,202,202) 0%,
-		rgb(222,222,222) 100%
+		rgb(143,0,0) 0%,
+		rgb(178,0,0) 100%
 	);
 	border: 5px solid #ebebeb;
 	border-radius: 10px 0px 0px 0px;
@@ -42,18 +42,18 @@
 }
 
 .forumCategoryList .rootCateg .middle {
-	background: #2a2a2a 0 0 repeat-x;
+	background: #2a2a2a url('') 0 0 repeat-x;
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(202,202,202)),
-		color-stop(1, rgb(222,222,222))
+		color-stop(0, rgb(143,0,0)),
+		color-stop(1, rgb(178,0,0))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(202,202,202) 0%,
-		rgb(222,222,222) 100%
+		rgb(143,0,0) 0%,
+		rgb(178,0,0) 100%
 	);
 	border: 5px solid #ebebeb;
 	border-right: 0;
@@ -63,18 +63,18 @@
 }
 
 .forumCategoryList .rootCateg .last {
-	background: #2a2a2a 0 0 repeat-x;
+	background: #2a2a2a url('') 0 0 repeat-x;
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(202,202,202)),
-		color-stop(1, rgb(222,222,222))
+		color-stop(0, rgb(143,0,0)),
+		color-stop(1, rgb(178,0,0))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(202,202,202) 0%,
-		rgb(222,222,222) 100%
+		rgb(143,0,0) 0%,
+		rgb(178,0,0) 100%
 	);
 	border: 5px solid #ebebeb;
 	border-radius: 0 10px 0 0;
@@ -87,13 +87,13 @@
 
 .forumCategoryList .rootCateg {
 	text-transform: uppercase;
-	color: #000;
+	color: #fff;
 	font-weight: bold;
 }
 
 .forumCategoryList .rootCateg a {
 	text-decoration: none;
-	color: #000;
+	color: #fff;
 }
 
 .forumCategoryList .rootCateg a:hover {
@@ -148,7 +148,7 @@
 }
 
 #forum a.forumButton.blue span.outer {
-	background: #dedede;
+	background: #9f0000;
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
@@ -166,5 +166,5 @@
 	-webkit-border-radius: 4px;
 	border: 1px solid #c1c1c1;
 	text-shadow: #fff 1px 1px 0;
-	color: #000;
+	color: #a20000;
 }

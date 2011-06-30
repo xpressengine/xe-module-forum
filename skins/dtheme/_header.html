@@ -4,11 +4,20 @@
 <!--%import("css/forum.css")-->
 <!--%import("css/pagination.css")-->
 
+<!--@if($module_info->colorset == "")-->
+	<!--%import("css/black.css")-->
+<!--@end-->
 <!--@if($module_info->colorset == "black")-->
 	<!--%import("css/black.css")-->
 <!--@end-->
 <!--@if($module_info->colorset == "white")-->
 	<!--%import("css/white.css")-->
+<!--@end-->
+<!--@if($module_info->colorset == "red")-->
+	<!--%import("css/red.css")-->
+<!--@end-->
+<!--@if($module_info->colorset == "green")-->
+	<!--%import("css/green.css")-->
 <!--@end-->
 
 <!--@if(!$module_info->duration_new = (int)$module_info->duration_new)-->{@ $module_info->duration_new = 12 }<!--@end-->

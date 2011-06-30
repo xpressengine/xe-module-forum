@@ -1,4 +1,7 @@
-/* ----- FORUM CSS ----- */
+@charset "utf-8"; 
+/* NHN (developers@xpressengine.com) */
+
+/* ----- FORUM GLOBAL CSS ----- */
 .alert {
 	border: 5px solid red;
 }
@@ -36,7 +39,7 @@
 
 #forum h4{
 	font-size: 18px;
-	margin: 10px;
+	margin: 10px 10px 10px 0;
 }
 
 #forum h5{
@@ -105,10 +108,6 @@
 	width: 100%;
 }
 
-.forumCategoryList a {
-	color: #006EA6;
-}
-
 .forumCategoryList .separator td {
 	border-bottom: 1px dotted #bbb;
 }
@@ -142,88 +141,9 @@
 	padding: 10px 0 0 0;
 }
 
-.forumCategoryList .rootCateg .first {
-	background: #2a2a2a url('') 0 0 repeat-x;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(0,0,0)),
-		color-stop(1, rgb(83,83,83))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(0,0,0) 0%,
-		rgb(83,83,83) 100%
-	);
-	border: 5px solid #ebebeb;
-	border-radius: 10px 0px 0px 0px;
-	-moz-border-radius: 10px 0px 0px 0px;
-	-webkit-border-top-right-radius: 0px;
-	-webkit-border-bottom-right-radius: 0px;
-	border-right: 0;
-	height: 16px;
-	padding: 10px;
-}
 
-.forumCategoryList .rootCateg .middle {
-	background: #2a2a2a url('') 0 0 repeat-x;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(0,0,0)),
-		color-stop(1, rgb(83,83,83))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(0,0,0) 0%,
-		rgb(83,83,83) 100%
-	);
-	border: 5px solid #ebebeb;
-	border-right: 0;
-	border-left: 0;
-	height: 16px;
-	padding: 10px;
-}
 
-.forumCategoryList .rootCateg .last {
-	background: #2a2a2a url('') 0 0 repeat-x;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(0,0,0)),
-		color-stop(1, rgb(83,83,83))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(0,0,0) 0%,
-		rgb(83,83,83) 100%
-	);
-	border: 5px solid #ebebeb;
-	border-radius: 0 10px 0 0;
-	-moz-border-radius: 0 10px 0 0;
-	-webkit-border-radius: 0 10px 0 0;
-	border-left: 0;
-	height: 16px;
-	padding: 10px;
-}
 
-.forumCategoryList .rootCateg {
-	text-transform: uppercase;
-	color: #fff;
-	font-weight: bold;
-}
-
-.forumCategoryList .rootCateg a {
-	text-decoration: none;
-	color: #fff;
-}
-
-.forumCategoryList .rootCateg a:hover {
-	text-decoration: underline;
-}
 
 .forumCategoryList .large {
 	width: 60%;
@@ -292,10 +212,6 @@
 
 .openClose.on {
 	background: url('../images/common/arrow_map.png') -7px 0 no-repeat;
-}
-
-.contentForum tr:hover>td {
-	background: #eaf8ff;
 }
 
 .thread a {
@@ -446,74 +362,6 @@
 	padding-left: 15px;
 }
 
-#forum a.forumButton {
-	text-decoration: none;
-}
-
-#forum a.forumButton span.outer {
-	text-transform: uppercase;
-	padding: 6px 2px 8px 4px;
-	font-weight: bold;
-	line-height: 24px;
-	font-size: 11px;
-}
-
-#forum a.forumButton span.inner {
-	padding: 10px;
-}
-
-#forum a.comment span.inner {
-	background: url('../images/common/comment_icon.png') 3px 12px no-repeat;
-	padding-left: 26px;
-}
-
-#forum a.commentEdit span.inner {
-	background: url('../images/common/comment_edit_icon.png') 3px 9px no-repeat;
-	padding-left: 26px;
-}
-
-#forum a.commentDelete span.inner {
-	background: url('../images/common/comment_delete_icon.png') 3px 9px no-repeat;
-	padding-left: 26px;
-}
-
-#forum a.commentAdd span.inner {
-	background: url('../images/common/comment_add_icon.png') 3px 9px no-repeat;
-	padding-left: 26px;
-}
-
-#forum a.commentManage span.inner {
-	background: url('../images/common/settings_icon.png') 3px 9px no-repeat;
-	padding-left: 26px;
-}
-
-#forum a.find span.inner {
-	background: url('../images/common/find_icon.png') 3px 9px no-repeat;
-	padding-left: 26px;
-}
-
-#forum a.forumButton.blue span.outer {
-	background: #9dd2eb;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(130,192,220)),
-		color-stop(1, rgb(179,225,248))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(130,192,220) 0%,
-		rgb(179,225,248) 100%
-	);
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border: 1px solid #4c9ec6;
-	text-shadow: #d8ecf5 1px 1px 0;
-	color: #000;
-}
-
 #forum .quote {
 	border: 1px solid #ddd;
 	padding: 10px;
@@ -542,7 +390,6 @@
 #forumDescription {
 	padding: 0 0 15px 0;
 	font-size: 17px;
-	color: #29617e;
 	font-style: italic;
 }
 
@@ -550,3 +397,8 @@
 	font-style: italic;
 	margin: 0 0 5px 0 !important;
 }
+
+/*.simpleCategory {
+	border: 5px solid #ebebeb;
+	margin: 5px 0 0 0;
+}*/
