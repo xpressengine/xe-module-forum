@@ -30,6 +30,7 @@
 		<tbody class="showHide">
 	<!--@$sw = 0;--><!--@end-->
 	<!--@foreach($category_list as $val)-->
+		<!--@if($val->depth < 2)-->
 		<tr class="separator">
 			<td class="large left <!--@if($val->depth > 0)-->subcateg{$val->depth}<!--@end -->">
 				<h{(3 + $val->depth)} class="gF"><a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a></h{(3 + $val->depth)}>
@@ -43,6 +44,7 @@
 			</td>
 			<td></td>
 		</tr>
+		<!--@end-->
 		<!--@$sw += 1;--><!--@end-->
 	<!--@end-->
 		</tbody>

@@ -1,7 +1,9 @@
 <form action="./" method="get" class="forumListForm">
 	<div id="topic">
 		<div id="buttonsLeft">
+			<!--@if($grant->post) -->
 			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			<!--@end-->
 			<!--@if($grant->manager || $grant->moderator)-->
 				<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_manage_document}</span></span></a>
 			<!--@end-->
