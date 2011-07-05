@@ -109,7 +109,7 @@
 	</table>
 	<table cellspacing="0" border="0" class="forumCategoryList contentForum forumContent">
 	<tbody>
-	<!--@if(count($notice_list) && !Context::get('search_keyword')) -->
+	<!--@if(count($notice_list) && !Context::get('search_keyword') && Context::get('page')==1) -->
 	<!--@if(!$total_count || !count($document_list))-->
 		<tr class="separator">
 			<td class="gF" colspan="<!--@if($grant->manager || $grant->moderator)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">

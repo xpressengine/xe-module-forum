@@ -253,8 +253,8 @@
                 $oDocumentModel = &getModel('document');
                 //get current document
                 $document=$oDocumentModel->getDocument($document_srl);
-                if(!$category){
-                	$category=$document->variables['category_srl'];
+                if(!$category || ($category != $document->variables['category_srl'])){
+                	if($document->variables['category_srl']) $category=$document->variables['category_srl'];
                 }
                 $categorylist = $oDocumentModel->getCategoryList($this->module_srl);
                 $breadcrumbs[$category]=$categorylist[$category];
@@ -484,13 +484,67 @@
 		            	if($args->current_category_only != 'Y') $args->category_srl=0;
 		            	$output = $oDocumentModel->getDocumentList($args);
 		            } else {
-		            	$output = $oDocumentModel->getDocumentList($args, $this->except_notice);
+		            	$query_id = 'document.getDocumentList';
+		            	//$output = $oDocumentModel->getDocumentList($args, $this->except_notice);
+		            	$output = executeQueryArray($query_id, $args, $columnList);
+		            	
+		             	// Category is selected, further sub-categories until all conditions
+			            if($args->category_srl) {
+			                $category_list = $oDocumentModel->getCategoryList($args->module_srl);
+			                $category_info = $category_list[$args->category_srl];
+			                $category_info->childs[] = $args->category_srl;
+			                $args->category_srl = implode(',',$category_info->childs);
+			            }
+			            $output2 = executeQueryArray($query_id, $args, $columnList);
+		            	
+		            	// Return if no result or an error occurs
+						if(!$output->toBool()|| !count($output2->data) ) return $output;
+			
+						$idx = 0;
+						$data = $output->data;
+						unset($output->data);
+			
+						if(!isset($virtual_number))
+						{
+							$keys = array_keys($data);
+							$virtual_number = $keys[0];
+						}
+			
+						if($except_notice) {
+							foreach($data as $key => $attribute) {
+								if($attribute->is_notice == 'Y') $virtual_number --;
+							}
+						}
+			
+						foreach($data as $key => $attribute) {
+							if($except_notice && $attribute->is_notice == 'Y') continue;
+							$document_srl = $attribute->document_srl;
+							if(!$GLOBALS['XE_DOCUMENT_LIST'][$document_srl]) {
+								$oDocument = null;
+								$oDocument = new documentItem();
+								$oDocument->setAttribute($attribute, false);
+								if($is_admin) $oDocument->setGrant();
+								$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
+							}
+			
+							$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
+							$virtual_number --;
+			
+						}
+			
+						if($load_extra_vars) $this->setToAllDocumentExtraVars();
+			
+			            if(count($output->data)) {
+			                foreach($output->data as $number => $document) {
+			                    $output->data[$number] = $GLOBALS['XE_DOCUMENT_LIST'][$document->document_srl];
+			                }
+			            }
 		            }
             }
             
             if($args->search_keyword) {
             	$total_count=count($notices_output->data)+$output->total_count;
-            }else {$total_count=$output->total_count;}
+            }else {$total_count=$output2->total_count;}
             //set the variables
             Context::set('document_list', $output->data);
             Context::set('total_count', $total_count);
