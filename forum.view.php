@@ -876,6 +876,36 @@
 			// set template file
             $this->setTemplateFile('delete_comment_form');
         }
+        
+    	function dispForumBanUser() {
+            // check grants
+            if(!$this->grant->manager) return $this->dispForumMessage('msg_not_permitted');
+
+            // get comment_srl
+            $member_srl = Context::get('member_srl');
+			$document_srl=Context::get('document_srl');
+			$ipaddress=Context::get('ipaddress');
+            // get comment if comment_srl is not null
+            if($member_srl) {
+                $oMemberModel = &getModel('member');
+                $oMember = $oMemberModel->getMemberInfoByMemberSrl($member_srl, $this->grant->manager);
+            }
+
+            // chech comment
+            if(!isset($oMember) ) return $this->dispForumContent();
+
+			// set oComment
+            Context::set('oMember',$oMember);
+            Context::set('document_srl',$document_srl);
+            Context::set('ipaddress',$ipaddress);
+
+            /** 
+             * add js filter
+             **/
+            Context::addJsFilter($this->module_path.'tpl/filter', 'ban_user.xml');
+			// set template file
+            $this->setTemplateFile('ban_user_form');
+        }
 
         /**
          * @brief display forum delete trackback

@@ -84,6 +84,19 @@ function completeDeleteComment(ret_obj) {
     location.href = url;
 }
 
+function completeBanUser(ret_obj) {
+    var error = ret_obj['error'];
+    var message = ret_obj['message'];
+    var mid = ret_obj['mid'];
+    var document_srl = ret_obj['document_srl'];
+    var page = ret_obj['page'];
+
+    var url = current_url.setQuery('mid',mid).setQuery('document_srl',document_srl).setQuery('act','').setQuery('member_srl','').setQuery('ipaddress','');
+    if(page) url = url.setQuery('page',page);
+
+    location.href = url;
+}
+
 /* callback function for delete_trackback filter */
 function completeDeleteTrackback(ret_obj) {
     var error = ret_obj['error'];

@@ -81,6 +81,7 @@
     $lang->cmd_view_info = 'Forum Info';
     $lang->cmd_list_setting = 'List Setting';
     $lang->cmd_create_forum = 'Create a new forum';
+    $lang->cmd_ban='Ban';
 
     // blah blah..
     $lang->about_layout_setup = 'You can manually modify forum layout code. Insert or manage the widget code anywhere you want';
@@ -134,10 +135,12 @@
 	$lang->keywords='Keywords';
 	$lang->search_current='Search only current category';
 	//Delete form text
-	$lang->confirm_delete = 'Are you sure you want to delete ';
+	$lang->ban_user = 'Are you sure you want to ban this user ';
 	$lang->and_posts= 'and all its posts';
-	$lang->confirm_delete_comment='Are you sure you want to delete this post';
-	
+	$lang->confirm_delete_comment = 'Are you sure you want to delete this post';
+	$lang->confirm_ban_user = 'Are you sure you want to ban this user';
+	$lang->delete_comments_and_threads = 'Delete all comments and threads for the specified user';
+	$lang->ban_ip_id_delete_user = 'Ban Ip and Id and also delete the user';
 	//Search form text
 	$lang->search_message1='In order to search the forums, you have to';
 	$lang->login='login';

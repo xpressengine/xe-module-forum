@@ -97,7 +97,11 @@
 		
 		<tr class="separator">
 			<td>
-				<p class="attachment"><span></span></p>
+				<p class="attachment">
+				<!--@if($grant->manager) -->
+				<a href="{getUrl('act','dispForumBanUser','document_srl',$oDocument->document_srl,'member_srl',$oDocument->get('member_srl'),'ipaddress',$oDocument->get('ipaddress'))}"><img src="images/common/ban-user.png"></a>
+				<!--@end-->
+				</p>
 			</td>
 			<td class="right">
 			<!--@if($oDocument->isEditable())-->

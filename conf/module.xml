@@ -39,6 +39,7 @@
         <action name="dispForumDeleteComment" type="view" />
         <action name="dispForumDeleteTrackback" type="view" />
         <action name="dispForumMessage" type="view" />
+        <action name="dispForumBanUser" type="view" />
         
         <action name="unsubscribeThread" type="view" />
 
@@ -52,6 +53,7 @@
         <action name="procForumDeleteFile" type="controller" />
         <action name="procForumUploadFile" type="controller" />
         <action name="procForumDownloadFile" type="controller" />
+        <action name="procForumBanUser" type="controller" />
 
         <action name="dispForumAdminContent" type="view" standalone="true" admin_index="true" />
         <action name="dispForumAdminForumInfo" type="view" standalone="true" />
