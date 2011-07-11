@@ -265,7 +265,9 @@
             // get member_srl and verify if it exists
             $obj->member_srl = Context::get('member_srl');
             $obj->ipaddress = Context::get('ipaddress');
-            $obj->ban_ip_id_delete_user = Context::get('ban_ip_id_delete_user');
+            $obj->delete_user = Context::get('delete_user');
+            $obj->ban_ip = Context::get('ban_ip');
+            $obj->ban_id = Context::get('ban_id');
             $obj->delete_comments_and_threads = Context::get('delete_comments_and_threads');
             $document_srl=Context::get('document_srl');
             if(!$obj->member_srl) return $this->doError('msg_invalid_request');
@@ -288,12 +290,13 @@
 			            	$output = $oCommentController->deleteComments($documents->document_srl,$this->grant->manager);
 			         }
             }
-		    if($obj->ban_ip_id_delete_user == 'Y'){
-			    $member_info = $oMemberModel->getMemberInfoByMemberSrl($obj->member_srl);
-			    if($member_info) $output = executeQuery('member.insertDeniedID', $member_info);
-			    if($obj->ipaddress) $output = executeQuery('spamfilter.insertDeniedIP', $obj);
-			    $output = executeQuery('member.deleteMember', $obj);
-		    }
+			if($obj->ban_id){
+            	$member_info = $oMemberModel->getMemberInfoByMemberSrl($obj->member_srl);
+				if($member_info) $output = executeQuery('member.insertDeniedID', $member_info);
+			}
+			if($obj->ban_ip) if($obj->ipaddress) $output = executeQuery('spamfilter.insertDeniedIP', $obj);
+			$output = executeQuery('member.deleteMember', $obj);
+		  
             $this->add('mid', Context::get('mid'));
             $this->add('page', Context::get('page'));
             $this->add('ipaddress','');

@@ -140,7 +140,9 @@
 	$lang->confirm_delete_comment = 'Are you sure you want to delete this post';
 	$lang->confirm_ban_user = 'Are you sure you want to ban this user';
 	$lang->delete_comments_and_threads = 'Delete all comments and threads for the specified user';
-	$lang->ban_ip_id_delete_user = 'Ban Ip and Id and also delete the user';
+	$lang->delete_user = 'Delete the user';
+	$lang->ban_ip = 'Ban user IP';
+	$lang->ban_id = 'Ban user ID';
 	//Search form text
 	$lang->search_message1='In order to search the forums, you have to';
 	$lang->login='login';

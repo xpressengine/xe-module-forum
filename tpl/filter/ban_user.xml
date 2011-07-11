@@ -9,7 +9,9 @@
     <param name="member_srl" target="comment_srl" />
     <param name="ipaddress" target="ipaddress" />
     <param name="delete_comments_and_threads" target="delete_comments_and_threads" />
-    <param name="ban_ip_id_delete_user" target="ban_ip_id_delete_user" />
+    <param name="delete_user" target="delete_user" />
+    <param name="ban_ip" target="ban_ip" />
+    <param name="ban_id" target="ban_id" />
   </parameter>
   <response callback_func="completeBanUser">
     <tag name="error" />
