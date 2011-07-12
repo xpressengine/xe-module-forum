@@ -135,7 +135,9 @@
 
             // display forum content list
             $this->dispForumContentList();
-
+            
+            //display forum comment via permalink
+            $this->dispForumCommentPermalink();
             /** 
              * add search js filter
              **/
@@ -360,6 +362,24 @@
             $oDocument = $oDocumentModel->getDocument($document_srl);
             Context::set('file_list',$oDocument->getUploadedFiles());
         }
+        
+    	/**
+         * @brief display forum comment via permalink
+         **/
+        function dispForumCommentPermalink(){
+        	if(!Context::get('cpage')) {
+        		$obj->document_srl=Context::get('document_srl');
+	        	$obj->comment_srl=Context::get('comment_srl');
+	        	$oCommentModel = &getModel('comment');
+	        	$oDocumentModel = &getModel('document');
+	        	//$oComment=$oCommentModel->getComment($comment_srl);
+	        	$pos = executeQuery('forum.getCommentPosition',$obj)->data;
+	        	$list_count_comm = $this->page_count;
+	        	if($pos && $list_count_comm) $cpage= ceil($pos->count / $list_count_comm);
+             	Context::set('cpage', $cpage);
+        	}
+        	
+        }
 
         /**
          * @brief display forum content comment list
@@ -506,7 +526,7 @@
 			
 						if(!isset($virtual_number))
 						{
-							$keys = array_keys($data);
+							if(isset($data)) $keys = array_keys($data);
 							$virtual_number = $keys[0];
 						}
 			
@@ -515,21 +535,22 @@
 								if($attribute->is_notice == 'Y') $virtual_number --;
 							}
 						}
-			
-						foreach($data as $key => $attribute) {
-							if($except_notice && $attribute->is_notice == 'Y') continue;
-							$document_srl = $attribute->document_srl;
-							if(!$GLOBALS['XE_DOCUMENT_LIST'][$document_srl]) {
-								$oDocument = null;
-								$oDocument = new documentItem();
-								$oDocument->setAttribute($attribute, false);
-								if($is_admin) $oDocument->setGrant();
-								$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
+						if(isset($data)){
+							foreach($data as $key => $attribute) {
+								if($except_notice && $attribute->is_notice == 'Y') continue;
+								$document_srl = $attribute->document_srl;
+								if(!$GLOBALS['XE_DOCUMENT_LIST'][$document_srl]) {
+									$oDocument = null;
+									$oDocument = new documentItem();
+									$oDocument->setAttribute($attribute, false);
+									if($is_admin) $oDocument->setGrant();
+									$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
+								}
+				
+								$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
+								$virtual_number --;
+				
 							}
-			
-							$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
-							$virtual_number --;
-			
 						}
 			
 						if($load_extra_vars) $this->setToAllDocumentExtraVars();

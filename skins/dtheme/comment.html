@@ -7,7 +7,8 @@
 				<a href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a>
 			</td>
 			<td class="left lightGray">
-				<p class="subject"><span>{$lang->post_subject}:</span> Re: {$oDocument->getTitle()}</p>
+				<a name="comment_{$comment->comment_srl}"></a>
+				<p class="subject"><a href="#comment_{$comment->comment_srl}">#</a><span> {$lang->post_subject}:</span>Re: {$oDocument->getTitle()}</p>
 				<p class="postDate"><span>{$lang->post_date}:</span> {$comment->getRegdate('Y.d.m')}</p>
 			</td>
 		</tr>
@@ -86,15 +87,15 @@
 
     <!--@if($oDocument->comment_page_navigation)-->
 		<div class="pagination a1">
-			<a href="{getUrl('cpage',1)}#comment" class="prevEnd">{$lang->first_page}</a> 
+			<a href="{getUrl('cpage',1,'comment_srl','')}" class="prevEnd">{$lang->first_page}</a> 
 			<!--@while($page_no = $oDocument->comment_page_navigation->getNextPage())-->
 				<!--@if($cpage == $page_no)-->
 					<strong>{$page_no}</strong> 
 				<!--@else-->
-					<a href="{getUrl('cpage',$page_no)}#comment">{$page_no}</a>
+					<a href="{getUrl('cpage',$page_no,'comment_srl','')}">{$page_no}</a>
 				<!--@end-->
 			<!--@end-->
-			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="nextEnd">{$lang->last_page}</a>
+			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page,'comment_srl','')}" class="nextEnd">{$lang->last_page}</a>
 		</div>
     <!--@end-->
 

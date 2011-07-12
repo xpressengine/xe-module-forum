@@ -29,7 +29,7 @@
         <action name="dispForumCatogoryList" type="view" />
         <action name="dispForumContentCommentList" type="view" />
         <action name="dispForumContentFileList" type="view" />
-
+		<action name="dispForumCommentPermalink" type="view" />
         <action name="dispForumTagList" type="view" />
         <action name="dispForumWrite" type="view" />
         <action name="dispForumDelete" type="view" />

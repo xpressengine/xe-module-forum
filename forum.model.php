@@ -62,9 +62,10 @@
         	$oDocument=$oDocumentModel->getDocument($document_srl);
         	$notification=0;
         	if($oDocument->variables['notify_message']=='Y') $notification=1;
-        	
-        	foreach ($output->data as $notified){
-        		if($notified->notify_message=='Y') $notification=1;
+        	if(isset($output->data)){
+	        	foreach ($output->data as $notified){
+	        		if($notified->notify_message=='Y') $notification=1;
+	        	}
         	}
         	return $notification;
         }

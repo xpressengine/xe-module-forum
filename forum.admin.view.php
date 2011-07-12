@@ -118,11 +118,12 @@
         	 		$lastweek_uploaded_count[]=$comment->variables['uploaded_count'];
         	 	}
         	 }
-        	 
-        	 $member_list=array_unique($member_list);
-        	 $lastweek_member_list=array_unique($lastweek_member_list);
-        	 $uploaded_count=array_sum($uploaded_count);
-        	 $lastweek_uploaded_count=array_sum($lastweek_uploaded_count);
+        	 If(is_array($member_list)){
+        	 	 $member_list=array_unique($member_list);
+	        	 $lastweek_member_list=array_unique($lastweek_member_list);
+	        	 $uploaded_count=array_sum($uploaded_count);
+	        	 $lastweek_uploaded_count=array_sum($lastweek_uploaded_count);
+        	 }
         	 if(!$uploaded_count) $uploaded_count=0; 
         	 if(!$lastweek_uploaded_count) $lastweek_uploaded_count=0; 
 			 
@@ -130,10 +131,11 @@
         	 
         	 $obj->list_count=5;
         	 $newest_comments=$oCommentModel->getNewestCommentList($obj);
-        	 
-        	 foreach($newest_comments as $comment){	
-        	 	$comment->content=trim(cut_str($comment->content,50,"..."));
-        	 	$comment->document_content=$oDocumentModel->getDocument($comment->document_srl)->variables['title'];
+        	 if(isset($newest_comments)){
+	        	 foreach($newest_comments as $comment){	
+	        	 	$comment->content=trim(cut_str($comment->content,50,"..."));
+	        	 	$comment->document_content=$oDocumentModel->getDocument($comment->document_srl)->variables['title'];
+	        	 }
         	 }
         	 $module_info->list_count=5;
         	 $newest_documents= executeQuery('forum.getNewestDocumentList', $module_info);
