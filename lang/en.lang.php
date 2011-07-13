@@ -44,11 +44,11 @@
     $lang->forum_id='Forum ID';
     $lang->last_updated_threads='Last updated threads';
     $lang->last_updated_comments='Last 5 posts';
-    $lang->lastweek_threads='Last week threads';
-    $lang->lastweek_posts='Last week posts';
-    $lang->lastweek_users='Last week users';
-    $lang->lastweek_atachements='Last week attachements';
-    
+    $lang->lastweek_threads='Threads';
+    $lang->lastweek_posts='Posts';
+    $lang->lastweek_users='Users';
+    $lang->lastweek_atachements='Attachements';
+    $lang->lastweek = 'Last Week';
     //View document page attributes
     $lang->post_subject='Post subject';
     $lang->post_date='Post date';
