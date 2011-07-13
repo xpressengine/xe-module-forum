@@ -25,8 +25,8 @@
     $lang->new_comment='New Comment';
     
     //Admin
-    $lang->forum_title='Title of Forum';
-    $lang->forum_title_description='Please input the title of forum.';
+    $lang->forum_title='Forum Title';
+    $lang->forum_title_description='Please input the forum title.';
     $lang->description='Description';
     $lang->about_description='You may input description which will be displayed under the forum title.';
     $lang->manage_category='Categories';
