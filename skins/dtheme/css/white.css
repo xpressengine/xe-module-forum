@@ -18,69 +18,22 @@
 }
 
 .forumCategoryList .rootCateg .first {
-	background: #2a2a2a 0 0 repeat-x;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(202,202,202)),
-		color-stop(1, rgb(222,222,222))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(202,202,202) 0%,
-		rgb(222,222,222) 100%
-	);
-	border: 5px solid #ebebeb;
-	border-radius: 10px 0px 0px 0px;
-	-moz-border-radius: 10px 0px 0px 0px;
-	-webkit-border-top-right-radius: 0px;
-	-webkit-border-bottom-right-radius: 0px;
-	border-right: 0;
+	background: #fff 0 0 repeat-x;
+	border-bottom: 5px solid #ddd;
 	height: 16px;
 	padding: 10px;
 }
 
 .forumCategoryList .rootCateg .middle {
-	background: #2a2a2a 0 0 repeat-x;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(202,202,202)),
-		color-stop(1, rgb(222,222,222))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(202,202,202) 0%,
-		rgb(222,222,222) 100%
-	);
-	border: 5px solid #ebebeb;
-	border-right: 0;
-	border-left: 0;
+	background: #fff 0 0 repeat-x;
+	border-bottom: 5px solid #ddd;
 	height: 16px;
 	padding: 10px;
 }
 
 .forumCategoryList .rootCateg .last {
-	background: #2a2a2a 0 0 repeat-x;
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(202,202,202)),
-		color-stop(1, rgb(222,222,222))
-	);
-	background-image: -moz-linear-gradient(
-		center bottom,
-		rgb(202,202,202) 0%,
-		rgb(222,222,222) 100%
-	);
-	border: 5px solid #ebebeb;
-	border-radius: 0 10px 0 0;
-	-moz-border-radius: 0 10px 0 0;
-	-webkit-border-radius: 0 10px 0 0;
-	border-left: 0;
+	background: #fff 0 0 repeat-x;
+	border-bottom: 5px solid #ddd;
 	height: 16px;
 	padding: 10px;
 }
@@ -167,4 +120,41 @@
 	border: 1px solid #c1c1c1;
 	text-shadow: #fff 1px 1px 0;
 	color: #000;
+}
+
+.openClose {
+	display: block;
+	width: 7px;
+	height: 15px;
+	background: url('../images/white/arrow_map.png') 0 0 no-repeat;
+	cursor: pointer;
+	margin: 2px 0 0 0;
+}
+
+.openClose.on {
+	background: url('../images/white/arrow_map.png') -7px 0 no-repeat;
+}
+
+.notice {
+	background: #fff9d6;
+}
+
+#customHeader {
+	background: none;
+	border: 0;
+	padding: 0 0 5px 0;
+	margin-bottom: 25px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+
+.specialBox, .forumInformation {
+	border: 0;
+	background: none;
+	padding: 0;
+}
+
+#topic {
+	padding: 0;
 }

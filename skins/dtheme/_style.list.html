@@ -113,7 +113,7 @@
 	<!--@if(!$total_count || !count($document_list))-->
 		<tr class="separator">
 			<td class="gF" colspan="<!--@if($grant->manager || $grant->moderator)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">
-				<label>{$lang->no_articles}</label>
+				{$lang->no_articles} 
 			</td>
 		</tr>
 	<!--@else-->
@@ -209,11 +209,8 @@
 	<!--@end-->
 	
 	<!--@if(!$total_count || !count($document_list))-->
-		<tr>
-			<td colspan="<!--@if($grant->manager || $grant->moderator)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">
-				{$lang->no_documents}
-			</td>
-		</tr>
+
+	<p id="noResults" class="gF">{$lang->no_documents}</p>
 	<!--@else-->
 		
 		<!--@foreach($document_list as $no => $document)-->

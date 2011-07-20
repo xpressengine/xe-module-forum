@@ -1,21 +1,20 @@
 @charset "utf-8"; 
 /* NHN (developers@xpressengine.com) */
 
-/* ----- BLACK & DEFAULT COLORSET CSS ----- */
+/* ----- GREEN COLORSET CSS ----- */
 #forumDescription {
-	color: #29617e;
+	color: #0d5f00;
 }
 
 .forumCategoryList a {
-	color: #006EA6;
+	color: #004f8b;
 }
-
 .contentForum tr:hover>td {
-	background: #eaf8ff;
+	background: #f6f6f6;
 }
 
 .simpleCategory tr:hover>td {
-	background: #eaf8ff;
+	background: #f6f6f6;
 }
 
 .forumCategoryList .rootCateg .first {
@@ -24,15 +23,15 @@
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(0,0,0)),
-		color-stop(1, rgb(83,83,83))
+		color-stop(0, rgb(112,55,15)),
+		color-stop(1, rgb(148,86,38))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(0,0,0) 0%,
-		rgb(83,83,83) 100%
+		rgb(112,55,15) 0%,
+		rgb(148,86,38) 100%
 	);
-	border: 5px solid #ebebeb;
+	border: 1px solid #512707;
 	border-radius: 10px 0px 0px 0px;
 	-moz-border-radius: 10px 0px 0px 0px;
 	-webkit-border-top-right-radius: 0px;
@@ -48,15 +47,15 @@
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(0,0,0)),
-		color-stop(1, rgb(83,83,83))
+		color-stop(0, rgb(112,55,15)),
+		color-stop(1, rgb(148,86,38))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(0,0,0) 0%,
-		rgb(83,83,83) 100%
+		rgb(112,55,15) 0%,
+		rgb(148,86,38) 100%
 	);
-	border: 5px solid #ebebeb;
+	border: 1px solid #512707;
 	border-right: 0;
 	border-left: 0;
 	height: 16px;
@@ -69,15 +68,15 @@
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(0,0,0)),
-		color-stop(1, rgb(83,83,83))
+		color-stop(0, rgb(112,55,15)),
+		color-stop(1, rgb(148,86,38))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(0,0,0) 0%,
-		rgb(83,83,83) 100%
+		rgb(112,55,15) 0%,
+		rgb(148,86,38) 100%
 	);
-	border: 5px solid #ebebeb;
+	border: 1px solid #512707;
 	border-radius: 0 10px 0 0;
 	-moz-border-radius: 0 10px 0 0;
 	-webkit-border-radius: 0 10px 0 0;
@@ -149,23 +148,44 @@
 }
 
 #forum a.forumButton.blue span.outer {
-	background: #9dd2eb;
+	background: #ecb83b;
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
 		left top,
-		color-stop(0, rgb(130,192,220)),
-		color-stop(1, rgb(179,225,248))
+		color-stop(0, rgb(233,173,33)),
+		color-stop(1, rgb(252,208,107))
 	);
 	background-image: -moz-linear-gradient(
 		center bottom,
-		rgb(130,192,220) 0%,
-		rgb(179,225,248) 100%
+		rgb(233,173,33) 0%,
+		rgb(252,208,107) 100%
 	);
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border: 1px solid #4c9ec6;
-	text-shadow: #d8ecf5 1px 1px 0;
+	border: 1px solid #b1800a;
+	text-shadow: #fae5b2 1px 1px 0;
 	color: #000;
+}
+
+.specialBox, .forumInformation {
+	background: none;
+	border: 0;
+	border-top: 1px solid #bbb;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#customHeader {
+	background: 0;
+	border: 0;
+	padding: 10px 0;
+}
+
+#topic {
+	padding: 0;
 }

@@ -19,6 +19,13 @@
 <!--@if($module_info->colorset == "green")-->
 	<!--%import("css/green.css")-->
 <!--@end-->
+<!--@if($module_info->colorset == "white")-->
+	<!--%import("css/white.css")-->
+<!--@end-->
+<!--@if($module_info->colorset == "brown")-->
+	<!--%import("css/brown.css")-->
+<!--@end-->
+
 
 <!--@if(!$module_info->duration_new = (int)$module_info->duration_new)-->{@ $module_info->duration_new = 12 }<!--@end-->
 <!--@if(!$module_info->content_cut_size = (int)$module_info->content_cut_size)-->{@ $module_info->content_cut_size= 240 }<!--@end-->

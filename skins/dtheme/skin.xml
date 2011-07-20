@@ -24,6 +24,13 @@
         <color name="green" src="screenshot/">
             <title xml:lang="en">Green</title>
         </color>
+        <color name="brown" src="screenshot/">
+            <title xml:lang="en">Brown</title>
+        </color>
+        <color name="white" src="screenshot/">
+            <title xml:lang="en">White</title>
+        </color>
+
     </colorset>
 
     <extra_vars>
