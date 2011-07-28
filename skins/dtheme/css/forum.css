@@ -11,7 +11,7 @@
 }
 
 #forum {
-	font-family: Verdana, Arial, sans;
+	font-family: Verdana, Arial, sans !important;
 	font-size: 12px;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .gF {
-	font-family: Georgia, sans;
+	font-family: Georgia, sans !important;
 }
 
 .gF a {
@@ -89,6 +89,10 @@
 
 .gF label {
 	font-size: 18px;
+}
+
+h4.gF {
+	color: #000;
 }
 
 #forumTitle {
@@ -245,6 +249,7 @@
 #topicDetails {
 	float: right;
 	padding-top: 5px;
+	width: auto !important;
 }
 
 #buttonsLeft {
@@ -402,20 +407,7 @@
 	margin: 5px 0 0 0;
 }*/
 
-.subcateg1 {
-	padding-left: 30px !important;
-}
-
-.subcateg2 {
-	padding-left: 50px !important;
-}
-
-.subcateg3 {
-	padding-left: 70px !important;
-}
-
-#noResults {
-	font-size: 18px;
-	text-align: center;
-	padding: 30px 0;
+.forumCategoryList {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 }

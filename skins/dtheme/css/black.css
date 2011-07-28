@@ -11,11 +11,11 @@
 }
 
 .contentForum tr:hover>td {
-	background: #eaf8ff;
+	background: #f6f6f6;
 }
 
 .simpleCategory tr:hover>td {
-	background: #eaf8ff;
+	background: #f6f6f6;
 }
 
 .forumCategoryList .rootCateg .first {
@@ -168,4 +168,16 @@
 	border: 1px solid #4c9ec6;
 	text-shadow: #d8ecf5 1px 1px 0;
 	color: #000;
+}
+
+.subcateg1 {
+	border-left: 20px solid #f6f6f6;
+}
+
+.subcateg2 {
+	border-left: 40px solid #f6f6f6;
+}
+
+.subcateg3 {
+	border-left: 60px solid #f6f6f6;
 }
