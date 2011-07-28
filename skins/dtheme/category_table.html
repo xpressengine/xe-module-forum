@@ -37,10 +37,10 @@
 				<p class="catDescription">{$val->description}</p>
 			</td>
 			<td class="small center lightGray numbers gF">
-				<!--@if($val->depth)-->{$val->document_count}<!--@end --><!--@if((!$val->depth) && (!$val->child_exists))-->{$val->document_count}<!--@end -->
+				<!--@if($val->depth >= 0)-->{$val->document_count}<!--@end --><!--@if((!$val->depth) && (!$val->child_exists))-->{$val->document_count}<!--@end -->
 			</td>
 			<td class="small center numbers gF">
-				<!--@if($val->depth)-->{$val->comment_count}<!--@end --><!--@if((!$val->depth) && (!$val->child_exists))-->{$val->comment_count}<!--@end -->
+				<!--@if($val->depth >= 0)-->{$val->comment_count}<!--@end --><!--@if((!$val->depth) && (!$val->child_exists))-->{$val->comment_count}<!--@end -->
 			</td>
 			<td></td>
 		</tr>

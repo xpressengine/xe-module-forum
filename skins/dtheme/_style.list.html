@@ -20,7 +20,7 @@
 	<!--@if(!$oDocument->isExists())-->
 	<!--#include("category_table_children.html")-->
 	<!--@end-->
-	<!--@if($category_list[$category]->depth || Context::get('search_keyword') || !$category_list[$category]->child_count)-->
+	<!--@if($category_list[$category]->depth >=0 || Context::get('search_keyword') || !$category_list[$category]->child_count)-->
 	<table cellspacing="0" border="0" class="forumCategoryList">
 		<thead>
 			<tr class="rootCateg">

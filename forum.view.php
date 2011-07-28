@@ -167,7 +167,7 @@
                 	$key->comment_count=0;
                 	$args->category_srl=$key->category_srl;
                 	$args->module_srl=$this->module_srl;
-                	
+                	// TO BE MODIFIED
                 	$output = $oDocumentModel->getDocumentList($args);
                 	$args->list_count=$output->total_count;
                 	$output=$oDocumentModel->getDocumentList($args);
