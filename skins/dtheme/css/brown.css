@@ -2,8 +2,12 @@
 /* NHN (developers@xpressengine.com) */
 
 /* ----- GREEN COLORSET CSS ----- */
+#forumTitle {
+	color: #813514;
+}
+
 #forumDescription {
-	color: #0d5f00;
+	color: #000;
 }
 
 .forumCategoryList a {
@@ -188,4 +192,16 @@
 
 #topic {
 	padding: 0;
+}
+
+.subcateg1 {
+	padding-left: 40px !important;
+}
+
+.subcateg2 {
+	padding-left: 80px !important;
+}
+
+.subcateg3 {
+	padding-left: 120px !important;
 }
