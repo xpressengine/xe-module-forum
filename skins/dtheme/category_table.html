@@ -18,6 +18,11 @@
 					</div>
 				</td>
 				<td class="small">
+					<div class="center middle">
+						{$lang->last_update}
+					</div>
+				</td>
+				<td class="small">
 					<div class="center last">
 						<a class="openClose"></a>
 					</div>
@@ -37,10 +42,18 @@
 				<p class="catDescription">{$val->description}</p>
 			</td>
 			<td class="small center lightGray numbers gF">
-				<!--@if($val->depth >= 0)-->{$val->document_count}<!--@end --><!--@if((!$val->depth) && (!$val->child_exists))-->{$val->document_count}<!--@end -->
+				<!--@if($val->depth >= 0)-->{$val->document_count}<!--@end -->
 			</td>
 			<td class="small center numbers gF">
-				<!--@if($val->depth >= 0)-->{$val->comment_count}<!--@end --><!--@if((!$val->depth) && (!$val->child_exists))-->{$val->comment_count}<!--@end -->
+				<!--@if($val->depth >= 0)-->{$val->comment_count}<!--@end -->
+			</td>
+			<td class="small center numbers gF">
+				<!--@if($val->depth >= 0)-->
+								{zdate($val->last_update,'Y-m-d')}</br> {$val->last_author}
+								<!--@if($val->last_post || $val->last_document)-->
+								<a href="{getUrl('document_srl', $val->last_document,'cpage','')}#comment_{$val->last_post}">#</a>
+								<!--@end-->
+			   <!--@end -->
 			</td>
 			<td></td>
 		</tr>

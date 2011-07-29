@@ -1,0 +1,11 @@
+<query id="getCategoryLatestUpdate" action="select">
+    <tables>
+        <table name="documents" />
+    </tables>
+    <columns>
+        <column name="max(last_update)" alias="last_update"/>
+    </columns>
+    <conditions>
+		<condition operation="in" column="category_srl" var="categories" filter="number" />
+    </conditions>
+</query>

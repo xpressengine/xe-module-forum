@@ -186,7 +186,22 @@
                 	$key->style_index=0;
                 	}
                 } 
-                
+                 //set information for last update
+                foreach($categorylist as $category){
+                	if($category->childs) $argx->categories = implode(',', $category->childs).','.$category->category_srl;
+                	   else $argx->categories=$category->category_srl;
+                	$argx->last_update = executeQueryArray('forum.getCategoryLatestUpdate',$argx)->data[0]->last_update;
+                	$last_document = executeQueryArray('forum.getCategoryLatestDocument',$argx)->data[0];
+                	$last_document_srl = $last_document->document_srl;
+                	$last_document_author = $last_document->author;
+                	$argx->document_srl = $last_document_srl;
+                	$last_post = executeQueryArray('forum.getDocumentLatestComment', $argx)->data[0];
+                	$category->last_update = $argx->last_update;
+                	if($last_post->author) $category->last_author = $last_post->author;
+                	  else $category->last_author = $last_document_author;
+                	$category->last_post = $last_post->comment_srl;
+                	$category->last_document = $last_document_srl;
+                }
 	            //set category_list 
                 Context::set('category_list', $categorylist);
         }
@@ -241,7 +256,22 @@
 	                	}
 	                } 
                 }
-                
+                //set information for last update
+    			foreach($categorychildren as $category){
+                	if($category->childs) $argx->categories = implode(',', $category->childs).','.$category->category_srl;
+                	   else $argx->categories=$category->category_srl;
+                	$argx->last_update = executeQueryArray('forum.getCategoryLatestUpdate',$argx)->data[0]->last_update;
+                	$last_document = executeQueryArray('forum.getCategoryLatestDocument',$argx)->data[0];
+                	$last_document_srl = $last_document->document_srl;
+                	$last_document_author = $last_document->author;
+                	$argx->document_srl = $last_document_srl;
+                	$last_post = executeQueryArray('forum.getDocumentLatestComment', $argx)->data[0];
+                	$category->last_update = $argx->last_update;
+                	if($last_post->author) $category->last_author = $last_post->author;
+                	  else $category->last_author = $last_document_author;
+                	$category->last_post = $last_post->comment_srl;
+                	$category->last_document = $last_document_srl;
+                }
                 Context::set('category_children', $categorychildren);
         }
         
@@ -566,8 +596,16 @@
             if($args->search_keyword) {
             	$total_count=count($notices_output->data)+$output->total_count;
             }else {$total_count=$output2->total_count;}
+            
+            $documents=$output->data;
+            foreach($documents as $idocument){
+            	$argx->document_srl = $idocument->document_srl;
+            	$argx->last_update = $idocument->get('last_update');
+            	$last_post = executeQueryArray('forum.getDocumentLatestComment', $argx)->data[0];
+            	$idocument->latest_post = $last_post->comment_srl;
+            }
             //set the variables
-            Context::set('document_list', $output->data);
+            Context::set('document_list', $documents);
             Context::set('total_count', $total_count);
             Context::set('total_page', $output->total_page);
             Context::set('page', $output->page);

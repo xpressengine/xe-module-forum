@@ -164,7 +164,7 @@
 							</td>
 						<!--@elseif($val->type == 'last_update')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{zdate($document->get('last_update'),'Y-m-d')}
+								{zdate($document->get('last_update'),'Y-m-d')} 
 							</td>
 						<!--@elseif($val->type == 'last_post')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
@@ -265,7 +265,10 @@
 							</td>
 						<!--@elseif($val->type == 'last_update')-->
 							<td class="center numbers gF lightGray" width="{(60/$columnCount)}%">
-								{zdate($document->get('last_update'),'Y-m-d')}
+								{zdate($document->get('last_update'),'Y-m-d')}</br> {$document->get('last_updater')}
+								<!--@if($document->latest_post)-->
+								<a href="{getUrl('document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">#</a>
+								<!--@end-->
 							</td>
 						<!--@elseif($val->type == 'last_post')-->
 							<td class="center numbers gF lightGray" width="{(60/$columnCount)}%">
