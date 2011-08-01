@@ -49,7 +49,7 @@
 							    </div>
 							</td>
                         <!--@elseif($val->type == 'last_update')-->
-                            <td width="{(60/count($list_config))}%">
+                            <td width="20%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','last_update','order_type',$order_type)}">{$lang->last_update}<!--@if($sort_index=='last_update')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
@@ -264,12 +264,11 @@
 								{$document->getRegdate('Y-m-d')}
 							</td>
 						<!--@elseif($val->type == 'last_update')-->
-							<td class="center numbers gF lightGray" width="{(60/$columnCount)}%" style="font-size: 14px;">							
-								
+							<td class="center numbers gF lightGray" style="width: 20%; font-size: 14px;">
 								<!--@if($document->latest_post && $document->getCommentCount())-->
-								<p><span style="font-weight: bold;">{$lang->date} </span>{zdate($document->get('last_update'),'Y-m-d')}</p>
-								<p><span style="font-weight: bold;">{$lang->author} </span>{$document->get('last_updater')}</p>
-								<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
+									<p><span style="font-weight: bold;">{$lang->date} </span>{zdate($document->get('last_update'),'Y-m-d')}</p>
+									<p><span style="font-weight: bold;">{$lang->author} </span>{$document->get('last_updater')}</p>
+									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
 								<!--@end-->
 							</td>
 						<!--@elseif($val->type == 'last_post')-->
