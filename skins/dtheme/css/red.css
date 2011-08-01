@@ -168,3 +168,15 @@
 	text-shadow: #fff 1px 1px 0;
 	color: #a20000;
 }
+
+.subcateg1 {
+	padding-left: 40px !important;
+}
+
+.subcateg2 {
+	padding-left: 80px !important;
+}
+
+.subcateg3 {
+	padding-left: 120px !important;
+}

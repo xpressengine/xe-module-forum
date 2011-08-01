@@ -158,3 +158,15 @@
 #topic {
 	padding: 0;
 }
+
+.subcateg1 {
+	padding-left: 40px !important;
+}
+
+.subcateg2 {
+	padding-left: 80px !important;
+}
+
+.subcateg3 {
+	padding-left: 120px !important;
+}

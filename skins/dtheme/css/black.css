@@ -171,13 +171,13 @@
 }
 
 .subcateg1 {
-	border-left: 20px solid #f6f6f6;
+	padding-left: 40px !important;
 }
 
 .subcateg2 {
-	border-left: 40px solid #f6f6f6;
+	padding-left: 80px !important;
 }
 
 .subcateg3 {
-	border-left: 60px solid #f6f6f6;
+	padding-left: 120px !important;
 }
