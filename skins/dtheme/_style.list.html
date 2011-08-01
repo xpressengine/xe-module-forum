@@ -268,7 +268,7 @@
 								<p><span style="font-weight: bold;">Date: </span>{zdate($val->last_update,'Y-m-d')}</p>
 								<p><span style="font-weight: bold;">Author: </span>{$document->get('last_updater')}</p>
 								<!--@if($document->latest_post)-->
-								<a href="{getUrl('document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">Latest post</a>
+								<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">#</a>
 								<!--@end-->
 							</td>
 						<!--@elseif($val->type == 'last_post')-->
@@ -278,7 +278,7 @@
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								<a href="{getUrl('document_srl', $document->document_srl)}#comment">
-									<span class="replyNum" title="Replies"><strong>[{$document->getCommentCount()}]</strong></span>
+									<span class="replyNum" title="Posts"><strong>[{$document->getCommentCount() + 1}]</strong></span>
 								</a>
 							</td>
 						<!--@elseif($val->type == 'readed_count')-->
