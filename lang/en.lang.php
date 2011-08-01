@@ -150,7 +150,10 @@
 	$lang->search_message2='If you don\'t have an account, you can register';
 	$lang->here='here';
 	$lang->no_articles='No articles were found for your search criteria.';
-	
+	//Latest Post
+	$lang->date = 'Date:';
+	$lang->author = 'Author:';
+	$lang->latest_post = 'Latest Post';
 	//Member info
 	$lang->my_account='My account';
 ?>
