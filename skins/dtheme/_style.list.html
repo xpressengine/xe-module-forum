@@ -24,7 +24,7 @@
 		<!--@end-->
 		<div class="cleared"></div>
 	</div>
-	<!--@if(!$oDocument->isExists())-->
+	<!--@if(!$oDocument->isExists() && !Context::get('search_keyword'))-->
 	<!--#include("category_table_children.html")-->
 	<!--@end-->
 	<!--@if($category_list[$category]->depth >=0 || Context::get('search_keyword') || !$category_list[$category]->child_count)-->
