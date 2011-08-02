@@ -19,7 +19,7 @@
 		<!--@if(!Context::get('search_keyword')) -->
 		<p id="topicDetails">
 			<span id="topicDetailsLabel">{$lang->category_statistics}:</span>
-			<strong>{number_format($current_count)}</strong> {$lang->document_count} &amp;<strong> {$category_list[$category]->comment_count + $current_count}</strong> {$lang->comments}
+			<strong>{number_format($current_count)}</strong> {$lang->document_count} &amp;<strong> {$category_list[$category]->comment_count + $current_count + count($notice_list)}</strong> {$lang->comments}
 		</p>
 		<!--@end-->
 		<div class="cleared"></div>
@@ -179,9 +179,7 @@
 							</td>
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								<a href="{getUrl('document_srl', $document->document_srl)}#comment">
-									<span class="replyNum" title="Replies"><strong>[{$document->getCommentCount()}]</strong></span>
-								</a>
+									<span class="replyNum" title="Posts">{$document->getCommentCount()+1}</span>
 							</td>
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
@@ -245,7 +243,7 @@
 								<!--@if($document->getTrackbackCount())-->
 									<a href="{getUrl('document_srl', $document->document_srl)}#trackback">
 										<span class="replyNum" title="Trackbacks">
-											<strong class="trackback">[{$document->getTrackbackCount()}]</strong>
+											<strong class="trackback">{$document->getTrackbackCount()}</strong>
 										</span>
 									</a>
 								<!--@end-->
@@ -284,9 +282,7 @@
 							</td>
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								<a href="{getUrl('document_srl', $document->document_srl)}#comment">
-									<span class="replyNum" title="Posts"><strong>[{$document->getCommentCount() + 1}]</strong></span>
-								</a>
+									<span class="replyNum" title="Posts">{$document->getCommentCount() + 1}</span>
 							</td>
 						<!--@elseif($val->type == 'readed_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
