@@ -1,8 +1,6 @@
 <form action="./" method="get" class="forumListForm">
 	<!--@$current_count = $total_count;--><!--@end-->
-	{var_dump($category_list[$category]->depth )}</br></br>
 	<!--@foreach($category_children as $val)-->
-	{var_dump($val->depth)}
 		<!--@if($val->depth - $category_list[$category]->depth == 1)-->
 			<!--@$current_count -= $val->document_count; --><!--@end -->
 			<!--@$category_list[$category]->comment_count -= $val->comment_count; --><!--@end -->
