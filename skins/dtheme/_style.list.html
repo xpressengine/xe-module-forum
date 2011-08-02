@@ -1,4 +1,13 @@
 <form action="./" method="get" class="forumListForm">
+	<!--@$current_count = $total_count;--><!--@end-->
+	{var_dump($category_list[$category]->depth )}</br></br>
+	<!--@foreach($category_children as $val)-->
+	{var_dump($val->depth)}
+		<!--@if($val->depth - $category_list[$category]->depth == 1)-->
+			<!--@$current_count -= $val->document_count; --><!--@end -->
+			<!--@$category_list[$category]->comment_count -= $val->comment_count; --><!--@end -->
+		<!--@end-->
+	<!--@end-->
 	<div id="topic">
 		<div id="buttonsLeft">
 			<!--@if($grant->post) -->
@@ -12,7 +21,7 @@
 		<!--@if(!Context::get('search_keyword')) -->
 		<p id="topicDetails">
 			<span id="topicDetailsLabel">{$lang->category_statistics}:</span>
-			<strong>{number_format($total_count)}</strong> {$lang->document_count} &amp;<strong> {$category_list[$category]->comment_count}</strong> {$lang->comments}
+			<strong>{number_format($current_count)}</strong> {$lang->document_count} &amp;<strong> {$category_list[$category]->comment_count + $current_count}</strong> {$lang->comments}
 		</p>
 		<!--@end-->
 		<div class="cleared"></div>
@@ -45,7 +54,7 @@
                         <!--@elseif($val->type == 'regdate')-->
                             <td width="{(60/count($list_config))}%">
 								<div class="center middle">
-									<a href="{getUrl('sort_index','regdate','order_type',$order_type)}">{$lang->date}<!--@if($sort_index=='regdate')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
+									<a href="{getUrl('sort_index','regdate','order_type',$order_type)}"><!--@if($sort_index=='regdate')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 							    </div>
 							</td>
                         <!--@elseif($val->type == 'last_update')-->
@@ -266,8 +275,8 @@
 						<!--@elseif($val->type == 'last_update')-->
 							<td class="center numbers gF lightGray" style="width: 20%; font-size: 14px;">
 								<!--@if($document->latest_post && $document->getCommentCount())-->
-									<p><span style="font-weight: bold;">{$lang->date} </span>{zdate($document->get('last_update'),'Y-m-d')}</p>
-									<p><span style="font-weight: bold;">{$lang->author} </span>{$document->get('last_updater')}</p>
+									<p><span style="font-weight: bold;"></span>{zdate($document->get('last_update'),'Y-m-d')}</p>
+									<p><span>{$lang->by} </span>{$document->get('last_updater')}</p>
 									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
 								<!--@end-->
 							</td>

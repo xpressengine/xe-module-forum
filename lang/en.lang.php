@@ -129,6 +129,7 @@
     $lang->new_thread = 'New Thread';
     $lang->of_which='of wich';
     $lang->back='Back';
+    $lang->subforums = 'SUB-FORUMS';
 	//Search form
 	$lang->search_forums='Search the forums';
 	$lang->search_in='Search in';
@@ -152,8 +153,8 @@
 	$lang->no_articles='No articles were found for your search criteria.';
 	//Latest Post
 	$lang->date = 'Date:';
-	$lang->author = 'Author:';
-	$lang->latest_post = 'Latest Post';
+	$lang->by = 'by';
+	$lang->latest_post = 'See Post';
 	//Member info
 	$lang->my_account='My account';
 ?>
