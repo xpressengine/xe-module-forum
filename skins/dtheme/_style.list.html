@@ -1,15 +1,18 @@
+<!-- 
+the following variables can be used for category statistics:
+
+$total_count = total number of threads (including stickys)
+$comment_count = total number of posts (including stickys and each threas as 1 post)
+count($notice_list) = number of stickys
+ -->
 <form action="./" method="get" class="forumListForm">
-	<!--@$current_count = $total_count;--><!--@end-->
-	<!--@foreach($category_children as $val)-->
-		<!--@if($val->depth - $category_list[$category]->depth == 1)-->
-			<!--@$current_count -= $val->document_count; --><!--@end -->
-			<!--@$category_list[$category]->comment_count -= $val->comment_count; --><!--@end -->
-		<!--@end-->
-	<!--@end-->
+	
 	<div id="topic">
 		<div id="buttonsLeft">
-			<!--@if($grant->post) -->
+			<!--@if(Context::get('is_logged')) -->
 			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			<!--@else-->
+			<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 			<!--@end-->
 			<!--@if($grant->manager || $grant->moderator)-->
 				<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_manage_document}</span></span></a>
@@ -19,7 +22,7 @@
 		<!--@if(!Context::get('search_keyword')) -->
 		<p id="topicDetails">
 			<span id="topicDetailsLabel">{$lang->category_statistics}:</span>
-			<strong>{number_format($current_count)}</strong> {$lang->document_count} &amp;<strong> {$category_list[$category]->comment_count + $current_count + count($notice_list)}</strong> {$lang->comments}
+			<strong>{$total_count}</strong> {$lang->document_count} &amp;<strong> {$comment_count}</strong> {$lang->comments}
 		</p>
 		<!--@end-->
 		<div class="cleared"></div>
@@ -149,13 +152,7 @@
 										{$document->getTitle($module_info->subject_cut_size)}
 									</a>
 								</h3>
-								<!--@if($document->getTrackbackCount())-->
-									<a href="{getUrl('document_srl', $document->document_srl)}#trackback">
-										<span class="replyNum" title="Trackbacks">
-											<strong class="trackback">[{$document->getTrackbackCount()}]</strong>
-										</span>
-									</a>
-								<!--@end-->
+								
 								<!--@elseif($val->type == 'nick_name')-->
 									<p class="threadAuthor">
 										{$document->printExtraImages(60*60*$module_info->duration_new)}
@@ -240,13 +237,6 @@
 										{$document->getTitle($module_info->subject_cut_size)}
 									</a>
 								</h3>
-								<!--@if($document->getTrackbackCount())-->
-									<a href="{getUrl('document_srl', $document->document_srl)}#trackback">
-										<span class="replyNum" title="Trackbacks">
-											<strong class="trackback">{$document->getTrackbackCount()}</strong>
-										</span>
-									</a>
-								<!--@end-->
 								<!--@elseif($val->type == 'nick_name')-->
 									<p class="threadAuthor">
 										{$document->printExtraImages(60*60*$module_info->duration_new)}

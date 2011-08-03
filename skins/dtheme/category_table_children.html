@@ -36,12 +36,6 @@
 	<!--@$sw = 0;--><!--@end-->
 	<!--@$startDepth = $category_list[category]->depth;--><!--@end-->
 	<!--@foreach($category_children as $val)-->
-	<!--@foreach($val->childs as $child) -->
-	<!--@if($category_list[$child]->depth - $val->depth ==1 )-->
-	<!--@$val->comment_count -= $category_list[$child]->comment_count; --><!--@end -->
-	<!--@$val->document_count -= $category_list[$child]->document_count; --><!--@end -->
-	<!--@end -->
-	<!--@end -->
 	<!--@if( $sw == 0 )-->
 	<table cellspacing="0" border="0" class="forumCategoryList forumContent contentForum">
 		<tbody class="showHide">

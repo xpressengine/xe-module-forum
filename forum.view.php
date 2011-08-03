@@ -107,11 +107,25 @@
             /**
              * displays forum category list
              **/
-            $this->dispForumCategoryList();
+	        if(!$document_srl)
+            $categorylist = $this->dispForumCategoryList();
+            Context::set('category_list', $categorylist);
             /**
              * displays forum category children list only for the categories that have children
              **/
-            $this->dispForumCategoryChildren();
+            if($category && !$document_srl) {
+            	$categorychildren = $this->dispForumCategoryChildren();
+            	foreach($categorychildren as $val){
+					foreach($val->childs as $child){
+						if($categorylist[$child]->depth - $val->depth ==1){
+							$val->comment_count -= $categorylist[$child]->comment_count;
+							$val->document_count -= $categorylist[$child]->document_count;
+						}
+					}
+				}
+            	Context::set('category_children', $categorychildren);
+            }
+           
             /**
              * displays breadcrumbs on top of each page
              **/
@@ -131,13 +145,13 @@
             $this->dispForumContentView();
 
             // display forum notice list
-            $this->dispForumNoticeList();
+            if(!$document_srl) $this->dispForumNoticeList();
 
             // display forum content list
-            $this->dispForumContentList();
+            if(!$document_srl) $this->dispForumContentList();
             
             //display forum comment via permalink
-            $this->dispForumCommentPermalink();
+            if($document_srl) $this->dispForumCommentPermalink();
             /** 
              * add search js filter
              **/
@@ -173,8 +187,7 @@
                 	$output=$oDocumentModel->getDocumentList($args);
                 	if($output->data) {
                 		foreach ($output->data as $document){
-                			$comment_count=$document->getCommentCount();
-                			$key->comment_count +=$comment_count;
+                			$key->comment_count += $document->getCommentCount();
                 		}
                 	}
                 	$key->style_index=1;
@@ -202,8 +215,8 @@
                 	$category->last_post = $last_post->comment_srl;
                 	$category->last_document = $last_document_srl;
                 }
-	            //set category_list 
-                Context::set('category_list', $categorylist);
+	            //return category_list 
+                return $categorylist;
         }
         
         /**
@@ -242,8 +255,7 @@
 	                	$output = $oDocumentModel->getDocumentList($args);
 	                	if($output->data) {
 	                		foreach ($output->data as $document){
-	                			$comment_count=$document->getCommentCount();
-	                			$key->comment_count +=$comment_count;
+	                				$key->comment_count += $document->getCommentCount();
 	                		}
 	                	}
 	                	$key->style_index=1;
@@ -272,7 +284,7 @@
                 	$category->last_post = $last_post->comment_srl;
                 	$category->last_document = $last_document_srl;
                 }
-                Context::set('category_children', $categorychildren);
+                return $categorychildren;
         }
         
         /**
@@ -536,8 +548,11 @@
 		            } else {
 		            	$query_id = 'document.getDocumentList';
 		            	//$output = $oDocumentModel->getDocumentList($args, $this->except_notice);
+		            	$args->s_is_notice = 'N';
 		            	$output = executeQueryArray($query_id, $args, $columnList);
-		            	
+		            	$args->list_count = $output->total_count;
+		            	$output_total = executeQueryArray($query_id, $args, $columnList);
+		            	$args->list_count = $this->list_count; 
 		             	// Category is selected, further sub-categories until all conditions
 			            if($args->category_srl) {
 			                $category_list = $oDocumentModel->getCategoryList($args->module_srl);
@@ -592,11 +607,20 @@
 			            }
 		            }
             }
-            
-            if($args->search_keyword) {
-            	$total_count=count($notices_output->data)+$output->total_count;
-            }else {$total_count=$output2->total_count;}
-            
+            //calculate total count of threads and posts
+            $total_count=count($notices_output->data)+$output->total_count;
+            $comment_count = 0;
+        	if($output_total->data) {
+	            foreach ($output_total->data as $document){
+	                $comment_count += $document->comment_count;
+	            }
+	        }
+        	if($notices_output->data) {
+	            foreach ($notices_output->data as $notice){
+	                $comment_count += $notice->getCommentCount();
+	            }
+	        }
+            $comment_count += $total_count;
             $documents=$output->data;
             foreach($documents as $idocument){
             	$argx->document_srl = $idocument->document_srl;
@@ -607,6 +631,7 @@
             //set the variables
             Context::set('document_list', $documents);
             Context::set('total_count', $total_count);
+            Context::set('comment_count', $comment_count);
             Context::set('total_page', $output->total_page);
             Context::set('page', $output->page);
             Context::set('page_navigation', $output->page_navigation);
