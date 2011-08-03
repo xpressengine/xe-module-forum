@@ -15,7 +15,6 @@
         <permission action="dispForumAdminForumAdditionSetup" target="manager" />
         <permission action="dispForumAdminSkinInfo" target="manager" />
         <permission action="dispForumAdminListSetup" target="manager" />
-
         <permission action="procForumAdminInsertForum" target="manager" />
         <permission action="procForumAdminInsertListConfig" target="manager" />
     </permissions>
