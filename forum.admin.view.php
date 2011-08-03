@@ -279,10 +279,10 @@
             $content=str_replace($lang->comment_count, $lang->number_of_posts, $content);
             Context::set('setup_content', $content);
             // getting default list configuration
-            $aux=$oforumModel->getDefaultListConfig($this->module_info->module_srl);
-            Context::set('extra_vars', $aux);
-            $aux2=$oforumModel->getListConfig($this->module_info->module_srl);
-            Context::set('list_config', $aux2);
+            $default_list=$oforumModel->getDefaultListConfig($this->module_info->module_srl);
+            Context::set('extra_vars', $default_list);
+            $list_config=$oforumModel->getListConfig($this->module_info->module_srl);
+            Context::set('list_config', $list_config);
 			// setting up the template
             $this->setTemplateFile('list_setting');
         }

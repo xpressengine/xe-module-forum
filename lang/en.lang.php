@@ -69,6 +69,7 @@
     $lang->notice_count = 'Sticky(s)';
     $lang->comments='Post(s)';
     $lang->category_statistics='Category statistics';
+    $lang->started_by = 'Started by';
     
     // Item
     $lang->search_result = 'Search Result';

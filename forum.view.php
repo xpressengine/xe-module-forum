@@ -98,7 +98,6 @@
             $obj->document_srl=$document_srl;
             $obj->member_srl=$logged_info->member_srl;
             $isNotified= $oForumModel->isNotified($obj);
-            
             Context::set('isNotified', $isNotified);
 	        
         	if(!$category && !$search_keyword){
@@ -675,9 +674,16 @@
         function dispForumWrite() {
             // check grant
             if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-
+			
+            $logged_info=Context::get('logged_info');
+        	$oForumModel= &getModel('forum');
+        	$obj->document_srl=Context::get('document_srl');
+        	$obj->member_srl=$logged_info->member_srl;
+        	$isNotified= $oForumModel->isNotified($obj);
+        	Context::set('isNotified', $isNotified);
+        
             $this->dispBreadcrumbs();
-            
+                                  
             $oDocumentModel = &getModel('document');
 
             /**
@@ -821,7 +827,14 @@
         //check grants
 
         if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-
+		
+        $logged_info=Context::get('logged_info');
+        $oForumModel= &getModel('forum');
+        $obj->document_srl=Context::get('document_srl');
+        $obj->member_srl=$logged_info->member_srl;
+        $isNotified= $oForumModel->isNotified($obj);
+        Context::set('isNotified', $isNotified);
+            
         // get parent_srl and document_srl
         $parent_srl = Context::get('comment_srl');
         $document_srl= Context::get('document_srl');
@@ -888,7 +901,13 @@
         function dispForumModifyComment() {
             // check grants
             if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-
+			
+            $logged_info=Context::get('logged_info');
+	        $oForumModel= &getModel('forum');
+	        $obj->document_srl=Context::get('document_srl');
+	        $obj->member_srl=$logged_info->member_srl;
+	        $isNotified= $oForumModel->isNotified($obj);
+	        Context::set('isNotified', $isNotified);
             // get document_srl and comment_srl
             $document_srl = Context::get('document_srl');
             $comment_srl = Context::get('comment_srl');

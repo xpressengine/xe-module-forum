@@ -41,21 +41,20 @@ count($notice_list) = number of stickys
 						</div>
 					</td>
 					<!--@end-->
-				<!--@ $columnCount=count($list_config);--><!--@end-->
+				<!--@ $columnCount=count($list_config)+1;--><!--@end-->
+                <td width="30%">
+								<div class="left <!--@if($grant->manager || $grant->moderator)-->middle<!--@else-->first<!--@end-->">
+									{$lang->document_count}
+								</div>
+                </td>
                 <!--@foreach($list_config as $key => $val)-->
 				
                     <!--@if($val->idx == -1)-->
 
-                        <!--@if($val->type == 'title')-->
-                            <td width="30%">
-								<div class="left <!--@if($grant->manager || $grant->moderator)-->middle<!--@else-->first<!--@end-->">
-									{$lang->document_count}
-								</div>
-                            </td>
-                        <!--@elseif($val->type == 'regdate')-->
+                        <!--@if($val->type == 'regdate')-->
                             <td width="{(60/count($list_config))}%">
 								<div class="center middle">
-									<a href="{getUrl('sort_index','regdate','order_type',$order_type)}"><!--@if($sort_index=='regdate')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
+									<a href="{getUrl('sort_index','regdate','order_type',$order_type)}">{$lang->regdate}<!--@if($sort_index=='regdate')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 							    </div>
 							</td>
                         <!--@elseif($val->type == 'last_update')-->
@@ -64,40 +63,22 @@ count($notice_list) = number of stickys
 									<a href="{getUrl('sort_index','last_update','order_type',$order_type)}">{$lang->last_update}<!--@if($sort_index=='last_update')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
-                        <!--@elseif($val->type == 'last_post')-->
-                            <td width="{(60/count($list_config))}%">
-								<div class="center middle">
-									<a href="{getUrl('sort_index','last_post','order_type',$order_type)}">{$lang->last_post}<!--@if($sort_index=='last_post')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
-								</div>
-							</td>
-                        <!--@elseif($val->type == 'comment_count')-->
+                         <!--@elseif($val->type == 'comment_count')-->
                             <td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','comment_count','order_type',$order_type)}">{$lang->comments}<!--@if($sort_index=='comment_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
-                        <!--@elseif($val->type == 'user_id')-->
+						<!--@elseif($val->type == 'Replies')-->
                             <td width="{(60/count($list_config))}%">
 								<div class="center middle">
-									{$lang->user_id}
-								</div>
-							</td>
-                        <!--@elseif($val->type == 'user_name')-->
-                            <td width="{(60/count($list_config))}%">
-								<div class="center middle">
-									{$lang->user_name}
+									<a href="{getUrl('sort_index','comment_count','order_type',$order_type)}">{$lang->replies}<!--@if($sort_index=='comment_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
                         <!--@elseif($val->type == 'readed_count')-->
                             <td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','readed_count','order_type',$order_type)}">{$lang->readed_count}<!--@if($sort_index=='readed_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
-								</div>
-							</td>
-                        <!--@elseif($val->type == 'voted_count')-->
-                            <td width="{(60/count($list_config))}%">
-								<div class="center middle">
-									<a href="{getUrl('sort_index','voted_count','order_type',$order_type)}">{$lang->voted_count}<!--@if($sort_index=='voted_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
                         <!--@end-->
@@ -138,31 +119,25 @@ count($notice_list) = number of stickys
 						<input type="checkbox" name="cart" value="{$document->document_srl}" onclick="doAddDocumentCart(this)"  <!--@if($document->isCarted())-->checked="checked"<!--@end--> />
 					</td>
 				<!--@end-->
-
+				<td class="left" width="30%">
+					<h3 class="gF thread">
+						<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',1)}">
+							{$document->getTitle($module_info->subject_cut_size)}
+						</a>
+					</h3>
+					<p class="threadAuthor">
+						{$document->printExtraImages(60*60*$module_info->duration_new)}
+						<span>{$lang->started_by}:</span>
+						<a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">
+							{$document->getNickName()}
+							</a>
+					</p>
+				</td>
 				<!--@foreach($list_config as $key => $val)-->
 
 					<!--@if($val->idx == -1)-->
-
-						<!--@if($val->type == 'no')-->
-							<!--td class="notice"><!--@if($document_srl == $document->document_srl)-->&raquo;<!--@else-->{$i}&nbsp;<!--@end--></td-->
-						<!--@elseif($val->type == 'title')-->
-							<td class="left" width="30%">
-								<h3 class="gF thread">
-									<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',1)}">
-										{$document->getTitle($module_info->subject_cut_size)}
-									</a>
-								</h3>
-								
-								<!--@elseif($val->type == 'nick_name')-->
-									<p class="threadAuthor">
-										{$document->printExtraImages(60*60*$module_info->duration_new)}
-										<span>Started by:</span>
-										<a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">
-											{$document->getNickName()}
-										</a>
-									</p>
-							</td>
-						<!--@elseif($val->type == 'regdate')-->
+										
+						<!--@if($val->type == 'regdate')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								{$document->getRegdate('Y-m-d')}
 							</td>
@@ -170,33 +145,17 @@ count($notice_list) = number of stickys
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								{zdate($document->get('last_update'),'Y-m-d')} 
 							</td>
-						<!--@elseif($val->type == 'last_post')-->
-							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{$document->get('last_post')}
-							</td>
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 									<span class="replyNum" title="Posts">{$document->getCommentCount()+1}</span>
 							</td>
-						<!--@elseif($val->type == 'comment_count')-->
+						<!--@elseif($val->type == 'Replies')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{$document->getCommentCount()}
-							</td>
-						<!--@elseif($val->type == 'user_id')-->
-							<td class="center" width="{(60/$columnCount)}%">
-								{$document->getUserID()}</a>
-							</td>
-						<!--@elseif($val->type == 'user_name')-->
-							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{$document->getUserName()}</a>
+									<span class="replyNum" title="Posts">{$document->getCommentCount()}</span>
 							</td>
 						<!--@elseif($val->type == 'readed_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								{$document->get('readed_count')}
-							</td>
-						<!--@elseif($val->type == 'voted_count')-->
-							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{$document->get('voted_count')!=0?$document->get('voted_count'):'&nbsp;'}
 							</td>
 						<!--@end-->
 
@@ -221,66 +180,50 @@ count($notice_list) = number of stickys
 						<input type="checkbox" name="cart" value="{$document->document_srl}" onclick="doAddDocumentCart(this)" <!--@if($document->isCarted())-->checked="checked"<!--@end--> />
 					</td>
 				<!--@end-->
-				
+				<td class="left" width="30%">
+					<h3 class="gF thread">
+						<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',1)}">
+						{$document->getTitle($module_info->subject_cut_size)}
+						</a>
+					</h3>
+					<p class="threadAuthor">
+						{$document->printExtraImages(60*60*$module_info->duration_new)}
+						<span>{$lang->started_by}:</span>
+						<a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">
+						{$document->getNickName()}
+						</a>
+					</p>
+				</td>
 				<!--@foreach($list_config as $key => $val)-->
-
 					<!--@if($val->idx == -1)-->
 
-						<!--@if($val->type == 'no')-->
-							<!--td class="num">
-								<!--@if($document_srl == $document->document_srl)-->&raquo;<!--@else-->{$no}<!--@end-->
-							</td-->
-						<!--@elseif($val->type == 'title')-->
-							<td class="left" width="30%">
-								<h3 class="gF thread">
-									<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',1)}">
-										{$document->getTitle($module_info->subject_cut_size)}
-									</a>
-								</h3>
-								<!--@elseif($val->type == 'nick_name')-->
-									<p class="threadAuthor">
-										{$document->printExtraImages(60*60*$module_info->duration_new)}
-										<span>Started by:</span>
-										<a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">
-											{$document->getNickName()}
-										</a>
-									</p>
-							</td>
-						<!--@elseif($val->type == 'user_id')-->
-							<td class="center" width="{(60/$columnCount)}%">
-								{$document->getUserID()}</a>
-							</td>
-						<!--@elseif($val->type == 'user_name')-->
-							<td class="center" width="{(60/$columnCount)}%">
-								{$document->getUserName()}</a>
-							</td>
-						<!--@elseif($val->type == 'regdate')-->
+						<!--@if($val->type == 'regdate')-->
 							<td class="center numbers gF lightGray" width="{(60/$columnCount)}%">
 								{$document->getRegdate('Y-m-d')}
 							</td>
 						<!--@elseif($val->type == 'last_update')-->
 							<td class="center numbers gF lightGray" style="width: 20%; font-size: 14px;">
-								<!--@if($document->latest_post && $document->getCommentCount())-->
+								<!--@if($document->latest_post)-->
 									<p><span style="font-weight: bold;"></span>{zdate($document->get('last_update'),'Y-m-d')}</p>
 									<p><span>{$lang->by} </span>{$document->get('last_updater')}</p>
 									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
+								<!--@else-->
+									<p><span style="font-weight: bold;"></span>{$document->getRegdate('Y-m-d')}</p>
+									<p><span>{$lang->by} </span>{$document->get('nick_name')}</p>
+									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}">{$lang->latest_post}</a>
 								<!--@end-->
-							</td>
-						<!--@elseif($val->type == 'last_post')-->
-							<td class="center numbers gF lightGray" width="{(60/$columnCount)}%">
-								{$document->get('last_post')}
 							</td>
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 									<span class="replyNum" title="Posts">{$document->getCommentCount() + 1}</span>
 							</td>
+						<!--@elseif($val->type == 'Replies')-->
+							<td class="center numbers gF" width="{(60/$columnCount)}%">
+									<span class="replyNum" title="Posts">{$document->getCommentCount()}</span>
+							</td>
 						<!--@elseif($val->type == 'readed_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								{$document->get('readed_count')}
-							</td>
-						<!--@elseif($val->type == 'voted_count')-->
-							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{$document->get('voted_count')!=0?$document->get('voted_count'):'&nbsp;'}
 							</td>
 						<!--@end-->
 
