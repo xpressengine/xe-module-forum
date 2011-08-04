@@ -44,7 +44,12 @@
 				<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl)}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</span></span></a> 
 				<!--@end-->
 				<!--  <a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl)}" class="button green"><span>{$lang->cmd_reply}</span></a> -->
+				<!--@if(Context::get('is_logged')) -->
 				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<!--@else-->
+				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<!--@end-->
+				
 				
 				<!--@if($comment->get('voted_count')!=0 || $comment->get('blamed_count') != 0)-->
 				<div class="voted">

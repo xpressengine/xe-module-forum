@@ -1,11 +1,11 @@
 <div class="forumRead">
 	<div id="topic">
 		<div id="buttonsLeft">
-			<!--@if(Context::get('is_logged')) -->
+		<!--@if(Context::get('is_logged')) -->
 			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
-			<!--@else-->
-			<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
-			<!--@end-->
+		<!--@else-->
+			<a href="{getUrl('act','dispMemberLoginForm')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+		<!--@end-->
 		</div>
 		<div class="cleared"></div>
 	</div>
@@ -111,7 +111,12 @@
 				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
 			<!--@end-->	
 			<!--@if($oDocument->allowComment())-->
+				<!--@if(Context::get('is_logged')) -->
 				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<!--@else-->
+				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<!--@end-->
+				
 			<!--@end-->
 			</td>
 		</tr>
