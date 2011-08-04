@@ -1,8 +1,10 @@
 <div class="forumRead">
 	<div id="topic">
 		<div id="buttonsLeft">
-		<!--@if($grant->post) -->
+			<!--@if(Context::get('is_logged')) -->
 			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			<!--@else-->
+			<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 			<!--@end-->
 		</div>
 		<div class="cleared"></div>
