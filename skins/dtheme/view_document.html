@@ -183,7 +183,6 @@
 								{$oDocument->getCommentEditor()}
 							</td>
 						</tr>
-						<!--@if($is_logged)-->
 						<tr class="separator">
 							<td class="gF">
 								<label for="notify_message">{$lang->notify}</label>
@@ -192,8 +191,7 @@
 								<input type="checkbox" name="notify_message" value="Y" <!--@if($isNotified)-->checked="checked"<!--@end--> id="notify_message" class="inputCheck" />
 							</td>
 						</tr>
-						<!--@end-->
-						<!--@if(!$is_logged)-->
+						<!--
 						<tr class="separator">
 							<td class="gF">
 								<label for="userName">{$lang->writer}</label> :
@@ -226,7 +224,7 @@
 								<input type="text" name="homepage" value="" id="homePage" class="inputText"/>
 							</td>
 						</tr>
-						<!--@end-->
+						-->
 						<tr class="separator">
 							<td>
 							</td>
@@ -236,8 +234,19 @@
 						</tr>
 						</tbody>
 					</table>
+					<!--@else-->
+					<table border="0" cellspacing="0" class="forumCategoryList">
+						<tbody>
+						<tr class="separator">
+							<td>
+							</td>
+							<td colspan="2">
+								<a href="{getUrl('act','dispMemberLoginForm')}" class="forumButton blue commentAdd"  ><span class="outer"><span class="inner">{$lang->cmd_comment_registration}</span></span></a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
 					<!--@end-->
-				
 				</div>
 			</form>
 		<!--@end-->
