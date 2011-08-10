@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
-	<title xml:lang="en">Cubrid.org forum theme</title>
+	<title xml:lang="en">Default forum theme</title>
     <description xml:lang="en">
-        Cubrid.org forum theme
+        Default forum theme
         Daniel Ionescu (daniel.ionescu@arnia.ro)
     </description>
     <version>1.0</version>
