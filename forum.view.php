@@ -507,39 +507,38 @@
 						if($val->document_srl) $target_srls[] = $val->document_srl;
 					}
 
-					$page_navigation = $output->page_navigation;
-					$keys = array_keys($output->data);
-					$virtual_number = $keys[0];
-
-					$target_args->document_srls = implode(',',$target_srls);
-					$target_args->list_order = $args->sort_index;
-					$target_args->order_type = $args->order_type;
-					$target_args->list_count = $args->list_count;
-					$target_args->page = 1;
-					$output = executeQueryArray('document.getDocuments', $target_args);
-					$output->page_navigation = $page_navigation;
-					$output->total_count = $page_navigation->total_count;
-					$output->total_page = $page_navigation->total_page;
-					$output->page = $page_navigation->cur_page;
+				$page_navigation = $output->page_navigation;
+				$keys = array_keys($output->data);
+				$virtual_number = $keys[0];
+				if(isset($target_srls))	$target_args->document_srls = implode(',',$target_srls);
+				$target_args->list_order = $args->sort_index;
+				$target_args->order_type = $args->order_type;
+				$target_args->list_count = $args->list_count;
+				$target_args->page = 1;
+				$output = executeQueryArray('document.getDocuments', $target_args);
+				$output->page_navigation = $page_navigation;
+				$output->total_count = $page_navigation->total_count;
+				$output->total_page = $page_navigation->total_page;
+				$output->page = $page_navigation->cur_page;
 				$data = $output->data;
 				unset($output->data);
-				
-	            foreach($data as $key => $attribute) {
-					if($except_notice && $attribute->is_notice == 'Y') continue;
-					$document_srl = $attribute->document_srl;
-					if(!$GLOBALS['XE_DOCUMENT_LIST'][$document_srl]) {
-						$oDocument = null;
-						$oDocument = new documentItem();
-						$oDocument->setAttribute($attribute, false);
-						if($is_admin) $oDocument->setGrant();
-						$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
+				if(isset($data)){
+		            foreach($data as $key => $attribute) {
+						if($except_notice && $attribute->is_notice == 'Y') continue;
+						$document_srl = $attribute->document_srl;
+						if(!$GLOBALS['XE_DOCUMENT_LIST'][$document_srl]) {
+							$oDocument = null;
+							$oDocument = new documentItem();
+							$oDocument->setAttribute($attribute, false);
+							if($is_admin) $oDocument->setGrant();
+							$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
+						}
+		
+						$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
+						$virtual_number --;
+		
 					}
-	
-					$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
-					$virtual_number --;
-	
 				}
-            	
             } else {
 		            if($args->search_keyword) {
 		            	if($args->current_category_only != 'Y') $args->category_srl=0;
@@ -621,11 +620,13 @@
 	        }
             $comment_count += $total_count;
             $documents=$output->data;
-            foreach($documents as $idocument){
-            	$argx->document_srl = $idocument->document_srl;
-            	$argx->last_update = $idocument->get('last_update');
-            	$last_post = executeQueryArray('forum.getDocumentLatestComment', $argx)->data[0];
-            	$idocument->latest_post = $last_post->comment_srl;
+            if(isset($documents)){
+	            foreach($documents as $idocument){
+	            	$argx->document_srl = $idocument->document_srl;
+	            	$argx->last_update = $idocument->get('last_update');
+	            	$last_post = executeQueryArray('forum.getDocumentLatestComment', $argx)->data[0];
+	            	$idocument->latest_post = $last_post->comment_srl;
+	            }
             }
             //set the variables
             Context::set('document_list', $documents);
