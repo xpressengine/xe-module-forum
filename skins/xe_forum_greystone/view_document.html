@@ -1,0 +1,140 @@
+<div class="forumRead">
+	
+	<table cellspacing="0" border="0" class="forum_content">
+	<tbody>
+		<!--@if(Context::get('cpage')==1 || Context::get('cpage')==NULL)-->
+		<tr class="tr1">
+			<td class="user_name">
+				<strong>
+				<!--@if($module_info->display_author!='N')-->
+					<!--@if(!$oDocument->getMemberSrl())-->
+						<!--@if($oDocument->isExistsHomepage())-->
+							<a href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;">{$oDocument->getNickName()}</a>
+						<!--@else-->
+							{$oDocument->getNickName()}
+						<!--@end-->
+					<!--@else-->
+						<a href="#popup_menu_area" class="member_{$oDocument->get('member_srl')}" onclick="return false">{$oDocument->getNickName()}</a>
+					<!--@end-->
+				<!--@end-->
+				</strong>
+			</td>
+			<td>
+					<p class="subject">{$oDocument->getTitle()}</p>
+					<p class="postDate">{$lang->post_date}:{$oDocument->getRegdate('Y.m.d')}</p>
+				<!--@if($module_info->display_sign != 'N' && ($oDocument->getProfileImage() || $oDocument->getSignature()))-->
+					<div class="memberSignature">
+					<!--@if($oDocument->getSignature())-->
+						<div class="signature">{$oDocument->getSignature()}</div>
+					<!--@end-->
+					</div>
+				<!--@end-->
+			</td>
+		</tr>
+		<tr class="tr2">
+			<td class="user_mod">
+				<div class="user_info">
+				<!--@if($oDocument->getProfileImage())-->
+						<p class="avatar"><img src="{$oDocument->getProfileImage()}"></p>
+				<!--@else-->
+						<p class="avatar"><img src="images/common/avatar.jpg"></p>
+				<!--@end-->
+				
+				<p class="additionalInfo"><span>{$lang->registered}: </span><b>{$oDocument->getRegdate('m/d/Y')}</b></p>
+				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
+				<p class="additionalInfo"><span>{$lang->ip}: </span>{$oDocument->getIpaddress()}</p>
+				<!--@end-->
+				<p class="additionalInfo"><span>{$lang->views}: </span>{$oDocument->get('readed_count')}</p>
+				<!--@if($oDocument->get('voted_count')!=0 || $oDocument->get('blamed_count')!=0)-->
+				<p class="additionalInfo"><span>{$lang->voted_count}: </span>{$oDocument->get('voted_count')} / {$oDocument->get('blamed_count')}</p>
+				<!--@end-->			
+				</div>
+			</td>
+			<td class="content_text">
+				<div class="content_mod">
+					{html_entity_decode($oDocument->getContentText())}
+					<!--@if($oDocument->hasUploadedFiles())-->
+							{@ $uploaded_list = $oDocument->getUploadedFiles() }
+							<ul class="filesList">
+								<!--@foreach($uploaded_list as $key => $file)-->
+								<li>
+									<a href="{getUrl('')}{$file->download_url}">
+										{$file->source_filename}
+										<span class="bubble">[{$lang->file_size}:{FileHandler::filesize($file->file_size)}/{$lang->download}:{number_format($file->download_count)}]</span>
+									</a>
+								</li>
+								<!--@end-->
+							</ul>
+					<!--@end-->
+					<div class="btn">
+						<!--@if($oDocument->isEditable())-->
+						<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','')}">{$lang->cmd_delete}</a>
+						<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}">{$lang->cmd_modify}</a>
+					<!--@end-->	
+					<!--@if($oDocument->allowComment())-->
+						<!--@if(Context::get('is_logged')) -->
+						<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}">{$lang->cmd_quote}</a> 
+						<!--@else-->
+						<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}">{$lang->cmd_quote}</a> 
+						<!--@end-->
+						
+					<!--@end-->
+					</div>				
+				</div>
+			</td>
+		</tr>
+		<!--@end-->
+
+	
+	<!--@if($oDocument->allowComment())-->
+		<!--#include("./comment.html")-->
+
+	<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
+		<table border="0" cellspacing="0" summary="Extra Form" class="extraVarsList">
+			<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+			<tr>
+				<th>{$val->name} :</th>
+				<td>{$val->getValueHTML()}</td>
+			</tr>
+			<!--@end-->
+		</table>
+	<!--@end-->
+		<!--@if($grant->post && $oDocument->isEnableComment() )-->
+			<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="forumEditor" >
+				<input type="hidden" name="mid" value="{$mid}" />
+				<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+				<input type="hidden" name="comment_srl" value="" />
+				<input type="hidden" name="content" value="" />
+				
+				<div class="forumWrite commentEditor">
+
+				<!--@if($is_logged)-->
+					<table border="0" cellspacing="0" class="reply_mod">
+						<thead>
+								<th>
+										{$lang->reply}
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>
+								{$oDocument->getCommentEditor()}
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="forumButton"><a href="#" onclick="jQuery('#forumEditor').submit();return false;">{$lang->cmd_comment_registration}</a></div>
+					<!--@else-->
+					<div class="forumButton"><a href="{getUrl('act','dispMemberLoginForm','document_srl',$oDocument->document_srl)}">{$lang->cmd_comment_registration}</a></div>
+					<!--@end-->
+				</div>
+			</form>
+		<!--@end-->
+	<!--@else-->
+		</tbody>
+		</table>
+	<!--@end-->
+
+</div>
+

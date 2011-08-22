@@ -1,0 +1,16 @@
+<div id="extras">
+	<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
+	<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
+		<!--@if($vid)-->
+			<input type="hidden" name="vid" value="{$vid}" name="searchIn" />
+		<!--@end-->
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="category" value="{$category}" />
+		<input type="hidden" name="search_target" value="title" />
+		<div class="specialBox">
+						<input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" class="search_text" accesskey="S" title="{$lang->cmd_search}" />
+					<a href="#" class="btn_sesrch" onclick="xGetElementById('fo_search').submit();return false;" ><img src="images/black/btn_search.gif" width="14" height="14" alt="search"></a>
+		</div>
+	</form>
+	<!--@end-->
+</div>
