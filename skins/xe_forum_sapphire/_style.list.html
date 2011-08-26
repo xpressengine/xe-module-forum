@@ -1,0 +1,182 @@
+<!--
+the following variables can be used for category statistics:
+
+$total_count = total number of threads (including stickys)
+$comment_count = total number of posts (including stickys and each threas as 1 post)
+count($notice_list) = number of stickys
+ -->
+	<!--@if(!$oDocument->isExists() && !Context::get('search_keyword'))-->
+	<!--#include("category_table_children.html")-->
+	<!--@end-->
+<form action="./" method="get" class="forumListForm">
+
+	<table class="forum_table forum_threads" cellpadding="0" cellspacing="0">
+        <caption class="tb_cap">Forum Threads</caption>
+        <colgroup>
+        	<col width="" />
+            <col width="70" />
+            <col width="115" />
+            <col width="235"  />
+        </colgroup>
+        <thead>
+			<tr class="tr_header">
+				<!--@if(!($total_count))-->
+					<th class="th_title" scope="col" colspan="3">
+						<!--@if($grant->manager || $grant->moderator)--><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" /><!--@end-->
+					</th>
+					<th class="th_last" style="width:100%; padding-left:10px">Threads</th>
+				<!--@elseif($total_count !== 0)-->
+				<!--@ $columnCount=count($list_config)+1;--><!--@end-->
+                <th class="th_title" scope="col">
+                	<!--@if($grant->manager || $grant->moderator)-->
+                	<div style="width:25px;float:left"><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" /></div>
+                	<!--@end-->
+                	<div style="float:left"><span>{$lang->document_count}</span></div></th>
+				<!--@foreach($list_config as $key => $val)-->
+				<!--@if($val->idx == -1)-->
+				<!--@if($val->type == 'readed_count')-->
+                <th class="th_col" scope="col">
+					<a href="{getUrl('sort_index','readed_count','order_type',$order_type)}">{$lang->readed_count}<!--@if($sort_index=='readed_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
+				</th>
+                <th class="th_col" scope="col"><a href="{getUrl('sort_index','comment_count','order_type',$order_type)}">{$lang->comments}<!--@if($sort_index=='comment_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
+				</th>
+
+                <th class="th_last" scope="col"><a href="{getUrl('sort_index','last_update','order_type',$order_type)}">{$lang->last_update}<!--@if($sort_index=='last_update')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+				<!--@end-->
+				<!--@end-->
+				<!--@end-->
+				<!--@end-->
+
+
+            </tr>
+        </thead>
+        <tbody>
+			<!-- 공지 없음ㅇㅇ  루프는 아래 -->
+			<!--@if(count($notice_list) && !Context::get('search_keyword') && Context::get('page')==1) -->
+			<!--@if(!$total_count || !count($document_list))-->
+				<tr class="tr_title_lv_1">
+					<td class="gF" colspan="4">
+						{$lang->no_articles}
+					</td>
+				</tr>
+			<!--@else-->
+
+
+			<!-- 공지시작-->
+
+			<!--@ $i=0;--><!--@end-->
+
+			<!--@foreach($notice_list as $no => $document)-->
+			<!--@ $i++;--><!--@end-->
+            <tr class="tr_title_lv_1">
+                <td class="td_title">
+                	<span class="thread_title forum_blue">
+						<!--@if($grant->manager || $grant->moderator) -->
+						<input type="checkbox" name="cart" value="{$document->document_srl}" onclick="doAddDocumentCart(this)"  <!--@if($document->isCarted())-->checked="checked"<!--@end--> />
+						<!--@end-->
+						<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',1)}">{$document->getTitle($module_info->subject_cut_size)}
+						</a>
+					</span><br />
+                    <span class="thread_author">{$document->printExtraImages(60*60*$module_info->duration_new)}{$lang->started_by}: <a href="#popup_menu_area" class="member_{$document->get('member_srl')} forum_blue" onclick="return false">{$document->getNickName()}</a></span>
+                    <span class="thread_time"></span>
+                </td>
+
+				<!--@if($val->idx == -1)-->
+
+					<td class="td_col">{$document->get('readed_count')}</td>
+
+					<td class="td_col">{$document->getCommentCount()+1}</td>
+
+							<td class="td_last">
+					{$lang->by}: <span class="forum_blue">{$document->get('last_updater')}</span><br  />Posted: {zdate($document->get('last_update'),'Y-m-d')}
+
+						<!--@if($grant->manager) -->
+						<a href="{getUrl('act','dispForumBanUser','document_srl',$document->document_srl,'member_srl',$document->get('member_srl'),'ipaddress',$document->get('ipaddress'))}"><img class="iePngFix" src="images/common/ban-user.png" /></a>
+						<!--@end-->
+
+					</td>
+
+
+				<!--@end-->
+            </tr>
+			<!--@end-->
+			<!--@end-->
+
+			<!--@end-->
+			<!-- 공지 끝 -->
+
+			<!-- 글 없음 ㅇㅇ 루프는 아래 -->
+				<!--@if(!$total_count || !count($document_list))-->
+					<tr class="tr_title_lv_1 no_article">
+					<td class="gF" colspan="4">
+						{$lang->no_documents}
+					</td>
+					</tr>
+				<!--@else-->
+			<!--@foreach($document_list as $no => $document)-->
+            <tr class="tr_title_lv_1">
+                <td class="td_title">
+
+				<!--@if($grant->manager || $grant->moderator)-->
+				<div style="width:25px;float:left"><input type="checkbox" name="cart" value="{$document->document_srl}" onclick="doAddDocumentCart(this)" <!--@if($document->isCarted())-->checked="checked"<!--@end--> /></div>
+				<!--@end-->
+				<div><span class="thread_title forum_blue">
+						<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage',1)}">
+						{$document->getTitle($module_info->subject_cut_size)}
+						</a>
+				</span></div><br />
+                <span class="thread_author">{$document->printExtraImages(60*60*$module_info->duration_new)} {$lang->started_by}: <span><a href="#popup_menu_area" class="member_{$document->get('member_srl')} forum_blue" onclick="return false">{$document->getNickName()}</a></span></span>
+                </td>
+
+				<!--@if($val->idx == -1)-->
+                <td class="td_col">{$document->get('readed_count')}</td>
+                <td class="td_col">{$document->getCommentCount() + 1}</td>
+                <td class="td_last">
+				<!--@if($document->latest_post)-->{$lang->by}: <span class="forum_blue">{$document->get('last_updater')}</span><br  />Posted: {zdate($document->get('last_update'),'Y-m-d')}
+					<!--@if($grant->manager) -->
+					<a href="{getUrl('act','dispForumBanUser','document_srl',$document->document_srl,'member_srl',$document->get('member_srl'),'ipaddress',$document->get('ipaddress'))}"><img src="images/common/ban-user.png" class="iePngFix"></a>
+					<!--@end-->
+				<!--@else-->
+				No Replies
+				<!--@end-->
+				</td>
+            </tr>
+			<!--@end-->
+			<!--@end-->
+			<!--@end-->
+
+
+
+
+        </tbody>
+    </table>
+</form>
+<!-- code -->
+<div class="table_ctrlbar">
+	<!--@if($page_navigation->total_count > 0)-->
+			<div class="forumNavigation">
+				<div class="pagination a1">
+					<a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}" class="prevEnd">{$lang->first_page}</a>
+					<!--@while($page_no = $page_navigation->getNextPage())-->
+						<!--@if($page == $page_no)-->
+							<strong class="forum_blue">{$page_no}</strong>
+						<!--@else-->
+							<a href="{getUrl('page',$page_no,'document_srl','','division',$division,'last_division',$last_division)}">{$page_no}</a>
+						<!--@end-->
+					<!--@end-->
+					<a href="{getUrl('page',$page_navigation->last_page,'document_srl','','division',$division,'last_division',$last_division)}" class="nextEnd">{$lang->last_page}</a>
+				</div>
+			</div>
+	<!--@end-->
+	<!--#include("search_form.html")-->
+
+</div> <!-- //table_ctrlbar -->
+
+
+<!-- /code -->
+
+
+
+
+
+	<!-- 쓰레드 리스트 -->

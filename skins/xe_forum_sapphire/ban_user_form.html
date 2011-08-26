@@ -1,0 +1,43 @@
+<!--%import("css/style.css")-->
+
+
+<div id="forum">
+	
+	<form action="./" method="get" onsubmit="return procFilter(this, ban_user)" id="fr_ban">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<input type="hidden" name="member_srl" value="{$oMember->member_srl}" />
+	<input type="hidden" name="ipaddress" value="{$ipaddress}" />
+	
+	<table class="commonBoxWithHead" cellspacing="0" cellpadding="0">
+		<caption class="thread_caption"><span>{$lang->confirm_ban_user}?</span></caption>
+		<tbody>
+			<tr class="tr_wBorder">
+				<td>
+					<label>{$lang->delete_comments_and_threads}</label>
+					<input type="checkbox" name="delete_comments_and_threads" value="Y" checked="checked" id="delete_comments_and_threads" class="inputCheck" />
+					<br />
+					<label>{$lang->ban_ip}</label>
+					<input type="checkbox" name="ban_ip" value="Y" checked="checked" id="ban_ip" class="inputCheck" />
+					<br />
+					<label>{$lang->ban_id}</label>
+					<input type="checkbox" name="ban_id" value="Y" checked="checked" id="ban_id" class="inputCheck" />
+					<br />
+					<label>{$lang->delete_user}</label>
+					<input type="checkbox" name="delete_user" value="Y" checked="checked" id="delete_user" class="inputCheck" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="#" class="button red" onclick="jQuery('#fr_ban').submit();return false;"><span>{$lang->cmd_ban}</span></a>
+					<a href="{getUrl('act','','comment_srl','')}" class="button"><span>{$lang->cmd_cancel}</span></a>
+				</td>
+			</tr>
+			</form>
+		</tbody>
+	</table>
+</div>
+
+
+<!--#include("_footer.html")-->

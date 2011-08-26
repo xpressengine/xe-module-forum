@@ -1,0 +1,32 @@
+<!--#include("_header.html")-->
+
+<div id="forum">
+	
+	<form action="./" method="get" onsubmit="return procFilter(this, delete_document)" id="fr_delete">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	
+	<table class="commonBoxWithHead" cellspacing="0" cellpadding="0">
+		<caption class="thread_caption"><span></span></caption>
+		<tbody>
+			<tr class="tr_wBorder">
+				<td>
+					{$message}
+					
+				</td>
+			</tr>
+			<tr class="tr_nBorder">
+				<td>
+					<!--@if(!$is_logged)-->
+					<a href="{getUrl('act','dispMemberLoginForm')}" class="button"><span>{$lang->cmd_login}</span></a>
+					<!--@end-->
+					<a href="#" onclick="history.back(); return false;" class="button"><span>{$lang->cmd_back}</span></a>
+				</td>
+			</tr>
+			</form>
+		</tbody>
+	</table>
+</div>
+
+<!--#include("_footer.html")-->

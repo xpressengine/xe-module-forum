@@ -1,0 +1,39 @@
+<div id="topic">
+
+		<div id="buttonsLeft" class="top_btnbar">
+
+
+			<!-- directory -->
+
+				<!--@if($act=='dispForumContent' || (Context::get('document_srl') && $act!='dispForumWrite'))-->
+				<p id="forumBreadcrumbs" class="forumBreadcrumbs">
+					<!--@if($act=="dispForumContent" || $act=="dispForumWrite")-->
+						<!--@if($module_info->title)-->
+							<a class="fwB" href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->title}</a>
+						<!--@else-->
+							<a class="fwB" href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$lang->main}</a>
+						<!--@end-->
+					<!--@else-->
+						<!--@if($module_info->title)-->
+							<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->title}</a>
+						<!--@end-->
+					<!--@end-->
+					<!--@if($breadcrumbs)-->
+						<!--@foreach($breadcrumbs as $val)-->
+						<!--@if($val->title)-->
+							&raquo;&nbsp;<a href="{getUrl('document_srl','','category',$val->category_srl,'act','dispForumContent','search_target','','search_keyword','')}">{$val->title}</a>
+						<!--@end-->
+						<!--@end-->
+					<!--@end-->
+					<!--@if($oDocument->variables['title'])-->
+						&raquo;&nbsp;<a href="{getUrl('document_srl',$oDocument->variables['document_srl'],'act','','quote','','cpage','1')}">{$oDocument->getTitle()}</a>
+					<!--@end-->
+				</p>
+				<!--@end-->
+
+
+			<!-- //directory -->
+
+
+		</div>
+	</div><!-- /topic -->

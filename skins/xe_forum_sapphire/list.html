@@ -1,0 +1,24 @@
+<!--%import("js/script.js")-->
+
+<div id="forum">
+<!--#include("_header.html")-->
+<!--#include("_list_topic.html")-->
+<!--@if($oDocument->isExists() )-->
+<div class="viewDocument">
+    <!--#include("./view_document.html")-->
+</div>
+<!--@end-->
+
+<!--@if(!($oDocument->isExists())  )-->
+	<!--#include("./_style.list.html")-->
+
+<!--@end-->
+<!--@if(!$oDocument->isExists() )-->
+<!--#include("control_button.html")-->
+<!--@end-->
+
+
+</div>
+<!--#include("_footer.html")-->
+
+

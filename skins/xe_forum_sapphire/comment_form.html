@@ -1,0 +1,78 @@
+<div id="forum">
+
+<!--#include("_header.html")-->
+
+<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="fr_quote">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
+	<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
+	<input type="hidden" name="content" value="{htmlspecialchars($oComment->get('content'))}" />
+	<input type="hidden" name="parent_srl" value="{$oComment->get('parent_srl')}" />
+	<input type="hidden" name="quote_content" value='{$quote_content}' />
+	<div class="noGap">
+	<table border="0" cellspacing="0" class="comment_quote_table threadWrite">
+		<tbody>
+			<tr class="tr_header">
+				<td colspan="2">Quote</td>
+			</tr>
+		<tr class="separator">
+			<td colspan="2">
+				<div class="quote_content">{html_entity_decode($quote_content)}</div>
+				{$oComment->getEditor()}
+			</td>
+		</tr>
+		<!--@if(!$is_logged)-->
+		<tr class="separator">
+			<td class="top small gF">
+				<label for="userName">{$lang->writer}</label> :
+			</td>
+			<td colspan="2">
+				<input type="text" name="nick_name" value="" class="inputText" id="userName"/>
+			</td>
+		</tr>
+		<tr class="separator">
+			<td class="top small gF">
+				<label for="userPw">{$lang->password}</label>
+			</td>
+			<td colspan="2">
+				<input type="password" name="password" value="" id="userPw" class="inputText" />
+			</td>
+		</tr>
+		<tr class="separator">
+			<td class="top small gF">
+				<label for="emailAddress">{$lang->email_address}</label>
+			</td>
+			<td colspan="2">
+				<input type="text" name="email_address" value="" id="emailAddress" class="inputText"/>
+			</td>
+		</tr>
+		<tr class="separator">
+			<td class="top small gF">
+				<label for="homePage">{$lang->homepage}</label>
+			</td>
+			<td colspan="2">
+				<input type="text" name="homepage" value="" id="homePage" class="inputText"/>
+			</td>
+		</tr>
+		<!--@end-->
+
+		<tr class="single_line">
+			<td colspan="2" class="td_submit" style="padding:10px">
+				<div style="text-align:left">
+					<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="button blue"><span>{$lang->cmd_comment_registration}</span></a>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="table_ctrlbar blankIE">
+	<div class="ctrlbar_right"><span style="font-size:0;line-height:0; width:0;height:0;"></span></div><!-- //ctrlbar_right -->
+	</div> <!-- //table_ctrlbar -->
+
+</form>
+
+
+<!--#include("_footer.html")-->
+
+</div>

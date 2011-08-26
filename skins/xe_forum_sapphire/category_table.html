@@ -1,0 +1,46 @@
+<!-- <form action="./" method="get" class="forumListForm">  겹치는 문제로 주석처리-->
+	
+	<table class="forum_table" cellpadding="0" cellspacing="0">
+        <caption class="tb_cap">Forum Category</caption>
+        <colgroup>
+        	<col width="" />
+            <col width="70" />
+            <col width="115" />
+            <col width="235"  />
+        </colgroup>
+        <thead>
+            <tr class="tr_header">
+                <th class="th_title" scope="col">Category</th>
+                <th class="th_col" scope="col">{$lang->document_count}</th>
+                <th class="th_col" scope="col">{$lang->comments}</th>
+                <th class="th_last" scope="col">{$lang->last_update}</th>
+            </tr>
+        </thead>
+        <tbody>
+			<!--@$sw = 0;--><!--@end-->
+			<!--@foreach($category_list as $val)-->
+				<!--@if($val->depth < 2)-->
+				<tr class="<!--@if($val->depth > 0)-->tr_title_lv_2<!--@else -->tr_title_lv_1<!--@end -->">
+					<td class="td_title"><img src="<!--@if($val->depth > 0)-->images/category_lv2_bullet.gif<!--@else -->images/category_lv1_bullet.gif<!--@end -->" class="title_bullet" alt="" title="" /><a <!--@if($val->depth > 0)-->class="forum_blue" <!--@end -->href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a></td>
+					<td class="td_col">{$val->document_count}</td>
+					<td class="td_col">{$val->comment_count + $val->document_count}</td>
+					<td class="td_last">
+				<!--@if($val->depth >= 0 && $val->document_count)-->
+				Author: <span class="forum_blue">{$val->last_author}</span><br  />Posted: {zdate($val->last_update,'m-d-Y h:i a')}
+				<!--@else-->
+				No Threads
+				<!--@end -->
+				</td>
+				</tr>
+			
+			
+			<!--@end-->
+		<!--@$sw += 1;--><!--@end-->
+		<!--@end-->
+
+
+            
+        </tbody>
+    </table>
+
+</form>

@@ -1,0 +1,77 @@
+<script type="text/javascript">
+	//<![CDATA[
+	
+	
+	//]]>
+</script>
+
+
+<!--@if($category_list[$category]->childs) -->
+<form action="./" method="get" class="forumListForm">
+<table class="forum_table sub_forums" cellpadding="0" cellspacing="0">
+	<caption class="tb_cap">Sub Forums</caption>
+	<colgroup>
+		<col width="" />
+		<col width="70" />
+		<col width="115" />
+		<col width="235"  />
+	</colgroup>
+	<thead>
+		{@ $no_line_class = " no_line" }
+		<tr class="tr_header">
+			<th class="th_title" scope="col">{$lang->subforums}</th>
+			<th class="th_col" scope="col">{$lang->document_count}</th>
+			<th class="th_col" scope="col">{$lang->comments}</th>
+			<th class="th_last" scope="col">{$lang->last_update}</th>
+		</tr>
+	</thead>
+	<!--@$sw = 0;--><!--@end-->
+	<!--@$startDepth = $category_list[category]->depth;--><!--@end-->
+	<!--@foreach($category_children as $val)-->
+	<!--@if( $sw == 0 )-->
+	<tbody>
+	<!--@else-->
+
+
+		<tr class="tr_title_lv_1">
+			<td class="td_title"><img src="images/category_lv2_bullet.gif" class="title_bullet" width="28" height="26" alt="" title="" />
+			
+				<!--@if($val->depth)-->
+				<a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent','search_target','','search_keyword','')}">{$val->title}</a>
+				<!--@end -->
+				<!--@if((!$val->depth) && (!$val->child_exists))-->
+				<a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent','search_target','','search_keyword','')}">{$val->title}</a>
+				<!--@end -->
+				<!--@if(!$val->depth)--><a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent','search_target','','search_keyword','')}">{$val->title}</a><!--@end-->
+				<!--@if($val->depth)--><p class="catDescription">{$val->description}</p><!--@end -->
+			</td>
+			<td class="td_col">
+				<!--@if($val->depth)-->{$val->document_count}<!--@end -->
+				<!--@if((!$val->depth) && (!$val->child_exists))-->{$val->document_count}<!--@end -->
+			</td>
+			<td class="td_col">
+				<!--@if($val->depth)-->{$val->comment_count + $val->document_count}<!--@end -->
+				<!--@if((!$val->depth) && (!$val->child_exists))-->{$val->comment_count}<!--@end -->
+			</td>
+			<td class="td_last">
+			<!--@if($val->depth >= 0 && $val->document_count)-->
+				<!--@if($val->last_post || $val->last_document)-->
+				{$lang->by} <span class="forum_blue">{$val->last_author}&nbsp;</span><br  />Posted: {zdate($val->last_update,'Y-m-d')} <br />
+				<a href="{getUrl('mid','','document_srl', $val->last_document,'cpage','')}#comment_{$val->last_post}">{$lang->latest_post}</a>
+				<!--@end-->
+			<!--@else-->
+				No Threads
+			<!--@end --></td>
+			
+			
+			
+		</tr>
+		
+	<!--@end-->
+	<!--@$sw += 1;--><!--@end-->
+	<!--@end-->
+	</tbody>
+</table>
+
+</form>
+<!--@end--> <!-- // g12 -->

@@ -1,0 +1,226 @@
+<div class="writeNewThread">
+
+<!--@if(Context::get('is_logged')) -->
+	<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="button"><span>{$lang->new_thread}</span></a>
+<!--@else-->
+	<a href="{getUrl('act','dispMemberLoginForm')}" class="button"><span>{$lang->new_thread}</span></a>
+<!--@end-->
+
+</div>
+<table class="thread_table" cellpadding="0" cellspacing="0">
+	<caption class="thread_caption"><span>{$oDocument->getTitle()}</span></caption>
+	<colgroup>
+		<col width="168" />
+		<col width="" />
+	</colgroup>
+	<tbody>
+		<!-- Thread block -->
+		<!--@if(Context::get('cpage')==1 || Context::get('cpage')==NULL)-->
+		<tr class="tr_thread_meta">
+			<td class="col1">
+				<!--@if($module_info->display_author!='N')-->
+					<!--@if(!$oDocument->getMemberSrl())-->
+						<!--@if($oDocument->isExistsHomepage())-->
+							<a href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;">{$oDocument->getNickName()}</a>
+						<!--@else-->
+							{$oDocument->getNickName()}
+						<!--@end-->
+					<!--@else-->
+						<a href="#popup_menu_area" class="member_{$oDocument->get('member_srl')}" onclick="return false">{$oDocument->getNickName()}</a>
+					<!--@end-->
+				<!--@end-->
+			</td>
+			<td class="col2">Posted: {$oDocument->getRegdate('d-M-Y h:i a')}</td>
+		</tr>
+		<tr class="tr_thread_content">
+			<td class="col1" style="border-right:1px solid #E5E5E5">
+				<div class="user_info">
+				<!--@if($module_info->display_author!='N')-->
+					<!--@if(!$oDocument->getMemberSrl())-->
+						<!--@if($oDocument->isExistsHomepage())-->
+							<h4><a href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;" class="forum_blue">{$oDocument->getNickName()}</a></h4>
+						<!--@else-->
+							{$oDocument->getNickName()}
+						<!--@end-->
+					<!--@else-->
+						<h4><a href="#popup_menu_area" class="forum_blue member_{$oDocument->get('member_srl')}" onclick="return false">{$oDocument->getNickName()}</a></h4>
+					<!--@end-->
+				<!--@end-->
+
+					<!--@if($oDocument->getProfileImage())-->
+						<div class="user_img"><img src="{$oDocument->getProfileImage()}" width="115px" alt="{$oDocument->getNickName()}" /></div>
+					<!--@else-->
+						<div class="user_img"><img src="images/avatar.jpg" alt="USER" ></div>
+					<!--@end-->
+					<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
+					<dl class="u_posts"><span>{$lang->ip}:</span>&nbsp;<span>{$oDocument->getIpaddress()}</span></dl>
+					<!--@end-->
+					<dl class="u_regdate"><span>{$lang->registered}:</span>&nbsp;<b>{$oDocument->getRegdate('m/d/Y')}</b></dl>
+				</div>
+			</td>
+			<td class="col2">
+				<p class="post_text">{html_entity_decode($oDocument->getContentText())}</p>
+				<div class="attachment" style="padding-bottom:10px">
+					<!--@if($oDocument->hasUploadedFiles())-->
+					{@ $uploaded_list = $oDocument->getUploadedFiles() }
+					<ul class="filesList">
+						<!--@foreach($uploaded_list as $key => $file)-->
+						<li>
+							<a href="{getUrl('')}{$file->download_url}"  style="text-decoration:none">
+								<img src="images/common/bullet.png" border="0"/>&nbsp;&nbsp;{$file->source_filename}
+							</a>
+						</li>
+						<!--@end-->
+					</ul>
+					<!--@end-->
+				</div>
+			</td>
+		</tr>
+		<tr class="tr_thread_control">
+			<td colspan="2" >
+
+
+
+				<div class="btns">
+					<!--@if($oDocument->isEditable())-->
+					<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" class="button blue" ><span>{$lang->cmd_delete}</span></a>
+					<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="button blue" ><span>{$lang->cmd_modify}</span></a>
+					<!--@end-->
+
+					<!--@if($oDocument->allowComment())-->
+						<!--@if(Context::get('is_logged')) -->
+						<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="button blue"><span>{$lang->cmd_quote}</span></a>
+						<!--@else-->
+						<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="button blue"><span>{$lang->cmd_quote}</span></a>
+						<!--@end-->
+
+					<!--@end-->
+				</div>
+			</td>
+		</tr>
+		<!--@end-->
+		<!-- End of Thread block -->
+
+
+<!--@if($oDocument->allowComment())-->
+		<!--#include("./comment.html")-->
+
+
+
+<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
+<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+	<tr class="tr_thread_exvar">
+		<td class="col1">{$val->name}</td>
+		<td class="col2">{$val->getValueHTML()}</td>
+	</tr>
+<!--@end-->
+<!--@end-->
+
+	</tbody>
+</table>
+
+
+
+
+
+<div class="table_ctrlbar">
+
+
+	<!--@if($oDocument->comment_page_navigation)-->
+	<div class="pagination a1">
+		<a href="{getUrl('cpage',1,'comment_srl','')}" class="prevEnd">{$lang->first_page}</a>
+		<!--@while($page_no = $oDocument->comment_page_navigation->getNextPage())-->
+			<!--@if($cpage == $page_no)-->
+				<strong class="forum_blue">{$page_no}</strong>
+			<!--@else-->
+				<a href="{getUrl('cpage',$page_no,'comment_srl','')}">{$page_no}</a>
+			<!--@end-->
+		<!--@end-->
+		<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page,'comment_srl','')}" class="nextEnd">{$lang->last_page}</a>
+	</div>
+	<!--@end-->
+
+	<div class="ctrlbar_right">
+		<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
+		<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
+
+
+
+			<!--@if($vid)-->
+			<input type="hidden" name="vid" value="{$vid}" name="searchIn"/>
+			<!--@end-->
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="category" value="{$category}" />
+
+			<div class="search">
+				<input type="text" class="search_keyword" size="15" placeholder="search" />
+				<input type="image" class="search_submit" src="images/search_submit.gif" />
+			</div><!-- // search -->
+
+		</form>
+		<!--@else-->
+		<div class="search">
+			<input type="text" class="search_keyword" disabled="disabled" size="15" placeholder="search" />
+			<input type="image" class="search_submit" src="images/search_submit.gif" />
+		</div><!-- // search -->
+		<script type="text/javascript">
+			//<![CDATA[
+			var message = "{$lang->search_message1} {$lang->login}<br />{$lang->search_message2}";
+			jQuery('.search_keyword').CreateBubblePopup({
+								position : 'top',align:'center',
+								innerHtml: message,
+								innerHtmlStyle: {color:'#FFFFFF', 'text-align':'center'},
+								themeName: 	'all-black',
+								themePath: 	'{$tpl_path}/images/popup-theme'
+							});
+			//]]>
+		</script>
+		<!--@end-->
+
+	</div>
+</div>
+
+
+
+
+<!--@if($grant->post && $oDocument->isEnableComment() )-->
+<!--@if($is_logged)-->
+<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="forumEditor" >
+				<input type="hidden" name="mid" value="{$mid}" />
+				<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+				<input type="hidden" name="comment_srl" value="" />
+				<input type="hidden" name="content" value="" />
+
+<table class="commentEditor" cellspacing="0" cellpadding="0">
+	<caption class="blind">{$lang->reply}</caption>
+	<thead>
+		<tr><th>{$lang->reply}</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{$oDocument->getCommentEditor()}
+			</td>
+		</tr>
+		<tr>
+			<td class="mail_notify">
+			<label for="notify_message">{$lang->notify}</label>
+			<input type="checkbox" name="notify_message" value="Y" <!--@if($isNotified)-->checked="checked"<!--@end--> id="notify_message" class="inputCheck" />
+			</td>
+		</tr>
+		<tr><td></td></tr>
+	</tbody>
+
+
+</table>
+<div style="margin-top:10px;float:left"><a href="#" class="button blue" onclick="jQuery('#forumEditor').submit();return false;" ><span>{$lang->cmd_comment_registration}</span></a></div>
+</form>
+<!--@end-->
+
+
+
+<!--@end-->
+<!--@end-->
+
+
+
+

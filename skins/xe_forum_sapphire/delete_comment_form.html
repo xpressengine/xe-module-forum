@@ -1,0 +1,26 @@
+<!--%import("css/style.css")-->
+
+
+
+
+<div id="forum">
+	
+	<form action="./" method="get" onsubmit="return procFilter(this, delete_comment)" id="fr_delete">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
+	<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
+	
+	<table class="commonBoxWithHead" cellspacing="0" cellpadding="0">
+		<caption class="thread_caption"><span>{$lang->confirm_delete_comment}?</span></caption>
+		<tbody>
+			<tr>
+				<td>
+					<a href="#" class="button blue" onclick="jQuery('#fr_delete').submit();return false;"><span>{$lang->cmd_delete}</span></a>
+					<a href="{getUrl('act','','comment_srl','')}" class="button blue"><span>{$lang->cmd_cancel}</span></a>
+				</td>
+			</tr>
+			</form>
+		</tbody>
+	</table>
+</div>
