@@ -59,7 +59,7 @@
 				</div>
 			</td>
 			<td class="col2">
-				<p class="post_text">{html_entity_decode($oDocument->getContentText())}</p>
+				<div class="post_text">{html_entity_decode($oDocument->getContentText())}</div>
 				<div class="attachment" style="padding-bottom:10px">
 					<!--@if($oDocument->hasUploadedFiles())-->
 					{@ $uploaded_list = $oDocument->getUploadedFiles() }
@@ -142,41 +142,8 @@
 
 	<div class="ctrlbar_right">
 		<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
-		<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
-
-
-
-			<!--@if($vid)-->
-			<input type="hidden" name="vid" value="{$vid}" name="searchIn"/>
-			<!--@end-->
-			<input type="hidden" name="mid" value="{$mid}" />
-			<input type="hidden" name="category" value="{$category}" />
-
-			<div class="search">
-				<input type="text" name="search_keyword" class="search_keyword" size="15" placeholder="search" />
-				<input type="image" class="search_submit" src="images/search_submit.gif" />
-			</div><!-- // search -->
-
-		</form>
-		<!--@else-->
-		<div class="search">
-			<input type="text" class="search_keyword" disabled="disabled" size="15" placeholder="search" />
-			<input type="image" class="search_submit" src="images/search_submit.gif" />
-		</div><!-- // search -->
-		<script type="text/javascript">
-			//<![CDATA[
-			var message = "{$lang->search_message1} {$lang->login}<br />{$lang->search_message2}";
-			jQuery('.search_keyword').CreateBubblePopup({
-								position : 'top',align:'center',
-								innerHtml: message,
-								innerHtmlStyle: {color:'#FFFFFF', 'text-align':'center'},
-								themeName: 	'all-black',
-								themePath: 	'{$tpl_path}/images/popup-theme'
-							});
-			//]]>
-		</script>
+			<div class="ctrlbar_right"><!--#include("search_form.html")--></div>
 		<!--@end-->
-
 	</div>
 </div>
 
