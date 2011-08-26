@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">XE Forum Greystone</title>
+	<title xml:lang="en">XE Forum Greystone</title>
+	<title xml:lang="zh-CN">XE Forum Greystone</title>
+    <description xml:lang="ko">
+        The skin utilizes a greystone style, employs a concise and clear forum layout, improve the readability of the forum.  
+    </description>
+    <description xml:lang="en">
+        The skin utilizes a greystone style, employs a concise and clear forum layout, improve the readability of the forum. 
+    </description>
+    <description xml:lang="zh-CN">
+        主体色调采用灰色为主，使其能适用不同主题;用蓝色做点缀，以体现XE主题风格。内容布局简洁、明了，易于阅读。
+    </description>
+    <version>1.0</version>
+    <date>2011-08-16</date>
+
+    <author email_address="developers@nhn.com" link="http://www.xpressengine.com/">
+		<name xml:lang="ko">NHN</name>
+		<name xml:lang="en">NHN</name>
+		<name xml:lang="zh-CN">NHN</name>
+    </author>
+
+    <license>GPL</license>
+
+    <colorset>
+        <color name="black" src="screenshot/">
+            <title xml:lang="ko">Grey</title>
+			<title xml:lang="en">Grey</title>
+			<title xml:lang="zh-CN">灰色</title>
+        </color>
+    </colorset>
+
+    <extra_vars>
+        
+        <var name="display_login_info" type="select">
+            <title xml:lang="ko">Display Login Info</title>
+			<title xml:lang="en">Display Login Info</title>
+			<title xml:lang="zh-CN">显示登录信息</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_setup_button" type="select">
+			<title xml:lang="ko">Display Setup</title>
+            <title xml:lang="en">Display Setup</title>
+			<title xml:lang="zh-CN">显示设置</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+				<title xml:lang="ko">not display</title>
+                <title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="subject_cut_size" type="text">
+            <title xml:lang="ko">Length of Subject</title>
+			<title xml:lang="en">Length of Subject</title>
+			<title xml:lang="zh-CN">标题长度</title>
+            <description xml:lang="ko">You may set length of title. (0 or blank value will not restrict the length)</description>
+			<description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+			<description xml:lang="zh-CN">设置标题的长度. (0或空值，则标题不受长度限制)</description>
+	
+        </var>
+        <var name="content_cut_size" type="text">
+            <title xml:lang="ko">Length of Content</title>
+			<title xml:lang="en">Length of Content</title>
+			<title xml:lang="zh-CN">内容长度</title>
+            <description xml:lang="ko">Length of Content can be assigned. (default 240)</description>
+			<description xml:lang="en">Length of Content can be assigned. (default 240)</description>
+			<description xml:lang="zh-CN">设置帖子内容长度 (默认240字节)</description>
+        </var>
+        <var name="display_number" type="select">
+            <title xml:lang="ko">Dispay Number</title>
+			<title xml:lang="en">Dispay Number</title>
+			<title xml:lang="zh-CN">显示数量</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_author" type="select">
+            <title xml:lang="ko">Display Author</title>
+			<title xml:lang="en">Display Author</title>
+			<title xml:lang="zh-CN">显示作者</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_regdate" type="select">
+            <title xml:lang="ko">Display Registered Date</title>
+			<title xml:lang="en">Display Registered Date</title>
+			<title xml:lang="zh-CN">显示注册时间</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_readed_count" type="select">
+            <title xml:lang="ko">Display Hit</title>
+			<title xml:lang="en">Display Hit</title>
+			<title xml:lang="zh-CN">Display Hit</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_voted_count" type="select">
+            <title xml:lang="ko">Display Votes</title>
+			<title xml:lang="en">Display Votes</title>
+			<title xml:lang="zh-CN">显示投票</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_ip_address" type="select">
+            <title xml:lang="ko">Display ip address</title>
+			<title xml:lang="en">Display ip address</title>
+			<title xml:lang="zh-CN">显示IP地址</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+				<title xml:lang="ko">not display</title>
+                <title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+        </var>
+        <var name="display_last_update" type="select">
+            <title xml:lang="ko">Display Latest Update</title>
+			<title xml:lang="en">Display Latest Update</title>
+			<title xml:lang="zh-CN">显示最后更新</title>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_sign" type="select">
+            <title xml:lang="ko">Display sign</title>
+			<title xml:lang="en">Display sign</title>
+			<title xml:lang="zh-CN">显示签名</title>
+            <description xml:lang="ko">Description display sign</description>
+			<description xml:lang="en">Description display sign</description>
+			<description xml:lang="zh-CN">显示签名描述</description>
+            <options value="Y">
+                <title xml:lang="ko">display</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="zh-CN">显示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">not display</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="zh-CN">不显示</title>
+            </options>
+        </var>
+        <var name="thumbnail_type" type="select">
+            <title xml:lang="ko">Type of Thumbnail</title>
+			<title xml:lang="en">Type of Thumbnail</title>
+			<title xml:lang="zh-CN">缩略图类型</title>
+            <description xml:lang="ko">Choose the type to create the thumnail.</description>
+			<description xml:lang="en">Choose the type to create the thumnail.</description>
+			<description xml:lang="zh-CN">选择缩略图类型.</description>
+
+            <options value="crop">
+                <title xml:lang="ko">crop</title>
+				<title xml:lang="en">crop</title>
+				<title xml:lang="zh-CN">剪切</title>
+            </options>
+            <options value="ratio">
+                <title xml:lang="ko">ratio</title>
+				<title xml:lang="en">ratio</title>
+				<title xml:lang="zh-CN">比例</title>
+            </options>
+        </var>
+        <var name="thumbnail_width" type="text" default="100">
+            <title xml:lang="ko">Width of Thumbnail</title>
+			<title xml:lang="en">Width of Thumbnail</title>
+			<title xml:lang="zh-CN">缩略图宽度</title>
+            <description xml:lang="ko">Set the width of thumbnail. Default is 100px.</description>
+			<description xml:lang="en">Set the width of thumbnail. Default is 100px.</description>
+			<description xml:lang="zh-CN">设置缩略图宽度。（默认为100px）.</description>
+        </var>
+        <var name="thumbnail_height" type="text" default="100">
+            <title xml:lang="ko">Height of Thumbnail</title>
+			<title xml:lang="en">Height of Thumbnail</title>
+			<title xml:lang="zh-CN">缩略图高度</title>
+            <description xml:lang="ko">Set the height of thumbnail. Default is 100px.</description>
+			<description xml:lang="en">Set the height of thumbnail. Default is 100px.</description>
+			<description xml:lang="zh-CN">设置缩略图高度.（默认为100px）</description>
+        </var>
+    </extra_vars>
+</skin>
+

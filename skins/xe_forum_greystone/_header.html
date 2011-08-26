@@ -1,0 +1,78 @@
+<!--%import("js/script.js")-->
+
+<!--@if(!$module_info->colorset)-->
+<!--@end-->
+	
+<!--%import("css/forum.css")-->
+<!--%import("css/pagination.css")-->
+<!--%import("css/black.css")-->
+
+<!--@if(!$module_info->duration_new = (int)$module_info->duration_new)-->{@ $module_info->duration_new = 12 }<!--@end-->
+<!--@if(!$module_info->content_cut_size = (int)$module_info->content_cut_size)-->{@ $module_info->content_cut_size= 240 }<!--@end-->
+
+<!--@if(!$module_info->thumbnail_type)-->{@ $module_info->thumbnail_type = 'crop'; }<!--@end-->
+<!--@if(!$module_info->thumbnail_width)-->{@ $module_info->thumbnail_width = 100; }<!--@end-->
+<!--@if(!$module_info->thumbnail_height)-->{@ $module_info->thumbnail_height = 100; }<!--@end-->
+
+<!--@if($order_type == "desc")-->
+    {@ $order_icon = "buttonDescending.gif" }
+    {@ $order_type = "asc"; }
+<!--@else-->
+    {@ $order_icon = "buttonAscending.gif" }
+    {@ $order_type = "desc"; }
+<!--@end-->
+<div class="forumHeader">
+    <!--@if(!$category && !$oDocument->variables['title'])-->
+		<!--@if($module_info->title)-->
+			<h1 id="forumTitle1" class="gF">{$module_info->title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></h1>
+			<!--@Context::setBrowserTitle($module_info->title);--><!--@end-->
+		<!--@end-->
+	<!--@else-->
+		<!--@if($oDocument->variables['title'])-->
+			<h1 id="forumTitle" class="gF">{$oDocument->getTitle()}</h1>
+			<!--@Context::setBrowserTitle($oDocument->getTitle().' - '.$module_info->title);--><!--@end-->
+		<!--@else-->
+				<!--@if($category_list)-->
+					<h1 id="forumTitle" class="gF">{$category_list[$category]->title}</h1>
+					<!--@Context::setBrowserTitle($category_list[$category]->title.' - '.$module_info->title);--><!--@end-->
+				<!--@else-->
+					<h1 id="forumTitle4" class="gF">{$lang->new_comment}</h1>
+					<!--@Context::setBrowserTitle($lang->new_comment.' - '.$module_info->title);--><!--@end-->
+				<!--@end-->
+		<!--@end-->
+	<!--@end-->
+	<!--@if($module_info->comment && !$oDocument->variables['title'] && !$category)-->
+		<div id="forumDescription" class="gF">{nl2br($module_info->comment)}</div>
+	<!--@end-->
+
+	<!--@if($act=='dispForumContent' || (Context::get('document_srl') && $act!='dispForumWrite'))-->
+		<p id="forumBreadcrumbs">
+			<!--@if($act=="dispForumContent" || $act=="dispForumWrite")-->
+				<!--@if($module_info->title)-->
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->title}</a>
+				<!--@else-->
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$lang->main}</a>
+				<!--@end-->
+			<!--@else-->
+				<!--@if($module_info->title)-->
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->title}</a>
+				<!--@end-->
+			<!--@end-->
+			<!--@if($breadcrumbs)-->
+				<!--@foreach($breadcrumbs as $val)-->
+				<!--@if($val->title)-->
+					&raquo;&nbsp;<a href="{getUrl('document_srl','','category',$val->category_srl,'act','dispForumContent','search_target','','search_keyword','')}">{$val->title}</a>
+				<!--@end-->
+				<!--@end-->
+			<!--@end-->
+			<!--@if($oDocument->variables['title'])-->
+				&raquo;&nbsp;<a href="{getUrl('document_srl',$oDocument->variables['document_srl'],'act','','quote','','cpage','1')}">{$oDocument->getTitle()}</a>
+			<!--@end-->
+		</p>
+	<!--@end-->
+	<!--@if($module_info->header_text)-->
+	<div id="customHeader">
+		{nl2br($module_info->header_text)}
+	</div>
+	<!--@end-->
+</div>
