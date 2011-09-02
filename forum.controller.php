@@ -25,7 +25,7 @@
             // setting required variables
             $obj = Context::getRequestVars();
             if(Context::get('is_logged') && $logged_info->is_admin!='Y') $obj->allow_comment='Y';
-            $obj->content=strip_tags($obj->content);
+            $obj->content = strip_tags($obj->content,'<p><a><b><ul><li><span><u><i><strike><sup><sub><div><ol><blockquote><br><table><tbody><tr><td><tfoot><thead><img>');
             $obj->module_srl = $this->module_srl;
             if($obj->is_notice!='Y'||!$this->grant->manager) $obj->is_notice = 'N';
 
