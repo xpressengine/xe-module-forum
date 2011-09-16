@@ -178,10 +178,12 @@
             ModuleModel::syncModuleToSite($output->data);
             
 			$oModuleModel = &getModel('module');
-            foreach ($output->data as $val) {
-            	$module_details=$oModuleModel->getModuleInfoByModuleSrl($val->module_srl);
-            	$val->title=$module_details->title;
-            }
+			if(isset($output->data)){
+	            foreach ($output->data as $val) {
+	            	$module_details=$oModuleModel->getModuleInfoByModuleSrl($val->module_srl);
+	            	$val->title=$module_details->title;
+	            }
+			}
 	        // setting up variables for index template
 	        Context::set('total_count', $output->total_count);
 	        Context::set('total_page', $output->total_page);

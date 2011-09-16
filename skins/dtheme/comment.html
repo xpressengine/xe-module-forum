@@ -40,12 +40,12 @@
 			</td>
 			<td class="right">
 				<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
-				<a href="{getUrl('act','dispForumDeleteComment','comment_srl',$comment->comment_srl)}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
-				<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl)}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</span></span></a> 
+				<a href="{getUrl('act','dispForumDeleteComment','comment_srl',$comment->comment_srl,'entry','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
+				<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl,'entry','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</span></span></a> 
 				<!--@end-->
 				<!--  <a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl)}" class="button green"><span>{$lang->cmd_reply}</span></a> -->
 				<!--@if(Context::get('is_logged')) -->
-				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
 				<!--@else-->
 				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
 				<!--@end-->

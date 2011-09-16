@@ -56,11 +56,15 @@
 				if(!$oDocument->isGranted()) return new Object(-1,'msg_not_permitted');
                 $output = $oDocumentController->updateDocument($oDocument, $obj);
                 $msg_code = 'success_updated';
+                //$this->insert_document_alias($obj);
 
             // Inserting a new document
             } else {
                 $output = $oDocumentController->insertDocument($obj, $bAnonymous);
                 $msg_code = 'success_registed';
+                $insert_alias = true;
+                $insert_alias = $this->insert_document_alias($obj);
+                if(!$insert_alias) return new Object(-1,'thread title already exists');
                 $obj->document_srl = $output->get('document_srl');
 
                 // Verify if an administrator mail exists
@@ -389,6 +393,40 @@
 
             return new Object();
         }
+        
+        
+        function insert_document_alias($obj)
+	     {
+	         $oDocumentController = &getController('document');
+	         $oDocumentModel = &getModel('document');
+	         $alias = $obj->title;
+	         $output = executeQuery('forum.getAlias', $obj);
+	         if(!isset($output->data)){
+	         	$oDocumentController->insertAlias($obj->module_srl, $obj->document_srl, $alias);
+	         	return true;
+	         }
+			else {
+				$document = $oDocumentModel->getDocument($output->data->document_srl)->variables; 
+				if($obj->category_srl == $document['category_srl']){
+					return false;
+				}
+				else{
+					$category = $oDocumentModel->getCategory($obj->category_srl);
+					$alias = $category->title.'|'.$alias;
+					while ($category->parent_srl ) {
+						$category = $oDocumentModel->getCategory($category->parent_srl);
+						$alias = $category->title.'|'.$alias;
+						$args->title = $alias;
+						$output = executeQuery('forum.getAlias', $args);
+						if(isset($output->data)) return false;
+					}
+					$oDocumentController->insertAlias($obj->module_srl, $obj->document_srl, $alias);
+					return true;
+				}
+			}
+				
+	     }
+        
         
 
     }

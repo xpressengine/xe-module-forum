@@ -995,7 +995,7 @@
                 $oMember = $oMemberModel->getMemberInfoByMemberSrl($member_srl, $this->grant->manager);
             }
 
-            // chech comment
+            // check comment
             if(!isset($oMember) ) return $this->dispForumContent();
 
 			// set oComment

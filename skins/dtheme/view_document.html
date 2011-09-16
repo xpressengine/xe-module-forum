@@ -2,7 +2,7 @@
 	<div id="topic">
 		<div id="buttonsLeft">
 		<!--@if(Context::get('is_logged')) -->
-			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			<a href="{getUrl('act','dispForumWrite','document_srl','','entry','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 		<!--@else-->
 			<a href="{getUrl('act','dispMemberLoginForm')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 		<!--@end-->
@@ -107,12 +107,12 @@
 			</td>
 			<td class="right">
 			<!--@if($oDocument->isEditable())-->
-				<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
-				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
+				<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','','entry','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
+				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','','entry','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
 			<!--@end-->	
 			<!--@if($oDocument->allowComment())-->
 				<!--@if(Context::get('is_logged')) -->
-				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
 				<!--@else-->
 				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
 				<!--@end-->
