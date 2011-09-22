@@ -4,6 +4,8 @@
     </tables>
     <columns>
         <column name="max(last_update)" alias="last_update"/>
+        <column name="document_srl" />
+        <column name="nick_name" alias="author" />
     </columns>
     <conditions>
 		<condition operation="in" column="category_srl" var="categories" filter="number" />
