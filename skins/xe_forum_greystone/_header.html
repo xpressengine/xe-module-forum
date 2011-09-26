@@ -48,14 +48,19 @@
 	<!--@if($act=='dispForumContent' || (Context::get('document_srl') && $act!='dispForumWrite'))-->
 		<p id="forumBreadcrumbs">
 			<!--@if($act=="dispForumContent" || $act=="dispForumWrite")-->
-				<!--@if($module_info->title)-->
-					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->title}</a>
+				
+				<!--@if($module_info->browser_title)-->
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->browser_title}</a>
 				<!--@else-->
 					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$lang->main}</a>
 				<!--@end-->
 			<!--@else-->
 				<!--@if($module_info->title)-->
 					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->title}</a>
+				<!--@else-->
+					<!--@if($module_info->browser_title)-->
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','')}">{$module_info->browser_title}</a>
+					<!--@end-->
 				<!--@end-->
 			<!--@end-->
 			<!--@if($breadcrumbs)-->

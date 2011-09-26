@@ -104,7 +104,7 @@
 	        /**
              * displays forum category list
              **/
-        	if(!$category && !$search_keyword && !$document_srl){
+        	if(!$search_keyword && !$document_srl){
 	        	$categorylist = $this->dispForumCategoryListIndex();
 	            }
             Context::set('category_list', $categorylist);

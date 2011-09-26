@@ -57,7 +57,7 @@
          * @brief Display forum admin content
          **/
         function dispForumAdminContent() {
-            $output = executeQueryArray('forum.getForumList', $args);
+            $output = executeQueryArray('forum.getForumList',$args);
             $display=Context::get('display');
             ModuleModel::syncModuleToSite($output->data);
             	//if there is only one forum go directly to it's dashboard , else go to forum list
