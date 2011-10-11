@@ -55,7 +55,7 @@
     <tr>
         <td class="center number">{$no}</td>
         <td class="center"><input type="checkbox" name="cart" value="{$val->module_srl}" /></td>
-        <td><a href="{getUrl('act','dispForumAdminDashboard','module_srl',$val->module_srl)}" >{htmlspecialchars($val->title)}</a></td>
+        <td><a href="{getUrl('act','dispForumAdminDashboard','module_srl',$val->module_srl)}" >{htmlspecialchars($val->browser_title)}</a></td>
         <td>
             <!--@if(!$val->module_category_srl)-->
                 <!--@if($val->site_srl)-->
