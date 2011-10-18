@@ -39,7 +39,7 @@
                 $args->mid = 'forum';
                 $args->module = 'forum';
                 $args->browser_title = 'XpressEngine';
-                $args->skin = 'xe_default';
+                $args->skin = 'dtheme';
                 $args->site_srl = 0;
                 $output = $oModuleController->insertModule($args);
                 $module_srl = $output->get('module_srl');
