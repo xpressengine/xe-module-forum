@@ -41,7 +41,7 @@ count($notice_list) = number of stickys
 						</div>
 					</td>
 					<!--@end-->
-				<!--@ $columnCount=count($list_config)+1;--><!--@end-->
+				{@ $columnCount=count($list_config)+1}
                 <td width="30%">
 								<div class="left <!--@if($grant->manager || $grant->moderator)-->middle<!--@else-->first<!--@end-->">
 									{$lang->document_count}
@@ -109,10 +109,10 @@ count($notice_list) = number of stickys
 		</tr>
 	<!--@else-->
 
-		<!--@ $i=0;--><!--@end-->
+		{@ $i=0}
 
 		<!--@foreach($notice_list as $no => $document)-->
-			<!--@ $i++;--><!--@end-->
+			{@ $i++}
 			<tr class="bg{($i+1)%2+1} separator notice">
 				<!--@if($grant->manager || $grant->moderator) -->
 					<td class="check" width="3%">

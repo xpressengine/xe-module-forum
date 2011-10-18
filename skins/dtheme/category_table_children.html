@@ -33,8 +33,8 @@
 			</tr>
 		</thead>
 	</table>
-	<!--@$sw = 0;--><!--@end-->
-	<!--@$startDepth = $category_list[category]->depth;--><!--@end-->
+	{@$sw = 0}
+	{@$startDepth = $category_list[category]->depth}
 	<!--@foreach($category_children as $val)-->
 	<!--@if( $sw == 0 )-->
 	<table cellspacing="0" border="0" class="forumCategoryList forumContent contentForum">
@@ -71,7 +71,7 @@
 			<td></td>
 		</tr>
 	<!--@end-->
-	<!--@$sw += 1;--><!--@end-->
+	{@$sw += 1}
 	<!--@end-->
 		</tbody>
 	</table>
