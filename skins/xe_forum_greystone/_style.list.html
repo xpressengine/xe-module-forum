@@ -27,7 +27,7 @@ count($notice_list) = number of stickys
 	<table cellpadding="0" cellspacing="0" border="0" class="forumCategoryList">
 	<thead>
 			<tr>
-				<!--@ $columnCount=count($list_config)+1;--><!--@end-->
+				{@ $columnCount=count($list_config)+1}
                 <th style="width:45%">
 					<div class="th1"><!--@if($grant->manager || $grant->moderator)--><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" /><!--@end-->{$lang->document_count}</div>
                 </th>		
@@ -76,10 +76,9 @@ count($notice_list) = number of stickys
 		</tr>
 	<!--@else-->
 
-		<!--@ $i=0;--><!--@end-->
-
+		{@ $i=0}
 		<!--@foreach($notice_list as $no => $document)-->
-			<!--@ $i++;--><!--@end-->
+			{@ $i++}
 			<tr class="bg{($i+1)%2+1} separator notice">
 				<!--@if($grant->manager || $grant->moderator) -->
 					<td>

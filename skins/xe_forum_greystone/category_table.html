@@ -17,7 +17,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<!--@$sw = 0;--><!--@end-->
+		{@$sw = 0}
 		<!--@foreach($category_list as $val)-->
 		<!--@if($val->depth < 2)-->	
 		<tr class="<!--@if($val->depth > 0)-->separator{$val->depth}<!--@end -->">
@@ -38,7 +38,7 @@
 		</td>
 		</tr>
 		<!--@end-->
-		<!--@$sw += 1;--><!--@end-->
+		{@$sw += 1}
 		<!--@end-->
 		</tbody>
 	</table>

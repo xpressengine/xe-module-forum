@@ -26,7 +26,7 @@ count($notice_list) = number of stickys
 					</th>
 					<th class="th_last" style="width:100%; padding-left:10px">Threads</th>
 				<!--@elseif($total_count !== 0)-->
-				<!--@ $columnCount=count($list_config)+1;--><!--@end-->
+				{@ $columnCount=count($list_config)+1}
                 <th class="th_title" scope="col">
                 	<!--@if($grant->manager || $grant->moderator)-->
                 	<div style="width:25px;float:left"><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" /></div>
@@ -64,10 +64,10 @@ count($notice_list) = number of stickys
 
 			<!-- 공지시작-->
 
-			<!--@ $i=0;--><!--@end-->
+			{@ $i=0}
 
 			<!--@foreach($notice_list as $no => $document)-->
-			<!--@ $i++;--><!--@end-->
+			{@ $i++}
             <tr class="tr_title_lv_1">
                 <td class="td_title">
                 	<span class="thread_title forum_blue">

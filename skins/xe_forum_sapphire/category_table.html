@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-			<!--@$sw = 0;--><!--@end-->
+			{@$sw = 0}
 			<!--@foreach($category_list as $val)-->
 				<!--@if($val->depth < 2)-->
 				<tr class="<!--@if($val->depth > 0)-->tr_title_lv_2<!--@else -->tr_title_lv_1<!--@end -->">
@@ -35,7 +35,7 @@
 			
 			
 			<!--@end-->
-		<!--@$sw += 1;--><!--@end-->
+		{@$sw += 1}
 		<!--@end-->
 
 
