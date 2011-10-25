@@ -17,20 +17,20 @@
 	<!--@if(!$category && !$oDocument->variables['title'])-->
 		<!--@if($module_info->title)-->
 			<h2 id="forumTitle1" class="gF">{$module_info->title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></h2>
-			{@Context::setBrowserTitle($module_info->title)}
+			{@Context::setBrowserTitle($module_info->browser_title)}
 		<!--@end-->
 	<!--@else-->
 	
 		<!--@if($oDocument->variables['title'])-->
 			<h2 id="forumTitle" class="gF">{$oDocument->getTitle()}</h2>
-			{@Context::setBrowserTitle($oDocument->getTitle().' - '.$module_info->title)}
+			{@Context::setBrowserTitle($oDocument->getTitle().' - '.$module_info->browser_title)}
 		<!--@else-->
 				<!--@if($category_list)-->
 					<h2 id="forumTitle" class="gF">{$category_list[$category]->title}</h2>
-					{@Context::setBrowserTitle($category_list[$category]->title.' - '.$module_info->title)}
+					{@Context::setBrowserTitle($category_list[$category]->title.' - '.$module_info->browser_title)}
 				<!--@else-->
 					<h2 id="forumTitle4" class="gF">{$lang->new_comment}</h2>
-					{@Context::setBrowserTitle($lang->new_comment.' - '.$module_info->title)}
+					{@Context::setBrowserTitle($lang->new_comment.' - '.$module_info->browser_title)}
 				<!--@end-->
 		<!--@end-->
 	<!--@end-->

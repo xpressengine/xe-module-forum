@@ -143,7 +143,8 @@
         	 }
         	 $module_info->list_count=5;
         	 $newest_documents= executeQuery('forum.getNewestDocumentList', $module_info);
-
+        	 if(count($newest_documents->data)==1) $newest_docs[] = $newest_documents->data;
+        	 	else $newest_docs = $newest_documents->data; 
         	 //setting last week variables for the dashboard template
           	 Context::set('lastweek_total_count',$lastweek_document_count);
           	 Context::set('lastweek_total_comments',$lastweek_comment_count);
@@ -155,7 +156,7 @@
         	 Context::set('total_users',count($member_list));
         	 Context::set('total_attachements',$uploaded_count);
         	 //setting the documents and comments list for the dashboard template
-        	 Context::set('newest_documents',$newest_documents->data);
+        	 Context::set('newest_documents',$newest_docs);
         	 Context::set('newest_comments',$newest_comments);
         	 $this->setTemplateFile('dashboard');
 
