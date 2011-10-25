@@ -15,19 +15,19 @@
     <license>GPL</license>
 
     <colorset>
-        <color name="black" src="screenshot/">
+        <color name="black">
             <title xml:lang="en">Black</title>
         </color>
-        <color name="red" src="screenshot/">
+        <color name="red">
             <title xml:lang="en">Red</title>
         </color>
-        <color name="green" src="screenshot/">
+        <color name="green">
             <title xml:lang="en">Green</title>
         </color>
-        <color name="brown" src="screenshot/">
+        <color name="brown">
             <title xml:lang="en">Brown</title>
         </color>
-        <color name="white" src="screenshot/">
+        <color name="white">
             <title xml:lang="en">White</title>
         </color>
 
