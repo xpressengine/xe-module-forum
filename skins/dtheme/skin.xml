@@ -2,14 +2,13 @@
 <skin version="0.2">
 	<title xml:lang="en">Default forum theme</title>
     <description xml:lang="en">
-        Default forum theme
-        Daniel Ionescu (daniel.ionescu@arnia.ro)
+        XE default forum theme
     </description>
     <version>1.0</version>
     <date>2011-07-07</date>
 
-    <author email_address="daniel.ionescu@arnia.ro" link="http://www.xpressengine.org/">
-		<name xml:lang="en">Daniel Ionescu</name>
+    <author email_address="xe_dev@arnia.ro" link="http://www.xpressengine.org/">
+		<name xml:lang="en">Arnia</name>
     </author>
 
     <license>GPL</license>

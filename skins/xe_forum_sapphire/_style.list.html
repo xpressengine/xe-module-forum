@@ -51,7 +51,6 @@ count($notice_list) = number of stickys
             </tr>
         </thead>
         <tbody>
-			<!-- 공지 없음ㅇㅇ  루프는 아래 -->
 			<!--@if(count($notice_list) && !Context::get('search_keyword') && Context::get('page')==1) -->
 			<!--@if(!$total_count || !count($document_list))-->
 				<tr class="tr_title_lv_1">
@@ -61,8 +60,6 @@ count($notice_list) = number of stickys
 				</tr>
 			<!--@else-->
 
-
-			<!-- 공지시작-->
 
 			{@ $i=0}
 
@@ -103,9 +100,7 @@ count($notice_list) = number of stickys
 			<!--@end-->
 
 			<!--@end-->
-			<!-- 공지 끝 -->
 
-			<!-- 글 없음 ㅇㅇ 루프는 아래 -->
 				<!--@if(!$total_count || !count($document_list))-->
 					<tr class="tr_title_lv_1 no_article">
 					<td class="gF" colspan="4">
@@ -178,5 +173,3 @@ count($notice_list) = number of stickys
 
 
 
-
-	<!-- 쓰레드 리스트 -->
