@@ -53,7 +53,7 @@
     <tr>
         <th scope="row"><div>{$lang->description}</div></th>
         <td>
-            <textarea type="text" name="comment" value="{$module_info->comment}"  class="inputTypeTextArea w400" />{htmlspecialchars($module_info->comment)}</textarea>
+            <textarea type="text" name="description" value="{$module_info->description}"  class="inputTypeTextArea w400" />{htmlspecialchars($module_info->description)}</textarea>
             <a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','comment')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
             <p>{$lang->about_description}</p>
         </td>

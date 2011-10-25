@@ -15,8 +15,8 @@
 
 
 	<!--@if(!$category && !$oDocument->variables['title'])-->
-		<!--@if($module_info->title)-->
-			<h2 id="forumTitle1" class="gF">{$module_info->title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></h2>
+		<!--@if($module_info->browser_title)-->
+			<h2 id="forumTitle1" class="gF">{$module_info->browser_title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></h2>
 			{@Context::setBrowserTitle($module_info->browser_title)}
 		<!--@end-->
 	<!--@else-->
