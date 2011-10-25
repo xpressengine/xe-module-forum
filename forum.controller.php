@@ -21,7 +21,7 @@
 			if($this->module_info->module != "forum") return new Object(-1, "msg_invalid_request");
             if(!$this->grant->post) return new Object(-1, 'msg_not_permitted');
             $logged_info = Context::get('logged_info');
-			
+
             // setting required variables
             $obj = Context::getRequestVars();
             if(Context::get('is_logged') && $logged_info->is_admin!='Y') $obj->allow_comment='Y';
@@ -49,7 +49,7 @@
             // get current document
             $oDocument = $oDocumentModel->getDocument($obj->document_srl, $this->grant->manager);
             $bAnonymous = false;
-            
+
 
             // Modifying an existing document
             if($oDocument->isExists() && $oDocument->document_srl == $obj->document_srl) {
@@ -149,7 +149,7 @@
 
             // For anonymous use, remove writer's information and notifying information
             $bAnonymous = false;
-            
+
 			// instancing comment model
             $oCommentModel = &getModel('comment');
 
@@ -174,7 +174,7 @@
 
                     $output = $oCommentController->insertComment($obj, $bAnonymous);
                     $output= executeQuery('forum.updateComments', $obj);
-                    
+
                     $obj->document_srl=Context::get('document_srl');
                     $output=executeQuery('forum.updateDocumentNotify', $obj);
 
@@ -192,29 +192,35 @@
                     $oMail->setTitle($oDocument->getTitleText());
                     $oMail->setContent( sprintf("From : <a href=\"%s?document_srl=%s&comment_srl=%s#comment_%d\">%s?document_srl=%s&comment_srl=%s#comment_%d</a><br/>\r\n%s  ", getFullUrl(''),$obj->document_srl,$obj->comment_srl,$obj->comment_srl, getFullUrl(''),$obj->document_srl,$obj->comment_srl,$obj->comment_srl,$obj->content));
                     $oMail->setSender($obj->user_name, $obj->email_address);
-					$author_email=$oDocument->variables['email_address'];
-					
-					//mail to author of thread
-					if($author_email != $obj->email_address) {
-						$oMail->setReceiptor($author_email, $author_email);
-						$oMail->send();
-					}
-					//mail to subscribers that turned email notification on
-					$comment_list=$oCommentModel->getCommentList($obj->document_srl);
-					foreach($comment_list->data as $key_comment){
-						if($key_comment->notify_message=='Y'){
-							if(!in_array($key_comment->email_address, $already_sent)){
-								if($logged_info->email_address!= $key_comment->email_address){
-								$already_sent[]=$key_comment->email_address;
-								$oMail->setReceiptor($key_comment->user_name, $key_comment->email_address);
-								$oMail->content=$oMail->content.sprintf("%s : <a href=\"%s\">%s</a>" ,Context::getLang('mail_unsibscribe') ,getFullUrl('','act','unsubscribeThread','document_srl',$obj->document_srl,'member_srl',$key_comment->member_srl),getFullUrl('','act','unsubscribeThread','document_srl',$obj->document_srl,'member_srl',$key_comment->member_srl));
-								$oMail->send();
-								}
-							}
-						}
-					}
-					
-					//mail to all emails set for administrators
+
+                    $author_email=$oDocument->variables['email_address'];
+                    $already_sent = array();
+
+                    //mail to author of thread
+                    if($author_email != $obj->email_address) {
+                            $oMail->setReceiptor($author_email, $author_email);
+                            $oMail->send();
+                            $already_sent[]=$author_email;
+                    }
+                    //mail to subscribers that turned email notification on
+                    $comment_list=$oCommentModel->getCommentList($obj->document_srl);
+
+
+                    if($comment_list->data)
+                    foreach($comment_list->data as $key_comment){
+                            if($key_comment->notify_message=='Y'){
+                                    if(!in_array($key_comment->email_address, $already_sent)){
+                                            if($logged_info->email_address!= $key_comment->email_address){
+                                            $already_sent[]=$key_comment->email_address;
+                                            $oMail->setReceiptor($key_comment->user_name, $key_comment->email_address);
+                                            $oMail->content=$oMail->content.sprintf("%s : <a href=\"%s\">%s</a>" ,Context::getLang('mail_unsibscribe') ,getFullUrl('','act','unsubscribeThread','document_srl',$obj->document_srl,'member_srl',$key_comment->member_srl),getFullUrl('','act','unsubscribeThread','document_srl',$obj->document_srl,'member_srl',$key_comment->member_srl));
+                                            $oMail->send();
+                                            }
+                                    }
+                            }
+                    }
+
+                    //mail to all emails set for administrators
                     $target_mail = explode(',',$this->module_info->admin_mail);
                     for($i=0;$i<count($target_mail);$i++) {
                         $email_address = trim($target_mail[$i]);
@@ -264,7 +270,7 @@
             $this->add('document_srl', $output->get('document_srl'));
             $this->setMessage('success_deleted');
         }
-        
+
     	function procForumBanUser() {
             // get member_srl and verify if it exists
             $obj->member_srl = Context::get('member_srl');
@@ -280,7 +286,7 @@
             $oMemberModel = &getModel('member');
             $oDocumentController = &getController('document');
             $oCommentController = &getController('comment');
-            
+
             if($obj->delete_comments_and_threads == 'Y'){
 	            $output = executeQuery('forum.deleteCommentsbyModuleSrl', $obj);
 	            $documents=executeQuery('forum.getDocumentSrlsbyMemberSrl',$obj)->data;
@@ -300,7 +306,7 @@
 			}
 			if($obj->ban_ip) if($obj->ipaddress) $output = executeQuery('spamfilter.insertDeniedIP', $obj);
 			$output = executeQuery('member.deleteMember', $obj);
-		  
+
             $this->add('mid', Context::get('mid'));
             $this->add('page', Context::get('page'));
             $this->add('ipaddress','');
@@ -393,8 +399,8 @@
 
             return new Object();
         }
-        
-        
+
+
         function insert_document_alias($obj)
 	     {
 	         $oDocumentController = &getController('document');
@@ -406,7 +412,7 @@
 	         	return true;
 	         }
 			else {
-				$document = $oDocumentModel->getDocument($output->data->document_srl)->variables; 
+				$document = $oDocumentModel->getDocument($output->data->document_srl)->variables;
 				if($obj->category_srl == $document['category_srl']){
 					return false;
 				}
@@ -424,10 +430,10 @@
 					return true;
 				}
 			}
-				
+
 	     }
-        
-        
+
+
 
     }
 ?>

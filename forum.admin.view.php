@@ -20,7 +20,7 @@
                 Context::set('module_srl', $module_srl);
             }
 
-            // module creating model object 
+            // module creating model object
             $oModuleModel = &getModel('module');
 
             // setting the information in advance, in order to save the module
@@ -74,17 +74,17 @@
 	                Context::set('module_srl',$module_srl);
 	                Context::set('act','dispForumAdminDashboard');
 	            	$this->dispForumAdminDashboard();
-	            }       
+	            }
         }
         /**
          * @brief Display forum admin dashboard
          **/
         function dispForumAdminDashboard() {
-        	
+
         	 $module_info=Context::get('module_info');
         	 $oDocumentModel = &getModel('document');
         	 $oCommentModel=&getModel('comment');
-        	 
+
         	 $obj->list_count=$oDocumentModel->getDocumentCount($module_info->module_srl);
         	 $obj->mid=$module_info->mid;
         	 $obj->module_srl=$module_info->module_srl;
@@ -93,9 +93,11 @@
         	 $end_date=date("Ymd",$time);
         	 $time-=60*60*24*7;
              $start_date = date("Ymd",$time);
-        	 
+
         	 $document_list=$oDocumentModel->getDocumentList($obj);
         	 $lastweek_document_count=0;
+
+                 if($document_list->data)
         	 foreach($document_list->data as $document) {
         	 	$member_list[]=$document->variables['nick_name'];
         	 	$uploaded_count[]=$document->variables['uploaded_count'];
@@ -104,11 +106,13 @@
         	 		$lastweek_member_list[]=$document->variables['nick_name'];
         	 		$lastweek_uploaded_count[]=$document->variables['uploaded_count'];
         	 	}
-        	 } 
-        	 
+        	 }
+
         	 $obj->list_count=$oCommentModel->getCommentAllCount($module_info->module_srl);
         	 $comment_list=$oCommentModel->getTotalCommentList($obj);
         	 $lastweek_comment_count=0;
+
+                 if($comment_list->data)
         	 foreach ($comment_list->data as $comment){
         	 	$member_list[]=$comment->variables['nick_name'];
         	 	$uploaded_count[]=$comment->variables['uploaded_count'];
@@ -124,22 +128,22 @@
 	        	 $uploaded_count=array_sum($uploaded_count);
 	        	 $lastweek_uploaded_count=array_sum($lastweek_uploaded_count);
         	 }
-        	 if(!$uploaded_count) $uploaded_count=0; 
-        	 if(!$lastweek_uploaded_count) $lastweek_uploaded_count=0; 
-			 
+        	 if(!$uploaded_count) $uploaded_count=0;
+        	 if(!$lastweek_uploaded_count) $lastweek_uploaded_count=0;
+
         	 $total_comments=$oCommentModel->getCommentAllCount($module_info->module_srl);
-        	 
+
         	 $obj->list_count=5;
         	 $newest_comments=$oCommentModel->getNewestCommentList($obj);
         	 if(isset($newest_comments)){
-	        	 foreach($newest_comments as $comment){	
+	        	 foreach($newest_comments as $comment){
 	        	 	$comment->content=trim(cut_str($comment->content,50,"..."));
 	        	 	$comment->document_content=$oDocumentModel->getDocument($comment->document_srl)->variables['title'];
 	        	 }
         	 }
         	 $module_info->list_count=5;
         	 $newest_documents= executeQuery('forum.getNewestDocumentList', $module_info);
-        	 
+
         	 //setting last week variables for the dashboard template
           	 Context::set('lastweek_total_count',$lastweek_document_count);
           	 Context::set('lastweek_total_comments',$lastweek_comment_count);
@@ -154,9 +158,9 @@
         	 Context::set('newest_documents',$newest_documents->data);
         	 Context::set('newest_comments',$newest_comments);
         	 $this->setTemplateFile('dashboard');
-        	 
+
         }
-        
+
         /**
          * @brief Display forum admin content list
          **/
@@ -176,7 +180,7 @@
 
             $output = executeQueryArray('forum.getForumList', $args);
             ModuleModel::syncModuleToSite($output->data);
-            
+
 			$oModuleModel = &getModel('module');
 			if(isset($output->data)){
 	            foreach ($output->data as $val) {
@@ -190,8 +194,8 @@
 	        Context::set('page', $output->page);
 	        Context::set('forum_list', $output->data);
 	        Context::set('page_navigation', $output->page_navigation);
-	
-	        
+
+
 	        $this->setTemplateFile('index');
         }
 
@@ -231,7 +235,7 @@
         }
 
         /**
-         * @brief display forum admin additional setup 
+         * @brief display forum admin additional setup
          **/
         function dispForumAdminForumAdditionSetup() {
             // initializing content
@@ -271,7 +275,7 @@
          **/
         function dispForumAdminListSetup() {
             $oforumModel = &getModel('forum');
-			
+
              $content = '';
 
             // getting list configuration using a trigger
@@ -334,7 +338,7 @@
             $oModuleAdminModel = &getAdminModel('module');
             $skin_content = $oModuleAdminModel->getModuleSkinHTML($this->module_info->module_srl);
             Context::set('skin_content', $skin_content);
-			
+
             //setting all the variables
             $oModuleModel = &getModel('module');
             $skin_list = $oModuleModel->getSkins($this->module_path);
@@ -342,7 +346,7 @@
 
 			$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
 			Context::set('mskin_list', $mskin_list);
-            
+
             $oLayoutModel = &getModel('layout');
             $layout_list = $oLayoutModel->getLayoutList();
             Context::set('layout_list', $layout_list);
