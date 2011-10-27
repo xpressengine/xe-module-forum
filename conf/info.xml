@@ -2,8 +2,8 @@
 <module version="0.2">
     <title xml:lang="en">Forum</title>
     <description xml:lang="en">Module in charge of function of the forum. Also includes administrator functions such as creating/managing forums.</description>
-    <version>1</version>
-    <date>2011-05-01</date>
+    <version>1.0</version>
+    <date>2011-10-27</date>
     <category>service</category>
 
     <author email_address="xe_dev@arnia.ro" link="http://www.arnia.ro/">
