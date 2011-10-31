@@ -25,7 +25,7 @@
              * check to see if current user is an administrator
              **/
             if($this->module_info->consultation == 'Y' && !$this->grant->manager) {
-                $this->consultation = true; 
+                $this->consultation = true;
                 if(!Context::get('is_logged')) $this->grant->post = false;
             } else {
                 $this->consultation = false;
@@ -48,7 +48,7 @@
             $extra_keys = $oDocumentModel->getExtraKeys($this->module_info->module_srl);
             Context::set('extra_keys', $extra_keys);
 
-            /** 
+            /**
              * add the js filters
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'input_password.xml');
@@ -60,27 +60,27 @@
          */
         function dispForumIndex(){
 	        $document_srl = Context::get('document_srl');
-	        
+
         	if(!$document_srl){
 	        	$this->dispForumCategoryListIndex(); return;
 	            }
-	        $this->dispForumContent(); 
-	        
+	        $this->dispForumContent();
+
         }
 
          /**
          * Retrieves all forum categories and displays them
          */
-        function dispForumCategoryListIndex() {                      
+        function dispForumCategoryListIndex() {
         	if(!$this->grant->access ) return $this->dispForumMessage('msg_not_permitted');
 
             $categorylist = $this->dispForumCategoryList();
 
             $this->setTemplateFile('category_index');
-            
+
             return $categorylist;
         }
-        
+
         /**
          * @brief display forum content
          **/
@@ -89,12 +89,12 @@
              * check to see if user has access to view the forum content
              **/
             if(!$this->grant->access ) return $this->dispForumMessage('msg_not_permitted');
-			
+
        		$document_srl = Context::get('document_srl');
        		$category = Context::get('category');
        		$search_keyword=Context::get('search_keyword');
-       		
-       		
+
+
             $logged_info=Context::get('logged_info');
             $oForumModel= &getModel('forum');
             $obj->document_srl=$document_srl;
@@ -123,7 +123,7 @@
 				}
             	Context::set('category_children', $categorychildren);
             }
-           
+
             /**
              * displays breadcrumbs on top of each page
              **/
@@ -147,10 +147,10 @@
 
             // display forum content list
             if(!$document_srl) $this->dispForumContentList();
-            
+
             //display forum comment via permalink
             if($document_srl) $this->dispForumCommentPermalink();
-            /** 
+            /**
              * add search js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'search.xml');
@@ -165,7 +165,7 @@
          * @brief display forum category list
          **/
         function dispForumCategoryList(){
-                //instancing document model       
+                //instancing document model
                 $oDocumentModel = &getModel('document');
                 //get all categories list
                 $categorylist = $oDocumentModel->getCategoryList($this->module_srl);
@@ -191,12 +191,14 @@
                 	else {
                 	$key->style_index=0;
                 	}
-                } 
+                }
                  //set information for last update
                 foreach($categorylist as $category){
                 	if($category->childs) $argx->categories = implode(',', $category->childs).','.$category->category_srl;
                 	   else $argx->categories=$category->category_srl;
-                	$last_document = executeQueryArray('forum.getCategoryLatestUpdate',$argx)->data[0];
+                	// NOTE This query has an inner join with documents table by last_update columns.
+                        // It might get slow if no index exists so consider splitting it in two separate queries if this happens.
+                        $last_document = executeQueryArray('forum.getCategoryLatestUpdate',$argx)->data[0];
                 	$argx->last_update = $last_document->last_update;
                 	$last_document_srl = $last_document->document_srl;
                 	$last_document_author = $last_document->author;
@@ -208,17 +210,17 @@
                 	$category->last_post = $last_post->comment_srl;
                 	$category->last_document = $last_document_srl;
                 }
-	            //return category_list 
+	            //return category_list
                 return $categorylist;
         }
-        
+
         /**
          * @brief display forum category children
          **/
     	function dispForumCategoryChildren(){
             // instancing document model
             	$oDocumentModel = &getModel('document');
-                
+
             	//get category children
                 $categorylist = $oDocumentModel->getCategoryList($this->module_srl);
                 $category=Context::get('category');
@@ -254,7 +256,7 @@
 	                	else {
 	                	$key->style_index=0;
 	                	}
-	                } 
+	                }
                 }
                 //set information for last update
     			foreach($categorychildren as $category){
@@ -274,7 +276,7 @@
                 }
                 return $categorychildren;
         }
-        
+
         /**
          * @brief display breadcrumbs
          **/
@@ -291,7 +293,7 @@
                 $categorylist = $oDocumentModel->getCategoryList($this->module_srl);
                 $breadcrumbs[$category]=$categorylist[$category];
                 $parent_srl=$categorylist[$category]->parent_srl;
-                
+
                 while ($parent_srl){
                 	foreach ($categorylist as $key){
                 		if($key->category_srl  == $parent_srl){
@@ -301,10 +303,10 @@
                 		}
                 	}
                 }
-                
+
 	            $array_key = array_keys($breadcrumbs);
 		        $array_value = array_values($breadcrumbs);
-		        
+
 		        $breadcrumbs_return = array();
 		        for($i=1, $size_of_array=sizeof($array_key);$i<=$size_of_array;$i++){
 		            $breadcrumbs_return[$array_key[$size_of_array-$i]] = $array_value[$size_of_array-$i];
@@ -344,7 +346,7 @@
                         $logged_info = Context::get('logged_info');
                         if($oDocument->get('member_srl')!=$logged_info->member_srl) $oDocument = $oDocumentModel->getDocument(0);
                     }
-                    
+
                 // document srl is null and error message
                 } else {
                     Context::set('document_srl','',true);
@@ -352,7 +354,7 @@
                 }
 
             /**
-             * create an empty document 
+             * create an empty document
              **/
             } else {
                 $oDocument = $oDocumentModel->getDocument(0);
@@ -362,7 +364,7 @@
              * check if the document exists
              **/
             if($oDocument->isExists()) {
-                
+
                     // add browser title with the current document title
                     Context::addBrowserTitle($oDocument->getTitleText());
 
@@ -374,12 +376,12 @@
             // set oDocument
             $oDocument->add('module_srl', $this->module_srl);
             Context::set('oDocument', $oDocument);
-            
-            /** 
+
+            /**
              * add insert_comment js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
-        
+
 //            return new Object();
         }
 
@@ -392,7 +394,7 @@
             $oDocument = $oDocumentModel->getDocument($document_srl);
             Context::set('file_list',$oDocument->getUploadedFiles());
         }
-        
+
     	/**
          * @brief display forum comment via permalink
          **/
@@ -408,7 +410,7 @@
 	        	if($pos && $list_count_comm) $cpage= ceil($pos->count / $list_count_comm);
              	Context::set('cpage', $cpage);
         	}
-        	
+
         }
 
         /**
@@ -428,7 +430,7 @@
          **/
         function dispForumNoticeList(){
             $oDocumentModel = &getModel('document');
-            $args->module_srl = $this->module_srl; 
+            $args->module_srl = $this->module_srl;
             $args->category_srl = Context::get('category');
             $notice_output = $oDocumentModel->getNoticeList($args);
             //set notice list
@@ -439,21 +441,21 @@
          * @brief display forum content list
          **/
         function dispForumContentList(){
-            // instancing document model 
+            // instancing document model
 			 $oDocumentModel = &getModel('document');
 
             // set required arguments
-            $args->module_srl = $this->module_srl; 
+            $args->module_srl = $this->module_srl;
             $args->page = Context::get('page');
-            $args->list_count = $this->list_count; 
-            $args->page_count = $this->page_count; 
+            $args->list_count = $this->list_count;
+            $args->page_count = $this->page_count;
 
             // set search arguments
-            $args->search_target = Context::get('search_target'); 
-            $args->search_keyword = Context::get('search_keyword'); 
+            $args->search_target = Context::get('search_target');
+            $args->search_keyword = Context::get('search_keyword');
 
             // set category arguments
-            $args->category_srl = Context::get('category'); 
+            $args->category_srl = Context::get('category');
 			$args->current_category_only=Context::get('current_category_only');
             // ser sort index and oder type
             $args->sort_index = Context::get('sort_index');
@@ -480,10 +482,10 @@
 
             // get notice list
             $notices_output = $oDocumentModel->getNoticeList($args);
-            
+
             $this->except_notice='Y';
             if($args->search_target=='Subject + Content'){
-            	if($args->current_category_only != 'Y') $args->category_srl=0;            	
+            	if($args->current_category_only != 'Y') $args->category_srl=0;
             	$group_args->module_srl=$args->module_srl;
             	$group_args->order_type=$args->order_type;
             	$group_args->list_count=$args->list_count;
@@ -522,10 +524,10 @@
 							if($is_admin) $oDocument->setGrant();
 							$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
 						}
-		
+
 						$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
 						$virtual_number --;
-		
+
 					}
 				}
             } else {
@@ -539,7 +541,7 @@
 		            	$output = executeQueryArray($query_id, $args, $columnList);
 		            	$args->list_count = $output->total_count;
 		            	$output_total = executeQueryArray($query_id, $args, $columnList);
-		            	$args->list_count = $this->list_count; 
+		            	$args->list_count = $this->list_count;
 		             	// Category is selected, further sub-categories until all conditions
 			            if($args->category_srl) {
 			                $category_list = $oDocumentModel->getCategoryList($args->module_srl);
@@ -548,20 +550,20 @@
 			                $args->category_srl = implode(',',$category_info->childs);
 			            }
 			            $output2 = executeQueryArray($query_id, $args, $columnList);
-		            	
+
 		            	// Return if no result or an error occurs
 						if(!$output->toBool()|| !count($output2->data) ) return $output;
-			
+
 						$idx = 0;
 						$data = $output->data;
 						unset($output->data);
-			
+
 						if(!isset($virtual_number))
 						{
 							if(isset($data)) $keys = array_keys($data);
 							$virtual_number = $keys[0];
 						}
-			
+
 						if($except_notice) {
 							foreach($data as $key => $attribute) {
 								if($attribute->is_notice == 'Y') $virtual_number --;
@@ -578,15 +580,15 @@
 									if($is_admin) $oDocument->setGrant();
 									$GLOBALS['XE_DOCUMENT_LIST'][$document_srl] = $oDocument;
 								}
-				
+
 								$output->data[$virtual_number] = $GLOBALS['XE_DOCUMENT_LIST'][$document_srl];
 								$virtual_number --;
-				
+
 							}
 						}
-			
+
 						if($load_extra_vars) $this->setToAllDocumentExtraVars();
-			
+
 			            if(count($output->data)) {
 			                foreach($output->data as $number => $document) {
 			                    $output->data[$number] = $GLOBALS['XE_DOCUMENT_LIST'][$document->document_srl];
@@ -657,23 +659,23 @@
 			//set template file
             $this->setTemplateFile('tag_list');
         }
-        
+
         /**
          * @brief display forum write
          **/
         function dispForumWrite() {
             // check grant
             if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-			
+
             $logged_info=Context::get('logged_info');
         	$oForumModel= &getModel('forum');
         	$obj->document_srl=Context::get('document_srl');
         	$obj->member_srl=$logged_info->member_srl;
         	$isNotified= $oForumModel->isNotified($obj);
         	Context::set('isNotified', $isNotified);
-        
+
             $this->dispBreadcrumbs();
-                                  
+
             $oDocumentModel = &getModel('document');
 
             /**
@@ -695,7 +697,7 @@
                         if($category->group_srls) {
                             $category_group_srls = explode(',',$category->group_srls);
                             $is_granted = false;
-                            if(count(array_intersect($group_srls, $category_group_srls))) $is_granted = true; 
+                            if(count(array_intersect($group_srls, $category_group_srls))) $is_granted = true;
 
                         }
                         if($is_granted) $category_list[$category_srl] = $category;
@@ -703,7 +705,7 @@
                 }
                 //set category_list
                 Context::set('category_list', $category_list);
-           
+
 
             // get document_srl
             $document_srl = Context::get('document_srl');
@@ -736,7 +738,7 @@
             //  set document extra keys
             if($oDocument->isExists() && !$savedDoc) Context::set('extra_keys', $oDocument->getExtraVars());
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert.xml');
@@ -768,7 +770,7 @@
 
             Context::set('oDocument',$oDocument);
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'delete_document.xml');
@@ -802,7 +804,7 @@
             Context::set('oSourceComment',$oSourceComment);
             Context::set('oComment',$oComment);
 
-            /** 
+            /**
              * adding js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
@@ -817,25 +819,25 @@
         //check grants
 
         if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-		
+
         $logged_info=Context::get('logged_info');
         $oForumModel= &getModel('forum');
         $obj->document_srl=Context::get('document_srl');
         $obj->member_srl=$logged_info->member_srl;
         $isNotified= $oForumModel->isNotified($obj);
         Context::set('isNotified', $isNotified);
-            
+
         // get parent_srl and document_srl
         $parent_srl = Context::get('comment_srl');
         $document_srl= Context::get('document_srl');
-            
+
 		$this->dispBreadcrumbs();
 		$oDocumentModel=&getModel('document');
 		if(Context::get('document_srl')){
 			$oDocument=$oDocumentModel->getDocument($document_srl);
 			Context::set('oDocument',$oDocument);
 		}
-		
+
             // verify and error message
             if(!$parent_srl && !document_srl) return new Object(-1, 'msg_invalid_request');
 
@@ -867,7 +869,7 @@
 			            if($quote=='Y')
 			            	$content ="<div class=\"quote\"><div class=\"quoteTitle\">".$lang->cmd_quote."</div>".$oSourceDocument->get('content')."</div></br>";
                      		}
-            
+
             // add content to comment
             //$oComment->add('content',$content);
 
@@ -877,7 +879,7 @@
             Context::set('oComment',$oComment);
             Context::set('module_srl',$this->module_info->module_srl);
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
@@ -891,7 +893,7 @@
         function dispForumModifyComment() {
             // check grants
             if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-			
+
             $logged_info=Context::get('logged_info');
 	        $oForumModel= &getModel('forum');
 	        $obj->document_srl=Context::get('document_srl');
@@ -901,7 +903,7 @@
             // get document_srl and comment_srl
             $document_srl = Context::get('document_srl');
             $comment_srl = Context::get('comment_srl');
-           
+
 
             // check comment_srl
             if(!$comment_srl) return new Object(-1, 'msg_invalid_request');
@@ -916,8 +918,8 @@
             	$pos=0;
             $quote=substr($oComment->content, 0, $pos- strlen($oComment->content) );
             $oComment->add('content', substr($oComment->content, $pos));
-            
-           
+
+
 
             // check comment
             if(!$oComment->isExists()) return $this->dispForumMessage('msg_invalid_request');
@@ -930,7 +932,7 @@
             Context::set('oComment', $oComment);
              Context::set('quote_content',htmlspecialchars($quote));
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
@@ -962,14 +964,14 @@
 			// set oComment
             Context::set('oComment',$oComment);
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'delete_comment.xml');
 			// set template file
             $this->setTemplateFile('delete_comment_form');
         }
-        
+
     	function dispForumBanUser() {
             // check grants
             if(!$this->grant->manager) return $this->dispForumMessage('msg_not_permitted');
@@ -992,7 +994,7 @@
             Context::set('document_srl',$document_srl);
             Context::set('ipaddress',$ipaddress);
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'ban_user.xml');
@@ -1017,7 +1019,7 @@
 
             Context::set('trackback',$trackback);
 
-            /** 
+            /**
              * add js filter
              **/
             Context::addJsFilter($this->module_path.'tpl/filter', 'delete_trackback.xml');
@@ -1052,7 +1054,7 @@
             $document=$oDocumenModel->getDocument($obj->document_srl);
             $title=$document->getTitle();
             $output= executeQuery('forum.unsubscribe', $obj);
-            
+
             Context::set('title', $title);
         	$this->setTemplateFile('unsubscribe');
         }
