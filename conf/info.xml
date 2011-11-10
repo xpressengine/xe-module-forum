@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="0.2">
     <title xml:lang="en">Forum</title>
+    <title xml:lang="zh-CN">论坛</title>
     <description xml:lang="en">Module in charge of function of the forum. Also includes administrator functions such as creating/managing forums.</description>
+    <description xml:lang="zh-CN">论坛模块(具有创建及管理功能)。</description>
     <version>1.0</version>
     <date>2011-10-27</date>
     <category>service</category>
 
     <author email_address="xe_dev@arnia.ro" link="http://www.arnia.ro/">
         <name xml:lang="en">Arnia</name>
+        <name xml:lang="zh-CN">Arnia</name>
     </author>
 </module>
