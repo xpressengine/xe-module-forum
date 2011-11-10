@@ -122,12 +122,11 @@
         	 		$lastweek_uploaded_count[]=$comment->variables['uploaded_count'];
         	 	}
         	 }
-        	 If(is_array($member_list)){
-        	 	 $member_list=array_unique($member_list);
-	        	 $lastweek_member_list=array_unique($lastweek_member_list);
-	        	 $uploaded_count=array_sum($uploaded_count);
-	        	 $lastweek_uploaded_count=array_sum($lastweek_uploaded_count);
-        	 }
+        	 if(is_array($member_list)) $member_list=array_unique($member_list);
+        	 if(is_array($lastweek_member_list)) $lastweek_member_list=array_unique($lastweek_member_list);
+	         if(is_array($uploaded_count)) $uploaded_count=array_sum($uploaded_count);
+	         if(is_array($lastweek_uploaded_count)) $lastweek_uploaded_count=array_sum($lastweek_uploaded_count);
+	         
         	 if(!$uploaded_count) $uploaded_count=0;
         	 if(!$lastweek_uploaded_count) $lastweek_uploaded_count=0;
 
