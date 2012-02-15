@@ -350,7 +350,6 @@
                 // document srl is null and error message
                 } else {
                     Context::set('document_srl','',true);
-                    $this->alertMessage('msg_not_founded');
                 }
 
             /**
