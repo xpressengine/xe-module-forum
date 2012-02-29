@@ -401,9 +401,13 @@
         	if(!Context::get('cpage')) {
         		$obj->document_srl=Context::get('document_srl');
 	        	$obj->comment_srl=Context::get('comment_srl');
-	        	$oCommentModel = &getModel('comment');
-	        	$oDocumentModel = &getModel('document');
+	        	$oCommentController = &getController('comment');
+	        	//$oDocumentModel = &getModel('document');
 	        	//$oComment=$oCommentModel->getComment($comment_srl);
+				if ($oCommentController->isModuleUsingPublishValidation())
+				{
+					$obj->status = 1;
+				}
 	        	$pos = executeQuery('forum.getCommentPosition',$obj)->data;
 	        	$list_count_comm = $this->page_count;
 	        	if($pos && $list_count_comm) $cpage= ceil($pos->count / $list_count_comm);
@@ -478,7 +482,16 @@
                 $logged_info = Context::get('logged_info');
                 $args->member_srl = $logged_info->member_srl;
             }
-
+			
+			// check if module is using comment validation system
+			$oCommentController = &getController("comment");
+			$is_using_validation = $oCommentController->isModuleUsingPublishValidation(Context::get('document_srl'));
+			if ($is_using_validation)
+			{
+				$group_args->status = 1;
+				$argx->status = 1;
+			}
+			
             // get notice list
             $notices_output = $oDocumentModel->getNoticeList($args);
 

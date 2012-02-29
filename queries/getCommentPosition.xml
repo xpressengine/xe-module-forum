@@ -7,6 +7,7 @@
     </columns>
     <conditions>
 		<condition operation="equal" column="document_srl" var="document_srl" filter="number" />        
+		<condition operation="equal" column="status" var="status" pipe="and" />
 		<condition operation="less" column="comment_srl" var="comment_srl" filter="number" pipe="and" />
     </conditions>
 </query>

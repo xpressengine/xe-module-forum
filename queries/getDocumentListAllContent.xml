@@ -9,6 +9,7 @@
     </columns>
     <conditions>
     	<condition operation="equal" column="documents.module_srl" var="module_srl" filter="number" />
+    	<condition operation="equal" column="comments.status" var="status" pipe="and" />
     	<group pipe="and">
     	<condition operation="equal" column="documents.document_srl" default="comments.document_srl" notnull="notnull" />
     	 <condition operation="like" column="comments.content" var="s_comment" notnull="notnull" pipe="and" />
@@ -17,6 +18,7 @@
     	</group>
         </conditions>
     <navigation>
+        <index var="sort_index" default="comments.status" order="desc" />
         <index var="sort_index" default="documents.list_order" order="asc" />
         <list_count var="list_count" default="20" />
         <page_count var="page_count" default="10" />

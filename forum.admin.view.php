@@ -97,7 +97,7 @@
         	 $document_list=$oDocumentModel->getDocumentList($obj);
         	 $lastweek_document_count=0;
 
-                 if($document_list->data)
+             if($document_list->data)
         	 foreach($document_list->data as $document) {
         	 	$member_list[]=$document->variables['nick_name'];
         	 	$uploaded_count[]=$document->variables['uploaded_count'];
@@ -112,16 +112,20 @@
         	 $comment_list=$oCommentModel->getTotalCommentList($obj);
         	 $lastweek_comment_count=0;
 
-                 if($comment_list->data)
-        	 foreach ($comment_list->data as $comment){
-        	 	$member_list[]=$comment->variables['nick_name'];
-        	 	$uploaded_count[]=$comment->variables['uploaded_count'];
-        	 	if((substr($comment->variables['last_update'],0,8) <= $end_date) && (substr($comment->variables['last_update'],0,8) >= $start_date) ){
-        	 		$lastweek_comment_count++;
-        	 		$lastweek_member_list[]=$comment->variables['nick_name'];
-        	 		$lastweek_uploaded_count[]=$comment->variables['uploaded_count'];
-        	 	}
-        	 }
+             if($comment_list->data)
+			 {
+				foreach ($comment_list->data as $comment)
+				{
+					$member_list[]=$comment->variables['nick_name'];
+					$uploaded_count[]=$comment->variables['uploaded_count'];
+					if((substr($comment->variables['last_update'],0,8) <= $end_date) && (substr($comment->variables['last_update'],0,8) >= $start_date))
+					{
+						$lastweek_comment_count++;
+						$lastweek_member_list[]=$comment->variables['nick_name'];
+						$lastweek_uploaded_count[]=$comment->variables['uploaded_count'];
+					}
+				}
+			 }
         	 if(is_array($member_list)) $member_list=array_unique($member_list);
         	 if(is_array($lastweek_member_list)) $lastweek_member_list=array_unique($lastweek_member_list);
 	         if(is_array($uploaded_count)) $uploaded_count=array_sum($uploaded_count);
@@ -130,7 +134,8 @@
         	 if(!$uploaded_count) $uploaded_count=0;
         	 if(!$lastweek_uploaded_count) $lastweek_uploaded_count=0;
 
-        	 $total_comments=$oCommentModel->getCommentAllCount($module_info->module_srl);
+        	 $total_comments_published=$oCommentModel->getCommentAllCount($module_info->module_srl,true);
+        	 $total_comments_unpublished=$oCommentModel->getCommentAllCount($module_info->module_srl,false);
 
         	 $obj->list_count=5;
         	 $newest_comments=$oCommentModel->getNewestCommentList($obj);
@@ -151,7 +156,8 @@
           	 Context::set('lastweek_total_attachements',$lastweek_uploaded_count);
           	 //setting total variables for the dashboard template
         	 Context::set('total_count',$document_list->total_count);
-        	 Context::set('total_comments',$total_comments);
+        	 Context::set('total_comments_published',$total_comments_published);
+        	 Context::set('total_comments_unpublished',$total_comments_unpublished);
         	 Context::set('total_users',count($member_list));
         	 Context::set('total_attachements',$uploaded_count);
         	 //setting the documents and comments list for the dashboard template

@@ -37,17 +37,18 @@
     $lang->xe_forum='Xe Forum';
     
     //Dashboard of forum
-    $lang->number_of_posts='Posts';
+    $lang->number_of_posts_published='Published Posts';
+    $lang->number_of_posts_unpublished='Unpublished Posts';
     $lang->number_of_threads='Threads';
     $lang->number_of_users='Users';
-    $lang->number_of_atachements='Attachements';
+    $lang->number_of_atachements='Attachments';
     $lang->forum_id='Forum ID';
     $lang->last_updated_threads='Last updated threads';
     $lang->last_updated_comments='Last 5 posts';
     $lang->lastweek_threads='Threads';
     $lang->lastweek_posts='Posts';
     $lang->lastweek_users='Users';
-    $lang->lastweek_atachements='Attachements';
+    $lang->lastweek_atachements='Attachments';
     $lang->lastweek = 'Last Week';
     //View document page attributes
     $lang->post_subject='Post subject';

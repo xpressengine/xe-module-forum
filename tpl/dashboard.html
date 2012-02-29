@@ -102,8 +102,12 @@
 						<td><strong>{number_format($total_count)}</strong> <span class="description"></span></td>
 					</tr>
 					<tr>
-						<th scope="row"><a href="{getUrl('','module','admin','act','dispCommentAdminList')}">{$lang->number_of_posts}</a></th>
-						<td><strong>{number_format($total_comments)}</strong> <span class="description"></span></td>
+						<th scope="row"><a href="{getUrl('','module','admin','act','dispCommentAdminList','search_target','is_published','search_keyword', 'Y')}">{$lang->number_of_posts_published}</a></th>
+						<td><strong>{number_format($total_comments_published)}</strong> <span class="description"></span></td>
+					</tr>
+					<tr>
+						<th scope="row"><a href="{getUrl('','module','admin','act','dispCommentAdminList','search_target','is_published','search_keyword', 'N')}">{$lang->number_of_posts_unpublished}</a></th>
+						<td><strong>{number_format($total_comments_unpublished)}</strong> <span class="description"></span></td>
 					</tr>
 					<tr>
 						<th scope="row"><a href="{getUrl('','module','admin','act','dispMemberAdminList')}">{$lang->number_of_users}</a></th>

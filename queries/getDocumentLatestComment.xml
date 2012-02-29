@@ -8,6 +8,7 @@
     </columns>
     <conditions>
 		<condition operation="equal" column="document_srl" var="document_srl" filter="number" />        
+		<condition operation="equal" column="status" var="status" pipe="and" />        
 		<condition operation="equal" column="regdate" var="last_update" filter="number" pipe="and" />
     </conditions>
 </query>
