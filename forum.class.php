@@ -45,6 +45,7 @@
             //create demo category
             $obj->module_srl = $insert_module->get('module_srl');
             $obj->title = 'Demo Category';
+            $obj->description = 'This is a category example';
             $insert_category = $oDocumentController->insertCategory($obj);
             //create demo thread
             $document_args->title = 'Demo Thread';
