@@ -37,6 +37,7 @@
     $lang->xe_forum='Xe Forum';
     
     //Dashboard of forum
+    $lang->number_of_posts='Posts';
     $lang->number_of_posts_published='Published Posts';
     $lang->number_of_posts_unpublished='Unpublished Posts';
     $lang->number_of_threads='Threads';
