@@ -75,7 +75,7 @@
         	if(!$this->grant->access ) return $this->dispForumMessage('msg_not_permitted');
 
             $categorylist = $this->dispForumCategoryList();
-
+			Context::set('module_srl', $this->module_info->module_srl);
             $this->setTemplateFile('category_index');
 
             return $categorylist;
@@ -138,6 +138,7 @@
                 }
             }
             Context::set('search_option', $search_option);
+            Context::set('module_srl',$this->module_info->module_srl);
 
             // display forum content view
             $this->dispForumContentView();

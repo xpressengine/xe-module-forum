@@ -142,6 +142,11 @@
 	padding-left: 26px;
 }
 
+#forum a.categoryManage span.inner {
+	background: url('../images/common/category_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
 #forum a.find span.inner {
 	background: url('../images/common/find_icon.png') 3px 9px no-repeat;
 	padding-left: 26px;

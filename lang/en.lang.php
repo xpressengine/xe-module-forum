@@ -15,6 +15,7 @@
     $lang->notify='Email Notification';
 
     $lang->cmd_manage_menu = 'Manage Menus';
+    $lang->cmd_manage_categories = 'Manage Categories';
     $lang->list_target_item = 'Target Item';
     $lang->list_display_item = 'Display Item';
     $lang->summary = 'Summary';
