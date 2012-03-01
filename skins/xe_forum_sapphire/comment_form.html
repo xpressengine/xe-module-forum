@@ -59,7 +59,13 @@
 		<tr class="single_line">
 			<td colspan="2" class="td_submit" style="padding:10px">
 				<div style="text-align:left">
-					<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="button blue"><span>{$lang->cmd_comment_registration}</span></a>
+					<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="button blue"><span>
+					<!--@if(Context::get('act')=='dispForumModifyComment')-->
+					{$lang->cmd_modify}
+					<!--@else-->
+					{$lang->cmd_comment_registration}
+					<!--@end-->
+					</span></a>
 				</div>
 			</td>
 		</tr>

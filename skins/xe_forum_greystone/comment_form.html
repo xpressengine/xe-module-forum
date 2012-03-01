@@ -31,5 +31,11 @@
 	</div>
 </form>
 <div class="fo_write_btn">
-<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="forumButton blue"><span class="outer"><span class="inner">{$lang->cmd_registration}</span></span></a>
+<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="forumButton blue"><span class="outer"><span class="inner">
+<!--@if(Context::get('act')=='dispForumModifyComment')-->
+{$lang->cmd_modify}
+<!--@else-->
+{$lang->cmd_comment_registration}
+<!--@end-->
+</span></span></a>
 </div>

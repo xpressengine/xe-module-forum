@@ -86,7 +86,15 @@
 			<td class="top small gF">
 			</td>
 			<td colspan="2">
-				<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->cmd_comment_registration}</span></span></a>
+				<a href="" onclick="jQuery('#fr_quote').submit();return false;" class="forumButton blue commentAdd">
+				<span class="outer"><span class="inner">
+				<!--@if(Context::get('act')=='dispForumModifyComment')-->
+				{$lang->cmd_modify}
+				<!--@else-->
+				{$lang->cmd_comment_registration}
+				<!--@end-->
+				</span></span>
+				</a>
 			</td>
 		</tr>
 		</tbody>
