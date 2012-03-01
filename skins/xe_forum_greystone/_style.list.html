@@ -7,17 +7,18 @@ count($notice_list) = number of stickys
  -->
 <form action="./" method="get" class="forumListForm">
 	<div id="topic">
-		<div id="buttonsLeft" class="forumButton">
-		
-			<!--@if(Context::get('is_logged')) -->
-			<a href="{getUrl('act','dispForumWrite','document_srl','')}">{$lang->new_thread}</a>
-			<!--@else-->
-			<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}">{$lang->new_thread}</a>
-			<!--@end-->
-			<!--@if($grant->manager || $grant->moderator)-->
-				<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;">{$lang->cmd_manage_document}</a>
-			<!--@end-->
-		</div>
+		<!--@if($total_count || Context::get('category'))-->
+			<div id="buttonsLeft" class="forumButton">
+				<!--@if(Context::get('is_logged')) -->
+				<a href="{getUrl('act','dispForumWrite','document_srl','')}">{$lang->new_thread}</a>
+				<!--@else-->
+				<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}">{$lang->new_thread}</a>
+				<!--@end-->
+				<!--@if($grant->manager || $grant->moderator)-->
+					<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;">{$lang->cmd_manage_document}</a>
+				<!--@end-->
+			</div>
+		<!--@end-->
 	</div>
 	<!--@if(!$oDocument->isExists() && !Context::get('search_keyword'))-->
 	<!--#include("category_table_children.html")-->
