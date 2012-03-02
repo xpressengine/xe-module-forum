@@ -13,6 +13,7 @@
     $lang->allow_anonymous_search='Allow Anonymous Search';
     $lang->notice='Sticky';
     $lang->notify='Email Notification';
+    $lang->extra_vars = 'Extra variables';
 
     $lang->cmd_manage_menu = 'Manage Menus';
     $lang->cmd_manage_categories = 'Manage Categories';

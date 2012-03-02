@@ -744,7 +744,7 @@
             Context::set('document_srl',$document_srl);
             Context::set('oDocument', $oDocument);
 
-            //  set the xml js filter
+            //  add validation for extra keys
             $oDocumentController = &getController('document');
             $oDocumentController->addXmlJsFilter($this->module_info->module_srl);
 

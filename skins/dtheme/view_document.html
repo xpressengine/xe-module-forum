@@ -97,6 +97,19 @@
 		</tr>
 		<!--@end-->
 		
+		<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
+		<tr class="separator">
+			<td>
+				<p class="extra_vars"><span>{$lang->extra_vars}</span></p>
+			</td>
+			<td>
+				<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+				<span><b>{$val->name} :</b>{$val->getValueHTML()}</span></br>
+				<!--@end-->
+			</td>
+		</tr>
+		<!--@end-->
+		
 		<tr class="separator">
 			<td>
 				<p class="attachment">
@@ -121,6 +134,8 @@
 			</td>
 		</tr>
 		
+		
+		
 		<tr class="separator threadSeparator">
 			<td class="mediumGray">
 			</td>
@@ -133,17 +148,7 @@
 	<!--@if($oDocument->allowComment())-->
 		<!--#include("./comment.html")-->
 
-	<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
-		<table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList">
-			<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
-			<tr>
-				<th>{$val->name} :</th>
-				<td>{$val->getValueHTML()}</td>
-			</tr>
-			<!--@end-->
-		</table>
-	<!--@end-->
-	
+		
 		<!--@if($grant->post && $oDocument->isEnableComment() )-->
 			<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="forumEditor" >
 				<input type="hidden" name="mid" value="{$mid}" />

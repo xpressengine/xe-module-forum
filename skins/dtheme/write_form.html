@@ -59,6 +59,18 @@
 				{$oDocument->getEditor()}
 			</td>
 		</tr>
+		<!--@if(count($extra_keys))-->
+		<!--@foreach($extra_keys as $key => $val)-->
+	    <tr class="separator">
+	    	<td class="gF">
+				<label for="notify_message">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></label>
+			</td>
+			<td colspan="2">
+				{$val->getFormHTML()}
+			</td>      
+	    </tr>
+	    <!--@endforeach-->
+		<!--@endif-->
 		<!--@if($is_logged)-->
 		<!--@if($grant->manager || $grant->moderator)-->
 		<tr class="separator">
@@ -101,56 +113,8 @@
 				<a href="#" class="forumButton blue" onclick="jQuery('#fo_write').submit();return false;" ><span class="outer"><span class="inner">{$lang->cmd_registration}</span></span></a>
 			</td>
 		</tr>
-		<!--@if(!$is_logged)-->
-		<!-- 
-		<tr class="separator longForm">
-			<td class="gF">
-				<label for="userName">{$lang->writer}</label> :
-			</td>
-			<td colspan="2">
-				<input type="text" name="nick_name" value="{$oDocument->getNickName()}" class="inputText" id="userName" title="{$lang->is_required}" />
-			</td>
-		</tr>
-		<tr class="separator longForm">
-			<td class="gF">
-				<label for="userPw">{$lang->password}</label> :
-			</td>
-			<td colspan="2">
-				<input type="password" name="password" value="" id="userPw" class="inputText" title="{$lang->is_required}" />
-			</td>
-		</tr>
-		<tr class="separator longForm">
-			<td class="gF">
-				<label for="emailAddress">{$lang->email_address}</label> :
-			</td>
-			<td colspan="2">
-				<input type="text" name="email_address" value="{htmlspecialchars($oDocument->get('email_address'))}" id="emailAddress" class="inputText" />
-			</td>
-		</tr>
-		<tr class="separator longForm">
-			<td class="gF">
-				<label for="homePage">{$lang->homepage}</label> :
-			</td>
-			<td colspan="2">
-				<input type="text" name="homepage" value="{htmlspecialchars($oDocument->get('homepage'))}" id="homePage" class="inputText" />
-			</td>
-		</tr>
-		 -->
-		<!--@end-->
 	</tbody>
 </table>
-
-    <!--@if(count($extra_keys))-->
-    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList">
-	<caption><em>*</em> : {$lang->is_required}</caption>
-    <!--@foreach($extra_keys as $key => $val)-->
-    <tr>
-        <th scope="row">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
-        <td>{$val->getFormHTML()}</td>
-    </tr>
-    <!--@endforeach-->
-    </table>
-    <!--@endif-->
 
     
     </form>
