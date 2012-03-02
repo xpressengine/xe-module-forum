@@ -95,7 +95,7 @@
     $lang->about_use_anonymous = 'Make this forum into an anonymous forum by hiding the author\'s information.<br /><strong>Please turn off history at additional setup. If not, editing document might show the author\'s info.</strong>';
     $lang->about_allow_anonymous_search='Allow users that are not logged in to search the forums';
     $lang->about_forum = 'This module is for creating and managing forums.';
-    $lang->about_consultation = 'Non-administrator members would see their own articles.\nNon-members would not be able to write articles when using consultation.';
+    $lang->about_consultation = 'Non-administrator members would see their own articles.<br/>Non-members would not be able to write articles when using consultation.';
     $lang->about_admin_mail = 'A mail will be sent when an article or comment is submitted.<br />Multiple mails can be sent with commas(,).';
     $lang->about_list_config = 'If using list-style skin, you may arrange items to display.<br />However, this feature might not be availble for non-official skins.<br />If you double-click target items and display items, then you can add / remove them';
 	$lang->mail_unsibscribe = 'If you wish to unsubscribe from emailing notification please clcik on this link';
