@@ -7,7 +7,9 @@
 			<a href="{getUrl('act','dispMemberLoginForm')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 		<!--@end-->
 		</div>
-		<div class="cleared"></div>
+		<div id="buttonsRight">
+			<span>{$lang->views}: {$oDocument->get('readed_count')}</span>
+		</div>
 	</div>
 	<table cellspacing="0" border="0" class="forumCategoryList">
 	<thead>
@@ -67,7 +69,7 @@
 				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
 				<p class="additionalInfo"><span>{$lang->ip}: </span>{$oDocument->getIpaddress()}</p>
 				<!--@end-->
-				<p class="additionalInfo"><span>{$lang->views}: </span>{$oDocument->get('readed_count')}</p>
+				
 				<!--@if($oDocument->get('voted_count')!=0 || $oDocument->get('blamed_count')!=0)-->
 				<p class="additionalInfo"><span>{$lang->voted_count}: </span>{$oDocument->get('voted_count')} / {$oDocument->get('blamed_count')}</p>
 				<!--@end-->			
