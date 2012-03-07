@@ -84,6 +84,7 @@
         	 $module_info=Context::get('module_info');
         	 $oDocumentModel = &getModel('document');
         	 $oCommentModel=&getModel('comment');
+        	 $oModuleModel= &getModel('module');
 
         	 $obj->list_count=$oDocumentModel->getDocumentCount($module_info->module_srl);
         	 $obj->mid=$module_info->mid;
@@ -136,13 +137,18 @@
 
         	 $total_comments_published=$oCommentModel->getCommentAllCount($module_info->module_srl,true);
         	 $total_comments_unpublished=$oCommentModel->getCommentAllCount($module_info->module_srl,false);
-
+			 $comment_part_config = $oModuleModel->getModulePartConfig('comment',$module_info->module_srl);
+			 $comment_count = $comment_part_config->comment_count;
         	 $obj->list_count=5;
         	 $newest_comments=$oCommentModel->getNewestCommentList($obj);
         	 if(isset($newest_comments)){
 	        	 foreach($newest_comments as $comment){
 	        	 	$comment->content=trim(cut_str($comment->content,50,"..."));
 	        	 	$comment->document_content=$oDocumentModel->getDocument($comment->document_srl)->variables['title'];
+	        	 	$pos = executeQuery('forum.getCommentPosition',$comment)->data;
+	        		if($pos && $comment_count) {
+	        			$comment->cpage= ceil($pos->count / $comment_count);
+	        		}
 	        	 }
         	 }
         	 $module_info->list_count=5;

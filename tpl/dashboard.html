@@ -178,7 +178,7 @@
 	<!--@foreach($newest_comments as $comment)-->
 	<tr>
 		<td>
-			<a href="{getUrl('mid',$module_info->mid,'act','dispForumContent','document_srl',$comment->document_srl,'category',$comment->category_srl)}" target="_blank" >{$comment->content}</a>
+			<a href="{getUrl('mid',$module_info->mid,'act','dispForumContent','document_srl',$comment->document_srl,'category',$comment->category_srl,'cpage',$comment->cpage).'#comment_'.$comment->comment_srl}" target="_blank" >{$comment->content}</a>
 		</td>
 		<td>
 			<a href="{getUrl('mid',$module_info->mid,'act','dispForumContent','document_srl',$comment->document_srl,'category',$comment->category_srl)}" target="_blank" >{$comment->document_content}</a>
