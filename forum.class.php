@@ -33,7 +33,9 @@
 			$oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'document', 'view', 'triggerDispDocumentAdditionSetup', 'before');
             $oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'file', 'view', 'triggerDispFileAdditionSetup', 'before');
             $oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'point', 'view', 'triggerDispPointAdditionSetup', 'before');
-            $oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'editor', 'view', 'triggerDispEditorAdditionSetup', 'before');
+            $oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'editor', 'view', 'triggerDispEditorAdditionSetup', 'before');	
+            $oModuleController->insertTrigger('comment.procCommentAdminChangeStatus', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
+            $oModuleController->insertTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
             
             // Create the basic forum
             $args->mid = 'forum';
@@ -86,6 +88,8 @@
             if(!$oModuleModel->getTrigger('forum.dispForumAdditionSetup', 'file', 'view', 'triggerDispFileAdditionSetup', 'before')) return true;
             if(!$oModuleModel->getTrigger('forum.dispForumAdditionSetup', 'point', 'view', 'triggerDispPointAdditionSetup', 'before')) return true;
             if(!$oModuleModel->getTrigger('forum.dispForumAdditionSetup', 'editor', 'view', 'triggerDispEditorAdditionSetup', 'before')) return true;
+	     if(!$oModuleModel->getTrigger('comment.procCommentAdminChangeStatus', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after')) return true;
+            if(!$oModuleModel->getTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after')) return true;
             
             return false;
         }
@@ -116,6 +120,10 @@
 	            	$oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'point', 'view', 'triggerDispPointAdditionSetup', 'before');
 	            if(!$oModuleModel->getTrigger('forum.dispForumAdditionSetup', 'editor', 'view', 'triggerDispEditorAdditionSetup', 'before'))
 	            	$oModuleController->insertTrigger('forum.dispForumAdditionSetup', 'editor', 'view', 'triggerDispEditorAdditionSetup', 'before');
+			if(!$oModuleModel->getTrigger('comment.procCommentAdminChangeStatus', 'forum', 'controller', 'triggerDispEditorAdditionSetup', 'after')) 
+				$oModuleController->insertTrigger('comment.procCommentAdminChangeStatus', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
+			if(!$oModuleModel->getTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerDispEditorAdditionSetup', 'after'))
+				$oModuleController->insertTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
             }
             return new Object(0, 'success_updated');
         }

@@ -136,8 +136,8 @@
             // check grants and registration
             if(!$this->grant->post) return new Object(-1, 'msg_not_permitted');
             $logged_info = Context::get('logged_info');
-			$args=Context::getRequestVars();
-			$args->quote_content=html_entity_decode($args->quote_content);
+		$args=Context::getRequestVars();
+		$args->quote_content=html_entity_decode($args->quote_content);
             // comments data extraction
             $obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','notify_message');
             $obj->module_srl = $this->module_srl;
@@ -187,49 +187,28 @@
                 }
 
                 // verifying if the administrator mail is set
-                if($output->toBool() && $this->module_info->admin_mail) {
-                    $oMail = new Mail();
-                    $oMail->setTitle($oDocument->getTitleText());
-                    $oMail->setContent( sprintf("From : <a href=\"%s?document_srl=%s&comment_srl=%s#comment_%d\">%s?document_srl=%s&comment_srl=%s#comment_%d</a><br/>\r\n%s  ", getFullUrl(''),$obj->document_srl,$obj->comment_srl,$obj->comment_srl, getFullUrl(''),$obj->document_srl,$obj->comment_srl,$obj->comment_srl,$obj->content));
-                    $oMail->setSender($obj->user_name, $obj->email_address);
+                if($output->toBool()) {
+			//check if comment writer is admin or not
+			$oMemberModel = &getModel("member");
+			if (isset($obj->member_srl) && !is_null($obj->member_srl))
+			{
+				$member_info = $oMemberModel->getMemberInfoByMemberSrl($obj->member_srl);
+			}
+			else
+			{
+				$member_info->is_admin = 'N';
+			}
 
-                    $author_email=$oDocument->variables['email_address'];
-                    $already_sent = array();
-
-                    //mail to author of thread
-                    if($author_email != $obj->email_address) {
-                            $oMail->setReceiptor($author_email, $author_email);
-                            $oMail->send();
-                            $already_sent[]=$author_email;
-                    }
-                    //mail to subscribers that turned email notification on
-                    $comment_list=$oCommentModel->getCommentList($obj->document_srl);
-
-
-                    if($comment_list->data)
-                    foreach($comment_list->data as $key_comment){
-                            if($key_comment->notify_message=='Y'){
-                                    if(!in_array($key_comment->email_address, $already_sent)){
-                                            if($logged_info->email_address!= $key_comment->email_address){
-                                            $already_sent[]=$key_comment->email_address;
-                                            $oMail->setReceiptor($key_comment->user_name, $key_comment->email_address);
-                                            $oMail->content=$oMail->content.sprintf("%s : <a href=\"%s\">%s</a>" ,Context::getLang('mail_unsibscribe') ,getFullUrl('','act','unsubscribeThread','document_srl',$obj->document_srl,'member_srl',$key_comment->member_srl),getFullUrl('','act','unsubscribeThread','document_srl',$obj->document_srl,'member_srl',$key_comment->member_srl));
-                                            $oMail->send();
-                                            }
-                                    }
-                            }
-                    }
-
-                    //mail to all emails set for administrators
-                    $target_mail = explode(',',$this->module_info->admin_mail);
-                    for($i=0;$i<count($target_mail);$i++) {
-                        $email_address = trim($target_mail[$i]);
-                        if(!$email_address) continue;
-                        if($author_email != $email_address) {
-                        	$oMail->setReceiptor($email_address, $email_address);
-                        	$oMail->send();
-                        }
-                    }
+			// if current module is using Comment Approval System and comment write is not admin user then
+			if($oCommentController->isModuleUsingPublishValidation($this->module_srl) && $member_info->is_admin != 'Y')
+			{
+				//$oCommentController->sendEmailToAdminAfterInsertComment($obj);
+				$this->setMessage('comment_to_be_approved');
+			}
+			else
+			{
+				$this->setMessage('success_registed');
+			}
                 }
 
             // for a fix comment_srl
@@ -241,11 +220,11 @@
                 $obj->user_name=$comment->user_name;
                 $output= executeQuery('forum.updateComments', $obj);
                 $output = $oCommentController->updateComment($obj, $this->grant->manager);
-                $comment_srl = $obj->comment_srl;
+               // $comment_srl = $obj->comment_srl;
             }
             if(!$output->toBool()) return $output;
 
-            $this->setMessage('success_registed');
+            //$this->setMessage('success_registed');
             $this->add('mid', Context::get('mid'));
             $this->add('document_srl', $obj->document_srl);
             $this->add('comment_srl', $obj->comment_srl);
@@ -365,6 +344,110 @@
             }
         }
 
+        /**
+         * @brief trigger for sending emails to all subscribers of the comment's parent thread
+         **/
+        function triggerSendMailToSubscribers(&$comment_srl_list)
+	{
+		//get admin info
+		$logged_info = Context::get('logged_info');
+		 // instancing module model
+		$oModuleModel = &getModel('module');
+		
+		 // instancing module model
+		$oCommentController = &getController('comment');
+		
+		// create the model object of the document
+		$oDocumentModel = &getModel('document');
+		
+		// create the comment model object
+		$oCommentModel = &getModel('comment');
+			
+		// create new mail object
+		$oMail = new Mail();
+		foreach ($comment_srl_list as $comment_srl) 
+		{
+			
+			// create object comment for current comment_srl
+			$comment = $oCommentModel->getComment($comment_srl);
+			
+			$comment_module_info = $oModuleModel->getModuleInfoByModuleSrl($comment->module_srl);
+			if($comment_module_info->module == $this->module)
+			{
+				$oDocument = $oDocumentModel->getDocument($comment->document_srl);
+				
+				// check if comment's module is using Comment Approval System
+				$using_validation = $oCommentController->isModuleUsingPublishValidation($comment->module_srl);
+				
+				if ($using_validation)
+				{
+					// setting subject for email
+					$mail_title = "[XE - ".$comment_module_info->mid."] comment(s) status changed to published on thread: \"".$oDocument->getTitleText()."\"";
+					// setting content of email
+					$mail_content = "
+						The comment #".$comment_srl." on document \"".$oDocument->getTitleText()."\" has been approved by admin of <strong><i>".  strtoupper($comment_module_info->mid)."</i></strong> module.
+						<br />
+						<br />Comment content:
+						".$comment->content."
+						<br />
+					";
+				}
+				else
+				{
+					// setting subject for email
+					$mail_title = "[XE - ".$comment_module_info->mid."] new comment was written on thread: \"".$oDocument->getTitleText()."\"";
+					// setting content of email
+					$mail_content = "
+						Dear subscriber,
+						<br />
+						<br />
+						The comment #".$comment_srl." was written on document \"".$oDocument->getTitleText()."\".
+						<br />
+						<br />Author: ".$comment->nick_name."
+						<br />Author email: ".$comment->email_address."
+						<br />Comment content:
+						".$comment->content."
+						<br />
+					";
+				}
+				$oMail->setTitle($mail_title);
+				$oMail->setContent($mail_content);
+				// setting FROM attribute of email
+				$oMail->setSender($logged_info->user_name, $logged_info->email_address);		
+		
+				// mail to subscribers that turned email notification on - START
+				// get a list of comments for parent document (thread)
+				$comment_list=$oCommentModel->getCommentList($comment->document_srl);
+				// do send mails if we have a list of comments for parent document
+				if($comment_list->data)
+				{
+					$already_sent = array();
+					foreach($comment_list->data as $key_comment)
+					{
+						if($key_comment->notify_message=='Y')
+						{
+							if(!in_array($key_comment->email_address, $already_sent))
+							{
+								if($logged_info->email_address != $key_comment->email_address)
+								{
+									$already_sent[] = $key_comment->email_address;
+									// setting TO attribute of email
+									$oMail->setReceiptor($key_comment->user_name, $key_comment->email_address);
+									// adding to content link for unsubscribe to current thread
+									$oMail->content=$mail_content.sprintf("%s : <a href=\"%s\">%s</a>" ,Context::getLang('mail_unsibscribe') ,getFullUrl('','act','unsubscribeThread','document_srl',$comment->document_srl,'member_srl',$key_comment->member_srl),getFullUrl('','act','unsubscribeThread','document_srl',$comment->document_srl,'member_srl',$key_comment->member_srl));
+									$oMail->send();
+								}
+							}
+						}
+					}
+				}
+				//mail to subscribers that turned email notification on - STOP
+			}
+		}
+		return ;
+	}
+		
+		
         /**
          * @brief trigger Member Menu
          **/
