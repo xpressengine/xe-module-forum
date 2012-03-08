@@ -9,7 +9,7 @@
 			<td class="left lightGray">
 				<a name="comment_{$comment->comment_srl}"></a>
 				<p class="subject"><a href="#comment_{$comment->comment_srl}">#</a><span> {$lang->post_subject}:</span>Re: {$oDocument->getTitle()}</p>
-				<p class="postDate"><span>{$lang->post_date}:</span> {$comment->getRegdate('Y.d.m')}</p>
+				<p class="postDate"><span>{$lang->post_date}:</span> {$comment->getRegdate('d.m.Y')}</p>
 			</td>
 		</tr>
 		<tr class="separator">
@@ -21,7 +21,7 @@
 					<img src="images/common/avatar.jpg">
 					<!--@end-->
 				</p>
-				<p class="additionalInfo"><span>{$lang->registered}: </span>{$comment->getRegdate('m/d/Y')}</p>
+				<p class="additionalInfo"><span>{$lang->registered}: </span>{$comment->getRegdate('d/m/Y')}</p>
 				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
 				<p class="additionalInfo"><span>{$lang->ip}: </span>{$comment->getIpaddress()}</p>
 				<!--@end-->

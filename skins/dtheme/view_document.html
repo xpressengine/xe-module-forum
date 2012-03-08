@@ -45,7 +45,7 @@
 			<td class="large center lightGray">
 				
 					<p class="subject"><span>{$lang->post_subject}:</span> {$oDocument->getTitle()}</p>
-					<p class="postDate"><span>{$lang->post_date}:</span> {$oDocument->getRegdate('Y.m.d')}</p>
+					<p class="postDate"><span>{$lang->post_date}:</span> {$oDocument->getRegdate('d.m.Y')}</p>
 				
 
 				<!--@if($module_info->display_sign != 'N' && ($oDocument->getProfileImage() || $oDocument->getSignature()))-->
@@ -65,7 +65,7 @@
 						<p class="avatar"><img src="images/common/avatar.jpg"></p>
 				<!--@end-->
 				
-				<p class="additionalInfo"><span>{$lang->registered}: </span>{$oDocument->getRegdate('m/d/Y')}</p>
+				<p class="additionalInfo"><span>{$lang->registered}: </span>{$oDocument->getRegdate('d/m/Y')}</p>
 				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
 				<p class="additionalInfo"><span>{$lang->ip}: </span>{$oDocument->getIpaddress()}</p>
 				<!--@end-->
