@@ -162,4 +162,5 @@
 	$lang->latest_post = 'See Post';
 	//Member info
 	$lang->my_account='My account';
+	$lang->user_already_deleted = 'The user is already deleted or dose not exist but you can still do the actions above.'
 ?>

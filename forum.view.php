@@ -1009,7 +1009,7 @@
             }
 
             // check comment
-            if(!isset($oMember) ) return $this->dispForumContent();
+            if(!isset($oMember) )  Context::set('alreadyDeleted','Y');
 
 			// set oComment
             Context::set('oMember',$oMember);
