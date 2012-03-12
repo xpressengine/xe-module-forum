@@ -284,7 +284,7 @@
 				if($member_info) $output = executeQuery('member.insertDeniedID', $member_info);
 			}
 			if($obj->ban_ip) if($obj->ipaddress) $output = executeQuery('spamfilter.insertDeniedIP', $obj);
-			$output = executeQuery('member.deleteMember', $obj);
+			if($obj->delete_user) $output = executeQuery('member.deleteMember', $obj);
 
             $this->add('mid', Context::get('mid'));
             $this->add('page', Context::get('page'));

@@ -12,7 +12,7 @@
     $lang->use_anonymous = 'Use Anonymous';
     $lang->allow_anonymous_search='Allow Anonymous Search';
     $lang->notice='Sticky';
-    $lang->notify='Email Notification';
+    $lang->notify='Subscribe';
     $lang->extra_vars = 'Extra variables';
 
     $lang->cmd_manage_menu = 'Manage Menus';
