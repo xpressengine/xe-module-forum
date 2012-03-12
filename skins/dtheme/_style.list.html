@@ -11,9 +11,9 @@ count($notice_list) = number of stickys
 		<!--@if($total_count || Context::get('category'))-->
 			<div id="buttonsLeft">
 				<!--@if(Context::get('is_logged')) -->
-				<a href="{getUrl('act','dispForumWrite','document_srl','','entry','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+				<a href="{getUrl('act','dispForumWrite','document_srl','','entry','','search_target','','search_keyword','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 				<!--@else-->
-				<a href="{getUrl('act','dispMemberLoginForm','document_srl','','entry','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+				<a href="{getUrl('act','dispMemberLoginForm','document_srl','','entry','','search_target','','search_keyword','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 				<!--@end-->
 				<!--@if($grant->manager || $grant->moderator)-->
 					<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl,'entry','')}" onclick="popopen(this.href,'manageDocument'); return false;" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_manage_document}</span></span></a>

@@ -10,9 +10,9 @@ count($notice_list) = number of stickys
 		<!--@if($total_count || Context::get('category'))-->
 			<div id="buttonsLeft" class="forumButton">
 				<!--@if(Context::get('is_logged')) -->
-				<a href="{getUrl('act','dispForumWrite','document_srl','')}">{$lang->new_thread}</a>
+				<a href="{getUrl('act','dispForumWrite','document_srl','','search_target','','search_keyword','')}">{$lang->new_thread}</a>
 				<!--@else-->
-				<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}">{$lang->new_thread}</a>
+				<a href="{getUrl('act','dispMemberLoginForm','document_srl','','search_target','','search_keyword','')}">{$lang->new_thread}</a>
 				<!--@end-->
 				<!--@if($grant->manager || $grant->moderator)-->
 					<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;">{$lang->cmd_manage_document}</a>

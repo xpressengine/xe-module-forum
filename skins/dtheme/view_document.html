@@ -2,9 +2,9 @@
 	<div id="topic">
 		<div id="buttonsLeft">
 		<!--@if(Context::get('is_logged')) -->
-			<a href="{getUrl('act','dispForumWrite','document_srl','','entry','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			<a href="{getUrl('act','dispForumWrite','document_srl','','entry','','search_target','','search_keyword','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 		<!--@else-->
-			<a href="{getUrl('act','dispMemberLoginForm')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
+			<a href="{getUrl('act','dispMemberLoginForm','search_target','','search_keyword','')}" class="forumButton blue commentAdd"><span class="outer"><span class="inner">{$lang->new_thread}</span></span></a>
 		<!--@end-->
 		</div>
 		<div id="buttonsRight">
