@@ -513,7 +513,6 @@
             	$group_args->list_count=$args->list_count;
             	$group_args->page_count=$args->page_count;
             	$group_args->s_comment=$args->search_keyword;
-            	$group_args->sort_index='documents.list_order';
             	$group_args->page=Context::get('page');
             	$output= executeQuery('forum.getDocumentListAllContent', $group_args);
             	foreach($output->data as $key => $val) {
