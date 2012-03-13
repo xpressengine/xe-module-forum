@@ -838,75 +838,75 @@
          * @brief display forum reply comment
          **/
         function dispForumReplyComment() {
-        //check grants
-
-        if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
-
-        $logged_info=Context::get('logged_info');
-        $oForumModel= &getModel('forum');
-        $obj->document_srl=Context::get('document_srl');
-        $obj->member_srl=$logged_info->member_srl;
-        $isNotified= $oForumModel->isNotified($obj);
-        Context::set('isNotified', $isNotified);
-
-        // get parent_srl and document_srl
-        $parent_srl = Context::get('comment_srl');
-        $document_srl= Context::get('document_srl');
-
-		$this->dispBreadcrumbs();
-		$oDocumentModel=&getModel('document');
-		if(Context::get('document_srl')){
-			$oDocument=$oDocumentModel->getDocument($document_srl);
-			Context::set('oDocument',$oDocument);
-		}
-
-            // verify and error message
-            if(!$parent_srl && !document_srl) return new Object(-1, 'msg_invalid_request');
-
-            // lookup the comment
-            $oCommentModel = &getModel('comment');
-            $oSourceComment = $oCommentModel->getComment($parent_srl, $this->grant->manager);
-            if(!$oSourceComment->isExists()) {
-            	$oDocumentModel=&getModel('document');
-            	$oSourceDocument=$oDocumentModel->getDocument($document_srl,$this->grant->manager);
-            }
-
-            // If comment doesn't exist then error
-            if(!$oSourceComment->isExists() && !$oSourceDocument->isExists()) return $this->dispForumMessage('msg_invalid_request');
-            //if(Context::get('document_srl') && $oSourceComment->get('document_srl') != Context::get('document_srl')) return $this->dispForumMessage('msg_invalid_request');
-
-            // set quote styling for comment reply
-            $oComment = $oCommentModel->getComment();
-            $oComment->add('parent_srl',0);
-            if($oSourceComment->isExists()){
-            	$oComment->add('document_srl', $oSourceComment->get('document_srl'));
-            	$quote = Context::get('quote');
-	            $lang->cmd_quote=Context::getLang('cmd_quote');
-	            if($quote=='Y')
-	            	$content ="<div class=\"quote\"><div class=\"quoteTitle\">".$lang->cmd_quote."</div>".$oSourceComment->get('content')."</div></br>";
-            } else if($oSourceDocument->isExists()) {
-            			$oComment->add('document_srl', $oSourceDocument->get('document_srl'));
-		            	$quote = Context::get('quote');
-			            $lang->cmd_quote=Context::getLang('cmd_quote');
-			            if($quote=='Y')
-			            	$content ="<div class=\"quote\"><div class=\"quoteTitle\">".$lang->cmd_quote."</div>".$oSourceDocument->get('content')."</div></br>";
-                     		}
-
-            // add content to comment
-            //$oComment->add('content',$content);
-
-            // set variables
-            Context::set('quote_content',htmlspecialchars($content));
-            Context::set('oSourceComment',$oSourceComment);
-            Context::set('oComment',$oComment);
-            Context::set('module_srl',$this->module_info->module_srl);
-
-            /**
-             * add js filter
-             **/
-            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
-			//set template file
-            $this->setTemplateFile('comment_form');
+	        //check grants
+	
+	        if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
+	
+	        $logged_info=Context::get('logged_info');
+	        $oForumModel= &getModel('forum');
+	        $obj->document_srl=Context::get('document_srl');
+	        $obj->member_srl=$logged_info->member_srl;
+	        $isNotified= $oForumModel->isNotified($obj);
+	        Context::set('isNotified', $isNotified);
+	
+	        // get parent_srl and document_srl
+	        $parent_srl = Context::get('comment_srl');
+	        $document_srl= Context::get('document_srl');
+	
+			$this->dispBreadcrumbs();
+			$oDocumentModel=&getModel('document');
+			if(Context::get('document_srl')){
+				$oDocument=$oDocumentModel->getDocument($document_srl);
+				Context::set('oDocument',$oDocument);
+			}
+	
+	            // verify and error message
+	            if(!$parent_srl && !document_srl) return new Object(-1, 'msg_invalid_request');
+	
+	            // lookup the comment
+	            $oCommentModel = &getModel('comment');
+	            $oSourceComment = $oCommentModel->getComment($parent_srl, $this->grant->manager);
+	            if(!$oSourceComment->isExists()) {
+	            	$oDocumentModel=&getModel('document');
+	            	$oSourceDocument=$oDocumentModel->getDocument($document_srl,$this->grant->manager);
+	            }
+	
+	            // If comment doesn't exist then error
+	            if(!$oSourceComment->isExists() && !$oSourceDocument->isExists()) return $this->dispForumMessage('msg_invalid_request');
+	            //if(Context::get('document_srl') && $oSourceComment->get('document_srl') != Context::get('document_srl')) return $this->dispForumMessage('msg_invalid_request');
+	
+	            // set quote styling for comment reply
+	            $oComment = $oCommentModel->getComment();
+	            $oComment->add('parent_srl',0);
+	            if($oSourceComment->isExists()){
+	            	$oComment->add('document_srl', $oSourceComment->get('document_srl'));
+	            	$quote = Context::get('quote');
+		            $lang->cmd_quote=Context::getLang('cmd_quote');
+		            if($quote=='Y')
+		            	$content ="<div class=\"quote\"><div class=\"quoteTitle\">".$lang->cmd_quote."</div>".$oSourceComment->get('content')."</div></br>";
+	            } else if($oSourceDocument->isExists()) {
+	            			$oComment->add('document_srl', $oSourceDocument->get('document_srl'));
+			            	$quote = Context::get('quote');
+				            $lang->cmd_quote=Context::getLang('cmd_quote');
+				            if($quote=='Y')
+				            	$content ="<div class=\"quote\"><div class=\"quoteTitle\">".$lang->cmd_quote."</div>".$oSourceDocument->get('content')."</div></br>";
+	                     		}
+	
+	            // add content to comment
+	            //$oComment->add('content',$content);
+	
+	            // set variables
+	            Context::set('quote_content',htmlspecialchars($content));
+	            Context::set('oSourceComment',$oSourceComment);
+	            Context::set('oComment',$oComment);
+	            Context::set('module_srl',$this->module_info->module_srl);
+	
+	            /**
+	             * add js filter
+	             **/
+	            Context::addJsFilter($this->module_path.'tpl/filter', 'insert_comment.xml');
+				//set template file
+	            $this->setTemplateFile('comment_form');
         }
 
         /**

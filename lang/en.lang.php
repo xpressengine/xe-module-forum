@@ -144,6 +144,7 @@
 	$lang->ban_user = 'Are you sure you want to ban this user ';
 	$lang->and_posts= 'and all its posts';
 	$lang->confirm_delete_comment = 'Are you sure you want to delete this post';
+	$lang->confirm_delete_doc = 'Are you sure you want to delete';
 	$lang->confirm_ban_user = 'Are you sure you want to ban this user';
 	$lang->delete_comments_and_threads = 'Delete all comments and threads for the specified user';
 	$lang->delete_user = 'Delete the user';
