@@ -4,8 +4,8 @@
     <title xml:lang="zh-CN">论坛</title>
     <description xml:lang="en">Module in charge of function of the forum. Also includes administrator functions such as creating/managing forums.</description>
     <description xml:lang="zh-CN">论坛模块(具有创建及管理功能)。</description>
-    <version>1.0.1</version>
-    <date>2012-01-05</date>
+    <version>1.0.2</version>
+    <date>2012-03-23</date>
     <category>service</category>
 
     <author email_address="xe_dev@arnia.ro" link="http://www.arnia.ro/">
