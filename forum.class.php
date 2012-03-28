@@ -25,6 +25,7 @@
             $oModuleModel = &getModel('module');
             $oDocumentController = &getController('document');
             $oCommentController = &getController('comment');
+            $oForumController = &getController('forum');
             
 
             // insert triggers 
@@ -56,6 +57,7 @@
             $document_args->category_srl = $insert_category->get('category_srl');
             $document_args->comment_status = 'ALLOW';
             $insert_document = $oDocumentController->insertDocument($document_args);
+            $insert_alias = $oForumController->insert_document_alias($document_args);
             //create demo comment
             $comment_args->content = '<p>This is a comment example</p>';
             $comment_args->document_srl = $insert_document->get('document_srl');
