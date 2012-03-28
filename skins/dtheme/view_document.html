@@ -128,7 +128,11 @@
 			<!--@end-->	
 			<!--@if($oDocument->allowComment())-->
 				<!--@if(Context::get('is_logged')) -->
-				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+					<!--@if(!Context::get('entry'))-->
+					<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
+					<!--@else-->
+					<a href="{getUrl('act','dispForumReplyComment','document_srl',$oDocument->document_srl,'comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
+					<!--@end--> 
 				<!--@else-->
 				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
 				<!--@end-->
