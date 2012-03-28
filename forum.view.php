@@ -414,10 +414,12 @@
 			if(!$oDocument->isExists()) return;
 			// get a list of comments
 			$module_srl = $oDocument->get('module_srl');
-			if ($oCommentController->isModuleUsingPublishValidation($module_srl))
+
+			if (method_exists($oCommentController,'isModuleUsingPublishValidation') && $oCommentController->isModuleUsingPublishValidation($module_srl))
 			{
 				$obj->status = 1;
 			}
+
 	        	$pos = executeQuery('forum.getCommentPosition',$obj)->data;
 	        	$list_count_comm = $this->page_count;
 	        	if($pos && $list_count_comm) $cpage= ceil($pos->count / $list_count_comm);
@@ -495,7 +497,14 @@
 			
 			// check if module is using comment validation system
 			$oCommentController = &getController("comment");
-			$is_using_validation = $oCommentController->isModuleUsingPublishValidation($this->module_srl);
+			if(method_exists($oCommentController,'isModuleUsingPublishValidation'))
+			{
+				$is_using_validation = $oCommentController->isModuleUsingPublishValidation($this->module_srl);
+			}
+			else
+			{
+				$is_using_validation = false;
+			}
 			if ($is_using_validation)
 			{
 				$group_args->status = 1;

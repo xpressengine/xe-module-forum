@@ -200,7 +200,7 @@
 			}
 
 			// if current module is using Comment Approval System and comment write is not admin user then
-			if($oCommentController->isModuleUsingPublishValidation($this->module_srl) && $member_info->is_admin != 'Y')
+			if(method_exists($oCommentController,'isModuleUsingPublishValidation') && $oCommentController->isModuleUsingPublishValidation($this->module_srl) && $member_info->is_admin != 'Y')
 			{
 				//$oCommentController->sendEmailToAdminAfterInsertComment($obj);
 				$this->setMessage('comment_to_be_approved');
@@ -377,7 +377,14 @@
 				$oDocument = $oDocumentModel->getDocument($comment->document_srl);
 				
 				// check if comment's module is using Comment Approval System
-				$using_validation = $oCommentController->isModuleUsingPublishValidation($comment->module_srl);
+				if(method_exists($oCommentController,'isModuleUsingPublishValidation') )
+				{
+					$using_validation = $oCommentController->isModuleUsingPublishValidation($comment->module_srl);
+				}
+				else
+				{
+					$using_validation = false;
+				}
 				
 				if ($using_validation)
 				{
