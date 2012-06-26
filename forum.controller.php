@@ -441,7 +441,7 @@
 									// setting TO attribute of email
 									$oMail->setReceiptor($key_comment->user_name, $key_comment->email_address);
 									// adding to content link for unsubscribe to current thread
-									$oMail->content=$mail_content.sprintf("%s : <a href=\"%s\">%s</a>" ,Context::getLang('mail_unsibscribe') ,getFullUrl('','act','unsubscribeThread','document_srl',$comment->document_srl,'member_srl',$key_comment->member_srl),getFullUrl('','act','unsubscribeThread','document_srl',$comment->document_srl,'member_srl',$key_comment->member_srl));
+									$oMail->setContent($mail_content.sprintf("%s : <a href=\"%s\">%s</a>" ,Context::getLang('mail_unsibscribe') ,getFullUrl('','act','unsubscribeThread','document_srl',$comment->document_srl,'member_srl',$key_comment->member_srl),getFullUrl('','act','unsubscribeThread','document_srl',$comment->document_srl,'member_srl',$key_comment->member_srl)));
 									$oMail->send();
 								}
 							}
