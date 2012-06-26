@@ -369,7 +369,7 @@
                     Context::addBrowserTitle($oDocument->getTitleText());
 
                     // update readed count
-                    if( $oDocument->isGranted()) $oDocument->updateReadedCount();
+                    $oDocument->updateReadedCount();
 
             }
 
