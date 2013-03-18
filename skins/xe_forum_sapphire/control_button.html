@@ -1,0 +1,10 @@
+		<div class="controls" style="text-align:left">
+			<!--@if(Context::get('is_logged')) -->
+			<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="button blue"><span>{$lang->new_thread}</span></a>
+			<!--@else-->
+			<a href="{getUrl('act','dispMemberLoginForm','document_srl','')}" class="button blue"><span>{$lang->new_thread}</span></a>
+			<!--@end-->
+			<!--@if($grant->manager || $grant->moderator)-->
+				<a href="{getUrl('','module','document','act','dispDocumentManageDocument','module_srl',$module_info->module_srl)}" onclick="popopen(this.href,'manageDocument'); return false;" class="button red"><span>{$lang->cmd_manage_document}</span></a>
+			<!--@end-->
+		</div>

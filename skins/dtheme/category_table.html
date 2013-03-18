@@ -1,0 +1,66 @@
+<form action="./" method="get" class="forumListForm">
+	<table cellspacing="0" border="0" class="forumCategoryList">
+		<thead>
+			<tr class="rootCateg">		
+				<td class="large">
+					<div class="left first">
+						CATEGORY
+					</div>
+				</td>
+				<td class="small">
+					<div class="center middle">
+						{$lang->document_count}
+					</div>
+				</td>
+				<td class="small">
+					<div class="center middle">
+						{$lang->comments}
+					</div>
+				</td>
+				<td style="width: 20%">
+					<div class="center middle">
+						{$lang->last_update}
+					</div>
+				</td>
+				<td class="small">
+					<div class="center last">
+						<a class="openClose"></a>
+					</div>
+				</td>
+			</tr>
+		</thead>
+	</table>
+
+	<table cellspacing="0" border="0" class="forumCategoryList forumContent contentForum">
+		<tbody class="showHide">
+	{@$sw = 0}
+	<!--@foreach($category_list as $val)-->
+		<!--@if($val->depth < 2)-->
+		<tr class="separator">
+			<td class="large left <!--@if($val->depth > 0)-->subcateg{$val->depth}<!--@end -->">
+				<h{(3 + $val->depth)} class="gF"><a href="{getUrl('category',$val->category_srl, 'act', 'dispForumContent')}">{$val->title}</a></h{(3 + $val->depth)}>
+				<p class="catDescription">{$val->description}</p>
+			</td>
+			<td class="small center lightGray numbers gF">
+				<!--@if($val->depth >= 0)-->{$val->document_count}<!--@end -->
+			</td>
+			<td class="small center numbers gF">
+				<!--@if($val->depth >= 0)-->{$val->comment_count + $val->document_count}<!--@end -->
+			</td>
+			<td class="center numbers gF" style="width: 20%; font-size: 14px;">
+				<!--@if($val->depth >= 0 && $val->document_count)-->
+								<p><span style="font-weight: bold;"></span>{zdate($val->last_update,'Y-m-d')}</p>
+					<p><span >{$lang->by} </span>{$val->last_author}</p>
+								<!--@if(($val->last_post || $val->last_document))-->
+								<a href="{getUrl('mid','','document_srl', $val->last_document,'cpage','')}#comment_{$val->last_post}">{$lang->latest_post}</a>
+								<!--@end-->
+			   <!--@end -->
+			</td>
+			<td class="small"></td>
+		</tr>
+		<!--@end-->
+		{@$sw += 1}
+	<!--@end-->
+		</tbody>
+	</table>
+</form>

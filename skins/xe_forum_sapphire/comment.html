@@ -1,0 +1,64 @@
+<!--@if($oDocument->getCommentCount())-->
+
+	{@ $_comment_list = $oDocument->getComments() }
+	<!--@foreach($_comment_list as $key => $comment)-->
+		<tr class="tr_thread_meta">
+			<td class="col1"><a href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a></td>
+			<td class="col2">{$lang->post_date}: {$comment->getRegdate('Y.d.m')}</td>
+		</tr>
+		<tr class="tr_thread_content">
+			<td class="col1" style="border-right:1px solid #E5E5E5">
+				<div class="user_info">
+					<h4 class="forum_blue"><a href="#popup_menu_area" class="forum_blue member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a></h4>
+					<div class="user_img">
+					<!--@if($comment->getProfileImage())-->
+						<img src="{$comment->getProfileImage()}" alt="profile" class="commentProfileImage" />
+					<!--@else-->
+					<img src="images/avatar.jpg" alt="USER" />
+					<!--@end-->
+					</div>
+					<!--<dl class="u_group"><dt>Group</dt><dd class="fwB">Administrator</dd></dl> -->
+					<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
+					<dl class="u_posts"><span>{$lang->ip}:</span><span>{$comment->getIpaddress()}</span></dl>
+					<!--@end-->
+					<dl class="u_regdate"><span>{$lang->registered}:</span><b>{$comment->getRegdate('m/d/Y')}</b></dl>
+				</div>
+			</td>
+			<td class="col2">
+				<div class="post_text">{html_entity_decode($comment->getContentText())}</div>
+				<div class="attachment" style="padding-bottom:10px">
+				<!--@if($comment->hasUploadedFiles())-->
+					{@ $_uploaded_files = $comment->getUploadedFiles() }
+					<ul class="filesList">
+						<!--@foreach($_uploaded_files as $key => $file)-->
+						<li>
+							<a href="{getUrl('')}{$file->download_url}" style="text-decoration:none">
+								<img src="images/common/bullet.png" border="0"/>&nbsp;&nbsp;{$file->source_filename}
+							</a>
+						</li>
+						<!--@end-->
+					</ul>
+				<!--@end-->
+				</div>
+			</td>
+		</tr>
+		<tr class="tr_thread_control">
+			<td colspan="2" >
+				<div class="btns">
+					<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
+					<a href="{getUrl('act','dispForumDeleteComment','comment_srl',$comment->comment_srl)}" class="button blue" ><span>{$lang->cmd_delete}</span></a>
+					<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl)}" class="button blue" ><span>{$lang->cmd_modify}</span></a>
+					<!--@end-->
+
+					<!--@if(Context::get('is_logged')) -->
+					<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="button blue"><span>{$lang->cmd_quote}</span></a>
+					<!--@else-->
+					<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="button blue"><span>{$lang->cmd_quote}</span></a>
+					<!--@end-->
+
+				</div>
+			</td>
+		</tr>
+		<!--@end-->
+	<!--@end-->
+<!-- End of comment block -->

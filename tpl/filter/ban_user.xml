@@ -1,0 +1,23 @@
+<filter name="ban_user" module="forum" act="procForumBanUser">
+  <form>
+    <node target="member_srl" required="true" />
+  </form>
+  <parameter>
+    <param name="mid" target="mid" />
+    <param name="page" target="page" />
+    <param name="document_srl" target="document_srl" />
+    <param name="member_srl" target="comment_srl" />
+    <param name="ipaddress" target="ipaddress" />
+    <param name="delete_comments_and_threads" target="delete_comments_and_threads" />
+    <param name="delete_user" target="delete_user" />
+    <param name="ban_ip" target="ban_ip" />
+    <param name="ban_id" target="ban_id" />
+  </parameter>
+  <response callback_func="completeBanUser">
+    <tag name="error" />
+    <tag name="message" />
+    <tag name="mid" />
+    <tag name="document_srl" />
+    <tag name="page" />
+  </response>
+</filter>

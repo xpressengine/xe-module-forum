@@ -1,0 +1,38 @@
+<!--%import("filter/delete_forum.xml")-->
+<!--%import("js/forum_admin.js")-->
+<!--#include("header.html")-->
+	<div class="xe-ui-panel">
+		<div class="xe-ui-panel-content cleared">
+			<form id="_form" action="./" method="get" onsubmit="return procFilter(this, delete_forum)">
+				<input type="hidden" name="page" value="{$page}" />
+				<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+
+			    <h2>{$lang->confirm_delete}</h2>
+			    <table cellspacing="0" cellpadding="0" class="xe-ui-table">
+			    	<tbody>
+					    <tr>
+					        <td><p>{$lang->module_name}</p></td>
+					        <td class="wide"><p>{$module_info->mid}</p></td>
+					    </tr>
+					    <tr>
+					        <td><p>{$lang->module}</p></td>
+					        <td><p>{$module_info->module}</p></td>
+					    </tr>
+					    <tr>
+					        <td><p>{$lang->document_count}</p></td>
+					        <td><p>{$module_info->document_count}</p></td>
+					    </tr>
+					</tbody>
+			    </table>
+			</form>
+		</div>
+		<div class="xe-ui-panel-controller">
+		    <hr />
+		    <p class="center">
+	    		<a href="#" onclick="jQuery('#_form').submit();" class="xe-ui-button-red">{$lang->cmd_delete}</a>
+				<a href="#" onclick="history.back(); return false;" class="xe-ui-button-gray"><span>{$lang->cmd_back}</span></a>
+			</p>
+		</div>
+	</div>
+</div>
+			

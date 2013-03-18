@@ -1,0 +1,82 @@
+<div id="extras">
+	
+	<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
+	<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
+		
+		<!--@if($vid)-->
+			<input type="hidden" name="vid" value="{$vid}" name="searchIn"/>
+		<!--@end-->
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="category" value="{$category}" />
+		
+		<h4 class="gF" style="margin: 10px 0 10px 10px;">{$lang->search_forums}:</h4>
+		<div class="specialBox">
+		<table border="0" cellspacing="0" class="forumCategoryList">
+			<tbody>
+				<tr class="separator">
+					<td class="small">
+						<label for="searchIn">{$lang->search_in}:</label>
+					</td>
+					<td class="large">
+						<select name="search_target" class="select">
+							<!--@foreach($search_option as $key => $val)-->
+								<option value="{$key}" <!--@if($search_target==$key)-->selected="selected"<!--@end-->>{$val}</option>
+							<!--@end-->
+						</select>
+					</td>
+				</tr>
+				<tr class="separator">
+					<td>
+						<label for="search_keyword">{$lang->keywords}:</label>
+					</td>
+					<td>
+						<input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" class="inputText" accesskey="S" title="{$lang->cmd_search}" />
+					</td>
+				</tr>
+				<!--@if($last_division)-->
+				<tr class="separator">
+					<td>
+					</td>
+					<td>
+						<a href="{getUrl('page',1,'document_srl','','division',$last_division,'last_division','')}" class="button"><span>{$lang->cmd_search_next}</span></a>
+					</td>
+				</tr>
+				<!--@end-->
+				<tr class="separator">
+					<td>
+						<label for="current_category_only">{$lang->search_current}:</label>
+					</td>
+					<td>
+						<input type="checkbox" <!--@if(Context::get('current_category_only'))-->checked='checked'<!--@end--> name="current_category_only" value="Y" id="current_category_only">
+					</td>
+				</tr>
+				<tr class="separator last">
+					<td>
+					</td>
+					<td>
+						<a href="#" class="forumButton blue find" onclick="xGetElementById('fo_search').submit();return false;" ><span class="outer"><span class="inner">{$lang->cmd_search}</span></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		
+	</form>
+	<!--@else-->
+	<div id="searchMessage" class="gF">
+		<p>{$lang->search_message1} <a href="{getUrl('act','dispMemberLoginForm')}"><span>{$lang->login}</a></span> {$lang->first}.</p>
+		<p>{$lang->search_message2} <a href="{getUrl('act','dispMemberSignUpForm')}"><span>{$lang->here}</span></a>.</p>
+	</div>
+	
+	<!--@end-->
+
+	<!--@if($module_info->display_login_info != 'N' || $module_info->display_setup_button != 'N')-->
+		<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
+			<h4 class="gF" style="margin: 10px 0 10px 10px;">Administrator panel:</h4>
+			<p class="forumInformation">
+				<a href="{getUrl('act','dispForumAdminForumInfo','entry','','search_target','','search_keyword','')}" class="forumButton blue commentManage"><span class="outer"><span class="inner">{$lang->cmd_setup}</span></span></a>
+				<a href="{getUrl('','act','dispForumAdminCategoryInfo','module_srl',$module_srl,'search_target','','search_keyword','')}" class="forumButton blue categoryManage"><span class="outer"><span class="inner">{$lang->cmd_manage_categories}</span></span></a>
+			</p>
+		<!--@end-->
+	<!--@end-->
+</div>

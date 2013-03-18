@@ -1,0 +1,213 @@
+<!--#include("./header.html")-->
+<!--%import("css/forum.css")-->
+
+	<div class="xe-ui-panel">
+		<div class="xe-ui-panel-content cleared">
+			<h2 class="xeAdmin triggerModuleInfo">{$lang->dashboard}</h2>
+			<p><b>{$lang->forum_id}</b> : {$module_info->mid}</p>
+			<p><B>{$lang->forum_title}</B> : {$module_info->browser_title}</p>
+			<!-- Dashboard Statistic -->
+			<div class="section dashboardStatistic">
+				<div class="statistic">
+					<h4><span>{$lang->lastweek}</span></h4>
+					<dl class="visit">
+						<dd class="text">{$lang->lastweek_threads}</dd>
+						<dd>
+							<object title="{$lang->lastweek_threads}" height="50" width="100%" align="middle" id="count_red" class="F1239845427590201480_undefined" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+								<param value="{getUrl()}modules/forum/tpl/swf/count.swf" name="movie"/>
+								<param value="high" name="quality"/>
+								<param value="#FFFFFF" name="bgColor"/>
+								<param value="always" name="allowScriptAccess"/>
+								<param value="transparent" name="wmode"/>
+								<param value="false" name="menu"/>
+								<param value="true" name="allowFullScreen"/>
+								<param value="colorType=red&amp;viewNum={$lastweek_total_count}" name="flashVars"/>
+								<!--[if !IE]> <-->
+								<object title="{$lastweek_total_count}" height="50" width="100%" align="middle" name="count_red" class="F1239845427590201480_undefined" data="{getUrl()}modules/forum/tpl/swf/count.swf" type="application/x-shockwave-flash">
+									<param value="colorType=red&amp;viewNum={$lastweek_total_count}" name="flashVars"/>
+									<param value="transparent" name="wmode"/>
+									{$total_count}
+								</object>
+								<!--> <![endif]-->
+							</object>
+						</dd>
+					</dl>
+					<dl class="reply">
+						<dd class="text">{$lang->lastweek_posts}</dd>
+						<dd>
+							<object title="{$lang->lastweek_posts}" height="50" width="100%" align="middle" id="count_blue" class="F1239845427590201480_undefined" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+								<param value="{getUrl()}modules/forum/tpl/swf/count.swf" name="movie"/>
+								<param value="high" name="quality"/>
+								<param value="#FFFFFF" name="bgColor"/>
+								<param value="always" name="allowScriptAccess"/>
+								<param value="transparent" name="wmode"/>
+								<param value="false" name="menu"/>
+								<param value="true" name="allowFullScreen"/>
+								<param value="colorType=blue&amp;viewNum={$lastweek_total_comments}" name="flashVars"/>
+								<!--[if !IE]> <-->
+								<object title="{$lastweek_total_comments}" height="50" width="100%" align="middle" name="count_blue" class="F1239845427590201480_undefined" data="{getUrl()}modules/forum/tpl/swf/count.swf" type="application/x-shockwave-flash">
+									<param value="colorType=blue&amp;viewNum={$lastweek_total_comments}" name="flashVars"/>
+									<param value="transparent" name="wmode"/>
+									{$total_comments}
+								</object>
+								<!--> <![endif]-->
+							</object>
+						</dd>
+					</dl>
+					<dl class="trackback">
+						<dd class="text">{$lang->lastweek_users}</dd>
+						<dd>
+							<object title="{$lang->lastweek_users}" height="50" width="100%" align="middle" id="count_gray" class="F1239845427590201480_undefined" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+								<param value="{getUrl()}modules/forum/tpl/swf/count.swf" name="movie"/>
+								<param value="high" name="quality"/>
+								<param value="#FFFFFF" name="bgColor"/>
+								<param value="always" name="allowScriptAccess"/>
+								<param value="transparent" name="wmode"/>
+								<param value="false" name="menu"/>
+								<param value="true" name="allowFullScreen"/>
+								<param value="colorType=gray&amp;viewNum={$lastweek_total_users}" name="flashVars"/>
+								<!--[if !IE]> <-->
+								<object title="{$lastweek_total_users}" height="50" width="100%" align="middle" name="count_gray" class="F1239845427590201480_undefined" data="{getUrl()}modules/forum/tpl/swf/count.swf" type="application/x-shockwave-flash">
+									<param value="colorType=gray&amp;viewNum={$lastweek_total_users}" name="flashVars"/>
+									<param value="transparent" name="wmode"/>
+									{$total_users}
+								</object>
+								<!--> <![endif]-->
+							</object>
+						</dd>
+					</dl>
+					<dl class="trackback">
+						<dd class="text">{$lang->lastweek_atachements}</dd>
+						<dd>
+							<object title="{$lang->lastweek_atachements}" height="50" width="100%" align="middle" id="count_gray" class="F1239845427590201480_undefined" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+								<param value="{getUrl()}modules/forum/tpl/swf/count.swf" name="movie"/>
+								<param value="high" name="quality"/>
+								<param value="#FFFFFF" name="bgColor"/>
+								<param value="always" name="allowScriptAccess"/>
+								<param value="transparent" name="wmode"/>
+								<param value="false" name="menu"/>
+								<param value="true" name="allowFullScreen"/>
+								<param value="colorType=gray&amp;viewNum={$lastweek_total_attachements}" name="flashVars"/>
+								<!--[if !IE]> <-->
+								<object title="{$lastweek_total_attachements}" height="50" width="100%" align="middle" name="count_gray" class="F1239845427590201480_undefined" data="{getUrl()}modules/forum/tpl/swf/count.swf" type="application/x-shockwave-flash">
+									<param value="colorType=blue&amp;viewNum={$lastweek_total_attachements}" name="flashVars"/>
+									<param value="transparent" name="wmode"/>
+									{$total_attachements}
+								</object>
+								<!--> <![endif]-->
+							</object>
+						</dd>
+					</dl>
+					<div class="summary">
+						<table cellpadding="0" cellspacing="0" class="xe-ui-table">
+							<tr>
+								<td><a href="{getUrl('','module','admin','act','dispDocumentAdminList')}">{$lang->number_of_threads}</a></td>
+								<td><strong>{number_format($total_count)}</strong> <span class="description"></span></td>
+							</tr>
+							<tr>
+								<td><a href="{getUrl('','module','admin','act','dispCommentAdminList','search_target','is_published','search_keyword', 'Y')}">{$lang->number_of_posts_published}</a></td>
+								<td><strong>{number_format($total_comments_published)}</strong> <span class="description"></span></td>
+							</tr>
+							<tr>
+								<td><a href="{getUrl('','module','admin','act','dispCommentAdminList','search_target','is_published','search_keyword', 'N')}">{$lang->number_of_posts_unpublished}</a></td>
+								<td><strong>{number_format($total_comments_unpublished)}</strong> <span class="description"></span></td>
+							</tr>
+							<tr>
+								<td><a href="{getUrl('','module','admin','act','dispMemberAdminList')}">{$lang->number_of_users}</a></td>
+								<td><strong>{number_format($total_users)}</strong> <span class="description"></span></td>
+							</tr>
+							<tr>
+								<td><a href="{getUrl('','module','admin','act','dispFileAdminList')}">{$lang->number_of_atachements}</a></td>
+								<td><strong>{number_format($total_attachements)}</strong> <span class="description"></span></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<span class="outline ml"></span>
+				<span class="outline mr"></span>
+				<span class="outline tc"></span>
+				<span class="outline bc"></span>
+				<span class="outline tl"></span>
+				<span class="outline tr"></span>
+
+				<span class="outline bl"></span>
+				<span class="outline br"></span>
+			</div>
+			
+		<table cellspacing="0" cellpadding="0" class="xe-ui-table">
+			<caption>
+				<p class="f-left"><b>{$lang->last_updated_threads}</b></p>
+			</caption>
+			<thead>
+				<tr>
+					<th>
+						{$lang->thread}
+					</th>
+					<th>
+						{$lang->nick_name}
+					</th>
+					<th>
+						{$lang->last_update}
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!--@foreach($newest_documents as $document)-->
+			<tr>
+				<td>
+					<a href="{getUrl('mid',$module_info->mid,'act','dispForumContent','document_srl',$document->document_srl,'category',$document->category_srl)}" target="_blank" >{$document->title}</a>
+				</td>
+				<td>
+					{$document->nick_name}
+				</td>
+				<td class="center">
+					{zdate($document->last_update,'Y-m-d H:i')}
+				</td>
+			</tr>
+			<!--@end-->
+			</tbody>
+		</table>
+
+		<table cellspacing="0" cellpadding="0" class="xe-ui-table">
+			<caption>
+				<p class="f-left"><b>{$lang->last_updated_comments}</b></p>
+			</caption>
+			<thead>
+				<tr>
+					<th>
+						{$lang->post}
+					</th>
+					<th>
+						{$lang->thread}
+					</th>
+					<th>
+						{$lang->nick_name}
+					</th>
+					<th>
+						{$lang->last_update}
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--@foreach($newest_comments as $comment)-->
+				<tr>
+					<td>
+						<a href="{getUrl('mid',$module_info->mid,'act','dispForumContent','document_srl',$comment->document_srl,'category',$comment->category_srl,'cpage',$comment->cpage).'#comment_'.$comment->comment_srl}" target="_blank" >{$comment->content}</a>
+					</td>
+					<td>
+						<a href="{getUrl('mid',$module_info->mid,'act','dispForumContent','document_srl',$comment->document_srl,'category',$comment->category_srl)}" target="_blank" >{$comment->document_content}</a>
+					</td>
+					<td>
+						{$comment->nick_name}
+					</td>
+					<td class="center">
+						{zdate($comment->last_update,'Y-m-d H:i')}
+					</td>
+				</tr>
+				<!--@end-->
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+

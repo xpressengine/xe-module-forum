@@ -1,0 +1,75 @@
+<!--#include("./header.html")-->
+<!--%import("filter/insert_member_info.xml")-->
+<!--%import("js/forum_admin.js")-->
+
+     <div class="xe-ui-panel">
+		<div class="xe-ui-panel-content cleared">
+			<form id="_form" action="./" method="post" onsubmit="return procFilter(this, insert_member_info)" enctype="multipart/form-data">
+				<input type="hidden" name="page" value="{$page}" />
+				<input type="hidden" name="mid" value="{$module_info->mid}" />
+				<input type="hidden" name="act" value="{Context::get('act')}" />
+				<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+				<input type="hidden" name="list_count" value="{$module_info->list_count}" />
+				<input type="hidden" name="search_list_count" value="{$module_info->search_list_count}" />
+				<input type="hidden" name="page_count" value="{$module_info->page_count}" />
+
+
+				<input type="hidden" name="title" value="{$module_info->title}" />
+				<input type="hidden" name="comment" value="{$module_info->comment}" />
+
+
+				<input type="hidden" name="admin_mail" value="{$module_info->admin_mail}" />
+				<input type="hidden" name="header_text" value="{$module_info->header_text}" />
+				<input type="hidden" name="footer_text" value="{$module_info->footer_text}" />	
+				
+			    <h2 class="xeAdmin triggerModuleMemberInfo"><a href="#">{$lang->module_member_info}</a></h2>
+			    <table cellspacing="0" cellpadding="0" class="xe-ui-form-table containerModuleMemberInfo">
+			    	<tbody>
+					    <tr>
+					        <td class="v-top nowrap"><p>{$lang->use_anonymous}</p></td>
+					        <td>
+					        	<p>
+						            <input type="checkbox" name="use_anonymous" value="Y" <!--@if($module_info->use_anonymous=='Y')-->checked="checked"<!--@end--> />
+						            <p class="desc">{$lang->about_use_anonymous}</p>
+						        </p>
+					        </td>
+					    </tr>
+					    <tr>
+					        <td class="v-top nowrap"><p>{$lang->consultation}</p></td>
+					        <td>
+					        	<p>
+						            <input type="checkbox" name="consultation" value="Y" <!--@if($module_info->consultation=='Y')-->checked="checked"<!--@end--> />
+						            <p class="desc">{nl2br($lang->about_consultation)}</p>
+					            </p>
+					        </td>
+					    </tr>
+					    <tr>
+					        <td class="v-top nowrap"><p>{$lang->allow_anonymous_search}</p></td>
+					        <td>
+					            <p>
+						            <input type="checkbox" name="allow_anonymous_search" value="Y" <!--@if($module_info->allow_anonymous_search=='Y')-->checked="checked"<!--@end--> />
+						            {$lang->about_allow_anonymous_search}
+						        </p>
+					        </td>
+					    </tr>
+					</tbody>
+			    </table>
+			    <script>
+					jQuery("h2.triggerModuleMemberInfo").click(function () {
+						jQuery("table.containerModuleMemberInfo").fadeToggle(100);
+						jQuery(this).closest('div.xe-ui-panel-content').next('div.xe-ui-panel-controller').fadeToggle(100);
+					});    
+				</script>
+			    
+			</form>
+		</div>
+	    <div class="xe-ui-panel-controller">
+	    	<hr />
+	    	<p class="center">
+	    		<a href="#" onclick="jQuery('#_form').submit();" class="xe-ui-button-green">{$lang->cmd_registration}</a>
+				<a href="#" onclick="history.back(); return false;" class="xe-ui-button-gray"><span>{$lang->cmd_back}</span></a>
+			</p>
+	    </div>
+	 </div>
+{$grant_content}
+</div>

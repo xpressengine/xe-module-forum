@@ -1,0 +1,177 @@
+@charset "utf-8"; 
+/* NHN (developers@xpressengine.com) */
+
+/* ----- WHITE COLORSET CSS ----- */
+#forumDescription {
+	color: #666;
+}
+
+.forumCategoryList a {
+	color: #004f8b;
+}
+.contentForum tr:hover>td {
+	background: #f6f6f6;
+}
+
+.simpleCategory tr:hover>td {
+	background: #f6f6f6;
+}
+
+.forumCategoryList .rootCateg .first {
+	background: #fff 0 0 repeat-x;
+	border-bottom: 5px solid #ddd;
+	height: 16px;
+	padding: 10px;
+}
+
+.forumCategoryList .rootCateg .middle {
+	background: #fff 0 0 repeat-x;
+	border-bottom: 5px solid #ddd;
+	height: 16px;
+	padding: 10px;
+}
+
+.forumCategoryList .rootCateg .last {
+	background: #fff 0 0 repeat-x;
+	border-bottom: 5px solid #ddd;
+	height: 16px;
+	padding: 10px;
+}
+
+.forumCategoryList .rootCateg {
+	text-transform: uppercase;
+	color: #000;
+	font-weight: bold;
+}
+
+.forumCategoryList .rootCateg a {
+	text-decoration: none;
+	color: #000;
+}
+
+.forumCategoryList .rootCateg a:hover {
+	text-decoration: underline;
+}
+
+/* ----- BUTTONS ----- */
+#forum a.forumButton {
+	text-decoration: none;
+}
+
+#forum a.forumButton span.outer {
+	text-transform: uppercase;
+	padding: 6px 2px 8px 4px;
+	font-weight: bold;
+	line-height: 24px;
+	font-size: 11px;
+}
+
+#forum a.forumButton span.inner {
+	padding: 10px;
+}
+
+#forum a.comment span.inner {
+	background: url('../images/common/comment_icon.png') 3px 12px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.commentEdit span.inner {
+	background: url('../images/common/comment_edit_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.commentDelete span.inner {
+	background: url('../images/common/comment_delete_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.commentAdd span.inner {
+	background: url('../images/common/comment_add_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.commentManage span.inner {
+	background: url('../images/common/settings_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.categoryManage span.inner {
+	background: url('../images/common/category_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.find span.inner {
+	background: url('../images/common/find_icon.png') 3px 9px no-repeat;
+	padding-left: 26px;
+}
+
+#forum a.forumButton.blue span.outer {
+	background: #dedede;
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(215,215,215)),
+		color-stop(1, rgb(235,235,235))
+	);
+	background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(215,215,215) 0%,
+		rgb(235,235,235) 100%
+	);
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: 1px solid #c1c1c1;
+	text-shadow: #fff 1px 1px 0;
+	color: #000;
+}
+
+.openClose {
+	display: block;
+	width: 7px;
+	height: 15px;
+	background: url('../images/white/arrow_map.png') 0 0 no-repeat;
+	cursor: pointer;
+	margin: 2px 0 0 0;
+}
+
+.openClose.on {
+	background: url('../images/white/arrow_map.png') -7px 0 no-repeat;
+}
+
+.notice {
+	background: #fff9d6;
+}
+
+#customHeader {
+	background: none;
+	border: 0;
+	padding: 0 0 5px 0;
+	margin-bottom: 25px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+
+.specialBox, .forumInformation {
+	border: 0;
+	background: none;
+	padding: 0;
+}
+
+#topic {
+	padding: 0;
+}
+
+.subcateg1 {
+	padding-left: 40px !important;
+}
+
+.subcateg2 {
+	padding-left: 80px !important;
+}
+
+.subcateg3 {
+	padding-left: 120px !important;
+}

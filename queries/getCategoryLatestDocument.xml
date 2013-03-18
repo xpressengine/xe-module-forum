@@ -1,0 +1,13 @@
+<query id="getCategoryLatestDocument" action="select">
+    <tables>
+        <table name="documents" />
+    </tables>
+    <columns>
+        <column name="document_srl" />
+        <column name="nick_name" alias="author" />
+    </columns>
+    <conditions>
+		<condition operation="in" column="category_srl" var="categories" filter="number" />        
+		<condition operation="equal" column="last_update" var="last_update" filter="number" pipe="and" />
+    </conditions>
+</query>

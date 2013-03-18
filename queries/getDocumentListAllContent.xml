@@ -1,0 +1,30 @@
+<query id="getDocumentListAllContent" action="select">
+    <tables>
+        <table name="documents" alias="documents" />
+        <table name="comments" alias="comments" />
+    </tables>
+    <columns>
+        <column name="documents.document_srl" />
+        <column name="documents.list_order" />
+    </columns>
+    <conditions>
+    	<condition operation="equal" column="documents.module_srl" var="module_srl" filter="number" />
+    	<condition operation="equal" column="comments.status" var="status" pipe="and" />
+    	<group pipe="and">
+    	<condition operation="equal" column="documents.document_srl" default="comments.document_srl" notnull="notnull" />
+    	 <condition operation="like" column="comments.content" var="s_comment" notnull="notnull" pipe="and" />
+    	<condition operation="like" column="documents.title" var="s_comment" notnull="notnull" pipe="or" />
+    	<condition operation="like" column="documents.content" var="s_comment" notnull="notnull" pipe="or"/>
+    	</group>
+        </conditions>
+    <navigation>
+        <index var="sort_index" default="comments.status" order="desc" />
+        <index var="sort_index" default="documents.list_order" order="asc" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+    <groups>
+        <group column="documents.document_srl" />
+    </groups>
+</query>
