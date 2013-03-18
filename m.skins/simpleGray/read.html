@@ -3,8 +3,8 @@
 {@ Context::addJsFile("./common/js/common.js", true, '', -100000) }
 {@ Context::addJsFile("./common/js/xml_handler.js", true, '', -100000) }
 {@ Context::addJsFile("./common/js/xml_js_filter.js", true, '', -100000) }
-<!--%import("js/mforum.js")-->
-<!--%import("css/mforum.css")-->
+<load target="js/mforum.js" />
+<load target="css/mforum.css" />
 	<div class="rd">
 		<div class="hx">
 			<h2><a href="{getUrl('document_srl','','category','','page','')}">{$module_info->browser_title}</a> 

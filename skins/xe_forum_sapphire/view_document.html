@@ -103,7 +103,7 @@
 
 
 <!--@if($oDocument->allowComment())-->
-		<!--#include("./comment.html")-->
+		<include target="./comment.html" />
 
 
 
@@ -142,7 +142,7 @@
 
 	<div class="ctrlbar_right">
 		<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
-			<div class="ctrlbar_right"><!--#include("search_form.html")--></div>
+			<div class="ctrlbar_right"><include target="search_form.html" /></div>
 		<!--@end-->
 	</div>
 </div>

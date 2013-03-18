@@ -1,56 +1,19 @@
-<!--%import("js/forum_admin.js")-->
-
-<h1 class="cleared">
-	
-    <!--@if($module_info->mid)-->
-		{$module_info->mid}
-		<!--@if($module_info->is_default=='Y')-->
-			({$lang->is_default})
-		<!--@end-->
-	<!--@else-->
+<load target="js/forum_admin.js" />
+<div class="x_page-header">
+	<h1>
 		{$lang->forum} {$lang->cmd_management}
-	<!--@end-->
-	
-	<span class="xe-ui-nav">
-        <!--@if($module_srl)-->
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminContent')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminContent','module_srl','','display',1)}">{$lang->cmd_back}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminDashboard')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminDashboard','module_srl',$module_srl)}">{$lang->dashboard}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminForumInfo'||$act=='dispForumAdminInsertForum')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminForumInfo','module_srl',$module_srl)}"><!--@if($module_srl)-->{$lang->cmd_view_info}<!--@else-->{$lang->cmd_create_forum}<!--@end--></a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminForumAdditionSetup')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminForumAdditionSetup','module_srl',$module_srl)}">{$lang->cmd_addition_setup}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminCategoryInfo')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminCategoryInfo','module_srl',$module_srl)}">{$lang->manage_category}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminExtraVars')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminExtraVars','module_srl',$module_srl)}">{$lang->extra_vars}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminListSetup')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminListSetup','module_srl',$module_srl)}">{$lang->cmd_list_setting}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminGrantInfo')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminGrantInfo','module_srl',$module_srl)}">{$lang->cmd_manage_grant}</a>
-	        <a class="xe-ui-button-gray <!--@if($act=='dispForumAdminSkinInfo')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminSkinInfo','module_srl',$module_srl)}">{$lang->design}</a>
-	    <!--@else-->
-	    	<!--@if($act=='dispForumAdminInsertForum')--><a class="xe-ui-button-gray <!--@if($act=='dispForumAdminContent')-->disabled<!--@end-->" href="{getUrl('act','dispForumAdminContent','module_srl','','display',1)}">{$lang->cmd_back}</a><!--@end-->
-	    	<a href="{getUrl('act','dispForumAdminInsertForum','module_srl','')}" class="xe-ui-button-green <!--@if($act=='dispForumAdminInsertForum')-->disabled<!--@end-->"><span>{$lang->cmd_make}</span></a>
-		<!--@end-->
-    </span>
-	
-</h1>
-<!--
-<div class="infoText">{nl2br($lang->about_forum)}</div>
-<div class="fr">
-        
+		<span class="path" cond="$module_info->mid">&gt; <a href="{getUrl('','mid',$module_info->mid)}" target="_blank"|cond="$module=='admin'">{$module_info->mid}({$module_info->browser_title})<!--@if($module_info->is_default=='Y')-->({$lang->is_default})<!--@end--></a></span>
+	</h1>
 </div>
-<!--@if($module_info)-->
-<div class="header4">
-    <!--@if($module_info->mid)-->
-    <h4 class="xeAdmin">{$module_info->mid} 
-    	<!--@if($module_info->is_default=='Y')-->
-    		<span class="bracket">({$lang->is_default})</span>
-    	<!--@end--> <span class="vr">|</span> 
-    	
-    </h4>
-    <!--@else-->
-    <h4 class="xeAdmin">{$lang->xe_forum}</h4>
-    <!--@end-->
-    
-</div>
-<!--@end-->
--->
-<div class="xe-ui-title-separator">
-    <hr />
-</div>
-<div id="content" class="cleared">
+<ul class="x_nav x_nav-tabs" cond="$module_srl && $act != 'dispForumAdminDeleteForum'">
+	<li cond="$module == 'admin'" class="x_active"|cond="$act=='dispForumAdminContent'"><a href="{getUrl('act','dispForumAdminContent','module_srl','','display',1)}">{$lang->cmd_list}</a></li>
+	<li cond="$module != 'admin'" class="x_active"|cond="$act=='dispForumAdminContent'"><a href="{getUrl('act','dispForumAdminContent','module_srl','','display',1)}">{$lang->cmd_back}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminDashboard'"><a href="{getUrl('act','dispForumAdminDashboard','module_srl',$module_srl)}">{$lang->dashboard}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminForumInfo'"><a href="{getUrl('act','dispForumAdminForumInfo','module_srl',$module_srl)}">{$lang->cmd_forum_info}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminForumAdditionSetup'"><a href="{getUrl('act','dispForumAdminForumAdditionSetup','module_srl',$module_srl)}">{$lang->cmd_addition_setup}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminCategoryInfo'"><a href="{getUrl('act','dispForumAdminCategoryInfo','module_srl',$module_srl)}">{$lang->manage_category}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminExtraVars'"><a href="{getUrl('act','dispForumAdminExtraVars','module_srl',$module_srl)}">{$lang->extra_vars}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminListSetup'"><a href="{getUrl('act','dispForumAdminListSetup','module_srl',$module_srl)}">{$lang->cmd_list_setting}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminGrantInfo'"><a href="{getUrl('act','dispForumAdminGrantInfo','module_srl',$module_srl)}">{$lang->cmd_manage_grant}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminSkinInfo'"><a href="{getUrl('act','dispForumAdminSkinInfo','module_srl',$module_srl)}">{$lang->design}</a></li>
+</ul>

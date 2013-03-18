@@ -6,7 +6,7 @@ $comment_count = total number of posts (including stickys and each threas as 1 p
 count($notice_list) = number of stickys
  -->
 	<!--@if(!$oDocument->isExists() && !Context::get('search_keyword'))-->
-	<!--#include("category_table_children.html")-->
+	<include target="category_table_children.html" />
 	<!--@end-->
 <form action="./" method="get" class="forumListForm">
 
@@ -163,7 +163,7 @@ count($notice_list) = number of stickys
 				</div>
 			</div>
 	<!--@end-->
-	<div class="ctrlbar_right"><!--#include("search_form.html")--></div>
+	<div class="ctrlbar_right"><include target="search_form.html" /></div>
 
 </div> <!-- //table_ctrlbar -->
 

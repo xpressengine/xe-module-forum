@@ -29,7 +29,7 @@ count($notice_list) = number of stickys
 		<div class="cleared"></div>
 	</div>
 	<!--@if(!$oDocument->isExists() && !Context::get('search_keyword'))-->
-	<!--#include("category_table_children.html")-->
+	<include target="category_table_children.html" />
 	<!--@end-->
 	<!--@if($category_list[$category]->depth >=0 || Context::get('search_keyword') || !$category_list[$category]->child_count)-->
 	<table cellspacing="0" border="0" class="forumCategoryList">

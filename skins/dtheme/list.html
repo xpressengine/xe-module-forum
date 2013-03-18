@@ -1,16 +1,16 @@
-<!--%import("js/script.js")-->
+<load target="js/script.js" />
 
 <div id="forum">
-<!--#include("_header.html")-->
+<include target="_header.html" />
 
 <!--@if($oDocument->isExists() )-->
 <div class="viewDocument">
-    <!--#include("./view_document.html")-->
+    <include target="./view_document.html" />
 </div>
 <!--@end-->
 
 <!--@if(!($oDocument->isExists())  )-->
-	<!--#include("./_style.list.html")-->
+	<include target="./_style.list.html" />
 	<!--@if($page_navigation->page_count > 1)-->
 		<!--@if($category_list[$category]->depth || Context::get('search_keyword') )-->
 			<div class="forumNavigation">
@@ -30,8 +30,8 @@
 	<!--@end-->
 <!--@end-->
 
-<!--#include("search_form.html")-->
+<include target="search_form.html" />
 
-<!--#include("_footer.html")-->
+<include target="_footer.html" />
 
 <div>
