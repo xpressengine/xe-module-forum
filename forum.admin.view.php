@@ -374,7 +374,7 @@
          * @brief forum module alert message
          **/
         function alertMessage($message) {
-            $script =  sprintf('<script type="text/javascript"> xAddEventListener(window,"load", function() { alert("%s"); } );</script>', Context::getLang($message));
+            $script =  sprintf('<script > xAddEventListener(window,"load", function() { alert("%s"); } );</script>', Context::getLang($message));
             Context::addHtmlHeader( $script );
         }
     }
