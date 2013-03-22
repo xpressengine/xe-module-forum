@@ -92,6 +92,7 @@
             if(!$oModuleModel->getTrigger('forum.dispForumAdditionSetup', 'editor', 'view', 'triggerDispEditorAdditionSetup', 'before')) return true;
 	     if(!$oModuleModel->getTrigger('comment.procCommentAdminChangeStatus', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after')) return true;
             if(!$oModuleModel->getTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after')) return true;
+            if(!$oModuleModel->getTrigger('menu.getModuleListInSitemap', 'forum', 'model', 'triggerModuleListInSitemap', 'after')) return true;
             
             return false;
         }
@@ -126,6 +127,8 @@
 				$oModuleController->insertTrigger('comment.procCommentAdminChangeStatus', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
 			if(!$oModuleModel->getTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerDispEditorAdditionSetup', 'after'))
 				$oModuleController->insertTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
+            if(!$oModuleModel->getTrigger('menu.getModuleListInSitemap', 'forum', 'model', 'triggerModuleListInSitemap', 'after'))
+                $oModuleController->insertTrigger('menu.getModuleListInSitemap', 'forum', 'model', 'triggerModuleListInSitemap', 'after');
             }
             return new Object(0, 'success_updated');
         }
