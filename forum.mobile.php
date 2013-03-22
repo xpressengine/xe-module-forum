@@ -63,6 +63,19 @@ class forumMobile extends forumView {
             $this->setTemplatePath($oMessageObject->getTemplatePath());
             $this->setTemplateFile($oMessageObject->getTemplateFile());
         }
+
+         /**
+         * Retrieves all forum categories and displays them
+         */
+        function dispForumCategoryListIndex() {
+        	if(!$this->grant->access ) return $this->dispForumMessage('msg_not_permitted');
+
+            $categorylist = $this->dispForumCategoryList();
+			Context::set('module_srl', $this->module_info->module_srl);
+            $this->setTemplateFile('list');
+
+            return $categorylist;
+        }
 }
 
 
