@@ -1,4 +1,17 @@
 <load target="css/forum.css" />
+<!--@if($module_info->colorset == "")-->
+	<load target="css/black.css" />
+<!--@else if($module_info->colorset == "black")-->
+	<load target="css/black.css" />
+<!--@else if($module_info->colorset == "white")-->
+	<load target="css/white.css" />
+<!--@else if($module_info->colorset == "red")-->
+	<load target="css/red.css" />
+<!--@else if($module_info->colorset == "green")-->
+	<load target="css/green.css" />
+<!--@else if($module_info->colorset == "brown")-->
+	<load target="css/brown.css" />
+<!--@end-->
 <div id="forum">
 <h2 class="gF center">{$lang->confirm_delete_doc} "{$oDocument->getTitle()}" {$lang->and_posts}</h2>
 

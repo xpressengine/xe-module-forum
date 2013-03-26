@@ -5,23 +5,15 @@
 
 <!--@if($module_info->colorset == "")-->
 	<load target="css/black.css" />
-<!--@end-->
-<!--@if($module_info->colorset == "black")-->
+<!--@else if($module_info->colorset == "black")-->
 	<load target="css/black.css" />
-<!--@end-->
-<!--@if($module_info->colorset == "white")-->
+<!--@else if($module_info->colorset == "white")-->
 	<load target="css/white.css" />
-<!--@end-->
-<!--@if($module_info->colorset == "red")-->
+<!--@else if($module_info->colorset == "red")-->
 	<load target="css/red.css" />
-<!--@end-->
-<!--@if($module_info->colorset == "green")-->
+<!--@else if($module_info->colorset == "green")-->
 	<load target="css/green.css" />
-<!--@end-->
-<!--@if($module_info->colorset == "white")-->
-	<load target="css/white.css" />
-<!--@end-->
-<!--@if($module_info->colorset == "brown")-->
+<!--@else if($module_info->colorset == "brown")-->
 	<load target="css/brown.css" />
 <!--@end-->
 
