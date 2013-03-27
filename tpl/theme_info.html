@@ -1,0 +1,77 @@
+<include target="./header.html" />
+<load target="filter/insert_theme_info.xml" />
+<load target="js/forum_admin.js" />
+<section class="section">
+	<h1>{$lang->module_theme_info}</h1>
+	<form id="_form" action="./" method="post" onsubmit="return procFilter(this, insert_theme_info)" enctype="multipart/form-data" class="x_form-horizontal">
+		<input type="hidden" name="page" value="{$page}" />
+		<input type="hidden" name="mid" value="{$module_info->mid}" />
+		<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+		<input type="hidden" name="act" value="{Context::get('act')}" />
+		<input type="hidden" name="use_anonymous" value="{$module_info->use_anonymous}" />
+		<input type="hidden" name="consultation" value="{$module_info->consultation}" />
+		<input type="hidden" name="allow_anonymous_search" value="{$module_info->allow_anonymous_search}" />
+		<input type="hidden" name="list_count" value="{$module_info->list_count}" />
+		<input type="hidden" name="search_list_count" value="{$module_info->search_list_count}" />
+		<input type="hidden" name="page_count" value="{$module_info->page_count}" />
+		<input type="hidden" name="title" value="{$module_info->title}" />
+		<input type="hidden" name="comment" value="{$module_info->comment}" />
+		<input type="hidden" name="admin_mail" value="{$module_info->admin_mail}" />
+		<input type="hidden" name="header_text" value="{$module_info->header_text}" />
+		<input type="hidden" name="footer_text" value="{$module_info->footer_text}" />
+		<div class="x_control-group">
+			<label for="layout_srl" class="x_control-label">{$lang->site_layout}</label>
+			<div class="x_controls">
+				<select name="layout_srl" id="layout_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$layout_list => $key,$val" value="{$val->layout_srl}" selected="selected"|cond="$module_info->layout_srl==$val->layout_srl">{$val->title}({$val->layout})</option>
+				</select>
+				<a href="#about_layout" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p class="x_help-block" id="about_layout" hidden>{$lang->about_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="skin" class="x_control-label">{$lang->forum_theme}</label>
+			<div class="x_controls">
+				<select name="skin" id="skin">
+					<option loop="$skin_list => $key,$val" value="{$key}" selected="selected"|cond="$module_info->skin==$key ||(!$module_info->skin && $key=='xe_forum')">{$val->title}</option>
+				</select>
+				<a href="#about_skin" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p class="x_help-block" id="about_skin" hidden>{$lang->about_skin}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="use_mobile" class="x_control-label">{$lang->mobile_view}</label>
+			<div class="x_controls">
+				<label for="use_mobile" class="x_inline">
+					<input type="checkbox" name="use_mobile" id="use_mobile" value="Y" checked="checked"|cond="$module_info->use_mobile == 'Y'" />
+					{$lang->about_mobile_view}
+				</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="mlayout_srl" class="x_control-label">{$lang->mobile_layout}</label>
+			<div class="x_controls">
+				<select name="mlayout_srl" id="mlayout_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$mlayout_list => $key,$val" value="{$val->layout_srl}" selected="selected"|cond="$module_info->mlayout_srl==$val->layout_srl">{$val->title} ({$val->layout})</option>
+				</select>
+				<a href="#about_mobile_layout" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p class="x_help-block" id="about_mobile_layout" hidden>{$lang->about_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="mskin" class="x_control-label">{$lang->mobile_skin}</label>
+			<div class="x_controls">
+				<select name="mskin" id="mskin">
+					<option loop="$mskin_list => $key,$val" value="{$key}" selected="selected"|cond="$module_info->mskin==$key ||(!$module_info->mskin && $key=='default')">{$val->title}</option>
+				</select>
+				<a href="#about_mobile_skin" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p class="x_help-block" id="about_mobile_skin" hidden>{$lang->about_skin}</p>
+			</div>
+		</div>
+		<div class="btnArea">
+			<input type="submit" value="{$lang->cmd_registration}" class="x_btn x_btn-primary" />
+		</div>
+	</form>
+</section>
