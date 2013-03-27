@@ -76,7 +76,7 @@
 				<!--@end-->			
 			</td>
 			<td class="top">
-				{html_entity_decode($oDocument->getContentText())}
+				{$oDocument->getContent(FALSE)}
 			</td>
 		</tr>
 		<!--@if($oDocument->hasUploadedFiles())-->
