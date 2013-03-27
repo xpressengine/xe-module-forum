@@ -143,8 +143,16 @@ count($notice_list) = number of stickys
 								{$document->getRegdate('d-m-Y')}
 							</td>
 						<!--@elseif($val->type == 'last_update')-->
-							<td class="center numbers gF" width="{(60/$columnCount)}%">
-								{zdate($document->get('last_update'),'d-m-Y')} 
+							<td class="center numbers gF" width="{(60/$columnCount)}%" style="font-size: 14px;">
+								<!--@if($document->latest_post)-->
+									<p><span style="font-weight: bold;"></span>{zdate($document->get('last_update'),'Y-m-d')}</p>
+									<p><span>{$lang->by} </span>{$document->get('last_updater')}</p>
+									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
+								<!--@else-->
+									<p><span style="font-weight: bold;"></span>{$document->getRegdate('d-m-Y')}</p>
+									<p><span>{$lang->by} </span>{$document->get('nick_name')}</p>
+									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}">{$lang->latest_post}</a>
+								<!--@end-->
 							</td>
 						<!--@elseif($val->type == 'comment_count')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
