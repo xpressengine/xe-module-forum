@@ -15,5 +15,7 @@
 	<li class="x_active"|cond="$act=='dispForumAdminExtraVars'"><a href="{getUrl('act','dispForumAdminExtraVars','module_srl',$module_srl)}">{$lang->extra_vars}</a></li>
 	<li class="x_active"|cond="$act=='dispForumAdminListSetup'"><a href="{getUrl('act','dispForumAdminListSetup','module_srl',$module_srl)}">{$lang->cmd_list_setting}</a></li>
 	<li class="x_active"|cond="$act=='dispForumAdminGrantInfo'"><a href="{getUrl('act','dispForumAdminGrantInfo','module_srl',$module_srl)}">{$lang->cmd_manage_grant}</a></li>
-	<li class="x_active"|cond="$act=='dispForumAdminSkinInfo'"><a href="{getUrl('act','dispForumAdminSkinInfo','module_srl',$module_srl)}">{$lang->design}</a></li>
+	<li class="x_active"|cond="$act=='dispForumAdminThemeInfo'"><a href="{getUrl('act','dispForumAdminThemeInfo','module_srl',$module_srl)}">{$lang->design}</a></li>
+	<li cond="$module_srl" class="x_active"|cond="$act=='dispForumAdminSkinInfo'"><a href="{getUrl('act','dispForumAdminSkinInfo', 'selected_var_idx', '', 'type', '')}">{$lang->cmd_manage_skin}</a></li>
+	<li cond="$module_srl" class="x_active"|cond="$act=='dispForumAdminMobileSkinInfo'"><a href="{getUrl('act','dispForumAdminMobileSkinInfo', 'selected_var_idx', '', 'type', '')}">{$lang->cmd_manage_mobile_skin}</a></li>
 </ul>

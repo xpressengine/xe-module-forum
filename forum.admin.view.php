@@ -345,12 +345,7 @@
         /**
          * @brief display forum admin skin info
          **/
-        function dispForumAdminSkinInfo() {
-            // getting module skin info html
-            $oModuleAdminModel = &getAdminModel('module');
-            $skin_content = $oModuleAdminModel->getModuleSkinHTML($this->module_info->module_srl);
-            Context::set('skin_content', $skin_content);
-
+        function dispForumAdminThemeInfo() {
             //setting all the variables
             $oModuleModel = &getModel('module');
             $skin_list = $oModuleModel->getSkins($this->module_path);
@@ -366,9 +361,33 @@
 			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
 			Context::set('mlayout_list', $mobile_layout_list);
             // setting up the template
+            $this->setTemplateFile('theme_info');
+        }
+
+        /**
+         * @brief display forum admin skin info
+         **/
+        function dispForumAdminSkinInfo() {
+            // getting module skin info html
+            $oModuleAdminModel = &getAdminModel('module');
+            $skin_content = $oModuleAdminModel->getModuleSkinHTML($this->module_info->module_srl);
+            Context::set('skin_content', $skin_content);
+
+            // setting up the template
             $this->setTemplateFile('skin_info');
         }
 
+        /**
+         * @brief display forum admin skin info
+         **/
+        function dispForumAdminMobileSkinInfo() {
+            // getting module skin info html
+            $oModuleAdminModel = &getAdminModel('module');
+            $skin_content = $oModuleAdminModel->getModuleMobileSkinHTML($this->module_info->module_srl);
+            Context::set('skin_content', $skin_content);
+
+            $this->setTemplateFile('skin_info');
+        }
 
         /**
          * @brief forum module alert message
