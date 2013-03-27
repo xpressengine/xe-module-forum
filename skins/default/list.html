@@ -12,7 +12,7 @@
 <!--@if(!($oDocument->isExists())  )-->
 	<include target="./_style.list.html" />
 	<!--@if($page_navigation->page_count > 1)-->
-		<!--@if($category_list[$category]->depth || Context::get('search_keyword') )-->
+		<!--@if($category || Context::get('search_keyword') )-->
 			<div class="forumNavigation">
 				<div class="pagination a1">
 					<a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}" class="prevEnd"><img src="images/common/arrowPrevEndA1.gif" alt="" title=""/>{$lang->first_page}</a> 
