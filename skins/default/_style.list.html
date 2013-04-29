@@ -146,11 +146,11 @@ count($notice_list) = number of stickys
 							<td class="center numbers gF" width="{(60/$columnCount)}%" style="font-size: 14px;">
 								<!--@if($document->latest_post)-->
 									<p><span style="font-weight: bold;"></span>{zdate($document->get('last_update'),'Y-m-d')}</p>
-									<p><span>{$lang->by} </span>{$document->get('last_updater')}</p>
+									<p><span>{$lang->by} </span>{$document->getLastUpdater()}</p>
 									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
 								<!--@else-->
 									<p><span style="font-weight: bold;"></span>{$document->getRegdate('d-m-Y')}</p>
-									<p><span>{$lang->by} </span>{$document->get('nick_name')}</p>
+									<p><span>{$lang->by} </span>{$document->getNickName()}</p>
 									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}">{$lang->latest_post}</a>
 								<!--@end-->
 							</td>
@@ -214,11 +214,11 @@ count($notice_list) = number of stickys
 							<td class="center numbers gF lightGray" style="width: 20%; font-size: 14px;">
 								<!--@if($document->latest_post)-->
 									<p><span style="font-weight: bold;"></span>{zdate($document->get('last_update'),'Y-m-d')}</p>
-									<p><span>{$lang->by} </span>{$document->get('last_updater')}</p>
+									<p><span>{$lang->by} </span>{$document->getLastUpdater()}</p>
 									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}#comment_{$document->latest_post}">{$lang->latest_post}</a>
 								<!--@else-->
 									<p><span style="font-weight: bold;"></span>{$document->getRegdate('d-m-Y')}</p>
-									<p><span>{$lang->by} </span>{$document->get('nick_name')}</p>
+									<p><span>{$lang->by} </span>{$document->getNickName()}</p>
 									<a href="{getUrl('mid','','document_srl', $document->document_srl,'cpage','')}">{$lang->latest_post}</a>
 								<!--@end-->
 							</td>

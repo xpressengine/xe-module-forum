@@ -169,6 +169,8 @@
         	 //setting the documents and comments list for the dashboard template
         	 Context::set('newest_documents',$newest_docs);
         	 Context::set('newest_comments',$newest_comments);
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('newest_documents..', 'newest_comments..');
         	 $this->setTemplateFile('dashboard');
 
         }
