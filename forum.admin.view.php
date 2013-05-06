@@ -54,6 +54,7 @@
 
 			$oSecurity = new Security();
 			$oSecurity->encodeHTML('module_info.');
+			$oSecurity->encodeHTML('module_category..');
         }
 
         /**
