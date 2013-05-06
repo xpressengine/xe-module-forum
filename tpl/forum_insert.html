@@ -34,13 +34,13 @@
 		<div class="x_control-group">
 			<label for="lang_browser_title" class="x_control-label">{$lang->forum_title}</label>
 			<div class="x_controls">
-				<input type="text" name="browser_title" id="browser_title" class="lang_code" value="{$module_info->browser_title}" />
+				<input type="text" name="browser_title" id="browser_title" class="lang_code" value="<!--@if(strpos($module_info->browser_title, '$user_lang->') === false)-->{$module_info->browser_title}<!--@else-->{htmlspecialchars($module_info->browser_title)}<!--@end-->" />
 			</div>
 		</div>
 		<div class="x_control-group">
 			<label for="lang_description" class="x_control-label">{$lang->description}</label>
 			<div class="x_controls">
-				<textarea type="text" name="description" id="description" class="lang_code" value="{$module_info->description}" rows="5" cols="40" />{htmlspecialchars($module_info->description)}</textarea>
+				<textarea type="text" name="description" id="description" class="lang_code" value="{$module_info->description}" rows="5" cols="40" />{$module_info->description}</textarea>
 				<a href="#about_description" class="x_icon-question-sign" data-toggle style="vertical-align:top;margin-top:5px">{$lang->help}</a>
 				<p class="x_help-block" id="about_description" hidden>{$lang->about_description}</p>
 			</div>
@@ -56,7 +56,7 @@
 		<div class="x_control-group">
 			<label for="lang_header_text" class="x_control-label">{$lang->header_text}</label>
 			<div class="x_controls">
-				<textarea rows="4" cols="40" name="header_text" id="header_text" class="lang_code">{htmlspecialchars($module_info->header_text)}</textarea>
+				<textarea rows="4" cols="40" name="header_text" id="header_text" class="lang_code">{$module_info->header_text}</textarea>
 				<a href="#about_header_text" class="x_icon-question-sign" data-toggle style="vertical-align:top;margin-top:5px">{$lang->help}</a>
 				<p class="x_help-block" id="about_header_text" hidden>{$lang->about_header_text}</p>
 			</div>
@@ -64,7 +64,7 @@
 		<div class="x_control-group">
 			<label for="lang_footer_text" class="x_control-label">{$lang->footer_text}</label>
 			<div class="x_controls">
-				<textarea rows="4" cols="40" name="footer_text" id="footer_text" class="lang_code">{htmlspecialchars($module_info->footer_text)}</textarea>
+				<textarea rows="4" cols="40" name="footer_text" id="footer_text" class="lang_code">{$module_info->footer_text}</textarea>
 				<a href="#about_footer_text" class="x_icon-question-sign" data-toggle style="vertical-align:top;margin-top:5px">{$lang->help}</a>
 				<p class="x_help-block" id="about_footer_text" hidden>{$lang->about_footer_text}</p>
 			</div>

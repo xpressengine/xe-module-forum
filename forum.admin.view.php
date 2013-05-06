@@ -51,6 +51,9 @@
             $order_target['list_order'] = Context::getLang('document_srl');
             $order_target['update_order'] = Context::getLang('last_update');
             Context::set('order_target', $order_target);
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('module_info.');
         }
 
         /**
@@ -74,6 +77,9 @@
 	                Context::set('module_srl',$module_srl);
 	                Context::set('act','dispForumAdminDashboard');
 	            	$this->dispForumAdminDashboard();
+
+					$oSecurity = new Security();
+					$oSecurity->encodeHTML('module_info.');
 	            }
         }
         /**
@@ -303,6 +309,10 @@
             Context::set('extra_vars', $default_list);
             $list_config=$oforumModel->getListConfig($this->module_info->module_srl);
             Context::set('list_config', $list_config);
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('extra_vars..');
+
 			// setting up the template
             $this->setTemplateFile('list_setting');
         }
@@ -362,6 +372,11 @@
 
 			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
 			Context::set('mlayout_list', $mobile_layout_list);
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('skin_list..', 'mskin_list..');
+			$oSecurity->encodeHTML('layout_list..', 'mlayout_list..');
+
             // setting up the template
             $this->setTemplateFile('theme_info');
         }

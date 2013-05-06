@@ -107,7 +107,7 @@
 			</td>
 			<td>
 				<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
-				<span><b>{$val->name} :</b>{$val->getValueHTML()}</span></br>
+				<span><b>{htmlspecialchars($val->name)} :</b>{$val->getValueHTML()}</span></br>
 				<!--@end-->
 			</td>
 		</tr>

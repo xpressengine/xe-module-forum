@@ -35,7 +35,7 @@
 <div class="forumHeader">
     <!--@if(!$category && !$oDocument->variables['title'])-->
 		<!--@if($module_info->browser_title)-->
-			<h1 id="forumTitle" class="gF">{$module_info->browser_title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></h1>
+			<h1 id="forumTitle" class="gF">{htmlspecialchars($module_info->browser_title)}<!--@if($module_info->sub_title)--> : <em>{htmlspecialchars($module_info->sub_title)}</em><!--@end--></h1>
 			{@Context::setBrowserTitle($module_info->browser_title)}
 		<!--@end-->
 	<!--@else-->
@@ -53,22 +53,22 @@
 		<!--@end-->
 	<!--@end-->
 		<!--@if($module_info->description && !$oDocument->variables['title'] && !$category)-->
-		<div id="forumDescription" class="gF">{nl2br($module_info->description)}</div>
+		<div id="forumDescription" class="gF">{nl2br(htmlspecialchars($module_info->description))}</div>
 		<!--@end-->
 		<p id="forumBreadcrumbs">
 			<!--@if($act=="dispForumContent" || $act=="dispForumWrite")-->
 				
 				<!--@if($module_info->browser_title)-->
-					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{$module_info->browser_title}</a>
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{htmlspecialchars($module_info->browser_title)}</a>
 				<!--@else-->
 					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{$lang->main}</a>
 				<!--@end-->
 			<!--@else-->
 				<!--@if($module_info->title)-->
-					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{$module_info->title}</a>
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{htmlspecialchars($module_info->title)}</a>
 				<!--@else-->
 					<!--@if($module_info->browser_title)-->
-					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{$module_info->browser_title}</a>
+					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{htmlspecialchars($module_info->browser_title)}</a>
 					<!--@end-->
 				<!--@end-->
 			<!--@end-->

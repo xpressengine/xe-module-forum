@@ -63,7 +63,7 @@
 		<!--@foreach($extra_keys as $key => $val)-->
 	    <tr class="separator">
 	    	<td class="gF">
-				<label for="notify_message">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></label>
+				<label for="notify_message">{htmlspecialchars($val->name)} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></label>
 			</td>
 			<td colspan="2">
 				{$val->getFormHTML()}

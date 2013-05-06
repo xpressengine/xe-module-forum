@@ -108,6 +108,7 @@
 	        	$categorylist = $this->dispForumCategoryListIndex();
 	            }
             Context::set('category_list', $categorylist);
+
             /**
              * displays forum category children list only for the categories that have children
              **/
@@ -160,6 +161,10 @@
             if($category || $search_keyword || $document_srl) {
             	$this->setTemplateFile('list');
             }
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('category_list..');
+			$oSecurity->encodeHTML('category_children..');
         }
 
         /**
