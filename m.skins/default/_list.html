@@ -1,5 +1,5 @@
 <div class="hx h2">
-	<h2><a href="{getUrl('','vid',$vid,'mid',$mid)}">{$module_info->browser_title}</a> <em>[{number_format($total_count)}]</em></h2>
+	<h2><a href="{getUrl('','vid',$vid,'mid',$mid)}">{htmlspecialchars($module_info->browser_title)}</a> <em>[{number_format($total_count)}]</em></h2>
 	<!--@if($module_info->use_category == "Y")--><a href="{getUrl('page','','act','dispBoardCategory','')}" class="ca">{$lang->category}</a><!--@endif-->
 	<a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="write">{$lang->cmd_write}</a>
 </div>

@@ -1,7 +1,7 @@
 <load target="css/mforum.css" />
 <div class="bd">
 	<div class="hx h2">
-		<h2><a href="{getUrl('','vid',$vid,'mid',$mid)}">{$module_info->browser_title}</a> &rsaquo; {$lang->category}</h2>
+		<h2><a href="{getUrl('','vid',$vid,'mid',$mid)}">{htmlspecialchars($module_info->browser_title)}</a> &rsaquo; {$lang->category}</h2>
 		<a href="{getUrl('act','dispForumWrite','document_srl','')}" class="write">{$lang->cmd_write}</a>
 	</div>
 	<ul class="gn">
