@@ -108,6 +108,7 @@
 	        	$categorylist = $this->dispForumCategoryListIndex();
 	            }
             Context::set('category_list', $categorylist);
+
             /**
              * displays forum category children list only for the categories that have children
              **/
@@ -160,6 +161,10 @@
             if($category || $search_keyword || $document_srl) {
             	$this->setTemplateFile('list');
             }
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('category_list..last_author');
+			$oSecurity->encodeHTML('category_children..');
         }
 
         /**
@@ -1071,7 +1076,7 @@
          * @brief alert message
          **/
         function alertMessage($message) {
-            $script =  sprintf('<script type="text/javascript"> xAddEventListener(window,"load", function() { alert("%s"); } );</script>', Context::getLang($message));
+            $script =  sprintf('<script> xAddEventListener(window,"load", function() { alert("%s"); } );</script>', Context::getLang($message));
             Context::addHtmlHeader( $script );
         }
         /**

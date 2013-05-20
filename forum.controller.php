@@ -132,103 +132,103 @@
         /**
          * @brief processing forum insert comment
          **/
-        function procForumInsertComment() {
-            // check grants and registration
-            if(!$this->grant->post) return new Object(-1, 'msg_not_permitted');
-            $logged_info = Context::get('logged_info');
-		$args=Context::getRequestVars();
-		$args->quote_content=html_entity_decode($args->quote_content);
-            // comments data extraction
-            $obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','notify_message');
-            $obj->module_srl = $this->module_srl;
+		function procForumInsertComment() {
+			// check grants and registration
+			if(!$this->grant->post) return new Object(-1, 'msg_not_permitted');
+			$logged_info = Context::get('logged_info');
+			$args=Context::getRequestVars();
+			$args->quote_content=html_entity_decode($args->quote_content);
+			// comments data extraction
+			$obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','notify_message');
+			$obj->module_srl = $this->module_srl;
 			$obj->content=$args->quote_content.$obj->content;
-            // instancing document model
-            $oDocumentModel = &getModel('document');
-            $oDocument = $oDocumentModel->getDocument($obj->document_srl);
-            if(!$oDocument->isExists()) return new Object(-1,'msg_not_permitted');
+			// instancing document model
+			$oDocumentModel = &getModel('document');
+			$oDocument = $oDocumentModel->getDocument($obj->document_srl);
+			if(!$oDocument->isExists()) return new Object(-1,'msg_not_permitted');
 
-            // For anonymous use, remove writer's information and notifying information
-            $bAnonymous = false;
+			// For anonymous use, remove writer's information and notifying information
+			$bAnonymous = false;
 
 			// instancing comment model
-            $oCommentModel = &getModel('comment');
+			$oCommentModel = &getModel('comment');
 
-            // instancing comment controller
-            $oCommentController = &getController('comment');
+			// instancing comment controller
+			$oCommentController = &getController('comment');
 
-            // check comment_srl
-            // if not comment_srl then use getNextSequence for a new value
-            if(!$obj->comment_srl) {
-                $obj->comment_srl = getNextSequence();
-            } else {
-                $comment = $oCommentModel->getComment($obj->comment_srl, $this->grant->manager);
-            }
-
-            // if there is a new comment
-            if($comment->comment_srl != $obj->comment_srl) {
-
-                // current comment has parent update comment and notifications
-                if($obj->parent_srl) {
-                    $parent_comment = $oCommentModel->getComment($obj->parent_srl);
-                    if(!$parent_comment->comment_srl) return new Object(-1, 'msg_invalid_request');
-
-                    $output = $oCommentController->insertComment($obj, $bAnonymous);
-                    $output= executeQuery('forum.updateComments', $obj);
-
-                    $obj->document_srl=Context::get('document_srl');
-                    $output=executeQuery('forum.updateDocumentNotify', $obj);
-
-                // if it doesn't have parent insert comment and update notifications
-                } else {
-                    $output = $oCommentController->insertComment($obj, $bAnonymous);
-                    $output= executeQuery('forum.updateComments', $obj);
-                    $obj->document_srl=Context::get('document_srl');
-                    $output=executeQuery('forum.updateDocumentNotify', $obj);
-                }
-
-                // verifying if the administrator mail is set
-                if($output->toBool()) {
-			//check if comment writer is admin or not
-			$oMemberModel = &getModel("member");
-			if (isset($obj->member_srl) && !is_null($obj->member_srl))
-			{
-				$member_info = $oMemberModel->getMemberInfoByMemberSrl($obj->member_srl);
-			}
-			else
-			{
-				$member_info->is_admin = 'N';
+			// check comment_srl
+			// if not comment_srl then use getNextSequence for a new value
+			if(!$obj->comment_srl) {
+				$obj->comment_srl = getNextSequence();
+			} else {
+				$comment = $oCommentModel->getComment($obj->comment_srl, $this->grant->manager);
 			}
 
-			// if current module is using Comment Approval System and comment write is not admin user then
-			if(method_exists($oCommentController,'isModuleUsingPublishValidation') && $oCommentController->isModuleUsingPublishValidation($this->module_srl) && $member_info->is_admin != 'Y')
-			{
-				//$oCommentController->sendEmailToAdminAfterInsertComment($obj);
-				$this->setMessage('comment_to_be_approved');
-			}
-			else
-			{
-				$this->setMessage('success_registed');
-			}
-                }
+			// if there is a new comment
+			if($comment->comment_srl != $obj->comment_srl) {
 
-            // for a fix comment_srl
-            } else {
+				// current comment has parent update comment and notifications
+				if($obj->parent_srl) {
+					$parent_comment = $oCommentModel->getComment($obj->parent_srl);
+					if(!$parent_comment->comment_srl) return new Object(-1, 'msg_invalid_request');
+
+					$output = $oCommentController->insertComment($obj, $bAnonymous);
+					$output= executeQuery('forum.updateComments', $obj);
+
+					$obj->document_srl=Context::get('document_srl');
+					$output=executeQuery('forum.updateDocumentNotify', $obj);
+
+					// if it doesn't have parent insert comment and update notifications
+				} else {
+					$output = $oCommentController->insertComment($obj, $bAnonymous);
+					$output= executeQuery('forum.updateComments', $obj);
+					$obj->document_srl=Context::get('document_srl');
+					$output=executeQuery('forum.updateDocumentNotify', $obj);
+				}
+
+				// verifying if the administrator mail is set
+				if($output->toBool()) {
+					//check if comment writer is admin or not
+					$oMemberModel = &getModel("member");
+					if (isset($obj->member_srl) && !is_null($obj->member_srl))
+					{
+						$member_info = $oMemberModel->getMemberInfoByMemberSrl($obj->member_srl);
+					}
+					else
+					{
+						$member_info->is_admin = 'N';
+					}
+
+					// if current module is using Comment Approval System and comment write is not admin user then
+					if(method_exists($oCommentController,'isModuleUsingPublishValidation') && $oCommentController->isModuleUsingPublishValidation($this->module_srl) && $member_info->is_admin != 'Y')
+					{
+						//$oCommentController->sendEmailToAdminAfterInsertComment($obj);
+						$this->setMessage('comment_to_be_approved');
+					}
+					else
+					{
+						$this->setMessage('success_registed');
+					}
+				}
+
+				// for a fix comment_srl
+			} else {
 				// check if it is granted
 				if(!$comment->isGranted()) return new Object(-1,'msg_not_permitted');
 
-                $obj->parent_srl = $comment->parent_srl;
-                $obj->user_name=$comment->user_name;
-                $output= executeQuery('forum.updateComments', $obj);
-                $output = $oCommentController->updateComment($obj, $this->grant->manager);
-               // $comment_srl = $obj->comment_srl;
-            }
-            if(!$output->toBool()) return $output;
+				$obj->parent_srl = $comment->parent_srl;
+				$obj->user_name=$comment->user_name;
+				$output= executeQuery('forum.updateComments', $obj);
+				$output = $oCommentController->updateComment($obj, $this->grant->manager);
+				// $comment_srl = $obj->comment_srl;
+			}
+			if(!$output->toBool()) return $output;
 
-            //$this->setMessage('success_registed');
-            $this->add('mid', Context::get('mid'));
-            $this->add('document_srl', $obj->document_srl);
-            $this->add('comment_srl', $obj->comment_srl);
-        }
+			//$this->setMessage('success_registed');
+			$this->add('mid', Context::get('mid'));
+			$this->add('document_srl', $obj->document_srl);
+			$this->add('comment_srl', $obj->comment_srl);
+		}
 
         /**
          * @brief processing forum delete comment

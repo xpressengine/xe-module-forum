@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lang>
+    <item name="forum">
+		<value xml:lang="ko"><![CDATA[포럼]]></value>
+		<value xml:lang="en"><![CDATA[Forum]]></value>
+	</item>
+    <item name="read_more">
+		<value xml:lang="ko"><![CDATA[더보기]]></value>
+		<value xml:lang="en"><![CDATA[Read more]]></value>
+	</item>
+    <item name="except_notice">
+		<value xml:lang="ko"><![CDATA[공지사항 제외]]></value>
+		<value xml:lang="en"><![CDATA[Exclude Sticky]]></value>
+	</item>
+    <item name="use_anonymous">
+		<value xml:lang="ko"><![CDATA[익명사용]]></value>
+		<value xml:lang="en"><![CDATA[Use Anonymous]]></value>
+	</item>
+    <item name="allow_anonymous_search">
+		<value xml:lang="ko"><![CDATA[익명검색 허용]]></value>
+		<value xml:lang="en"><![CDATA[Allow Anonymous Search]]></value>
+	</item>
+    <item name="notice">
+		<value xml:lang="ko"><![CDATA[공지]]></value>
+		<value xml:lang="en"><![CDATA[Sticky]]></value>
+	</item>
+    <item name="notify">
+		<value xml:lang="ko"><![CDATA[구독]]></value>
+		<value xml:lang="en"><![CDATA[Subscribe]]></value>
+	</item>
+    <item name="extra_vars">
+		<value xml:lang="ko"><![CDATA[사용자 정의]]></value>
+		<value xml:lang="en"><![CDATA[Extra variables]]></value>
+	</item>
+    <item name="cmd_manage_menu">
+		<value xml:lang="ko"><![CDATA[관리메뉴]]></value>
+		<value xml:lang="en"><![CDATA[Manage Menus]]></value>
+	</item>
+    <item name="cmd_manage_categories">
+		<value xml:lang="ko"><![CDATA[분류관리]]></value>
+		<value xml:lang="en"><![CDATA[Manage Categories]]></value>
+	</item>
+    <item name="list_target_item">
+		<value xml:lang="ko"><![CDATA[대상항목]]></value>
+		<value xml:lang="en"><![CDATA[Target Item]]></value>
+	</item>
+    <item name="list_display_item">
+		<value xml:lang="ko"><![CDATA[표시항목]]></value>
+		<value xml:lang="en"><![CDATA[Display Item]]></value>
+	</item>
+    <item name="summary">
+		<value xml:lang="ko"><![CDATA[요약]]></value>
+		<value xml:lang="en"><![CDATA[Summary]]></value>
+	</item>
+    <item name="thumbnail">
+		<value xml:lang="ko"><![CDATA[섬네일]]></value>
+		<value xml:lang="en"><![CDATA[Thumbnail]]></value>
+	</item>
+    <item name="main">
+		<value xml:lang="ko"><![CDATA[메인]]></value>
+		<value xml:lang="en"><![CDATA[Main]]></value>
+	</item>
+    <item name="separator">
+		<value xml:lang="ko"><![CDATA[구분자]]></value>
+		<value xml:lang="en"><![CDATA[Separator>]]></value>
+	</item>;
+    <item name="cmd_quote">
+		<value xml:lang="ko"><![CDATA[인용]]></value>
+		<value xml:lang="en"><![CDATA[Quote]]></value>
+	</item>
+    <item name="new_comment">
+		<value xml:lang="ko"><![CDATA[새댓글]]></value>
+		<value xml:lang="en"><![CDATA[New Comment]]></value>
+	</item>
+    <item name="forum_title">
+		<value xml:lang="ko"><![CDATA[포럼제목]]></value>
+		<value xml:lang="en"><![CDATA[Forum Title]]></value>
+	</item>
+    <item name="forum_title_description">
+		<value xml:lang="ko"><![CDATA[포럼 제목을 입력하세요.]]></value>
+		<value xml:lang="en"><![CDATA[Please input the forum title.]]></value>
+	</item>
+    <item name="description">
+		<value xml:lang="ko"><![CDATA[설명]]></value>
+		<value xml:lang="en"><![CDATA[Description]]></value>
+	</item>
+    <item name="about_description">
+		<value xml:lang="ko"><![CDATA[포럼 제목 아래 설명을 표시하려면 입력하세요.]]></value>
+		<value xml:lang="en"><![CDATA[You may input description which will be displayed under the forum title.]]></value>
+	</item>
+    <item name="manage_category">
+		<value xml:lang="ko"><![CDATA[분류]]></value>
+		<value xml:lang="en"><![CDATA[Categories]]></value>
+	</item>
+    <item name="site_layout">
+		<value xml:lang="ko"><![CDATA[사이트 레이아웃]]></value>
+		<value xml:lang="en"><![CDATA[Site Layout]]></value>
+	</item>
+    <item name="forum_theme">
+		<value xml:lang="ko"><![CDATA[포럼테마]]></value>
+		<value xml:lang="en"><![CDATA[Forum Theme]]></value>
+	</item>
+    <item name="design">
+		<value xml:lang="ko"><![CDATA[디자인]]></value>
+		<value xml:lang="en"><![CDATA[Design]]></value>
+	</item>
+    <item name="view">
+		<value xml:lang="ko"><![CDATA[보기]]></value>
+		<value xml:lang="en"><![CDATA[view]]></value>
+	</item>
+    <item name="xe_forum">
+		<value xml:lang="ko"><![CDATA[XE포럼]]></value>
+		<value xml:lang="en"><![CDATA[XE Forum]]></value>
+	</item>
+    <item name="number_of_posts">
+		<value xml:lang="ko"><![CDATA[포스트]]></value>
+		<value xml:lang="en"><![CDATA[Posts]]></value>
+	</item>
+    <item name="number_of_posts_published">
+		<value xml:lang="ko"><![CDATA[공개된 포스트]]></value>
+		<value xml:lang="en"><![CDATA[Published Posts]]></value>
+	</item>
+    <item name="number_of_posts_unpublished">
+		<value xml:lang="ko"><![CDATA[비공개 포스트]]></value>
+		<value xml:lang="en"><![CDATA[Unpublished Posts]]></value>
+	</item>
+    <item name="number_of_threads">
+		<value xml:lang="ko"><![CDATA[스레드]]></value>
+		<value xml:lang="en"><![CDATA[Threads]]></value>
+	</item>
+    <item name="number_of_users">
+		<value xml:lang="ko"><![CDATA[사용자]]></value>
+		<value xml:lang="en"><![CDATA[Users]]></value>
+	</item>
+    <item name="number_of_atachements">
+		<value xml:lang="ko"><![CDATA[첨부]]></value>
+		<value xml:lang="en"><![CDATA[Attachments]]></value>
+	</item>
+    <item name="forum_id">
+		<value xml:lang="ko"><![CDATA[포럼ID]]></value>
+		<value xml:lang="en"><![CDATA[Forum ID]]></value>
+	</item>
+    <item name="last_updated_threads">
+		<value xml:lang="ko"><![CDATA[최근 갱신된 스레드]]></value>
+		<value xml:lang="en"><![CDATA[Last updated threads]]></value>
+	</item>
+    <item name="last_updated_comments">
+		<value xml:lang="ko"><![CDATA[최근 포스트 5개]]></value>
+		<value xml:lang="en"><![CDATA[Last 5 posts]]></value>
+	</item>
+    <item name="lastweek_threads">
+		<value xml:lang="ko"><![CDATA[지난주 스레드]]></value>
+		<value xml:lang="en"><![CDATA[Last Week Threads]]></value>
+	</item>
+    <item name="lastweek_posts">
+		<value xml:lang="ko"><![CDATA[지난주 글]]></value>
+		<value xml:lang="en"><![CDATA[Last Week Posts]]></value>
+	</item>
+    <item name="lastweek_users">
+		<value xml:lang="ko"><![CDATA[지난주 사용자]]></value>
+		<value xml:lang="en"><![CDATA[Last Week Users]]></value>
+	</item>
+    <item name="lastweek_atachements">
+		<value xml:lang="ko"><![CDATA[지난주 첨부]]></value>
+		<value xml:lang="en"><![CDATA[Last Week Attachments]]></value>
+	</item>
+    <item name="lastweek">
+		<value xml:lang="ko"><![CDATA[지난주]]></value>
+		<value xml:lang="en"><![CDATA[Last Week]]></value>
+	</item>
+    <item name="post_subject">
+		<value xml:lang="ko"><![CDATA[포스트 주제]]></value>
+		<value xml:lang="en"><![CDATA[Post subject]]></value>
+	</item>
+    <item name="post_date">
+		<value xml:lang="ko"><![CDATA[날짜]]></value>
+		<value xml:lang="en"><![CDATA[Post date]]></value>
+	</item>
+    <item name="registered">
+		<value xml:lang="ko"><![CDATA[등록된]]></value>
+		<value xml:lang="en"><![CDATA[registered]]></value>
+	</item>
+    <item name="ip">
+		<value xml:lang="ko"><![CDATA[IP]]></value>
+		<value xml:lang="en"><![CDATA[IP]]></value>
+	</item>
+    <item name="views">
+		<value xml:lang="ko"><![CDATA[조회]]></value>
+		<value xml:lang="en"><![CDATA[views]]></value>
+	</item>
+    <item name="file_size">
+		<value xml:lang="ko"><![CDATA[파일크기]]></value>
+		<value xml:lang="en"><![CDATA[File Size]]></value>
+	</item>
+    <item name="download">
+		<value xml:lang="ko"><![CDATA[내려받기]]></value>
+		<value xml:lang="en"><![CDATA[Download]]></value>
+	</item>
+    <item name="subject">
+		<value xml:lang="ko"><![CDATA[주제]]></value>
+		<value xml:lang="en"><![CDATA[Subject]]></value>
+	</item>
+    <item name="reply">
+		<value xml:lang="ko"><![CDATA[댓글]]></value>
+		<value xml:lang="en"><![CDATA[Reply]]></value>
+	</item>
+    <item name="author">
+		<value xml:lang="ko"><![CDATA[저자]]></value>
+		<value xml:lang="en"><![CDATA[author]]></value>
+	</item>
+    <item name="message">
+		<value xml:lang="ko"><![CDATA[메시지]]></value>
+		<value xml:lang="en"><![CDATA[message]]></value>
+	</item>
+    <item name="last_update">
+		<value xml:lang="ko"><![CDATA[마지막 업데이트]]></value>
+		<value xml:lang="en"><![CDATA[Last update]]></value>
+	</item>
+    <item name="article_count">
+		<value xml:lang="ko"><![CDATA[아티클]]></value>
+		<value xml:lang="en"><![CDATA[Article(s)]]></value>
+	</item>
+    <item name="document_count">
+		<value xml:lang="ko"><![CDATA[스레드]]></value>
+		<value xml:lang="en"><![CDATA[Thread(s)]]></value>
+	</item>
+    <item name="notice_count">
+		<value xml:lang="ko"><![CDATA[공지]]></value>
+		<value xml:lang="en"><![CDATA[Sticky(s)]]></value>
+	</item>
+    <item name="comments">
+		<value xml:lang="ko"><![CDATA[포스트]]></value>
+		<value xml:lang="en"><![CDATA[Post(s)]]></value>
+	</item>
+    <item name="category_statistics">
+		<value xml:lang="ko"><![CDATA[분류통계]]></value>
+		<value xml:lang="en"><![CDATA[Category statistics]]></value>
+	</item>
+    <item name="started_by">
+		<value xml:lang="ko"><![CDATA[제안자:]]></value>
+		<value xml:lang="en"><![CDATA[Started by]]></value>
+	</item>
+    <item name="search_result">
+		<value xml:lang="ko"><![CDATA[검색결과]]></value>
+		<value xml:lang="en"><![CDATA[Search Result]]></value>
+	</item>
+    <item name="consultation">
+		<value xml:lang="ko"><![CDATA[상담]]></value>
+		<value xml:lang="en"><![CDATA[Consultation]]></value>
+	</item>
+    <item name="admin_mail">
+		<value xml:lang="ko"><![CDATA[관리자 메일]]></value>
+		<value xml:lang="en"><![CDATA[Administrator's Mail]]></value>
+	</item>
+    <item name="cmd_forum_list">
+		<value xml:lang="ko"><![CDATA[포럼목록]]></value>
+		<value xml:lang="en"><![CDATA[Forum List]]></value>
+	</item>
+    <item name="cmd_module_config">
+		<value xml:lang="ko"><![CDATA[포럼설정일반]]></value>
+		<value xml:lang="en"><![CDATA[Common Forum Setting]]></value>
+	</item>
+    <item name="cmd_forum_info">
+		<value xml:lang="ko"><![CDATA[포럼정보]]></value>
+		<value xml:lang="en"><![CDATA[Forum Info]]></value>
+	</item>
+    <item name="cmd_list_setting">
+		<value xml:lang="ko"><![CDATA[목록설정]]></value>
+		<value xml:lang="en"><![CDATA[List Setting]]></value>
+	</item>
+    <item name="cmd_create_forum">
+		<value xml:lang="ko"><![CDATA[포럼생성]]></value>
+		<value xml:lang="en"><![CDATA[Create a new forum]]></value>
+	</item>
+    <item name="cmd_ban">
+		<value xml:lang="ko"><![CDATA[금지]]></value>
+		<value xml:lang="en"><![CDATA[Ban]]></value>
+	</item>
+    <item name="about_layout_setup">
+		<value xml:lang="ko"><![CDATA[포럼 레이아웃 코드를 수정할 수 있습니다. 위젯 코드를 원하는 곳에 추가하세요.]]></value>
+		<value xml:lang="en"><![CDATA[You can manually modify forum layout code. Insert or manage the widget code anywhere you want]]></value>
+	</item>
+    <item name="about_forum_category">
+		<value xml:lang="ko"><![CDATA[포럼 분류를 생성할 수 있습니다. 포럼 분류가 깨지면 캐시 파일을 수동으로 다시 생성하세요.]]></value>
+		<value xml:lang="en"><![CDATA[You can make forum categories. When forum category is broken, try rebuilding the cache file manually.]]></value>
+	</item>
+    <item name="about_except_notice">
+		<value xml:lang="ko"><![CDATA[공지 글을 일반 목록에서 표시하지 않습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Sticky articles will not be displayed on normal list.]]></value>
+	</item>
+    <item name="about_use_anonymous">
+		<value xml:lang="ko"><![CDATA[저작자 정보를 감춰서 익명 포럼을 만듭니다. 추가 설정에서 히스토리 설정을 끄세요. 그렇지 않으면 저작자 정보가 노출됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[Make this forum into an anonymous forum by hiding the author's information. Please turn off history at additional setup. If not, editing document might show the author's info.]]></value>
+	</item>
+    <item name="about_allow_anonymous_search">
+		<value xml:lang="ko"><![CDATA[로그인하지 않은 사람의 포럼 검색을 허용합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Allow users that are not logged in to search the forums]]></value>
+	</item>
+    <item name="about_forum">
+		<value xml:lang="ko"><![CDATA[이 모듈은 포럼을 생성하고 관리합니다.]]></value>
+		<value xml:lang="en"><![CDATA[This module is for creating and managing forums.]]></value>
+	</item>
+    <item name="about_consultation">
+		<value xml:lang="ko"><![CDATA[관리자 아닌 회원은 자신의 글만 볼 수 있습니다. 회원 아닌 사람은 상담 게시물을 작성할 수 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Non-administrator members would see their own articles. Non-members would not be able to write articles when using consultation.]]></value>
+	</item>
+    <item name="about_admin_mail">
+		<value xml:lang="ko"><![CDATA[글 또는 댓글이 달리면 메일이 전송됩니다. 여러개의 메일 주소는 콤마(,)로 구분해서 작성하세요.]]></value>
+		<value xml:lang="en"><![CDATA[A mail will be sent when an article or comment is submitted. Multiple mails can be sent with commas(,).]]></value>
+	</item>
+    <item name="about_list_config">
+		<value xml:lang="ko"><![CDATA[목록 스타일 스킨을 사용하면 표시 항목을 정렬할 수 있습니다. 이 기능은 비공식 스킨에서 동작하지 않을 수 있습니다. 대상 항목을 더블 클릭하면 추가 또는 제거할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[If using list-style skin, you may arrange items to display. However, this feature might not be availble for non-official skins. If you double-click target items and display items, then you can add / remove them]]></value>
+	</item>
+	<item name="mail_unsibscribe">
+		<value xml:lang="ko"><![CDATA[이메일 구독을 중단하려면 이 링크를 클릭하세요.]]></value>
+		<value xml:lang="en"><![CDATA[If you wish to unsubscribe from emailing notification please clcik on this link]]></value>
+	</item>
+    <item name="unsubscribe_success">
+		<value xml:lang="ko"><![CDATA[지금부터 구독 중단됨:]]></value>
+		<value xml:lang="en"><![CDATA[You have been currently unsubscribed from the ]]></value>
+	</item>
+    <item name="display_categories_on_index">
+		<value xml:lang="ko"><![CDATA[초기 화면에서 분류 목록을 표시]]></value>
+		<value xml:lang="en"><![CDATA[Display category list on index page]]></value>
+	</item>
+    <item name="about_display_categories_on_index">
+		<value xml:lang="ko"><![CDATA[홈페이지에 모든 포럼 분류를 표시할지 또는 최근 글 목록을 표시할지 선택하세요.]]></value>
+		<value xml:lang="en"><![CDATA[Choose whether to display a list of all forum categories on home page or a list of the most recent articles.]]></value>
+	</item>
+    <item name="msg_not_enough_point">
+		<value xml:lang="ko"><![CDATA[포인트가 충분하지 않아서 이 포럼에 글을 쓸 수 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Your point is not enough to write an article in this forum.]]></value>
+	</item>
+	<item name="write_comment">
+		<value xml:lang="ko"><![CDATA[댓글쓰기]]></value>
+		<value xml:lang="en"><![CDATA[Write a comment]]></value>
+	</item>
+	<item name="write_new_thread">
+		<value xml:lang="ko"><![CDATA[새스레드]]></value>
+		<value xml:lang="en"><![CDATA[Write new thread]]></value>
+	</item>
+	<item name="module_info">
+		<value xml:lang="ko"><![CDATA[모듈정보]]></value>
+		<value xml:lang="en"><![CDATA[Module Info]]></value>
+	</item>
+	<item name="module_theme_info">
+		<value xml:lang="ko"><![CDATA[모듈테마정보]]></value>
+		<value xml:lang="en"><![CDATA[Module Theme Info]]></value>
+	</item>
+	<item name="functional_info">
+		<value xml:lang="ko"><![CDATA[기능정보]]></value>
+		<value xml:lang="en"><![CDATA[Functional Info]]></value>
+	</item>
+	<item name="module_member_info">
+		<value xml:lang="ko"><![CDATA[모듈회원정보]]></value>
+		<value xml:lang="en"><![CDATA[Module Member Info]]></value>
+	</item>
+	<item name="admin_info">
+		<value xml:lang="ko"><![CDATA[관리자정보]]></value>
+		<value xml:lang="en"><![CDATA[Administrator Info]]></value>
+	</item>
+	<item name="content_info">
+		<value xml:lang="ko"><![CDATA[콘텐츠정보]]></value>
+		<value xml:lang="en"><![CDATA[Content Info]]></value>
+	</item>
+	<item name="dashboard">
+		<value xml:lang="ko"><![CDATA[대시보드]]></value>
+		<value xml:lang="en"><![CDATA[Dashboard]]></value>
+	</item>
+	<item name="post">
+		<value xml:lang="ko"><![CDATA[포스트]]></value>
+		<value xml:lang="en"><![CDATA[Post]]></value>
+	</item>
+	<item name="nick_name">
+		<value xml:lang="ko"><![CDATA[닉네임]]></value>
+		<value xml:lang="en"><![CDATA[Nick Name]]></value>
+	</item>
+	<item name="last_update">
+		<value xml:lang="ko"><![CDATA[마지막 업데이트]]></value>
+		<value xml:lang="en"><![CDATA[Last Update]]></value>
+	</item>
+	<item name="thread">
+		<value xml:lang="ko"><![CDATA[스레드]]></value>
+		<value xml:lang="en"><![CDATA[Thread]]></value>
+	</item>
+	<item name="threadmic">
+		<value xml:lang="ko"><![CDATA[스레드]]></value>
+		<value xml:lang="en"><![CDATA[thread]]></value>
+	</item>
+	<item name="preview">
+		<value xml:lang="ko"><![CDATA[미리보기]]></value>
+		<value xml:lang="en"><![CDATA[Preview]]></value>
+	</item>
+	<item name="last_post">
+		<value xml:lang="ko"><![CDATA[마지막 포스트]]></value>
+		<value xml:lang="en"><![CDATA[Last post]]></value>
+	</item>
+    <item name="main_categories">
+		<value xml:lang="ko"><![CDATA[메인분류]]></value>
+		<value xml:lang="en"><![CDATA[Main Categories]]></value>
+	</item>
+    <item name="new_thread">
+		<value xml:lang="ko"><![CDATA[새스레드]]></value>
+		<value xml:lang="en"><![CDATA[New Thread]]></value>
+	</item>
+    <item name="of_which">
+		<value xml:lang="ko"><![CDATA[중]]></value>
+		<value xml:lang="en"><![CDATA[of which]]></value>
+	</item>
+    <item name="back">
+		<value xml:lang="ko"><![CDATA[뒤로]]></value>
+		<value xml:lang="en"><![CDATA[Back]]></value>
+	</item>
+    <item name="subforums">
+		<value xml:lang="ko"><![CDATA[하위포럼]]></value>
+		<value xml:lang="en"><![CDATA[SUB-FORUMS]]></value>
+	</item>
+	<item name="search_forums">
+		<value xml:lang="ko"><![CDATA[포럼검색]]></value>
+		<value xml:lang="en"><![CDATA[Search the forums]]></value>
+	</item>
+	<item name="search_in">
+		<value xml:lang="ko"><![CDATA[검색]]></value>
+		<value xml:lang="en"><![CDATA[Search in]]></value>
+	</item>
+	<item name="keywords">
+		<value xml:lang="ko"><![CDATA[키워드]]></value>
+		<value xml:lang="en"><![CDATA[Keywords]]></value>
+	</item>
+	<item name="search_current">
+		<value xml:lang="ko"><![CDATA[현재 분류에서 검색]]></value>
+		<value xml:lang="en"><![CDATA[Search only current category]]></value>
+	</item>
+	<item name="ban_user">
+		<value xml:lang="ko"><![CDATA[이 사용자를 금지할까요?]]></value>
+		<value xml:lang="en"><![CDATA[Are you sure you want to ban this user ]]></value>
+	</item>
+	<item name="and_posts">
+		<value xml:lang="ko"><![CDATA[모든 포스트와 함께]]></value>
+		<value xml:lang="en"><![CDATA[and all its posts]]></value>
+	</item>
+	<item name="confirm_delete_comment">
+		<value xml:lang="ko"><![CDATA[이 포스트를 삭제할까요?]]></value>
+		<value xml:lang="en"><![CDATA[Are you sure you want to delete this post]]></value>
+	</item>
+	<item name="confirm_delete_doc">
+		<value xml:lang="ko"><![CDATA[삭제할까요?]]></value>
+		<value xml:lang="en"><![CDATA[Are you sure you want to delete]]></value>
+	</item>
+	<item name="confirm_ban_user">
+		<value xml:lang="ko"><![CDATA[이 사용자를 금지할까요?]]></value>
+		<value xml:lang="en"><![CDATA[Are you sure you want to ban this user]]></value>
+	</item>
+	<item name="delete_comments_and_threads">
+		<value xml:lang="ko"><![CDATA[특정 사용자의 모든 댓글과 스레드 삭제]]></value>
+		<value xml:lang="en"><![CDATA[Delete all comments and threads for the specified user]]></value>
+	</item>
+	<item name="delete_user">
+		<value xml:lang="ko"><![CDATA[사용자 삭제]]></value>
+		<value xml:lang="en"><![CDATA[Delete the user]]></value>
+	</item>
+	<item name="ban_ip">
+		<value xml:lang="ko"><![CDATA[사용자 IP 제한]]></value>
+		<value xml:lang="en"><![CDATA[Ban user IP]]></value>
+	</item>
+	<item name="ban_id">
+		<value xml:lang="ko"><![CDATA[사용자 ID 제한]]></value>
+		<value xml:lang="en"><![CDATA[Ban user ID]]></value>
+	</item>
+	<item name="search_message1">
+		<value xml:lang="ko"><![CDATA[포럼을 검색하려면]]></value>
+		<value xml:lang="en"><![CDATA[In order to search the forums, you have to]]></value>
+	</item>
+	<item name="login">
+		<value xml:lang="ko"><![CDATA[로그인]]></value>
+		<value xml:lang="en"><![CDATA[login]]></value>
+	</item>
+	<item name="first">
+		<value xml:lang="ko"><![CDATA[처음]]></value>
+		<value xml:lang="en"><![CDATA[first]]></value>
+	</item>
+	<item name="search_message2">
+		<value xml:lang="ko"><![CDATA[계정이 없으면 등록하세요]]></value>
+		<value xml:lang="en"><![CDATA[If you don't have an account, you can register]]></value>
+	</item>
+	<item name="here">
+		<value xml:lang="ko"><![CDATA[여기]]></value>
+		<value xml:lang="en"><![CDATA[here]]></value>
+	</item>
+	<item name="no_articles">
+		<value xml:lang="ko"><![CDATA[검색 조건에 맞는 글이 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[No articles were found for your search criteria.]]></value>
+	</item>
+	//Latest Post
+	<item name="date">
+		<value xml:lang="ko"><![CDATA[날짜:]]></value>
+		<value xml:lang="en"><![CDATA[Date:]]></value>
+	</item>
+	<item name="by">
+		<value xml:lang="ko"><![CDATA[by]]></value>
+		<value xml:lang="en"><![CDATA[by]]></value>
+	</item>
+	<item name="latest_post">
+		<value xml:lang="ko"><![CDATA[포스트 보기]]></value>
+		<value xml:lang="en"><![CDATA[See Post]]></value>
+	</item>
+	//Member info
+	<item name="my_account">
+		<value xml:lang="ko"><![CDATA[나의계정]]></value>
+		<value xml:lang="en"><![CDATA[My account]]></value>
+	</item>
+	<item name="user_already_deleted">
+		<value xml:lang="ko"><![CDATA[사용자가 이미 삭제 됐거나 없지만 위 작업을 수행할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[The user is already deleted or does not exist but you can still do the actions above.]]></value>
+	</item>
+</lang>

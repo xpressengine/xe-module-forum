@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
-    <title xml:lang="ko">XE 게시판 기본 스킨</title>
+    <title xml:lang="ko">XE 포럼 기본 스킨</title>
     <title xml:lang="en">XE Basic forum Skin</title>
     <description xml:lang="ko">
-        XE 게시판의 기본 스킨입니다.
+        XE 포럼의 기본 스킨입니다.
         NHN (developers@xpressengine.com) 
     </description>
     <description xml:lang="en">

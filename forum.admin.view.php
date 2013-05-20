@@ -51,6 +51,10 @@
             $order_target['list_order'] = Context::getLang('document_srl');
             $order_target['update_order'] = Context::getLang('last_update');
             Context::set('order_target', $order_target);
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('module_info.');
+			$oSecurity->encodeHTML('module_category..');
         }
 
         /**
@@ -74,6 +78,9 @@
 	                Context::set('module_srl',$module_srl);
 	                Context::set('act','dispForumAdminDashboard');
 	            	$this->dispForumAdminDashboard();
+
+					$oSecurity = new Security();
+					$oSecurity->encodeHTML('module_info.');
 	            }
         }
         /**
@@ -169,6 +176,8 @@
         	 //setting the documents and comments list for the dashboard template
         	 Context::set('newest_documents',$newest_docs);
         	 Context::set('newest_comments',$newest_comments);
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('newest_documents..', 'newest_comments..');
         	 $this->setTemplateFile('dashboard');
 
         }
@@ -301,6 +310,10 @@
             Context::set('extra_vars', $default_list);
             $list_config=$oforumModel->getListConfig($this->module_info->module_srl);
             Context::set('list_config', $list_config);
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('extra_vars..');
+
 			// setting up the template
             $this->setTemplateFile('list_setting');
         }
@@ -345,12 +358,7 @@
         /**
          * @brief display forum admin skin info
          **/
-        function dispForumAdminSkinInfo() {
-            // getting module skin info html
-            $oModuleAdminModel = &getAdminModel('module');
-            $skin_content = $oModuleAdminModel->getModuleSkinHTML($this->module_info->module_srl);
-            Context::set('skin_content', $skin_content);
-
+        function dispForumAdminThemeInfo() {
             //setting all the variables
             $oModuleModel = &getModel('module');
             $skin_list = $oModuleModel->getSkins($this->module_path);
@@ -365,16 +373,45 @@
 
 			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
 			Context::set('mlayout_list', $mobile_layout_list);
+
+			$oSecurity = new Security();
+			$oSecurity->encodeHTML('skin_list..', 'mskin_list..');
+			$oSecurity->encodeHTML('layout_list..', 'mlayout_list..');
+
+            // setting up the template
+            $this->setTemplateFile('theme_info');
+        }
+
+        /**
+         * @brief display forum admin skin info
+         **/
+        function dispForumAdminSkinInfo() {
+            // getting module skin info html
+            $oModuleAdminModel = &getAdminModel('module');
+            $skin_content = $oModuleAdminModel->getModuleSkinHTML($this->module_info->module_srl);
+            Context::set('skin_content', $skin_content);
+
             // setting up the template
             $this->setTemplateFile('skin_info');
         }
 
+        /**
+         * @brief display forum admin skin info
+         **/
+        function dispForumAdminMobileSkinInfo() {
+            // getting module skin info html
+            $oModuleAdminModel = &getAdminModel('module');
+            $skin_content = $oModuleAdminModel->getModuleMobileSkinHTML($this->module_info->module_srl);
+            Context::set('skin_content', $skin_content);
+
+            $this->setTemplateFile('skin_info');
+        }
 
         /**
          * @brief forum module alert message
          **/
         function alertMessage($message) {
-            $script =  sprintf('<script type="text/javascript"> xAddEventListener(window,"load", function() { alert("%s"); } );</script>', Context::getLang($message));
+            $script =  sprintf('<script> xAddEventListener(window,"load", function() { alert("%s"); } );</script>', Context::getLang($message));
             Context::addHtmlHeader( $script );
         }
     }
