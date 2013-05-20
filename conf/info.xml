@@ -6,8 +6,8 @@
     <description xml:lang="ko">포럼 기능을 담당하는 모듈입니다. 생성/삭제와 같은 관리자 기능을 포함하고 있습니다.</description>
     <description xml:lang="en">Module in charge of function of the forum. Also includes administrator functions such as creating/managing forums.</description>
     <description xml:lang="zh-CN">论坛模块(具有创建及管理功能)。</description>
-    <version>1.7.0</version>
-    <date>2013-03-18</date>
+    <version>1.7.0.1</version>
+    <date>2013-05-20</date>
     <category>service</category>
     <author email_address="developers@xpressengine.com" link="http://xpressengine.com/">
         <name xml:lang="ko">NHN</name>
