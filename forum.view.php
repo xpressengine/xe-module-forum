@@ -163,7 +163,7 @@
             }
 
 			$oSecurity = new Security();
-			$oSecurity->encodeHTML('category_list..');
+			$oSecurity->encodeHTML('category_list..last_author');
 			$oSecurity->encodeHTML('category_children..');
         }
 
