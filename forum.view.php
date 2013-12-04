@@ -106,6 +106,8 @@ class forumView extends forum {
 
 		$logged_info=Context::get('logged_info');
 		$oForumModel= &getModel('forum');
+
+		$obj = new stdClass;
 		$obj->document_srl=$document_srl;
 		$obj->member_srl=$logged_info->member_srl;
 		$isNotified= $oForumModel->isNotified($obj);
@@ -199,6 +201,8 @@ class forumView extends forum {
 			if($key->child_count) $child_exists=1;
 			break;
 		}
+
+		$args = new stdClass;
 		//set comment_count for each category
 		foreach ($categorylist as $key)
 		{
@@ -219,6 +223,8 @@ class forumView extends forum {
 				$key->style_index=0;
 			}
 		}
+
+		$argx = new stdClass;
 		//set information for last update
 		foreach($categorylist as $category)
 		{
@@ -273,6 +279,7 @@ class forumView extends forum {
 				if($key->child_count) $child_exists=1;
 				break;
 			}
+			$args = new stdClass;
 			// set comment_count for category_children
 			foreach ($categorychildren as $key)
 			{
@@ -295,6 +302,8 @@ class forumView extends forum {
 				}
 			}
 		}
+
+		$argx = new stdClass;
 			//set information for last update
 		foreach($categorychildren as $category)
 		{
@@ -452,6 +461,7 @@ class forumView extends forum {
 	{
 		if(!Context::get('cpage'))
 		{
+			$obj = new stdClass;
 			$obj->document_srl=Context::get('document_srl');
 			$obj->comment_srl=Context::get('comment_srl');
 			$oCommentController = &getController('comment');
@@ -499,6 +509,8 @@ class forumView extends forum {
 	function dispForumNoticeList()
 	{
 		$oDocumentModel = &getModel('document');
+
+		$args = new stdClass;
 		$args->module_srl = $this->module_srl;
 		$args->category_srl = Context::get('category');
 		$notice_output = $oDocumentModel->getNoticeList($args);
@@ -515,6 +527,7 @@ class forumView extends forum {
 		$oDocumentModel = &getModel('document');
 
 		// set required arguments
+		$args = new stdClass;
 		$args->module_srl = $this->module_srl;
 		$args->page = Context::get('page');
 		$args->list_count = $this->list_count;
@@ -786,6 +799,7 @@ class forumView extends forum {
 
 		$logged_info=Context::get('logged_info');
 		$oForumModel= &getModel('forum');
+		$obj = new stdClass;
 		$obj->document_srl=Context::get('document_srl');
 		$obj->member_srl=$logged_info->member_srl;
 		$isNotified= $oForumModel->isNotified($obj);
@@ -945,12 +959,15 @@ class forumView extends forum {
 	 **/
 	function dispForumReplyComment()
 	{
+		global $lang;
 		//check grants
 
 		if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
 		$logged_info=Context::get('logged_info');
 		$oForumModel= &getModel('forum');
+
+		$obj = new stdClass;
 		$obj->document_srl=Context::get('document_srl');
 		$obj->member_srl=$logged_info->member_srl;
 		$isNotified= $oForumModel->isNotified($obj);

@@ -37,6 +37,7 @@ class forum extends ModuleObject
 		$oModuleController->insertTrigger('comment.sendEmailToAdminAfterInsertComment', 'forum', 'controller', 'triggerSendMailToSubscribers', 'after');
 
 		// Create the basic forum
+		$args = new stdClass;
 		$args->mid = 'forum';
 		$args->module = 'forum';
 		$args->browser_title = 'XpressEngine';
@@ -44,11 +45,13 @@ class forum extends ModuleObject
 		$args->site_srl = 0;
 		$insert_module = $oModuleController->insertModule($args);
 		//create demo category
+		$obj = new stdClass;
 		$obj->module_srl = $insert_module->get('module_srl');
 		$obj->title = 'Demo Category';
 		$obj->description = 'This is a category example';
 		$insert_category = $oDocumentController->insertCategory($obj);
 		//create demo thread
+		$document_args = new stdClass;
 		$document_args->title = 'Demo Thread';
 		$document_args->content = 'This is a a thread example';
 		$document_args->module_srl = $insert_module->get('module_srl');
@@ -57,17 +60,20 @@ class forum extends ModuleObject
 		$insert_document = $oDocumentController->insertDocument($document_args);
 		$insert_alias = $oForumController->insert_document_alias($document_args);
 		//create demo comment
+		$comment_args = new stdClass;
 		$comment_args->content = '<p>This is a comment example</p>';
 		$comment_args->document_srl = $insert_document->get('document_srl');
 		$comment_args->module_srl = $insert_module->get('module_srl');
 		$comment_args->status = '1';
 		$insert_comment = $oCommentController->insertComment($comment_args);
 		//add basic forum to be index module if index module doesn't exist
+		$argx = new stdClass;
 		$argx->site_srl = 0;
 		$output = executeQuery('module.getSite', $argx);
 		if(!$output->data->index_module_srl)
 		{
 			$module_srl = $insert_module->get('module_srl');
+			$site_args = new stdClass;
 			$site_args->site_srl = 0;
 			$site_args->index_module_srl = $module_srl;
 			$oModuleController->updateSite($site_args);
@@ -106,9 +112,10 @@ class forum extends ModuleObject
 		$oModuleController = &getController('module');
 
 		$module_config = $oModuleModel->getModuleConfig('forum');
-		if(!$module_config->first_install)
+		if(!$module_config && !$module_config->first_install)
 		{
 			$this->moduleInstall();
+			$module_config = new stdClass;
 			$module_config->first_install = 'Y';
 			$oModuleController->insertModuleConfig('forum',$module_config);
 		}
