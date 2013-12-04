@@ -26,14 +26,14 @@
 <!--@if(!$module_info->thumbnail_height)-->{@ $module_info->thumbnail_height = 100; }<!--@end-->
 
 <!--@if($order_type == "desc")-->
-    {@ $order_icon = "buttonDescending.gif" }
-    {@ $order_type = "asc"; }
+	{@ $order_icon = "buttonDescending.gif" }
+	{@ $order_type = "asc"; }
 <!--@else-->
-    {@ $order_icon = "buttonAscending.gif" }
-    {@ $order_type = "desc"; }
+	{@ $order_icon = "buttonAscending.gif" }
+	{@ $order_type = "desc"; }
 <!--@end-->
 <div class="forumHeader">
-    <!--@if(!$category && !$oDocument->variables['title'])-->
+	<!--@if(!$category && !$oDocument->variables['title'])-->
 		<!--@if($module_info->browser_title)-->
 			<h1 id="forumTitle" class="gF">{htmlspecialchars($module_info->browser_title)}<!--@if($module_info->sub_title)--> : <em>{htmlspecialchars($module_info->sub_title)}</em><!--@end--></h1>
 			{@Context::setBrowserTitle($module_info->browser_title)}
@@ -57,7 +57,7 @@
 		<!--@end-->
 		<p id="forumBreadcrumbs">
 			<!--@if($act=="dispForumContent" || $act=="dispForumWrite")-->
-				
+
 				<!--@if($module_info->browser_title)-->
 					<a href="{getUrl('document_srl','','category','','act','','search_target','','search_keyword','','entry','')}">{htmlspecialchars($module_info->browser_title)}</a>
 				<!--@else-->

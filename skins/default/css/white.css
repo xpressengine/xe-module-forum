@@ -1,5 +1,5 @@
-@charset "utf-8"; 
-/* NHN (developers@xpressengine.com) */
+@charset "utf-8";
+/* NAVER (developers@xpressengine.com) */
 
 /* ----- WHITE COLORSET CSS ----- */
 #forumDescription {
@@ -113,12 +113,12 @@
 		left top,
 		color-stop(0, rgb(215,215,215)),
 		color-stop(1, rgb(235,235,235))
-	);
+		);
 	background-image: -moz-linear-gradient(
 		center bottom,
 		rgb(215,215,215) 0%,
 		rgb(235,235,235) 100%
-	);
+		);
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;

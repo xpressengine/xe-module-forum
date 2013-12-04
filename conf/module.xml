@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
-    <grants>
-        <grant name="post" default="guest">
-            <title xml:lang="en">Post</title>
-        </grant>
-        <grant name="moderator" default="manager">
-            <title xml:lang="en">Moderator</title>
-        </grant>
-    </grants>
-    <permissions>
-        <permission action="dispForumAdminInsertForum" target="manager" />
-        <permission action="dispForumAdminForumInfo" target="manager" />
-        <permission action="dispForumAdminExtraVars" target="manager" />
-        <permission action="dispForumAdminForumAdditionSetup" target="manager" />
-        <permission action="dispForumAdminSkinInfo" target="manager" />
-        <permission action="dispForumAdminThemeInfo" target="manager" />
-        <permission action="dispForumAdminListSetup" target="manager" />
-        <permission action="procForumAdminInsertForum" target="manager" />
-        <permission action="procForumAdminInsertListConfig" target="manager" />
-    </permissions>
-    <actions>
-    	<action name="dispForumIndex" type="view"   />
-        <action name="dispForumCategoryListIndex" type="view"  />
-        <action name="dispForumContent" type="view" index="true"/>
-        <action name="dispForumNoticeList" type="view" />
-        <action name="dispForumContentList" type="view" />
-        <action name="dispForumContentView" type="view" />
-        <action name="dispForumCatogoryList" type="view" />
-        <action name="dispForumContentCommentList" type="view" />
-        <action name="dispForumContentFileList" type="view" />
+	<grants>
+		<grant name="post" default="guest">
+			<title xml:lang="en">Post</title>
+		</grant>
+		<grant name="moderator" default="manager">
+			<title xml:lang="en">Moderator</title>
+		</grant>
+	</grants>
+	<permissions>
+		<permission action="dispForumAdminInsertForum" target="manager" />
+		<permission action="dispForumAdminForumInfo" target="manager" />
+		<permission action="dispForumAdminExtraVars" target="manager" />
+		<permission action="dispForumAdminForumAdditionSetup" target="manager" />
+		<permission action="dispForumAdminSkinInfo" target="manager" />
+		<permission action="dispForumAdminThemeInfo" target="manager" />
+		<permission action="dispForumAdminListSetup" target="manager" />
+		<permission action="procForumAdminInsertForum" target="manager" />
+		<permission action="procForumAdminInsertListConfig" target="manager" />
+	</permissions>
+	<actions>
+		<action name="dispForumIndex" type="view"   />
+		<action name="dispForumCategoryListIndex" type="view"  />
+		<action name="dispForumContent" type="view" index="true"/>
+		<action name="dispForumNoticeList" type="view" />
+		<action name="dispForumContentList" type="view" />
+		<action name="dispForumContentView" type="view" />
+		<action name="dispForumCatogoryList" type="view" />
+		<action name="dispForumContentCommentList" type="view" />
+		<action name="dispForumContentFileList" type="view" />
 		<action name="dispForumCommentPermalink" type="view" />
-        <action name="dispForumTagList" type="view" />
-        <action name="dispForumWrite" type="view" />
-        <action name="dispForumDelete" type="view" />
-        <action name="dispForumWriteComment" type="view" />
-        <action name="dispForumReplyComment" type="view" />
-        <action name="dispForumModifyComment" type="view" />
-        <action name="dispForumDeleteComment" type="view" />
-        <action name="dispForumDeleteTrackback" type="view" />
-        <action name="dispForumMessage" type="view" />
-        <action name="dispForumBanUser" type="view" />
-        
-        <action name="unsubscribeThread" type="view" />
+		<action name="dispForumTagList" type="view" />
+		<action name="dispForumWrite" type="view" />
+		<action name="dispForumDelete" type="view" />
+		<action name="dispForumWriteComment" type="view" />
+		<action name="dispForumReplyComment" type="view" />
+		<action name="dispForumModifyComment" type="view" />
+		<action name="dispForumDeleteComment" type="view" />
+		<action name="dispForumDeleteTrackback" type="view" />
+		<action name="dispForumMessage" type="view" />
+		<action name="dispForumBanUser" type="view" />
 
-        <action name="procForumInsertDocument" type="controller" />
-        <action name="procForumDeleteDocument" type="controller" />
-        <action name="procForumVoteDocument" type="controller" />
-        <action name="procForumInsertComment" type="controller" />
-        <action name="procForumDeleteComment" type="controller" />
-        <action name="procForumDeleteTrackback" type="controller" />
-        <action name="procForumVerificationPassword" type="controller" />
-        <action name="procForumDeleteFile" type="controller" />
-        <action name="procForumUploadFile" type="controller" />
-        <action name="procForumDownloadFile" type="controller" />
-        <action name="procForumBanUser" type="controller" />
+		<action name="unsubscribeThread" type="view" />
 
-        <action name="dispForumAdminContent" type="view" admin_index="true" />
-        <action name="dispForumAdminForumInfo" type="view" />
-        <action name="dispForumAdminExtraVars" type="view" />
-        <action name="dispForumAdminForumAdditionSetup" type="view" />
-        <action name="dispForumAdminInsertForum" type="view" setup_index="true" />
-        <action name="dispForumAdminDeleteForum" type="view" />
-        <action name="dispForumAdminSkinInfo" type="view" />
-        <action name="dispForumAdminMobileSkinInfo" type="view" />
-        <action name="dispForumAdminThemeInfo" type="view" />
-        <action name="dispForumAdminGrantInfo" type="view" />
-        <action name="dispForumAdminListSetup" type="view" />
-        <action name="dispForumAdminDashboard" type="view" />
-        <action name="dispForumAdminCategoryInfo" type="view" />
-        <action name="procForumAdminInsertForum" type="controller" />
-        <action name="procForumAdminDeleteForum" type="controller" />
-        <action name="procForumAdminInsertListConfig" type="controller" />
+		<action name="procForumInsertDocument" type="controller" />
+		<action name="procForumDeleteDocument" type="controller" />
+		<action name="procForumVoteDocument" type="controller" />
+		<action name="procForumInsertComment" type="controller" />
+		<action name="procForumDeleteComment" type="controller" />
+		<action name="procForumDeleteTrackback" type="controller" />
+		<action name="procForumVerificationPassword" type="controller" />
+		<action name="procForumDeleteFile" type="controller" />
+		<action name="procForumUploadFile" type="controller" />
+		<action name="procForumDownloadFile" type="controller" />
+		<action name="procForumBanUser" type="controller" />
+
+		<action name="dispForumAdminContent" type="view" admin_index="true" />
+		<action name="dispForumAdminForumInfo" type="view" />
+		<action name="dispForumAdminExtraVars" type="view" />
+		<action name="dispForumAdminForumAdditionSetup" type="view" />
+		<action name="dispForumAdminInsertForum" type="view" setup_index="true" />
+		<action name="dispForumAdminDeleteForum" type="view" />
+		<action name="dispForumAdminSkinInfo" type="view" />
+		<action name="dispForumAdminMobileSkinInfo" type="view" />
+		<action name="dispForumAdminThemeInfo" type="view" />
+		<action name="dispForumAdminGrantInfo" type="view" />
+		<action name="dispForumAdminListSetup" type="view" />
+		<action name="dispForumAdminDashboard" type="view" />
+		<action name="dispForumAdminCategoryInfo" type="view" />
+		<action name="procForumAdminInsertForum" type="controller" />
+		<action name="procForumAdminDeleteForum" type="controller" />
+		<action name="procForumAdminInsertListConfig" type="controller" />
 
 		<action name="dispForumCategory" type="mobile" />
 		<action name="getForumCommentPage" type="mobile" />
-    </actions>
+	</actions>
 </module>

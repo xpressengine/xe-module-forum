@@ -1,4 +1,4 @@
-<!-- 
+<!--
 the following variables can be used for category statistics:
 
 $total_count = total number of threads (including stickys)
@@ -6,7 +6,6 @@ $comment_count = total number of posts (including stickys and each threas as 1 p
 count($notice_list) = number of stickys
  -->
 <form action="./" method="get" class="forumListForm">
-	
 	<div id="topic">
 		<!--@if($total_count || Context::get('category'))-->
 			<div id="buttonsLeft">
@@ -35,7 +34,7 @@ count($notice_list) = number of stickys
 	<table cellspacing="0" border="0" class="forumCategoryList">
 		<thead>
 			<tr class="rootCateg">
-                <!--@if($grant->manager || $grant->moderator)-->
+				<!--@if($grant->manager || $grant->moderator)-->
 					<td width="3%">
 						<div class="left first">
 							<input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" />
@@ -43,61 +42,61 @@ count($notice_list) = number of stickys
 					</td>
 					<!--@end-->
 				{@ $columnCount=count($list_config)+1}
-                <td width="30%">
+				<td width="30%">
 								<div class="left <!--@if($grant->manager || $grant->moderator)-->middle<!--@else-->first<!--@end-->">
 									{$lang->document_count}
 								</div>
-                </td>
-                <!--@foreach($list_config as $key => $val)-->
-				
-                    <!--@if($val->idx == -1)-->
+				</td>
+				<!--@foreach($list_config as $key => $val)-->
 
-                        <!--@if($val->type == 'regdate')-->
-                            <td width="{(60/count($list_config))}%">
+					<!--@if($val->idx == -1)-->
+
+						<!--@if($val->type == 'regdate')-->
+							<td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','regdate','order_type',$order_type)}">{$lang->regdate}<!--@if($sort_index=='regdate')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
-							    </div>
+								</div>
 							</td>
-                        <!--@elseif($val->type == 'last_update')-->
-                            <td width="20%">
+						<!--@elseif($val->type == 'last_update')-->
+							<td width="20%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','last_update','order_type',$order_type)}">{$lang->last_update}<!--@if($sort_index=='last_update')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
-                         <!--@elseif($val->type == 'comment_count')-->
-                            <td width="{(60/count($list_config))}%">
+						 <!--@elseif($val->type == 'comment_count')-->
+							<td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','comment_count','order_type',$order_type)}">{$lang->comments}<!--@if($sort_index=='comment_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
 						<!--@elseif($val->type == 'Replies')-->
-                            <td width="{(60/count($list_config))}%">
+							<td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','comment_count','order_type',$order_type)}">{$lang->replies}<!--@if($sort_index=='comment_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
-                        <!--@elseif($val->type == 'readed_count')-->
-                            <td width="{(60/count($list_config))}%">
+						<!--@elseif($val->type == 'readed_count')-->
+							<td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									<a href="{getUrl('sort_index','readed_count','order_type',$order_type)}">{$lang->readed_count}<!--@if($sort_index=='readed_count')--><img src="./images/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
 								</div>
 							</td>
-                        <!--@end-->
-                    <!--@else-->
-                            <td width="{(60/count($list_config))}%">
+						<!--@end-->
+					<!--@else-->
+							<td width="{(60/count($list_config))}%">
 								<div class="center middle">
 									{$val->name}
 								</div>
 							</td>
-                    <!--@end-->
-                <!--@end-->
+					<!--@end-->
+				<!--@end-->
 				<td class="" width="3%">
 					<div class="center last">
 						<a class="openClose"></a>
 					</div>
 				</td>
-            </tr>
-        </thead>
+			</tr>
+		</thead>
 	</table>
 	<table cellspacing="0" border="0" class="forumCategoryList contentForum forumContent">
 	<tbody>
@@ -105,7 +104,7 @@ count($notice_list) = number of stickys
 	<!--@if(!$total_count || !count($document_list))-->
 		<tr class="separator">
 			<td class="gF" colspan="<!--@if($grant->manager || $grant->moderator)-->{count($list_config)+1}<!--@else-->{count($list_config)}<!--@end-->">
-				{$lang->no_articles} 
+				{$lang->no_articles}
 			</td>
 		</tr>
 	<!--@else-->
@@ -137,7 +136,7 @@ count($notice_list) = number of stickys
 				<!--@foreach($list_config as $key => $val)-->
 
 					<!--@if($val->idx == -1)-->
-										
+
 						<!--@if($val->type == 'regdate')-->
 							<td class="center numbers gF" width="{(60/$columnCount)}%">
 								{$document->getRegdate('d-m-Y')}
@@ -177,11 +176,11 @@ count($notice_list) = number of stickys
 		<!--@end-->
 	<!--@end-->
 	<!--@end-->
-	
+
 	<!--@if(!$total_count || !count($document_list))-->
 	<p id="noResults" class="gF">{$lang->no_documents}</p>
 	<!--@else-->
-		
+
 		<!--@foreach($document_list as $no => $document)-->
 			<tr class="bg{($no+1)%2+1} separator">
 				<!--@if($grant->manager || $grant->moderator)-->

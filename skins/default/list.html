@@ -5,7 +5,7 @@
 
 <!--@if($oDocument->isExists() )-->
 <div class="viewDocument">
-    <include target="./view_document.html" />
+	<include target="./view_document.html" />
 </div>
 <!--@end-->
 
@@ -15,10 +15,10 @@
 		<!--@if($category || Context::get('search_keyword') )-->
 			<div class="forumNavigation">
 				<div class="pagination a1">
-					<a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}" class="prevEnd"><img src="images/common/arrowPrevEndA1.gif" alt="" title=""/>{$lang->first_page}</a> 
+					<a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}" class="prevEnd"><img src="images/common/arrowPrevEndA1.gif" alt="" title=""/>{$lang->first_page}</a>
 					<!--@while($page_no = $page_navigation->getNextPage())-->
 						<!--@if($page == $page_no)-->
-							<strong>{$page_no}</strong> 
+							<strong>{$page_no}</strong>
 						<!--@else-->
 							<a href="{getUrl('page',$page_no,'document_srl','','division',$division,'last_division',$last_division)}">{$page_no}</a>
 						<!--@end-->

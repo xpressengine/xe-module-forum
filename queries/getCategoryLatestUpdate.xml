@@ -1,25 +1,25 @@
 <query id="getCategoryLatestUpdate" action="select">
-    <tables>
+	<tables>
 		<table query="true" alias="last_thread">
 			<tables>
 				<table name="documents" alias="doc" />
 			</tables>
 			<columns>
-					<column name="max(last_update)" alias="last_update"/>
-			</columns>			
+				<column name="max(last_update)" alias="last_update"/>
+			</columns>
 			<conditions>
 				<condition operation="in" column="category_srl" var="categories" filter="number" />
-			</conditions>			
+			</conditions>
 		</table>
-        <table name="documents" alias="documents" />
-    </tables>
-    <columns>
-        <column name="last_thread.last_update" alias="last_update"/>
-        <column name="documents.document_srl" alias="document_srl" />
-        <column name="documents.nick_name" alias="author" />
-    </columns>
-    <conditions>
+		<table name="documents" alias="documents" />
+	</tables>
+	<columns>
+		<column name="last_thread.last_update" alias="last_update"/>
+		<column name="documents.document_srl" alias="document_srl" />
+		<column name="documents.nick_name" alias="author" />
+	</columns>
+	<conditions>
 		<condition operation="equal" column="documents.last_update" default="last_thread.last_update" />
 		<condition operation="in" column="category_srl" var="categories" filter="number" pipe="and" />
-    </conditions>
+	</conditions>
 </query>

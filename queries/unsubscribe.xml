@@ -3,12 +3,12 @@
 		<table name="comments" />
 	</tables>
 	<columns>
-        <column name="notify_message" default="N" />
+		<column name="notify_message" default="N" />
 	</columns>
 	<conditions>
 		<group>
-		<condition operation="equal" column="document_srl" var="document_srl" pipe="and"/>
-		<condition operation="equal" column="member_srl" var="member_srl" pipe="and"/>
+			<condition operation="equal" column="document_srl" var="document_srl" pipe="and"/>
+			<condition operation="equal" column="member_srl" var="member_srl" pipe="and"/>
 		</group>
 	</conditions>
 </query>

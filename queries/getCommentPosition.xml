@@ -1,13 +1,13 @@
 <query id="getCommentPosition" action="select">
-    <tables>
-        <table name="comments" />
-    </tables>
-    <columns>
-        <column name="count(*)" alias="count" />
-    </columns>
-    <conditions>
-		<condition operation="equal" column="document_srl" var="document_srl" filter="number" />        
+	<tables>
+		<table name="comments" />
+	</tables>
+	<columns>
+		<column name="count(*)" alias="count" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="document_srl" var="document_srl" filter="number" />
 		<condition operation="equal" column="status" var="status" pipe="and" />
 		<condition operation="less" column="comment_srl" var="comment_srl" filter="number" pipe="and" />
-    </conditions>
+	</conditions>
 </query>

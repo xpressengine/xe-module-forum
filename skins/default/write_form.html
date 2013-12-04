@@ -61,15 +61,15 @@
 		</tr>
 		<!--@if(count($extra_keys))-->
 		<!--@foreach($extra_keys as $key => $val)-->
-	    <tr class="separator">
-	    	<td class="gF">
+		<tr class="separator">
+			<td class="gF">
 				<label for="notify_message">{htmlspecialchars($val->name)} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></label>
 			</td>
 			<td colspan="2">
 				{$val->getFormHTML()}
-			</td>      
-	    </tr>
-	    <!--@endforeach-->
+			</td>
+		</tr>
+		<!--@endforeach-->
 		<!--@endif-->
 		<!--@if($is_logged)-->
 		<!--@if($grant->manager || $grant->moderator)-->
@@ -81,7 +81,7 @@
 				<input type="checkbox" name="is_notice" value="Y" <!--@if($oDocument->isNotice())-->checked="checked"<!--@end--> id="is_notice" />
 			</td>
 		</tr>
-		
+
 		<tr class="separator">
 			<td class="gF">
 				<label for="allow_comment">{$lang->allow_comment}</label>
@@ -105,7 +105,7 @@
 			</td>
 			<td colspan="2">
 				<!--@if($is_logged)-->
-				<!-- 
+				<!--
 				<a href="#" class="forumButton blue" onclick="doDocumentSave(this); return false;" ><span class="outer"><span class="inner">{$lang->cmd_temp_save}</span></span></a>
 				<a href="#" class="forumButton blue" onclick="doDocumentLoad(this); return false;" ><span class="outer"><span class="inner">{$lang->cmd_load}</span></span></a>
 				-->
@@ -116,8 +116,8 @@
 	</tbody>
 </table>
 
-    
-    </form>
+
+	</form>
 <include target="_footer.html" />
 
 </div>

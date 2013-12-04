@@ -1,5 +1,5 @@
 <!--@if($oDocument->getCommentCount())-->
-	
+
 	{@ $_comment_list = $oDocument->getComments() }
 	<!--@foreach($_comment_list as $key => $comment)-->
 		<tr class="separator">
@@ -30,7 +30,7 @@
 				{$comment->getContent()}
 			</td>
 		</tr>
-				
+
 		<tr class="separator">
 			<td>
 				<p class="attachment">
@@ -41,16 +41,16 @@
 			<td class="right">
 				<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
 				<a href="{getUrl('act','dispForumDeleteComment','comment_srl',$comment->comment_srl,'entry','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
-				<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl,'entry','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</span></span></a> 
+				<a href="{getUrl('act','dispForumModifyComment','comment_srl',$comment->comment_srl,'entry','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</span></span></a>
 				<!--@end-->
 				<!--  <a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl)}" class="button green"><span>{$lang->cmd_reply}</span></a> -->
 				<!--@if(Context::get('is_logged')) -->
-				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
 				<!--@else-->
-				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
 				<!--@end-->
-				
-				
+
+
 				<!--@if($comment->get('voted_count')!=0 || $comment->get('blamed_count') != 0)-->
 				<div class="voted">
 					({$lang->voted_count}:
@@ -59,7 +59,7 @@
 				<!--@end-->
 			</td>
 		</tr>
-		
+
 		<!--@if($comment->hasUploadedFiles())-->
 		<tr class="separator">
 			<td>
@@ -90,19 +90,19 @@
 	</tbody>
 	</table>
 
-    <!--@if($oDocument->comment_page_navigation)-->
+	<!--@if($oDocument->comment_page_navigation)-->
 		<div class="pagination a1">
-			<a href="{getUrl('cpage',1,'comment_srl','')}" class="prevEnd">{$lang->first_page}</a> 
+			<a href="{getUrl('cpage',1,'comment_srl','')}" class="prevEnd">{$lang->first_page}</a>
 			<!--@while($page_no = $oDocument->comment_page_navigation->getNextPage())-->
 				<!--@if($cpage == $page_no)-->
-					<strong>{$page_no}</strong> 
+					<strong>{$page_no}</strong>
 				<!--@else-->
 					<a href="{getUrl('cpage',$page_no,'comment_srl','')}">{$page_no}</a>
 				<!--@end-->
 			<!--@end-->
 			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page,'comment_srl','')}" class="nextEnd">{$lang->last_page}</a>
 		</div>
-    <!--@end-->
+	<!--@end-->
 
 <!--@else-->
 </tbody>

@@ -1,12 +1,12 @@
 <query id="getCategoryCommentCount" action="select">
-    <tables>
-        <table name="documents" />
-    </tables>
-    <columns>
-        <column name="sum(comment_count)" alias="count" />
-    </columns>
-     <conditions>
-        <condition operation="in" column="category_srl" var="categories" filter="number" />
-    </conditions>
+	<tables>
+		<table name="documents" />
+	</tables>
+	<columns>
+		<column name="sum(comment_count)" alias="count" />
+	</columns>
+	<conditions>
+		<condition operation="in" column="category_srl" var="categories" filter="number" />
+	</conditions>
 </query>
 

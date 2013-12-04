@@ -1,14 +1,14 @@
 <div id="extras">
-	
+
 	<!--@if($is_logged || $module_info->allow_anonymous_search==Y)-->
 	<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search)" id="fo_search" class="forumSearchForm">
-		
+
 		<!--@if($vid)-->
 			<input type="hidden" name="vid" value="{$vid}" name="searchIn"/>
 		<!--@end-->
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="category" value="{$category}" />
-		
+
 		<h4 class="gF" style="margin: 10px 0 10px 10px;">{$lang->search_forums}:</h4>
 		<div class="specialBox">
 		<table border="0" cellspacing="0" class="forumCategoryList">
@@ -60,14 +60,14 @@
 			</tbody>
 		</table>
 		</div>
-		
+
 	</form>
 	<!--@else-->
 	<div id="searchMessage" class="gF">
 		<p>{$lang->search_message1} <a href="{getUrl('act','dispMemberLoginForm')}"><span>{$lang->login}</a></span> {$lang->first}.</p>
 		<p>{$lang->search_message2} <a href="{getUrl('act','dispMemberSignUpForm')}"><span>{$lang->here}</span></a>.</p>
 	</div>
-	
+
 	<!--@end-->
 
 	<!--@if($module_info->display_login_info != 'N' || $module_info->display_setup_button != 'N')-->

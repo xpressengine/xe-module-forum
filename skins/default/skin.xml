@@ -2,210 +2,207 @@
 <skin version="0.2">
 	<title xml:lang="en">XE default forum theme</title>
 	<title xml:lang="ko">포럼기본 스킨(2011)</title>
-    <description xml:lang="en">
-        XE default forum theme
-    </description>
-    <description xml:lang="ko">
-        포럼 기본 스킨
-    </description>
-    <version>2.0</version>
-    <date>2013-03-26</date>
+	<description xml:lang="en">
+		XE default forum theme
+	</description>
+	<description xml:lang="ko">
+		포럼 기본 스킨
+	</description>
+	<version>2.0</version>
+	<date>2013-03-26</date>
 
-    <author email_address="developer@xpressengine.com" link="http://www.xpressengine.com/">
-		<name xml:lang="en">NHN</name>
-		<name xml:lang="ko">NHN</name>
-    </author>
+	<author email_address="developer@xpressengine.com" link="http://www.xpressengine.com/">
+		<name xml:lang="en">NAVER</name>
+		<name xml:lang="ko">NAVER</name>
+	</author>
 
-    <license>LGPL v2</license>
+	<license>LGPL v2</license>
 
-    <colorset>
-        <color name="black">
-            <title xml:lang="en">Black</title>
-            <title xml:lang="ko">검정</title>
-        </color>
-        <color name="red">
-            <title xml:lang="en">Red</title>
-            <title xml:lang="ko">빨강</title>
-        </color>
-        <color name="green">
-            <title xml:lang="en">Green</title>
-            <title xml:lang="ko">녹색</title>
-        </color>
-        <color name="brown">
-            <title xml:lang="en">Brown</title>
-            <title xml:lang="ko">갈색</title>
-        </color>
-        <color name="white">
-            <title xml:lang="en">White</title>
-            <title xml:lang="ko">흰색</title>
-        </color>
+	<colorset>
+		<color name="black">
+			<title xml:lang="en">Black</title>
+			<title xml:lang="ko">검정</title>
+		</color>
+		<color name="red">
+			<title xml:lang="en">Red</title>
+			<title xml:lang="ko">빨강</title>
+		</color>
+		<color name="green">
+			<title xml:lang="en">Green</title>
+			<title xml:lang="ko">녹색</title>
+		</color>
+		<color name="brown">
+			<title xml:lang="en">Brown</title>
+			<title xml:lang="ko">갈색</title>
+		</color>
+		<color name="white">
+			<title xml:lang="en">White</title>
+			<title xml:lang="ko">흰색</title>
+		</color>
+	</colorset>
 
-    </colorset>
-
-    <extra_vars>
-        
-        <var name="display_login_info" type="select">
-            <title xml:lang="en">Display Login Info</title>
-            <title xml:lang="ko">로그인정보</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="display_setup_button" type="select">
-            <title xml:lang="en">Display Setup</title>
+	<extra_vars>
+		<var name="display_login_info" type="select">
+			<title xml:lang="en">Display Login Info</title>
+			<title xml:lang="ko">로그인정보</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="display_setup_button" type="select">
+			<title xml:lang="en">Display Setup</title>
 			<title xml:lang="ko">설정 버튼</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="subject_cut_size" type="text">
-            <title xml:lang="en">Length of Subject</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="subject_cut_size" type="text">
+			<title xml:lang="en">Length of Subject</title>
 			<title xml:lang="ko">제목 글자 수</title>
-            <description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
-            <description xml:lang="ko">제목 최대 글자수를 설정한다. (0, 공백인 경우 사용안함.)</description>
-	
-        </var>
-        <var name="content_cut_size" type="text">
-            <title xml:lang="en">Length of Content</title>
+			<description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+			<description xml:lang="ko">제목 최대 글자수를 설정한다. (0, 공백인 경우 사용안함.)</description>
+
+		</var>
+		<var name="content_cut_size" type="text">
+			<title xml:lang="en">Length of Content</title>
 			<title xml:lang="ko">내용 글자 수</title>
-            <description xml:lang="en">Length of Content can be assigned. (default 240)</description>
-            <description xml:lang="ko">내용 최대 글자수를 설정한다. (기본 240자)</description>
+			<description xml:lang="en">Length of Content can be assigned. (default 240)</description>
+			<description xml:lang="ko">내용 최대 글자수를 설정한다. (기본 240자)</description>
 
-        </var>
-        <var name="display_author" type="select">
-            <title xml:lang="en">Display Author</title>
+		</var>
+		<var name="display_author" type="select">
+			<title xml:lang="en">Display Author</title>
 			<title xml:lang="ko">작성자</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="display_regdate" type="select">
-            <title xml:lang="en">Display Registered Date</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="display_regdate" type="select">
+			<title xml:lang="en">Display Registered Date</title>
 			<title xml:lang="ko">등록일</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="display_readed_count" type="select">
-            <title xml:lang="en">Display Hit</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="display_readed_count" type="select">
+			<title xml:lang="en">Display Hit</title>
 			<title xml:lang="ko">조회수</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="display_voted_count" type="select">
-            <title xml:lang="en">Display Votes</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="display_voted_count" type="select">
+			<title xml:lang="en">Display Votes</title>
 			<title xml:lang="ko">추천수</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="display_ip_address" type="select">
-            <title xml:lang="en">Display ip address</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="display_ip_address" type="select">
+			<title xml:lang="en">Display ip address</title>
 			<title xml:lang="ko">작성자 IP 주소</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-        </var>
-        <var name="display_last_update" type="select">
-            <title xml:lang="en">Display Latest Update</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+		</var>
+		<var name="display_last_update" type="select">
+			<title xml:lang="en">Display Latest Update</title>
 			<title xml:lang="ko">마지막 업데이트 일</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-            <description />
-        </var>
-        <var name="display_sign" type="select">
-            <title xml:lang="en">Display sign</title>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+			<description />
+		</var>
+		<var name="display_sign" type="select">
+			<title xml:lang="en">Display sign</title>
 			<title xml:lang="ko">서명</title>
-            <options value="Y">
-                <title xml:lang="en">display</title>
-                <title xml:lang="ko">출력</title>
-            </options>
-            <options value="N">
-                <title xml:lang="en">not display</title>
-                <title xml:lang="ko">출력안함</title>
-            </options>
-        </var>
-        <var name="duration_new" type="text" default="24">
-            <title xml:lang="en">Duration of indication for new item</title>
-            <title xml:lang="ko">새글 표시 기준 시간</title>
-            <description xml:lang="en">You may set the duration of indication for fresh item. </description>
-            <description xml:lang="ko">새글 표시 기준 시간을 설정 할 수 있습니다. </description>
+			<options value="Y">
+				<title xml:lang="en">display</title>
+				<title xml:lang="ko">출력</title>
+			</options>
+			<options value="N">
+				<title xml:lang="en">not display</title>
+				<title xml:lang="ko">출력안함</title>
+			</options>
+		</var>
+		<var name="duration_new" type="text" default="24">
+			<title xml:lang="en">Duration of indication for new item</title>
+			<title xml:lang="ko">새글 표시 기준 시간</title>
+			<description xml:lang="en">You may set the duration of indication for fresh item. </description>
+			<description xml:lang="ko">새글 표시 기준 시간을 설정 할 수 있습니다. </description>
 
-        </var>
-        <var name="thumbnail_type" type="select">
-            <title xml:lang="en">Type of Thumbnail</title>
-            <title xml:lang="ko">섬네일 생성방법</title>
-            <options value="crop">
-                <title xml:lang="en">crop</title>
-                <title xml:lang="ko">자르기</title>
-            </options>
-            <options value="ratio">
-                <title xml:lang="en">ratio</title>
-                <title xml:lang="ko">비율조정</title>
-            </options>
-        </var>
-        <var name="thumbnail_width" type="text" default="100">
-            <title xml:lang="en">Width of Thumbnail</title>
-            <title xml:lang="ko">섬네일 가로 사이즈</title>
-            <description xml:lang="en">Set the width of thumbnail. Default is 100px.</description>
-            <description xml:lang="ko">섬네일 가로 사이즈를 설정합니다. 기본 100px 입니다.</description>
+		</var>
+		<var name="thumbnail_type" type="select">
+			<title xml:lang="en">Type of Thumbnail</title>
+			<title xml:lang="ko">섬네일 생성방법</title>
+			<options value="crop">
+				<title xml:lang="en">crop</title>
+				<title xml:lang="ko">자르기</title>
+			</options>
+			<options value="ratio">
+				<title xml:lang="en">ratio</title>
+				<title xml:lang="ko">비율조정</title>
+			</options>
+		</var>
+		<var name="thumbnail_width" type="text" default="100">
+			<title xml:lang="en">Width of Thumbnail</title>
+			<title xml:lang="ko">섬네일 가로 사이즈</title>
+			<description xml:lang="en">Set the width of thumbnail. Default is 100px.</description>
+			<description xml:lang="ko">섬네일 가로 사이즈를 설정합니다. 기본 100px 입니다.</description>
 
-        </var>
-        <var name="thumbnail_height" type="text" default="100">
-            <title xml:lang="en">Height of Thumbnail</title>
-            <title xml:lang="ko">섬네일 세로 사이즈</title>
-            <description xml:lang="en">Set the height of thumbnail. Default is 100px.</description>
-            <description xml:lang="ko">섬네일 세로 사이즈를 설정합니다. 기본 100px 입니다.</description>
+		</var>
+		<var name="thumbnail_height" type="text" default="100">
+			<title xml:lang="en">Height of Thumbnail</title>
+			<title xml:lang="ko">섬네일 세로 사이즈</title>
+			<description xml:lang="en">Set the height of thumbnail. Default is 100px.</description>
+			<description xml:lang="ko">섬네일 세로 사이즈를 설정합니다. 기본 100px 입니다.</description>
 
-        </var>
-    </extra_vars>
+		</var>
+	</extra_vars>
 </skin>
-

@@ -44,10 +44,9 @@
 				<!--@end-->
 			</td>
 			<td class="large center lightGray">
-				
-					<p class="subject"><span>{$lang->post_subject}:</span> {$oDocument->getTitle()}</p>
-					<p class="postDate"><span>{$lang->post_date}:</span> {$oDocument->getRegdate('d.m.Y')}</p>
-				
+				<p class="subject"><span>{$lang->post_subject}:</span> {$oDocument->getTitle()}</p>
+				<p class="postDate"><span>{$lang->post_date}:</span> {$oDocument->getRegdate('d.m.Y')}</p>
+
 
 				<!--@if($module_info->display_sign != 'N' && ($oDocument->getProfileImage() || $oDocument->getSignature()))-->
 					<div class="memberSignature">
@@ -65,15 +64,15 @@
 				<!--@else-->
 						<p class="avatar"><img src="images/common/avatar.jpg"></p>
 				<!--@end-->
-				
+
 				<p class="additionalInfo"><span>{$lang->registered}: </span>{$oDocument->getRegdate('d/m/Y')}</p>
 				<!--@if($grant->manager || $module_info->display_ip_address!='N')-->
 				<p class="additionalInfo"><span>{$lang->ip}: </span>{$oDocument->getIpaddress()}</p>
 				<!--@end-->
-				
+
 				<!--@if($oDocument->get('voted_count')!=0 || $oDocument->get('blamed_count')!=0)-->
 				<p class="additionalInfo"><span>{$lang->voted_count}: </span>{$oDocument->get('voted_count')} / {$oDocument->get('blamed_count')}</p>
-				<!--@end-->			
+				<!--@end-->
 			</td>
 			<td class="top">
 				{$oDocument->getContent(FALSE)}
@@ -99,7 +98,7 @@
 			</td>
 		</tr>
 		<!--@end-->
-		
+
 		<!--@if($oDocument->isExtraVarsExists() && ( $oDocument->isGranted()) )-->
 		<tr class="separator">
 			<td>
@@ -112,7 +111,7 @@
 			</td>
 		</tr>
 		<!--@end-->
-		
+
 		<tr class="separator">
 			<td>
 				<p class="attachment">
@@ -125,24 +124,24 @@
 			<!--@if($oDocument->isEditable())-->
 				<a href="{getUrl('act','dispForumDelete','document_srl',$oDocument->document_srl,'comment_srl','','entry','')}" class="forumButton blue commentDelete"><span class="outer"><span class="inner">{$lang->cmd_delete}</span></span></a>
 				<a href="{getUrl('act','dispForumWrite','document_srl',$oDocument->document_srl,'comment_srl','','entry','')}" class="forumButton blue commentEdit"><span class="outer"><span class="inner">{$lang->cmd_modify}</a><span></span>
-			<!--@end-->	
+			<!--@end-->
 			<!--@if($oDocument->allowComment())-->
 				<!--@if(Context::get('is_logged')) -->
 					<!--@if(!Context::get('entry'))-->
 					<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
 					<!--@else-->
 					<a href="{getUrl('act','dispForumReplyComment','document_srl',$oDocument->document_srl,'comment_srl',$comment->comment_srl,'quote','Y','entry','')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
-					<!--@end--> 
+					<!--@end-->
 				<!--@else-->
-				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a> 
+				<a href="{getUrl('act','dispMemberLoginForm','comment_srl',$comment->comment_srl,'quote','Y')}" class="forumButton blue comment"><span class="outer"><span class="inner">{$lang->cmd_quote}</span></span></a>
 				<!--@end-->
-				
+
 			<!--@end-->
 			</td>
 		</tr>
-		
-		
-		
+
+
+
 		<tr class="separator threadSeparator">
 			<td class="mediumGray">
 			</td>
@@ -151,18 +150,18 @@
 		</tr>
 		<!--@end-->
 
-	
+
 	<!--@if($oDocument->allowComment())-->
 		<include target="./comment.html" />
 
-		
+
 		<!--@if($grant->post && $oDocument->isEnableComment() )-->
 			<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="forumEditor" >
 				<input type="hidden" name="mid" value="{$mid}" />
 				<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
 				<input type="hidden" name="comment_srl" value="" />
 				<input type="hidden" name="content" value="" />
-				
+
 				<div class="forumWrite commentEditor">
 
 				<!--@if($is_logged)-->

@@ -3,7 +3,7 @@
 		<table name="comments" />
 	</tables>
 	<columns>
-        <column name="notify_message" var="notify_message" default="N" />
+		<column name="notify_message" var="notify_message" default="N" />
 	</columns>
 	<conditions>
 		<condition operation="equal" column="user_name" var="user_name"/>

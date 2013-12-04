@@ -1,9 +1,6 @@
 jQuery(document).ready(function(){
-	
 	var state = false;
-	
-	jQuery("table.forumCategoryList .openClose").click(function () {
-	
+	jQuery("table.forumCategoryList .openClose").click(function (){
 		var target = jQuery(this);
 
 		jQuery(this).parents(".forumCategoryList").next(".forumContent").toggle(
