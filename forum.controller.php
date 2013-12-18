@@ -142,6 +142,7 @@
 			$obj = Context::gets('document_srl','comment_srl','parent_srl','content','password','nick_name','member_srl','email_address','homepage','notify_message');
 			$obj->module_srl = $this->module_srl;
 			$obj->content=$args->quote_content.$obj->content;
+			if($args->quote_content)	$obj->use_html="Y";
 			// instancing document model
 			$oDocumentModel = &getModel('document');
 			$oDocument = $oDocumentModel->getDocument($obj->document_srl);
