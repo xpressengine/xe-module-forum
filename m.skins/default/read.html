@@ -70,11 +70,11 @@
 <!--@endif-->
 <!--@if($oDocument->allowComment() && $oDocument->getCommentCount())-->
 <div class="hx h3">
-	<h3 id="clb">{$lang->comment} <em>[{$oDocument->getCommentCount()}]</em></h3> 
+	<h3 id="clb">{$lang->reply} <em>[{$oDocument->getCommentCount()}]</em></h3> 
 	<button type="button" class="tg tgr" title="open/close"></button>
 </div>
 <!--@endif-->
-<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
+<!--@if($grant->post && $oDocument->isEnableComment() )-->
 <div class="hx h3">
 	<h3>{$lang->write_comment}</h3>
 	<button type="button" class="tg" title="open/close"></button>

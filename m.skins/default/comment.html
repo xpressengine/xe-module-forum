@@ -19,11 +19,11 @@
 		{$comment->getContent(false)}
 		<span class="auth">
 			<em>{$comment->getNickName()}</em>
-			<span class="time">{$comment->getRegdate("Y.m.d")}</span>
+			<span class="time">{$comment->getRegdate("Y.m.d H:i:s")}</span>
 			<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
 			<a href="{getUrl('act','dispForumDeleteComment','comment_srl',$comment->comment_srl)}" class="btn de">{$lang->cmd_delete}</a>
 			<!--@endif-->
-			<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl)}" class="btn re">{$lang->cmd_reply}</a>
+			<a href="{getUrl('act','dispForumReplyComment','comment_srl',$comment->comment_srl,'quote','Y')}" class="btn re">{$lang->cmd_quote}</a>
 			{@ $start = false }
 			{@ $depth = $comment->get('depth') }
 		</span>
