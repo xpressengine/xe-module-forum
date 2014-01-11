@@ -16,7 +16,7 @@ class forumWAP extends forum
 		if($this->module_info->consultation == 'Y') return $oMobile->setContent(Context::getLang('msg_not_permitted'));
 
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		// get the selected document_srl
 		$document_srl = Context::get('document_srl');
@@ -32,7 +32,7 @@ class forumWAP extends forum
 				if($this->act=='dispForumContentCommentList')
 				{
 
-					$oCommentModel = &getModel('comment');
+					$oCommentModel = getModel('comment');
 					$output = $oCommentModel->getCommentList($oDocument->document_srl, 0, false, $oDocument->getCommentCount());
 
 					$content = '';

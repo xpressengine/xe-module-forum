@@ -45,10 +45,10 @@ class forumController extends forum {
 		}
 
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		// instancing document controller
-		$oDocumentController = &getController('document');
+		$oDocumentController = getController('document');
 
 		// get current document
 		$oDocument = $oDocumentModel->getDocument($obj->document_srl, $this->grant->manager);
@@ -114,7 +114,7 @@ class forumController extends forum {
 		if(!$document_srl) return $this->doError('msg_invalid_document');
 
 		// instancing document controller
-		$oDocumentController = &getController('document');
+		$oDocumentController = getController('document');
 
 		// delete document
 		$output = $oDocumentController->deleteDocument($document_srl, $this->grant->manager);
@@ -132,7 +132,7 @@ class forumController extends forum {
 	function procForumVoteDocument()
 	{
 		// instancing document controller
-		$oDocumentController = &getController('document');
+		$oDocumentController = getController('document');
 
 		$document_srl = Context::get('document_srl');
 		return $oDocumentController->updateVotedCount($document_srl);
@@ -153,7 +153,7 @@ class forumController extends forum {
 		$obj->module_srl = $this->module_srl;
 		$obj->content=$args->quote_content.$obj->content;
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$oDocument = $oDocumentModel->getDocument($obj->document_srl);
 		if(!$oDocument->isExists()) return new Object(-1,'msg_not_permitted');
 
@@ -161,10 +161,10 @@ class forumController extends forum {
 		$bAnonymous = false;
 
 		// instancing comment model
-		$oCommentModel = &getModel('comment');
+		$oCommentModel = getModel('comment');
 
 		// instancing comment controller
-		$oCommentController = &getController('comment');
+		$oCommentController = getController('comment');
 
 		// check comment_srl
 		// if not comment_srl then use getNextSequence for a new value
@@ -203,7 +203,7 @@ class forumController extends forum {
 			if($output->toBool())
 			{
 				//check if comment writer is admin or not
-				$oMemberModel = &getModel("member");
+				$oMemberModel = getModel("member");
 				if (isset($obj->member_srl) && !is_null($obj->member_srl))
 				{
 					$member_info = $oMemberModel->getMemberInfoByMemberSrl($obj->member_srl);
@@ -254,7 +254,7 @@ class forumController extends forum {
 		if(!$comment_srl) return $this->doError('msg_invalid_request');
 
 		// instancing comment controller
-		$oCommentController = &getController('comment');
+		$oCommentController = getController('comment');
 
 		$output = $oCommentController->deleteComment($comment_srl, $this->grant->manager);
 		if(!$output->toBool()) return $output;
@@ -278,9 +278,9 @@ class forumController extends forum {
 		if(!$obj->member_srl) return $this->doError('msg_invalid_request');
 
 		// instancing controllers
-		$oMemberModel = &getModel('member');
-		$oDocumentController = &getController('document');
-		$oCommentController = &getController('comment');
+		$oMemberModel = getModel('member');
+		$oDocumentController = getController('document');
+		$oCommentController = getController('comment');
 
 		if($obj->delete_comments_and_threads == 'Y'){
 			$output = executeQuery('forum.deleteCommentsbyModuleSrl', $obj);
@@ -316,7 +316,7 @@ class forumController extends forum {
 		$trackback_srl = Context::get('trackback_srl');
 
 		// instancing trackback controller
-		$oTrackbackController = &getController('trackback');
+		$oTrackbackController = getController('trackback');
 		$output = $oTrackbackController->deleteTrackback($trackback_srl, $this->grant->manager);
 		if(!$output->toBool()) return $output;
 
@@ -336,13 +336,13 @@ class forumController extends forum {
 		$document_srl = Context::get('document_srl');
 		$comment_srl = Context::get('comment_srl');
 		// instancing member model
-		$oMemberModel = &getModel('member');
+		$oMemberModel = getModel('member');
 
 		// check if comment_srl is set
 		if($comment_srl)
 		{
 			// instancing comment model
-			$oCommentModel = &getModel('comment');
+			$oCommentModel = getModel('comment');
 			$oComment = $oCommentModel->getComment($comment_srl);
 			if(!$oComment->isExists()) return new Object(-1, 'msg_invalid_request');
 
@@ -352,7 +352,7 @@ class forumController extends forum {
 			$oComment->setGrant();
 		} else {
 			// make sure that the document_srl correspond to the current article
-			$oDocumentModel = &getModel('document');
+			$oDocumentModel = getModel('document');
 			$oDocument = $oDocumentModel->getDocument($document_srl);
 			if(!$oDocument->isExists()) return new Object(-1, 'msg_invalid_request');
 
@@ -371,16 +371,16 @@ class forumController extends forum {
 	//get admin info
 	$logged_info = Context::get('logged_info');
 	 // instancing module model
-	$oModuleModel = &getModel('module');
+	$oModuleModel = getModel('module');
 	
 	 // instancing module model
-	$oCommentController = &getController('comment');
+	$oCommentController = getController('comment');
 	
 	// create the model object of the document
-	$oDocumentModel = &getModel('document');
+	$oDocumentModel = getModel('document');
 	
 	// create the comment model object
-	$oCommentModel = &getModel('comment');
+	$oCommentModel = getModel('comment');
 		
 	// create new mail object
 	$oMail = new Mail();
@@ -487,7 +487,7 @@ class forumController extends forum {
 		$logged_info = Context::get('logged_info');
 
 		// instancing module model
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$cur_module_info = $oModuleModel->getModuleInfoByMid($mid);
 
 		if($cur_module_info->module != 'forum') return new Object();
@@ -497,7 +497,7 @@ class forumController extends forum {
 		{
 			$member_info = $logged_info;
 		} else {
-			$oMemberModel = &getModel('member');
+			$oMemberModel = getModel('member');
 			$member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 		}
 
@@ -505,7 +505,7 @@ class forumController extends forum {
 
 		// add search functionality to id
 		$url = getUrl('','mid',$mid,'search_target','nick_name','search_keyword',$member_info->nick_name);
-		$oMemberController = &getController('member');
+		$oMemberController = getController('member');
 		$oMemberController->addMemberPopupMenu($url, 'cmd_view_own_document', './modules/member/tpl/images/icon_view_written.gif');
 
 		return new Object();
@@ -514,8 +514,8 @@ class forumController extends forum {
 
 	function insert_document_alias($obj)
 	{
-		$oDocumentController = &getController('document');
-		$oDocumentModel = &getModel('document');
+		$oDocumentController = getController('document');
+		$oDocumentModel = getModel('document');
 		$alias = $obj->title;
 		$output = executeQuery('forum.getAlias', $obj);
 		if(!isset($output->data)){

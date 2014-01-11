@@ -19,11 +19,11 @@ class forum extends ModuleObject
 	 **/
 	function moduleInstall()
 	{
-		$oModuleController = &getController('module');
-		$oModuleModel = &getModel('module');
-		$oDocumentController = &getController('document');
-		$oCommentController = &getController('comment');
-		$oForumController = &getController('forum');
+		$oModuleController = getController('module');
+		$oModuleModel = getModel('module');
+		$oDocumentController = getController('document');
+		$oCommentController = getController('comment');
+		$oForumController = getController('forum');
 
 
 		// insert triggers
@@ -87,7 +87,7 @@ class forum extends ModuleObject
 	 **/
 	function checkUpdate()
 	{
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 
 		// check to see if the necessary triggers are found in the database
 		if(!$oModuleModel->getTrigger('member.getMemberMenu', 'forum', 'controller', 'triggerMemberMenu', 'after')) return true;
@@ -108,8 +108,8 @@ class forum extends ModuleObject
 	 **/
 	function moduleUpdate()
 	{
-		$oModuleModel = &getModel('module');
-		$oModuleController = &getController('module');
+		$oModuleModel = getModel('module');
+		$oModuleController = getController('module');
 
 		$module_config = $oModuleModel->getModuleConfig('forum');
 		if(!$module_config && !$module_config->first_install)

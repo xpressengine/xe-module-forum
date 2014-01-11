@@ -19,8 +19,8 @@ class forumModel extends module
 	 **/
 	function getListConfig($module_srl)
 	{
-		$oModuleModel = &getModel('module');
-		$oDocumentModel = &getModel('document');
+		$oModuleModel = getModel('module');
+		$oDocumentModel = getModel('document');
 
 		// get module partial configuration
 		$list_config = $oModuleModel->getModulePartConfig('forum', $module_srl);
@@ -56,7 +56,7 @@ class forumModel extends module
 		}
 
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$inserted_extra_vars = $oDocumentModel->getExtraKeys($module_srl);
 
 		if(count($inserted_extra_vars))
@@ -76,7 +76,7 @@ class forumModel extends module
 	function isNotified($obj)
 	{
 		$output= executeQueryArray('forum.getNotifyMessage', $obj);
-		$oDocumentModel=&getModel('document');
+		$oDocumentModel=getModel('document');
 		$document_srl=Context::get('document_srl');
 		$oDocument=$oDocumentModel->getDocument($document_srl);
 		$notification=0;

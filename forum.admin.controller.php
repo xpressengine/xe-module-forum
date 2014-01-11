@@ -20,8 +20,8 @@ class forumAdminController extends forum
 	function procForumAdminInsertForum($args = null)
 	{
 		// creating object of model/controller type
-		$oModuleController = &getController('module');
-		$oModuleModel = &getModel('module');
+		$oModuleController = getController('module');
+		$oModuleModel = getModel('module');
 
 		// set the module information parameters
 		$args = Context::getRequestVars();
@@ -72,7 +72,7 @@ class forumAdminController extends forum
 		$module_srl = Context::get('module_srl');
 
 		// deletes module with specified module_srl
-		$oModuleController = &getController('module');
+		$oModuleController = getController('module');
 		$output = $oModuleController->deleteModule($module_srl);
 		if(!$output->toBool()) return $output;
 
@@ -99,7 +99,7 @@ class forumAdminController extends forum
 			$list_arr[] = $val;
 		}
 
-		$oModuleController = &getController('module');
+		$oModuleController = getController('module');
 		$oModuleController->insertModulePartConfig('forum', $module_srl, $list_arr);
 	}
 }

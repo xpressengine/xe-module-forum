@@ -49,7 +49,7 @@ class forumView extends forum {
 		/**
 		 * set the extra keys
 		 **/
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$extra_keys = $oDocumentModel->getExtraKeys($this->module_info->module_srl);
 		Context::set('extra_keys', $extra_keys);
 
@@ -105,7 +105,7 @@ class forumView extends forum {
 
 
 		$logged_info=Context::get('logged_info');
-		$oForumModel= &getModel('forum');
+		$oForumModel= getModel('forum');
 
 		$obj = new stdClass;
 		$obj->document_srl=$document_srl;
@@ -192,7 +192,7 @@ class forumView extends forum {
 	function dispForumCategoryList()
 	{
 		//instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		//get all categories list
 		$categorylist = $oDocumentModel->getCategoryList($this->module_srl);
 		$child_exists=0;
@@ -254,7 +254,7 @@ class forumView extends forum {
 	function dispForumCategoryChildren()
 	{
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		//get category children
 		$categorylist = $oDocumentModel->getCategoryList($this->module_srl);
@@ -332,7 +332,7 @@ class forumView extends forum {
 		// get current category
 		$category=Context::get('category');
 		$document_srl=Context::get('document_srl');
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 			//get current document
 		$document=$oDocumentModel->getDocument($document_srl);
 		if(!$category || ($category != $document->variables['category_srl']))
@@ -378,7 +378,7 @@ class forumView extends forum {
 		$page = Context::get('page');
 
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		/**
 		 * get wanted document by document_srl
@@ -448,7 +448,7 @@ class forumView extends forum {
 	 **/
 	function dispForumContentFileList()
 	{
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$document_srl = Context::get('document_srl');
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		Context::set('file_list',$oDocument->getUploadedFiles());
@@ -464,12 +464,12 @@ class forumView extends forum {
 			$obj = new stdClass;
 			$obj->document_srl=Context::get('document_srl');
 			$obj->comment_srl=Context::get('comment_srl');
-			$oCommentController = &getController('comment');
-			//$oDocumentModel = &getModel('document');
+			$oCommentController = getController('comment');
+			//$oDocumentModel = getModel('document');
 			//$oComment=$oCommentModel->getComment($comment_srl);
 
 			// get the number of comments on the document module
-			$oDocumentModel = &getModel('document');
+			$oDocumentModel = getModel('document');
 			$columnList = array('document_srl', 'module_srl');
 			$oDocument = $oDocumentModel->getDocument($obj->document_srl, false, true, $columnList);
 			// return if no doc exists.
@@ -495,7 +495,7 @@ class forumView extends forum {
 	 **/
 	function dispForumContentCommentList()
 	{
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$document_srl = Context::get('document_srl');
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		$comment_list = $oDocument->getComments();
@@ -508,7 +508,7 @@ class forumView extends forum {
 	 **/
 	function dispForumNoticeList()
 	{
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		$args = new stdClass;
 		$args->module_srl = $this->module_srl;
@@ -524,7 +524,7 @@ class forumView extends forum {
 	function dispForumContentList()
 	{
 		// instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		// set required arguments
 		$args = new stdClass;
@@ -567,7 +567,7 @@ class forumView extends forum {
 		}
 
 		// check if module is using comment validation system
-		$oCommentController = &getController("comment");
+		$oCommentController = getController("comment");
 		if(method_exists($oCommentController,'isModuleUsingPublishValidation'))
 		{
 			$is_using_validation = $oCommentController->isModuleUsingPublishValidation($this->module_srl);
@@ -753,7 +753,7 @@ class forumView extends forum {
 		Context::set('page_navigation', $output->page_navigation);
 
 		// set list_config
-		$oforumModel = &getModel('forum');
+		$oforumModel = getModel('forum');
 		Context::set('list_config', $oforumModel->getListConfig($this->module_info->module_srl));
 	}
 
@@ -763,7 +763,7 @@ class forumView extends forum {
 	function dispForumTagList()
 	{
 		// instancing tag model
-		$oTagModel = &getModel('tag');
+		$oTagModel = getModel('tag');
 
 		$obj->mid = $this->module_info->mid;
 		$obj->list_count = 10000;
@@ -798,7 +798,7 @@ class forumView extends forum {
 		if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
 		$logged_info=Context::get('logged_info');
-		$oForumModel= &getModel('forum');
+		$oForumModel= getModel('forum');
 		$obj = new stdClass;
 		$obj->document_srl=Context::get('document_srl');
 		$obj->member_srl=$logged_info->member_srl;
@@ -807,7 +807,7 @@ class forumView extends forum {
 
 		$this->dispBreadcrumbs();
 
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 
 		/**
 		 * Check if user is logged
@@ -855,10 +855,10 @@ class forumView extends forum {
 		if($oDocument->isExists()&&!$oDocument->isGranted()) return $this->setTemplateFile('input_password_form');
 		if(!$oDocument->isExists())
 		{
-			$oModuleModel = &getModel('module');
+			$oModuleModel = getModel('module');
 			$point_config = $oModuleModel->getModulePartConfig('point',$this->module_srl);
 			$logged_info = Context::get('logged_info');
-			$oPointModel = &getModel('point');
+			$oPointModel = getModel('point');
 			$pointForInsert = $point_config["insert_document"];
 			if($pointForInsert < 0)
 			{
@@ -871,7 +871,7 @@ class forumView extends forum {
 		Context::set('oDocument', $oDocument);
 
 		//  add validation for extra keys
-		$oDocumentController = &getController('document');
+		$oDocumentController = getController('document');
 		$oDocumentController->addXmlJsFilter($this->module_info->module_srl);
 
 		//  set document extra keys
@@ -899,7 +899,7 @@ class forumView extends forum {
 		// if valid document_srl get document
 		if($document_srl)
 		{
-			$oDocumentModel = &getModel('document');
+			$oDocumentModel = getModel('document');
 			$oDocument = $oDocumentModel->getDocument($document_srl);
 		}
 
@@ -931,12 +931,12 @@ class forumView extends forum {
 		if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
 		// get all document after instancing document model
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		if(!$oDocument->isExists()) return $this->dispForumMessage('msg_invalid_request');
 
 		// instancing comment model
-		$oCommentModel = &getModel('comment');
+		$oCommentModel = getModel('comment');
 		$oSourceComment = $oComment = $oCommentModel->getComment(0);
 		$oComment->add('document_srl', $document_srl);
 		$oComment->add('module_srl', $this->module_srl);
@@ -965,7 +965,7 @@ class forumView extends forum {
 		if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
 		$logged_info=Context::get('logged_info');
-		$oForumModel= &getModel('forum');
+		$oForumModel= getModel('forum');
 
 		$obj = new stdClass;
 		$obj->document_srl=Context::get('document_srl');
@@ -978,7 +978,7 @@ class forumView extends forum {
 		$document_srl= Context::get('document_srl');
 
 		$this->dispBreadcrumbs();
-		$oDocumentModel=&getModel('document');
+		$oDocumentModel=getModel('document');
 		if(Context::get('document_srl'))
 		{
 			$oDocument=$oDocumentModel->getDocument($document_srl);
@@ -989,11 +989,11 @@ class forumView extends forum {
 		if(!$parent_srl && !document_srl) return new Object(-1, 'msg_invalid_request');
 
 			// lookup the comment
-		$oCommentModel = &getModel('comment');
+		$oCommentModel = getModel('comment');
 		$oSourceComment = $oCommentModel->getComment($parent_srl, $this->grant->manager);
 		if(!$oSourceComment->isExists())
 		{
-			$oDocumentModel=&getModel('document');
+			$oDocumentModel=getModel('document');
 			$oSourceDocument=$oDocumentModel->getDocument($document_srl,$this->grant->manager);
 		}
 
@@ -1046,7 +1046,7 @@ class forumView extends forum {
 		if(!$this->grant->post) return $this->dispForumMessage('msg_not_permitted');
 
 		$logged_info=Context::get('logged_info');
-		$oForumModel= &getModel('forum');
+		$oForumModel= getModel('forum');
 		$obj->document_srl=Context::get('document_srl');
 		$obj->member_srl=$logged_info->member_srl;
 		$isNotified= $oForumModel->isNotified($obj);
@@ -1060,7 +1060,7 @@ class forumView extends forum {
 		if(!$comment_srl) return new Object(-1, 'msg_invalid_request');
 
 		// get comment
-		$oCommentModel = &getModel('comment');
+		$oCommentModel = getModel('comment');
 		$oComment = $oCommentModel->getComment($comment_srl, $this->grant->manager);
 		$pos=strrpos($oComment->content,"</div>");
 		if($pos!=FALSE)
@@ -1105,7 +1105,7 @@ class forumView extends forum {
 		// get comment if comment_srl is not null
 		if($comment_srl)
 		{
-			$oCommentModel = &getModel('comment');
+			$oCommentModel = getModel('comment');
 			$oComment = $oCommentModel->getComment($comment_srl, $this->grant->manager);
 		}
 
@@ -1137,7 +1137,7 @@ class forumView extends forum {
 		// get comment if comment_srl is not null
 		if($member_srl)
 		{
-			$oMemberModel = &getModel('member');
+			$oMemberModel = getModel('member');
 			$oMember = $oMemberModel->getMemberInfoByMemberSrl($member_srl, $this->grant->manager);
 		}
 
@@ -1166,7 +1166,7 @@ class forumView extends forum {
 		$trackback_srl = Context::get('trackback_srl');
 
 		// get trackback
-		$oTrackbackModel = &getModel('trackback');
+		$oTrackbackModel = getModel('trackback');
 		$output = $oTrackbackModel->getTrackback($trackback_srl);
 		$trackback = $output->data;
 
@@ -1210,7 +1210,7 @@ class forumView extends forum {
 	{
 		$obj->document_srl=Context::get('document_srl');
 		$obj->member_srl=Context::get('member_srl');
-		$oDocumenModel=&getModel('document');
+		$oDocumenModel=getModel('document');
 		$document=$oDocumenModel->getDocument($obj->document_srl);
 		$title=$document->getTitle();
 		$output= executeQuery('forum.unsubscribe', $obj);

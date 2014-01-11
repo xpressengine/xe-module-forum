@@ -23,7 +23,7 @@ class forumAdminView extends forum {
 		}
 
 		// module creating model object
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 
 		// setting the information in advance, in order to save the module
 		if($module_srl)
@@ -75,7 +75,7 @@ class forumAdminView extends forum {
 			$this->displayForumAdminContentList();
 		}
 		else {
-			$oModuleModel = &getModel('module');
+			$oModuleModel = getModel('module');
 			$module_srl=$output->data[1]->module_srl;
 			$module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
 			ModuleModel::syncModuleToSite($module_info);
@@ -96,9 +96,9 @@ class forumAdminView extends forum {
 	{
 
 		$module_info=Context::get('module_info');
-		$oDocumentModel = &getModel('document');
-		$oCommentModel=&getModel('comment');
-		$oModuleModel= &getModel('module');
+		$oDocumentModel = getModel('document');
+		$oCommentModel=getModel('comment');
+		$oModuleModel= getModel('module');
 
 		$obj->list_count=$oDocumentModel->getDocumentCount($module_info->module_srl);
 		$obj->mid=$module_info->mid;
@@ -218,7 +218,7 @@ class forumAdminView extends forum {
 		$output = executeQueryArray('forum.getForumList', $args);
 		ModuleModel::syncModuleToSite($output->data);
 
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		if(isset($output->data))
 		{
 			foreach ($output->data as $val)
@@ -257,7 +257,7 @@ class forumAdminView extends forum {
 		}
 
 		// instancing module model
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$skin_list = $oModuleModel->getSkins($this->module_path);
 		Context::set('skin_list',$skin_list);
 
@@ -265,7 +265,7 @@ class forumAdminView extends forum {
 		Context::set('mskin_list', $mskin_list);
 
 		// instancing layout model
-		$oLayoutModel = &getModel('layout');
+		$oLayoutModel = getModel('layout');
 		$layout_list = $oLayoutModel->getLayoutList();
 		Context::set('layout_list', $layout_list);
 
@@ -305,7 +305,7 @@ class forumAdminView extends forum {
 
 		$module_info = Context::get('module_info');
 
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$document_count = $oDocumentModel->getDocumentCount($module_info->module_srl);
 		$module_info->document_count = $document_count;
 
@@ -320,7 +320,7 @@ class forumAdminView extends forum {
 	 **/
 	function dispForumAdminListSetup()
 	{
-		$oforumModel = &getModel('forum');
+		$oforumModel = getModel('forum');
 
 		$content = '';
 
@@ -348,7 +348,7 @@ class forumAdminView extends forum {
 	 **/
 	function dispForumAdminCategoryInfo()
 	{
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$catgegory_content = $oDocumentModel->getCategoryHTML($this->module_info->module_srl);
 		Context::set('category_content', $catgegory_content);
 
@@ -363,7 +363,7 @@ class forumAdminView extends forum {
 	function dispForumAdminGrantInfo()
 	{
 		//getting default grant configuration
-		$oModuleAdminModel = &getAdminModel('module');
+		$oModuleAdminModel = getAdminModel('module');
 		$grant_content = $oModuleAdminModel->getModuleGrantHTML($this->module_info->module_srl, $this->xml_info->grant);
 		Context::set('grant_content', $grant_content);
 		// setting up the template
@@ -376,7 +376,7 @@ class forumAdminView extends forum {
 	function dispForumAdminExtraVars()
 	{
 		//getting extra vars html
-		$oDocumentAdminModel = &getModel('document');
+		$oDocumentAdminModel = getModel('document');
 		$extra_vars_content = $oDocumentAdminModel->getExtraVarsHTML($this->module_info->module_srl);
 		Context::set('extra_vars_content', $extra_vars_content);
 		// setting up the template
@@ -389,14 +389,14 @@ class forumAdminView extends forum {
 	function dispForumAdminThemeInfo()
 	{
 		//setting all the variables
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$skin_list = $oModuleModel->getSkins($this->module_path);
 		Context::set('skin_list',$skin_list);
 
 		$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
 		Context::set('mskin_list', $mskin_list);
 
-		$oLayoutModel = &getModel('layout');
+		$oLayoutModel = getModel('layout');
 		$layout_list = $oLayoutModel->getLayoutList();
 		Context::set('layout_list', $layout_list);
 
@@ -417,7 +417,7 @@ class forumAdminView extends forum {
 	function dispForumAdminSkinInfo()
 	{
 		// getting module skin info html
-		$oModuleAdminModel = &getAdminModel('module');
+		$oModuleAdminModel = getAdminModel('module');
 		$skin_content = $oModuleAdminModel->getModuleSkinHTML($this->module_info->module_srl);
 		Context::set('skin_content', $skin_content);
 
@@ -431,7 +431,7 @@ class forumAdminView extends forum {
 	function dispForumAdminMobileSkinInfo()
 	{
 		// getting module skin info html
-		$oModuleAdminModel = &getAdminModel('module');
+		$oModuleAdminModel = getAdminModel('module');
 		$skin_content = $oModuleAdminModel->getModuleMobileSkinHTML($this->module_info->module_srl);
 		Context::set('skin_content', $skin_content);
 
